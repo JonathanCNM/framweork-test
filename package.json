@@ -7,13 +7,15 @@
   "module": "./dist/index.es.js",
   "types": "dist/index.d.ts",
   "styles": "dist/styles/index.d.ts",
+  "hooks": "dist/hooks/index.d.ts",
   "files": [
     "dist",
-    "src/styles"
+    "src/styles",
+    "src/hooks"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc -p tsconfig.build.json && cp src/styles/index.css dist/styles.css",
+    "build": "vite build && tsc -p tsconfig.build.json && cp src/styles/index.css dist/styles.css && cp src/hooks/index.ts dist/hooks/index.ts",
     "build:types": "tsc --emitDeclarationOnly",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -31,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/JonathanCNM/framweork-test"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

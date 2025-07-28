@@ -1,0 +1,42 @@
+import { useEffect, useState } from "react";
+
+export const useKeyboardVisible = () => {
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(
+    window.visualViewport?.height || window.innerHeight
+  );
+
+  useEffect(() => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (!isMobile) return;
+
+    const handleFocus = () => {
+      document.body.style.overflow = "hidden";
+      setIsKeyboardOpen(true);
+    };
+
+    const handleBlur = () => {
+      document.body.style.overflow = "";
+      setIsKeyboardOpen(false);
+    };
+
+    const handleResize = () =>
+      setViewportHeight(window.visualViewport?.height || window.innerHeight);
+
+    window.addEventListener("focusin", handleFocus);
+    window.addEventListener("focusout", handleBlur);
+    window.visualViewport?.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("focusin", handleFocus);
+      window.removeEventListener("focusout", handleBlur);
+      window.visualViewport?.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize);
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return { isKeyboardOpen, viewportHeight };
+};

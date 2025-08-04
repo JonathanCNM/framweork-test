@@ -1,6 +1,3 @@
-export { BlockScrollWrapper } from "./BlockScrollWrapper";
-export type { BlockScrollWrapperProps } from "./BlockScrollWrapper";
-
 export { Button } from "./Button";
 export type { ButtonProps } from "./Button";
 

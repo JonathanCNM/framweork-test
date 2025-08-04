@@ -1,21 +1,12 @@
 import * as React from "react";
-import {
-  VGSCollectForm,
-  type IVGSCollectCardCVCField,
-  type IVGSCollectCardExpirationField,
-  type IVGSCollectCardNumberField,
-  type IVGSCollectTextField,
-} from "@vgs/collect-js-react";
+import { VGSCollectForm, type ICollectFormProps } from "@vgs/collect-js-react";
 
-export type VgsInputProps = {
+export interface VgsInputProps extends ICollectFormProps {
   type: "card_holder_name" | "card_number" | "card_exp_date" | "card_cvc";
   placeholder: string;
   autoFocus?: boolean;
   errorLabel?: string;
-} & IVGSCollectTextField &
-  IVGSCollectCardNumberField &
-  IVGSCollectCardExpirationField &
-  IVGSCollectCardCVCField;
+}
 
 const {
   TextField,

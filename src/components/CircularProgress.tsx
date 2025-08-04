@@ -31,12 +31,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
         gradientColors={gradientColors}
       />
       {children && (
-        <section
-          className="lola-cirular-progress--element"
-          style={{ backgroundColor: "red" }}
-        >
-          {children}
-        </section>
+        <section className="lola-cirular-progress--element">{children}</section>
       )}
     </section>
   );

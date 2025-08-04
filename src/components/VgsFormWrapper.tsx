@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   VGSCollectForm,
   VGSCollectProvider,
@@ -9,8 +10,8 @@ export interface VgsFormWrapperProps {
   vgsEnvironment: VGSCollectVaultEnvironment;
   vgsRouteId: string;
   children: React.ReactElement;
-  onSubmitCallback: (status: unknown, data: unknown) => void;
-  onErrorCallback: (error: unknown) => void;
+  onSubmitCallback: (status: any, data: any) => void;
+  onErrorCallback: (error: any) => void;
 }
 
 export const VgsFormWrapper: React.FC<VgsFormWrapperProps> = ({
@@ -27,11 +28,12 @@ export const VgsFormWrapper: React.FC<VgsFormWrapperProps> = ({
         vaultId={vgsVaultId}
         environment={vgsEnvironment}
         action="/post"
+        submitParameters={{}}
         routeId={vgsRouteId}
         onSubmitCallback={onSubmitCallback}
         onErrorCallback={onErrorCallback}
       >
-        <section>{children}</section>
+        {children}
       </VGSCollectForm>
     </VGSCollectProvider>
   );

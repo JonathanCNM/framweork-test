@@ -73,7 +73,7 @@ const Layout = ({
       className={classes}
       {...props}
     >
-      {children}
+      <section className="lola-layout--container">{children}</section>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import { type ReactNode } from "react";
-import { MotionWrapper } from "./components";
+import { Button, MotionWrapper } from "./components";
 import "./styles/index.css";
 import { GradientText } from "./components/GradientText";
+import { useKeyboardVisible } from "./hooks";
+import { useBlockScroll } from "./hooks/useBlockScroll";
 
 const Code = ({ title, children }: { title: string; children: ReactNode }) => (
   <section>
@@ -21,10 +23,12 @@ const Code = ({ title, children }: { title: string; children: ReactNode }) => (
 );
 
 const App = () => {
+  useKeyboardVisible();
+  useBlockScroll();
   return (
     <MotionWrapper>
       <section style={{ width: "80%", margin: "auto" }}>
-        <GradientText as="h1" color="purple">
+        <GradientText as="h1" color="purple" style={{ fontSize: "2rem" }}>
           Lola Framework UI - Style Framework
         </GradientText>
         <p style={{ marginBottom: "2rem" }}>
@@ -48,6 +52,8 @@ const App = () => {
             <br />
             {"<Button>Green Button</Button>"}
           </Code>
+          <p>Result:</p>
+          <Button>Green Button</Button>
         </div>
       </section>
     </MotionWrapper>

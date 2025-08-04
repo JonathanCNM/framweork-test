@@ -616,6 +616,10 @@ button {
   justify-content: center;
   margin-bottom: 20px;
   width: 100%;
+  position: sticky;
+  bottom: 20px;
+  transition: all 0.25s ease-in-out;
+  z-index: 10;
 }
 
 .lola-cirular-progress {

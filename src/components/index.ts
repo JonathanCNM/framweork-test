@@ -21,3 +21,9 @@ export type { NavbarProps } from "./Navbar";
 
 export { Title } from "./Title";
 export type { TitleProps } from "./Title";
+
+export { VgsFormWrapper } from "./VgsFormWrapper";
+export type { VgsFormWrapperProps } from "./VgsFormWrapper";
+
+export { VgsInput } from "./VgsInput";
+export type { VgsInputProps } from "./VgsInput";

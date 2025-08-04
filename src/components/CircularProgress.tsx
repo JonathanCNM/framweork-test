@@ -3,11 +3,7 @@ import { Loader } from "./Loader";
 
 export interface CircularProgressProps {
   size?: number;
-  className?: string;
-  color1?: string;
-  color2?: string;
   children?: React.ReactNode;
-  transparent?: boolean;
   type?: "solid" | "gradient";
   variant?: "full" | "loading";
   gradientColors?: [string, string];

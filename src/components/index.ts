@@ -1,20 +1,26 @@
+export { BlockScrollWrapper } from "./BlockScrollWrapper";
+export type { BlockScrollWrapperProps } from "./BlockScrollWrapper";
+
 export { Button } from "./Button";
 export type { ButtonProps } from "./Button";
 
+export { CircularProgress } from "./CircularProgress";
+export type { CircularProgressProps } from "./CircularProgress";
+
+export { GradientText } from "./GradientText";
+export type { TextProps } from "./GradientText";
+
+export { Layout } from "./Layout";
+export type { LayoutProps } from "./Layout";
+
 export { Loader } from "./Loader";
 export type { LoaderProps } from "./Loader";
+
+export { MotionWrapper } from "./MotionWrapper";
+export type { MotionWrapperProps } from "./MotionWrapper";
 
 export { Navbar } from "./Navbar";
 export type { NavbarProps } from "./Navbar";
 
 export { Title } from "./Title";
 export type { TitleProps } from "./Title";
-
-export { Layout } from "./Layout";
-export type { LayoutProps } from "./Layout";
-
-export { BlockScrollWrapper } from "./BlockScrollWrapper";
-export type { BlockScrollWrapperProps } from "./BlockScrollWrapper";
-
-export { MotionWrapper } from "./MotionWrapper";
-export type { MotionWrapperProps } from "./MotionWrapper";

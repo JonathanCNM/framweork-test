@@ -26,6 +26,72 @@
   --lola-transition: all 0.2s ease-in-out;
 }
 
+/* Gradients */
+.lola-green--gradient {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-green-color) 23.26%,
+    var(--lola-dark-green-color) 111.43%
+  );
+}
+
+.lola-green--gradient:hover:not(:disabled) {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-green-color) 0%,
+    var(--lola-dark-green-color) 100%
+  );
+}
+
+.lola-blue--gradient {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-blue-color) 0%,
+    var(--lola-dark-blue-color) 100%
+  );
+}
+
+.lola-blue--gradient:hover:not(:disabled) {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-blue-color) 0%,
+    var(--lola-dark-blue-color) 100%
+  );
+}
+
+.lola-purple--gradient {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-purple-color) 23.26%,
+    var(--lola-pink-color) 111.43%
+  );
+}
+
+.lola-purple--gradient:hover:not(:disabled) {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-purple-color) 0%,
+    var(--lola-pink-color) 100%
+  );
+}
+
+.lola-pink--gradient {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-pink-color) 23.26%,
+    var(--lola-purple-color) 111.43%
+  );
+  color: white;
+}
+
+.lola-pink--gradient:hover:not(:disabled) {
+  background: linear-gradient(
+    116.74deg,
+    var(--lola-pink-color) 0%,
+    var(--lola-purple-color) 100%
+  );
+}
+
 /* Button Styles */
 
 button {
@@ -550,4 +616,45 @@ button {
   justify-content: center;
   margin-bottom: 20px;
   width: 100%;
+}
+
+.lola-cirular-progress {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lola-cirular-progress--element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.lola-gradient-text {
+  color: transparent;
+  background-clip: text;
+  width: fit-content;
+  cursor: default;
+}
+
+.lola-gradient-text.lola-green--gradient:hover:not(:disabled),
+.lola-gradient-text.lola-blue--gradient:hover:not(:disabled),
+.lola-gradient-text.lola-purple--gradient:hover:not(:disabled),
+.lola-gradient-text.lola-pink--gradient:hover:not(:disabled) {
+  color: transparent;
+  background-clip: text;
+  width: fit-content;
+  cursor: default;
 }

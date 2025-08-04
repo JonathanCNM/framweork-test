@@ -1,6 +1,7 @@
-import type { ReactNode } from "react";
-import { Button, MotionWrapper } from "./components";
+import { type ReactNode } from "react";
+import { MotionWrapper } from "./components";
 import "./styles/index.css";
+import { GradientText } from "./components/GradientText";
 
 const Code = ({ title, children }: { title: string; children: ReactNode }) => (
   <section>
@@ -23,12 +24,14 @@ const App = () => {
   return (
     <MotionWrapper>
       <section style={{ width: "80%", margin: "auto" }}>
-        <h1>Lola Framework UI - Style Framework</h1>
+        <GradientText as="h1" color="purple">
+          Lola Framework UI - Style Framework
+        </GradientText>
         <p style={{ marginBottom: "2rem" }}>
           A React TypeScript component library built with Vite.
         </p>
         <div>
-          <h2>Getting Started</h2>
+          <GradientText as="h2">Getting Started</GradientText>
           <Code title="Install the package:">
             npm install lola-framework-ui
           </Code>
@@ -45,8 +48,6 @@ const App = () => {
             <br />
             {"<Button>Green Button</Button>"}
           </Code>
-
-          <Button>Green Button</Button>
         </div>
       </section>
     </MotionWrapper>

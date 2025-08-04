@@ -31,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button disabled={isDisabled} className={classes} {...props}>
-      {loading && <Loader />}
+      {loading && <Loader strokeWidth={2} />}
       {children ?? "button"}
     </button>
   );

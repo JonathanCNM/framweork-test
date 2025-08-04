@@ -397,7 +397,6 @@ button {
   justify-content: start;
   align-items: center;
   gap: 8px;
-  margin-top: 20px;
   z-index: 10000;
   color: var(--lola-text-color);
 }

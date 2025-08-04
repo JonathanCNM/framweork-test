@@ -26,6 +26,7 @@ export type { NavbarProps } from "./components/Navbar";
 export type { TitleProps } from "./components/Title";
 
 // Esport Hooks
+export * from "./hooks/useBlockScroll";
 export * from "./hooks/useKeyboardVisible";
 export * from "./hooks/usePreventReload";
 

@@ -68,13 +68,15 @@ const Layout = ({
   const classes = ["lola-layout", className].filter(Boolean).join(" ");
 
   return (
-    <div
-      style={{ height: `${viewportHeight}px` }}
-      className={classes}
-      {...props}
-    >
-      <section className="lola-layout--container">{children}</section>
-    </div>
+    <main className="lola-main">
+      <div
+        style={{ height: `${viewportHeight}px` }}
+        className={classes}
+        {...props}
+      >
+        <section className="lola-layout--container">{children}</section>
+      </div>
+    </main>
   );
 };
 

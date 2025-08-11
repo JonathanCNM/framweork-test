@@ -658,3 +658,51 @@ button {
   width: fit-content;
   cursor: default;
 }
+
+.vgs-collect-iframe-wr iframe {
+  width: 100%;
+  height: 98%;
+  margin: auto;
+}
+
+.vgs-collect-iframe-wr {
+  display: block;
+  height: 50px;
+  border: 1px solid;
+  margin: 9px 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.zip-code {
+  -moz-appearance: textfield; 
+}
+
+.cvv {
+  -moz-appearance: textfield; 
+  -webkit-text-security: disc ;
+}
+
+.zip-code::-webkit-inner-spin-button,
+.zip-code::-webkit-outer-spin-button,
+.cvv::-webkit-inner-spin-button,
+.cvv::-webkit-outer-spin-button
+ {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.vgs-collect-container__dirty.vgs-collect-container__invalid {
+  border-color: #fd2a35
+}
+
+.vgs > div > div, .vgs > div form {
+  height: 100% !important;
+}
+
+.vgs > div form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

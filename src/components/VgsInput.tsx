@@ -1,7 +1,7 @@
 import * as React from "react";
-import { VGSCollectForm, type ICollectFormProps } from "@vgs/collect-js-react";
+import { VGSCollectForm } from "@vgs/collect-js-react";
 
-export interface VgsInputProps extends ICollectFormProps {
+export interface VgsInputProps {
   type: "card_holder_name" | "card_number" | "card_exp_date" | "card_cvc";
   placeholder: string;
   autoFocus?: boolean;

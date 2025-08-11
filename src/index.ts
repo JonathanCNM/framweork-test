@@ -24,7 +24,6 @@ export type { LoaderProps } from "./components/Loader";
 export type { MotionWrapperProps } from "./components/MotionWrapper";
 export type { NavbarProps } from "./components/Navbar";
 export type { TitleProps } from "./components/Title";
-export type { VgsFormWrapperProps } from "./components/VgsFormWrapper";
 export type { VgsInputProps } from "./components/VgsInput";
 
 export type { UseVgsCollectLoaderProps } from "./hooks/useVgsCollectLoader";

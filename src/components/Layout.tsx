@@ -14,10 +14,12 @@ const Header = ({ children }: { children: ReactNode }) => (
 
 const Content = ({
   isOverflowauto = false,
+  className = "",
   children,
 }: {
   isOverflowauto?: boolean;
   children: ReactNode;
+  className?: string;
 }) => {
   const overflowClassName = isOverflowauto ? "overflow" : "auto";
   const classes = [
@@ -29,7 +31,9 @@ const Content = ({
 
   return (
     <main className={classes}>
-      <div className="lola-layout--container--content--container">
+      <div
+        className={`lola-layout--container--content--container ${className}`}
+      >
         <div className="lola-layout--container--content--container--wrap">
           {children}
         </div>

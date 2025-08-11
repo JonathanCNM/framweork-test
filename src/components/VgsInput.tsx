@@ -59,7 +59,6 @@ export const VgsInput: React.FC<VgsInputProps> = ({
           placeholder={placeholder}
           yearLength={2}
           errorColor={errorColor}
-          className="mt-0"
         />
         <ErrorLabel errorMessage={errorLabel} />
       </section>
@@ -74,7 +73,6 @@ export const VgsInput: React.FC<VgsInputProps> = ({
           placeholder={placeholder}
           hideValue
           errorColor={errorColor}
-          className="mt-0"
         />
         <ErrorLabel errorMessage={errorLabel} />
       </section>

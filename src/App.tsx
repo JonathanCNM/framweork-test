@@ -28,7 +28,11 @@ const App = () => {
   return (
     <MotionWrapper>
       <section style={{ width: "80%", margin: "auto" }}>
-        <GradientText as="h1" color="purple" style={{ fontSize: "2rem" }}>
+        <GradientText
+          as="h1"
+          colors={["red", "blue"]}
+          style={{ fontSize: "2rem" }}
+        >
           Lola Framework UI - Style Framework
         </GradientText>
         <p style={{ marginBottom: "2rem" }}>
@@ -50,10 +54,10 @@ const App = () => {
             import {"{ Button }"} from 'lola-framework-ui';
             <br />
             <br />
-            {"<Button>Green Button</Button>"}
+            {"<Button>Default Button</Button>"}
           </Code>
           <p>Result:</p>
-          <Button>Green Button</Button>
+          <Button>Default Button</Button>
         </div>
       </section>
     </MotionWrapper>

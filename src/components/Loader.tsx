@@ -1,11 +1,11 @@
+import { useId } from "react";
+
 export interface LoaderProps {
   size?: number;
   strokeWidth?: number;
   value?: number;
   max?: number;
-  type?: "solid" | "gradient";
-  color?: string;
-  gradientColors?: [string, string];
+  colors?: [string, string];
   children?: React.ReactNode;
 }
 
@@ -14,9 +14,7 @@ export const Loader: React.FC<LoaderProps> = ({
   strokeWidth = 4,
   value,
   max = 100,
-  type = "solid",
-  color = "currentColor",
-  gradientColors = ["#6b0ecf", "#fd0166"],
+  colors = ["#000", "#000"],
   children,
 }) => {
   const radius = (size - strokeWidth) / 2;
@@ -26,7 +24,8 @@ export const Loader: React.FC<LoaderProps> = ({
   const offset =
     progress !== undefined ? circumference * (1 - progress / max) : 0;
 
-  const stroke = type === "solid" ? color : `url(#spinnerGradient)`;
+  const id = useId();
+  const idGradient = `spinnerGradient-${id}`;
 
   return (
     <svg
@@ -38,26 +37,18 @@ export const Loader: React.FC<LoaderProps> = ({
       }}
       className={value === undefined ? "animate-spin" : ""}
     >
-      {type === "gradient" && (
-        <defs>
-          <linearGradient
-            id="spinnerGradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="0%"
-          >
-            <stop offset="0%" stopColor={gradientColors[0]} />
-            <stop offset="100%" stopColor={gradientColors[1]} />
-          </linearGradient>
-        </defs>
-      )}
+      <defs>
+        <linearGradient id={idGradient} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor={colors[0]} />
+          <stop offset="100%" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
 
       <circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
-        stroke={stroke}
+        stroke={`url(#${idGradient})`}
         strokeWidth={strokeWidth}
         fill="none"
         strokeLinecap="round"

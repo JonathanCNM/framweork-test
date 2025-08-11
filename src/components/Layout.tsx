@@ -5,6 +5,7 @@ import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
 export interface LayoutProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
   className?: string;
+  colors?: [string, string];
 }
 
 const Header = ({ children }: { children: ReactNode }) => (
@@ -16,7 +17,6 @@ const Content = ({
   children,
 }: {
   isOverflowauto?: boolean;
-  bgColor?: string;
   children: ReactNode;
 }) => {
   const overflowClassName = isOverflowauto ? "overflow" : "auto";
@@ -45,6 +45,7 @@ const Footer = ({ children }: { children: ReactNode }) => (
 const Layout = ({
   children,
   className = "",
+  colors = ["#fff", "#fff"],
   ...props
 }: LayoutProps): ReactElement => {
   const childrenArray = React.Children.toArray(children);
@@ -69,7 +70,13 @@ const Layout = ({
 
   return (
     <div
-      style={{ height: `${viewportHeight}px` }}
+      style={
+        {
+          height: `${viewportHeight}px`,
+          "--color1": colors[0],
+          "--color2": colors[1],
+        } as React.CSSProperties & { [key: string]: string }
+      }
       className={classes}
       {...props}
     >

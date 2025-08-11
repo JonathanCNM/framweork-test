@@ -4,15 +4,13 @@ import { Loader } from "./Loader";
 export interface CircularProgressProps {
   size?: number;
   children?: React.ReactNode;
-  type?: "solid" | "gradient";
   variant?: "full" | "loading";
-  gradientColors?: [string, string];
+  colors?: [string, string];
 }
 
 export const CircularProgress: React.FC<CircularProgressProps> = ({
   size = 154,
-  gradientColors,
-  type = "solid",
+  colors = ["#000", "#000"],
   children,
   variant = "loading",
 }) => {
@@ -20,12 +18,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
 
   return (
     <section className="lola-cirular-progress">
-      <Loader
-        size={size}
-        type={type}
-        value={value}
-        gradientColors={gradientColors}
-      />
+      <Loader size={size} value={value} colors={colors} />
       {children && (
         <section className="lola-cirular-progress--element">{children}</section>
       )}

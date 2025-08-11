@@ -1,5 +1,6 @@
 import { type ReactElement } from "react";
 import { KeyboardBackspaceIcon } from "../assets/KeyboardBackspaceIcon";
+import { GradientText } from "./GradientText";
 
 export interface NavbarProps {
   title: string;
@@ -10,7 +11,7 @@ export interface NavbarProps {
   onBackClick?: (link: string) => void;
   noBackButton?: boolean;
   className?: string;
-  color?: "green" | "blue" | "purple" | "pink";
+  colors?: [string, string];
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -22,18 +23,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   onBackClick = () => {},
   noBackButton = false,
   className = "",
-  color = "green",
+  colors = ["#000", "#000"],
 }) => {
   const backLink = backUrl ? backUrl : (-1 as unknown as string);
   const isDisabled = disabled ? "disabled" : "active";
 
-  const classes = [`lola-navbar`, `lola-navbar--${color}`, className]
-    .filter(Boolean)
-    .join(" ");
+  const classes = [`lola-navbar`, className].filter(Boolean).join(" ");
 
   const iconClasses = [
     "lola-navbar--container--icon",
-    `lola-navbar--container--icon--${color}`,
     `lola-navbar--container--icon--${isDisabled}`,
   ]
     .filter(Boolean)
@@ -43,6 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     <div className={classes}>
       {!noBackButton ? (
         <KeyboardBackspaceIcon
+          colors={colors}
           className="lola-navbar--back-icon"
           onClick={() => onBackClick(backLink)}
         />
@@ -51,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       )}
 
       <section onClick={onIconClick} className="lola-navbar--container">
-        <h1 className="lola-navbar--container--title">{title}</h1>
+        <GradientText colors={colors}>{title}</GradientText>
         {icon && <section className={iconClasses}>{icon}</section>}
       </section>
     </div>

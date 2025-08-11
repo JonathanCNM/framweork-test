@@ -26,7 +26,6 @@ const Test = () => {
         <Layout.Footer>
           <Button
             size="large"
-            variant="gradient"
             onClick={() => setCount((prev: number) => prev + 1)}
           >
             Testing {count}

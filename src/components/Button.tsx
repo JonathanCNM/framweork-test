@@ -1,20 +1,23 @@
+import { GradientText } from "./GradientText";
 import { Loader } from "./Loader";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: "green" | "blue" | "purple" | "pink";
   size?: "small" | "medium" | "large";
   children: React.ReactNode;
-  variant?: "default" | "gradient" | "link" | "outline" | "cancel";
+  variant?: "default" | "link" | "outline" | "cancel";
   loading?: boolean;
+  background?: [string, string];
+  colors?: [string, string];
 }
 
 export const Button: React.FC<ButtonProps> = ({
   variant = "default",
-  color = "green",
   size = "medium",
   className = "",
   loading = false,
+  background = ["#000", "#000"],
+  colors = ["#fff", "#fff"],
   children,
   ...props
 }) => {
@@ -22,7 +25,6 @@ export const Button: React.FC<ButtonProps> = ({
   const classes = [
     `lola-button`,
     `lola-button--${variant}`,
-    `lola-button--${color}`,
     `lola-button--${size}`,
     className,
   ]
@@ -30,9 +32,22 @@ export const Button: React.FC<ButtonProps> = ({
     .join(" ");
 
   return (
-    <button disabled={isDisabled} className={classes} {...props}>
+    <button
+      disabled={isDisabled}
+      className={classes}
+      style={
+        {
+          ...props.style,
+          "--bgcolor1": background[0],
+          "--bgcolor2": background[1],
+          "--color1": colors[0],
+          "--color2": colors[1],
+        } as React.CSSProperties & { [key: string]: string }
+      }
+      {...props}
+    >
       {loading && <Loader strokeWidth={2} />}
-      {children ?? "button"}
+      <GradientText colors={colors}>{children}</GradientText>
     </button>
   );
 };

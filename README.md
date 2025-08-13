@@ -1,113 +1,51 @@
-# lola-framework-ui
+# Lola Framework UI
 
-A modern React TypeScript component library built with Vite, designed for publishing as a style framework on npm.
+**Lola Framework UI** es un framework de estilos diseñado para **unificar la apariencia y la experiencia visual** de todos los proyectos desarrollados bajo el ecosistema de nuestra organización.  
+Su objetivo principal es ofrecer **consistencia, mantenibilidad y velocidad de desarrollo**, proporcionando una colección de componentes y utilidades listos para usar, con una estética coherente y personalizable.
 
-## Features
+---
 
-- 🚀 Built with Vite for fast development and building
-- 📦 TypeScript support with full type definitions
-- 🎨 CSS-in-CSS approach with CSS variables for theming
-- 🔧 Optimized for tree-shaking
-- 📝 Comprehensive TypeScript interfaces
-- 🌟 Modern React patterns and best practices
+## 🚀 Propósito
 
-## Installation
+En equipos con múltiples proyectos, mantener una identidad visual consistente puede ser un desafío.  
+**Lola Framework UI** nace para centralizar los estilos y patrones visuales, permitiendo:
 
+- **Unificación de estilos:** Todos los proyectos comparten la misma base visual.
+- **Desarrollo más rápido:** Reutiliza componentes y evita crear estilos desde cero.
+- **Facilidad de mantenimiento:** Actualiza estilos globalmente desde un único lugar.
+- **Escalabilidad:** Soporta la incorporación de nuevos componentes y hooks reutilizables.
+
+---
+
+## 📦 Qué incluye
+
+- **Componentes UI** reutilizables y accesibles.
+- **Hooks personalizados** para funcionalidades comunes.
+- **Sistema de estilos** basado en buenas prácticas y escalable.
+- **Soporte para personalización** mediante props y temas.
+
+---
+
+## ⚙️ Configuración en tu proyecto
+
+### Instalación:
+
+**npm**
 ```bash
 npm install lola-framework-ui
 ```
 
-## Usage
+**yarn**
+```bash
+yarn add lola-framework-ui
+```
 
-### Import Components
+### Implementación:
 
 ```typescript
-import { Button } from "lola-framework-ui";
+// in your main.tsx or app.tsx file
 import "lola-framework-ui/styles";
-```
-
-### Button Component
-
-```typescript
 import { Button } from "lola-framework-ui";
 
-function MyComponent() {
-  return (
-    <div>
-      <Button variant="primary" size="medium">
-        Click me!
-      </Button>
-      <Button variant="success" size="large">
-        Success
-      </Button>
-      <Button variant="outline" size="small">
-        Outline
-      </Button>
-    </div>
-  );
-}
+<Button>Default Button</Button>
 ```
-
-## Components
-
-### Button
-
-The Button component supports various variants and sizes:
-
-**Props:**
-
-- `variant`: 'primary' | 'success' | 'outline' (default: 'primary')
-- `size`: 'small' | 'medium' | 'large' (default: 'medium')
-- All standard HTML button attributes
-
-## Theming
-
-The library uses CSS variables for easy theming:
-
-```css
-:root {
-  --lola-primary-color: #2e86c1;
-  --lola-success-color: #28b463;
-  --lola-outline-color: #007bff;
-  --lola-text-color: #212529;
-  --lola-border-radius: 0.375rem;
-  --lola-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  --lola-transition: all 0.2s ease-in-out;
-}
-```
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Lint code
-npm run lint
-```
-
-## Publishing
-
-```bash
-# Build the library
-npm run build
-
-# Publish to npm
-npm publish
-```
-
-## License
-
-MIT
-
-## Author
-
-Jonathan Narvaez
-# lola-framework-ui# framweork-test

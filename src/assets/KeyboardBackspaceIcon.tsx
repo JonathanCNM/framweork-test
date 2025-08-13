@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 interface KeyboardBackspaceIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number | string;
   colors?: [string, string];
@@ -8,7 +10,8 @@ export const KeyboardBackspaceIcon: React.FC<KeyboardBackspaceIconProps> = ({
   colors = ["#000", "#000"],
   ...props
 }) => {
-  const gradientId = "keyboardBackspaceGradient";
+  const id = useId();
+  const gradientId = `keyboardBackspaceGradient-${id}`;
 
   return (
     <svg

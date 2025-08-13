@@ -57,7 +57,7 @@ const App = () => {
             {"<Button>Default Button</Button>"}
           </Code>
           <p>Result:</p>
-          <Button>Default Button</Button>
+          <Button loading>Default Button</Button>
         </div>
       </section>
     </MotionWrapper>

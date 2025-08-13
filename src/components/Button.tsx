@@ -46,7 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
       }
       {...props}
     >
-      {loading && <Loader strokeWidth={2} />}
+      {loading && <Loader colors={colors} strokeWidth={2} />}
       <GradientText colors={colors}>{children}</GradientText>
     </button>
   );

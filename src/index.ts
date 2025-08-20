@@ -2,7 +2,7 @@
 export * from "./components";
 export * from "./hooks";
 export * from "./styles";
-export * from "./assets";
+export * from "./icons";
 
 // Export components
 export * from "./components/Button";
@@ -40,7 +40,7 @@ export * from "./hooks/usePreventReload";
 export * from "./hooks/useVgsCollectLoader";
 
 // Export Icons
-export * from "./assets/icons";
+export * from "./icons/icons";
 
 // Main CSS import
 import "./styles/index.css";

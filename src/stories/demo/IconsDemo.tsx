@@ -16,7 +16,7 @@ import {
   CardIcon,
   AddCardIcon,
   RightRoundedIcon,
-} from "../../assets";
+} from "../../icons";
 import "../../index.css";
 
 const iconList = [

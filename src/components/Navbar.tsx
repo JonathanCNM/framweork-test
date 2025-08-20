@@ -1,5 +1,5 @@
 import { type ReactElement } from "react";
-import { KeyboardBackspaceIcon } from "../assets/KeyboardBackspaceIcon";
+import { BackArrow } from "../icons";
 import { GradientText } from "./GradientText";
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -41,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <div className={classes} {...props}>
       {!noBackButton ? (
-        <KeyboardBackspaceIcon
+        <BackArrow
           colors={colors}
           className="lola-navbar--back-icon"
           onClick={() => onBackClick(backLink)}

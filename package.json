@@ -8,10 +8,12 @@
   "types": "dist/index.d.ts",
   "styles": "dist/styles/index.d.ts",
   "hooks": "dist/hooks/index.d.ts",
+  "icons": "dist/icons/index.d.ts",
   "files": [
     "dist",
     "src/styles",
-    "src/hooks"
+    "src/hooks",
+    "src/icons"
   ],
   "scripts": {
     "dev": "vite",
@@ -67,6 +69,7 @@
     "vite-plugin-dts": "^4.5.4"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.7",
     "@types/body-scroll-lock": "^3.1.2",
     "@vgs/collect-js": "^0.6.3",
     "@vgs/collect-js-react": "^1.5.1",

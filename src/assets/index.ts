@@ -1,0 +1,18 @@
+export {
+  CameraGradient,
+  UploadCloud,
+  BackArrow,
+  Close,
+  RightArrow,
+  FaceIcon,
+  RightIcon,
+  ErrorIcon,
+  CameraErrorIcon,
+  IproovCameraErrorIcon,
+  IconApp,
+  LolaLogo,
+  SuccessIcon,
+  CardIcon,
+  AddCardIcon,
+  RightRoundedIcon,
+} from "./icons";

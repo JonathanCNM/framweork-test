@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-export interface LoaderProps {
+export interface LoaderProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
   strokeWidth?: number;
   value?: number;
@@ -16,6 +16,7 @@ export const Loader: React.FC<LoaderProps> = ({
   max = 100,
   colors = ["#000", "#000"],
   children,
+  ...props
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -36,6 +37,7 @@ export const Loader: React.FC<LoaderProps> = ({
         height: `${size}px`,
       }}
       className={value === undefined ? "animate-spin" : ""}
+      {...props}
     >
       <defs>
         <linearGradient id={idGradient} x1="0%" y1="0%" x2="100%" y2="0%">

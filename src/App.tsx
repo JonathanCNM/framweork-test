@@ -2,7 +2,6 @@ import { type ReactNode } from "react";
 import { Button, MotionWrapper } from "./components";
 import "./styles/index.css";
 import { GradientText } from "./components/GradientText";
-import { useKeyboardVisible } from "./hooks";
 import { useBlockScroll } from "./hooks/useBlockScroll";
 
 const Code = ({ title, children }: { title: string; children: ReactNode }) => (
@@ -23,8 +22,8 @@ const Code = ({ title, children }: { title: string; children: ReactNode }) => (
 );
 
 const App = () => {
-  useKeyboardVisible();
   useBlockScroll();
+
   return (
     <MotionWrapper>
       <section style={{ width: "80%", margin: "auto" }}>

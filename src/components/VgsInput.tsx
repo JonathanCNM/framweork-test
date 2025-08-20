@@ -1,11 +1,14 @@
-import * as React from "react";
+import { useState, useCallback } from "react";
 import { VGSCollectForm } from "@vgs/collect-js-react";
+import { LabelInput } from "./LabelInput";
 
 export interface VgsInputProps {
   type: "card_holder_name" | "card_number" | "card_exp_date" | "card_cvc";
   placeholder: string;
   autoFocus?: boolean;
   errorLabel?: string;
+  colors?: [string, string];
+  isActive?: boolean;
 }
 
 const {
@@ -20,17 +23,28 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   autoFocus = false,
   placeholder,
   errorLabel = "",
+  colors = ["#000", "#000"],
+  isActive = false,
 }) => {
+  const [isFocus, setIsFocus] = useState(isActive);
   const errorColor = "#fd2a35";
+  const onHanlderFocus = useCallback(() => setIsFocus(true), []);
+
   if (type === "card_holder_name")
     return (
       <>
-        <TextField
-          autoFocus={autoFocus}
-          name="card_holder_name"
-          validations={["required"]}
-          placeholder={placeholder}
-        />
+        <section className="lola-vgs--input">
+          <LabelInput colors={colors} isActive={isFocus}>
+            {placeholder}
+          </LabelInput>
+          <TextField
+            autoFocus={autoFocus}
+            name="card_holder_name"
+            validations={["required"]}
+            placeholder=""
+            onFocus={onHanlderFocus}
+          />
+        </section>
         <ErrorLabel errorMessage={errorLabel} />
       </>
     );
@@ -38,14 +52,20 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   if (type === "card_number")
     return (
       <>
-        <CardNumberField
-          autoFocus={autoFocus}
-          name="card_number"
-          validations={["required", "validCardNumber"]}
-          placeholder={placeholder}
-          showCardIcon={true}
-          errorColor={errorColor}
-        />
+        <section className="lola-vgs--input">
+          <LabelInput colors={colors} isActive={isFocus}>
+            {placeholder}
+          </LabelInput>
+          <CardNumberField
+            autoFocus={autoFocus}
+            name="card_number"
+            validations={["required", "validCardNumber"]}
+            placeholder=""
+            onFocus={onHanlderFocus}
+            showCardIcon={true}
+            errorColor={errorColor}
+          />
+        </section>
         <ErrorLabel errorMessage={errorLabel} />
       </>
     );
@@ -53,13 +73,20 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   if (type === "card_exp_date")
     return (
       <section style={{ width: "100%" }}>
-        <CardExpirationDateField
-          name="card_exp_date"
-          validations={["required", "validCardExpirationDate"]}
-          placeholder={placeholder}
-          yearLength={2}
-          errorColor={errorColor}
-        />
+        <section className="lola-vgs--input">
+          <LabelInput colors={colors} isActive={isFocus}>
+            {placeholder}
+          </LabelInput>
+          <CardExpirationDateField
+            name="card_exp_date"
+            autoFocus={autoFocus}
+            validations={["required", "validCardExpirationDate"]}
+            placeholder=""
+            yearLength={2}
+            onFocus={onHanlderFocus}
+            errorColor={errorColor}
+          />
+        </section>
         <ErrorLabel errorMessage={errorLabel} />
       </section>
     );
@@ -67,13 +94,20 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   if (type === "card_cvc")
     return (
       <section style={{ width: "100%" }}>
-        <CardSecurityCodeField
-          name="card_cvc"
-          validations={["required", "validCardSecurityCode"]}
-          placeholder={placeholder}
-          hideValue
-          errorColor={errorColor}
-        />
+        <section className="lola-vgs--input">
+          <LabelInput colors={colors} isActive={isFocus}>
+            {placeholder}
+          </LabelInput>
+          <CardSecurityCodeField
+            name="card_cvc"
+            autoFocus={autoFocus}
+            validations={["required", "validCardSecurityCode"]}
+            placeholder=""
+            hideValue
+            onFocus={onHanlderFocus}
+            errorColor={errorColor}
+          />
+        </section>
         <ErrorLabel errorMessage={errorLabel} />
       </section>
     );

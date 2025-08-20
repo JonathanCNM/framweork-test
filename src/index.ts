@@ -7,6 +7,8 @@ export * from "./styles";
 export * from "./components/Button";
 export * from "./components/CircularProgress";
 export * from "./components/GradientText";
+export * from "./components/InputField";
+export * from "./components/LabelInput";
 export * from "./components/Layout";
 export * from "./components/Loader";
 export * from "./components/MotionWrapper";
@@ -19,6 +21,8 @@ export * from "./components/VgsInput";
 export type { ButtonProps } from "./components/Button";
 export type { CircularProgressProps } from "./components/CircularProgress";
 export type { TextProps } from "./components/GradientText";
+export type { InputFieldProps } from "./components/InputField";
+export type { LabelInputProps } from "./components/LabelInput";
 export type { LayoutProps } from "./components/Layout";
 export type { LoaderProps } from "./components/Loader";
 export type { MotionWrapperProps } from "./components/MotionWrapper";
@@ -28,11 +32,14 @@ export type { VgsInputProps } from "./components/VgsInput";
 
 export type { UseVgsCollectLoaderProps } from "./hooks/useVgsCollectLoader";
 
-// Esport Hooks
+// Export Hooks
 export * from "./hooks/useBlockScroll";
 export * from "./hooks/useKeyboardVisible";
 export * from "./hooks/usePreventReload";
 export * from "./hooks/useVgsCollectLoader";
+
+// Export Icons
+export * from "./assets/icons";
 
 // Main CSS import
 import "./styles/index.css";

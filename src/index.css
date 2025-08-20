@@ -60,3 +60,54 @@ button:focus-visible {
 .comment {
   color: #4ba84b;
 }
+
+.icons-storybook-demo {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 24px;
+  padding-top: 24px;
+}
+
+.icons-stoybook-demo-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding-bottom: 24px;
+  padding-top: 24px;
+}
+
+.icons-storybook-demo-slot {
+  border: solid 1px rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.icons-storybook-demo-slot p {
+  font-size: 10px;
+}
+
+.icons-storybook-demo--field-container,
+.icons-storybook-demo--field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icons-storybook-demo--field-container {
+  gap: 24px;
+  flex-direction: row;
+}
+
+.icons-storybook-demo--field {
+  width: 100%;
+  align-items: flex-start;
+}
+
+.icons-storybook-demo--field input {
+  width: 100%;
+}

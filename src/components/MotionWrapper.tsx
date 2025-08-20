@@ -1,6 +1,7 @@
-import { motion, type Variants } from "framer-motion";
+import { motion, type HTMLMotionProps, type Variants } from "framer-motion";
 
-export interface MotionWrapperProps {
+export interface MotionWrapperProps
+  extends Omit<HTMLMotionProps<"div">, "ref"> {
   children: React.ReactNode;
 }
 
@@ -18,13 +19,17 @@ const pageVariants: Variants = {
   },
 };
 
-export const MotionWrapper: React.FC<MotionWrapperProps> = ({ children }) => (
+export const MotionWrapper: React.FC<MotionWrapperProps> = ({
+  children,
+  ...props
+}) => (
   <motion.div
     variants={pageVariants}
     initial="initial"
     animate="animate"
     exit="exit"
     className="page"
+    {...props}
   >
     {children}
   </motion.div>

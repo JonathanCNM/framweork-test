@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 import { KeyboardBackspaceIcon } from "../assets/KeyboardBackspaceIcon";
 import { GradientText } from "./GradientText";
 
-export interface NavbarProps {
+export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   backUrl?: string;
   icon?: ReactElement;
@@ -24,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   noBackButton = false,
   className = "",
   colors = ["#000", "#000"],
+  ...props
 }) => {
   const backLink = backUrl ? backUrl : (-1 as unknown as string);
   const isDisabled = disabled ? "disabled" : "active";
@@ -38,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     .join(" ");
 
   return (
-    <div className={classes}>
+    <div className={classes} {...props}>
       {!noBackButton ? (
         <KeyboardBackspaceIcon
           colors={colors}

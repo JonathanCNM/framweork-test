@@ -7,6 +7,12 @@ export type { CircularProgressProps } from "./CircularProgress";
 export { GradientText } from "./GradientText";
 export type { TextProps } from "./GradientText";
 
+export { InputField } from "./InputField";
+export type { InputFieldProps } from "./InputField";
+
+export { LabelInput } from "./LabelInput";
+export type { LabelInputProps } from "./LabelInput";
+
 export { Layout } from "./Layout";
 export type { LayoutProps } from "./Layout";
 

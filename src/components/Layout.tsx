@@ -72,6 +72,19 @@ const Layout = ({
 
   const classes = ["lola-layout", className].filter(Boolean).join(" ");
 
+  const header = childrenArray.find((child) => {
+    if (!isValidElement(child)) return false;
+    if (child.type === Header) return child;
+  });
+  const content = childrenArray.find((child) => {
+    if (!isValidElement(child)) return false;
+    if (child.type === Content) return child;
+  });
+  const footer = childrenArray.find((child) => {
+    if (!isValidElement(child)) return false;
+    if (child.type === Footer) return child;
+  });
+
   return (
     <div
       style={
@@ -84,7 +97,12 @@ const Layout = ({
       className={classes}
       {...props}
     >
-      <section className="lola-layout--container">{children}</section>
+      <section className="lola-layout--container">
+        {header && header}
+        {content && content}
+        {!content && children}
+        {footer && footer}
+      </section>
     </div>
   );
 };

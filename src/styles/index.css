@@ -415,14 +415,15 @@ button {
 
 .lola-gradient-text {
   color: transparent !important;
-  background-clip: text !important;
   width: fit-content;
   cursor: default;
   background: linear-gradient(
-    116.74deg,
-    var(--color1) 23.26%,
-    var(--color2) 111.43%
-  );
+        116.74deg,
+        var(--color1) 23.26%,
+        var(--color2) 111.43%
+      )
+      text,
+    var(--bg);
 }
 
 .lola-gradient-text:hover:not(:disabled) {
@@ -466,11 +467,192 @@ button {
   margin: 0;
 }
 
-.vgs-collect-container__dirty.vgs-collect-container__invalid {
-  border-color: #fd2a35;
+.vgs-collect-container__dirty.vgs-collect-container__invalid,
+.vgs-collect-iframe-wr.vgs-collect-container__empty.vgs-collect-container__touched {
+  border-color: #fd2a35 !important;
+}
+
+.vgs-collect-container__dirty.vgs-collect-container__invalid::before,
+.vgs-collect-iframe-wr.vgs-collect-container__empty.vgs-collect-container__touched::before {
+  display: none;
 }
 
 .vgs > div > div,
+.vgs > div form {
+  height: 100% !important;
+}
+
+.vgs > div form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* LabelInput Styles */
+.lola-gradient-text.lola--label-input {
+  position: absolute;
+  left: 12px;
+  top: var(--top);
+  font-size: var(--size);
+  padding: 0 4px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: ease-in-out top 0.3s;
+  z-index: 50;
+}
+
+/* Inputfield Styles */
+.lola-input-field {
+  position: relative;
+  width: 100%;
+  height: 56px;
+}
+
+.lola-input-field .lola--label-input {
+  z-index: 2;
+}
+
+.lola-input-field .lola-input-field--container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.lola-input-field .lola-input-field--container::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    116.74deg,
+    var(--color1) 23.26%,
+    var(--color2) 111.43%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.lola-input-field .lola-input-field--container input {
+  width: 100%;
+  height: 100%;
+  padding: 0 14px;
+  font-size: 16px;
+  transition: ease-in-out all 0.3s;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+/* Map Styles */
+
+/* Autocomplete Styles*/
+.lola-autocomplete {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.lola-autocomplete--input {
+  width: 100%;
+  padding: 20px;
+  padding-left: 44px;
+  border: solid 1px;
+}
+
+.lola-autocomplete--icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-60%);
+}
+
+/* VGS Styles*/
+
+.lola-vgs--input {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.vgs-collect-iframe-wr {
+  display: block;
+  height: 50px;
+  border: 1px solid #222222;
+  border-radius: var(--rounded);
+  padding: 0 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.zip-code {
+  -moz-appearance: textfield;
+}
+
+.cvv {
+  -moz-appearance: textfield;
+  -webkit-text-security: disc;
+}
+
+.zip-code::-webkit-inner-spin-button,
+.zip-code::-webkit-outer-spin-button,
+.cvv::-webkit-inner-spin-button,
+.cvv::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.vgs-collect-container__dirty.vgs-collect-container__invalid,
+.vgs-collect-iframe-wr.vgs-collect-container__empty.vgs-collect-container__touched {
+  border-color: #fd2a35 !important;
+}
+
+.vgs-collect-container__dirty.vgs-collect-container__invalid::before,
+.vgs-collect-iframe-wr.vgs-collect-container__empty.vgs-collect-container__touched::before {
+  display: none;
+}
+
+.vgs-collect-iframe-wr iframe {
+  margin-top: 1px;
+  height: 96%;
+}
+
+.vgs-collect-container__dirty.vgs-collect-container__valid,
+.vgs-collect-container__invalid.vgs-collect-container__focused {
+  position: relative;
+  background-color: transparent;
+  border-color: transparent;
+  z-index: 10;
+}
+
+.vgs-collect-container__dirty.vgs-collect-container__valid::before,
+.vgs-collect-container__invalid.vgs-collect-container__focused::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--color1) 23.26%,
+    var(--color2) 111.43%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.vgs > div > div,
+.vgs > div > div > div,
 .vgs > div form {
   height: 100% !important;
 }

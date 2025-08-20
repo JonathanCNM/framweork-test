@@ -2,6 +2,7 @@
 export * from "./components";
 export * from "./hooks";
 export * from "./styles";
+export * from "./assets";
 
 // Export components
 export * from "./components/Button";

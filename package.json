@@ -8,7 +8,7 @@
   "types": "dist/index.d.ts",
   "styles": "dist/styles/index.d.ts",
   "hooks": "dist/hooks/index.d.ts",
-  "icons": "dist/icons/index.d.ts",
+  "icons": "dist/assets/index.d.ts",
   "files": [
     "dist",
     "src/styles",

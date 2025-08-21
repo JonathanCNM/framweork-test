@@ -4,8 +4,7 @@ import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
 
 export interface LayoutProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
-  className?: string;
-  colors?: [string, string];
+  background?: string;
 }
 
 const Header = ({ children }: { children: ReactNode }) => (
@@ -49,7 +48,7 @@ const Footer = ({ children }: { children: ReactNode }) => (
 const Layout = ({
   children,
   className = "",
-  colors = ["#fff", "#fff"],
+  background = "#fff",
   ...props
 }: LayoutProps): ReactElement => {
   const childrenArray = React.Children.toArray(children);
@@ -87,15 +86,15 @@ const Layout = ({
 
   return (
     <div
+      {...props}
       style={
         {
+          ...props.style,
           height: `${viewportHeight}px`,
-          "--color1": colors[0],
-          "--color2": colors[1],
+          "--bg": background,
         } as React.CSSProperties & { [key: string]: string }
       }
       className={classes}
-      {...props}
     >
       <section className="lola-layout--container">
         {header && header}

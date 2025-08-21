@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Layout, type LayoutProps } from "../components";
 import "../styles/index.css";
+import { backgroundGradient } from "../utils/constants";
 
 const meta: Meta<LayoutProps> = {
   title: "Layout/Layout",
@@ -12,9 +13,8 @@ export default meta;
 
 type Story = StoryObj<typeof Layout>;
 
-export const Gradient: Story = {
+export const Default: Story = {
   args: {
-    colors: ["red", "blue"],
     children: (
       <>
         <Layout.Header>
@@ -31,8 +31,9 @@ export const Gradient: Story = {
   },
 };
 
-export const Solid: Story = {
+export const Gradient: Story = {
   args: {
+    background: backgroundGradient,
     children: (
       <>
         <Layout.Header>

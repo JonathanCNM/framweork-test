@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Title, type TitleProps } from "../components";
 import "../styles/index.css";
+import { backgroundGradient } from "../utils/constants";
 
 const meta: Meta<TitleProps> = {
   title: "Components/Title",
@@ -21,14 +22,14 @@ export const Default: Story = {
 export const Gradient: Story = {
   args: {
     title: "Title Gradient",
-    colors: ["red", "blue"],
+    color: backgroundGradient,
   },
 };
 
 export const Centered: Story = {
   args: {
     title: "Title Gradient",
-    colors: ["red", "blue"],
+    color: backgroundGradient,
     align: "center",
   },
 };
@@ -36,7 +37,7 @@ export const Centered: Story = {
 export const Right: Story = {
   args: {
     title: "Title Gradient",
-    colors: ["red", "blue"],
+    color: backgroundGradient,
     align: "right",
   },
 };
@@ -45,6 +46,6 @@ export const WithSubtitle: Story = {
   args: {
     title: "Title Solid",
     subTitle: "Subtitle Here",
-    colors: ["red", "blue"],
+    color: backgroundGradient,
   },
 };

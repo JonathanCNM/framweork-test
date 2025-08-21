@@ -3,7 +3,6 @@ import { LabelInput } from "./LabelInput";
 
 export interface InputFieldProps {
   label?: string;
-  hint?: string;
   value?: string;
   onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
@@ -13,12 +12,11 @@ export interface InputFieldProps {
   labelStyle?: React.CSSProperties;
   noLabel?: boolean;
   isValid?: boolean;
-  colors?: [string, string];
-  selectedColor?: string;
+  color?: string;
   borderColor?: string;
   borderRadius?: string;
-  errorColor?: [string, string];
-  background?: string;
+  errorColor?: string;
+  labelBackground?: string;
   placeholder?: string;
 }
 
@@ -33,33 +31,36 @@ export const InputField: React.FC<InputFieldProps> = ({
   inputStyle = {},
   labelStyle = {},
   isValid = true,
-  colors = ["#000", "#000"],
+  color = "#000",
   borderColor = "#979797",
   borderRadius = "10",
-  errorColor = ["#fd2a35", "#fd2a35"],
-  background = "#fff",
+  errorColor = "#fd2a35",
+  labelBackground = "#fff",
   placeholder = "",
 }) => {
   const [focused, setFocused] = useState(false);
-  const [currentValue, setCurrentValue] = useState(value ?? "");
+  const [inputValue, setInputValue] = useState(value || "");
+
   const handleFocus = () => setFocused(true);
   const handleBlur = () => setFocused(false);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentValue(event.target.value);
+    setInputValue(event.target.value);
     onChange(event);
   };
 
-  const showLabel = focused || currentValue?.length > 0;
+  const isInputEmpty = inputValue.length === 0 && focused;
+  const showLabel = focused || inputValue.length > 0;
 
   const styles = {
     borderRadius: `${borderRadius}px`,
-    "--color1": !isValid ? errorColor[0] : showLabel ? colors[0] : borderColor,
-    "--color2": !isValid ? errorColor[1] : showLabel ? colors[1] : borderColor,
+    "--bg": isInputEmpty ? errorColor : isValid ? color : errorColor,
   };
 
-  const labelColors: [string, string] = showLabel
-    ? colors
-    : [borderColor, borderColor];
+  const labelColors = isInputEmpty
+    ? errorColor
+    : showLabel
+    ? color
+    : borderColor;
 
   const finalPlaceHolder = noLabel ? placeholder : "";
 
@@ -68,8 +69,8 @@ export const InputField: React.FC<InputFieldProps> = ({
       {!noLabel && (
         <LabelInput
           isActive={showLabel}
-          colors={labelColors}
-          background={background}
+          color={labelColors}
+          background={labelBackground}
           labelStyle={labelStyle}
         >
           {label}

@@ -74,6 +74,7 @@ button:focus-visible {
   gap: 8px;
   padding-bottom: 24px;
   padding-top: 24px;
+  grid-auto-rows: auto;
 }
 
 .icons-storybook-demo-slot {
@@ -84,6 +85,7 @@ button:focus-visible {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 151px;
   gap: 4px;
 }
 

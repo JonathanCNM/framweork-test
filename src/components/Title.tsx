@@ -5,7 +5,7 @@ export interface TitleProps {
   subTitle?: string;
   size?: "sm" | "lg" | "xl";
   align?: "left" | "center" | "right";
-  colors?: [string, string];
+  color?: string;
 }
 
 export const Title: React.FC<TitleProps> = ({
@@ -13,7 +13,7 @@ export const Title: React.FC<TitleProps> = ({
   subTitle,
   size = "lg",
   align = "left",
-  colors = ["#000", "#000"],
+  color = "#000",
 }) => {
   const classes = [`lola-title`, `lola-title--${size}`, `lola-title--${align}`]
     .filter(Boolean)
@@ -21,7 +21,7 @@ export const Title: React.FC<TitleProps> = ({
 
   return (
     <section className={classes}>
-      <GradientText as="h2" colors={colors}>
+      <GradientText as="h2" textColor={color}>
         {title}
       </GradientText>
       {subTitle && <p className="lola-title--subtitle">{subTitle}</p>}

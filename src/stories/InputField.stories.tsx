@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputField, type InputFieldProps } from "../components";
 import "../styles/index.css";
+import { backgroundGradient } from "../utils/constants";
 
 const meta: Meta<InputFieldProps> = {
   title: "Components/InputField",
@@ -15,32 +16,48 @@ type Story = StoryObj<typeof InputField>;
 export const Default: Story = {
   args: {
     name: "test",
-    colors: ["red", "blue"],
-    label: "Label for test",
+    label: "Default input",
   },
 };
 
-export const Active: Story = {
+export const DefaultActive: Story = {
   args: {
-    colors: ["red", "blue"],
-    label: "Label (active) for inputs",
+    label: "Input (active)",
     value: "test",
     name: "active",
   },
 };
 
-export const Solid: Story = {
+export const DefaultNoLabeled: Story = {
   args: {
-    label: "Label (active) for inputs",
-    name: "solid",
+    placeholder: "Input not labeled",
+    noLabel: true,
+    name: "active",
   },
 };
 
-export const NoLabeled: Story = {
+export const Gradient: Story = {
   args: {
-    colors: ["red", "blue"],
+    name: "test",
+    label: "Gradient input",
+    color: backgroundGradient,
+  },
+};
+
+export const GradientActive: Story = {
+  args: {
+    label: "Gradient input (active)",
+    value: "test",
+    name: "active",
+    color: backgroundGradient,
+  },
+};
+
+export const GradientNoLabeled: Story = {
+  args: {
+    placeholder: "Gradient input not labeled",
     noLabel: true,
-    name: "No labeled input",
-    placeholder: "No labeled input",
+    name: "active",
+    color: backgroundGradient,
   },
 };

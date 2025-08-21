@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+import { getSplittedColors } from "../utils/utils";
 import { GradientText } from "./GradientText";
 import { Loader } from "./Loader";
 
@@ -7,8 +9,8 @@ export interface ButtonProps
   children: React.ReactNode;
   variant?: "default" | "link" | "outline" | "cancel";
   loading?: boolean;
-  background?: [string, string];
-  colors?: [string, string];
+  background?: string;
+  color?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -16,8 +18,8 @@ export const Button: React.FC<ButtonProps> = ({
   size = "medium",
   className = "",
   loading = false,
-  background = ["#000", "#000"],
-  colors = ["#fff", "#fff"],
+  background = "#000",
+  color = "#fff",
   children,
   ...props
 }) => {
@@ -31,23 +33,23 @@ export const Button: React.FC<ButtonProps> = ({
     .filter(Boolean)
     .join(" ");
 
+  const loaderColors = useMemo(() => getSplittedColors(color), [color]);
+
   return (
     <button
+      {...props}
       disabled={isDisabled}
       className={classes}
       style={
         {
           ...props.style,
-          "--bgcolor1": background[0],
-          "--bgcolor2": background[1],
-          "--color1": colors[0],
-          "--color2": colors[1],
+          "--bg": background,
+          "--link-bg": color,
         } as React.CSSProperties & { [key: string]: string }
       }
-      {...props}
     >
-      {loading && <Loader colors={colors} strokeWidth={2} />}
-      <GradientText colors={colors}>{children}</GradientText>
+      {loading && <Loader colors={loaderColors} strokeWidth={2} />}
+      <GradientText textColor={color}>{children}</GradientText>
     </button>
   );
 };

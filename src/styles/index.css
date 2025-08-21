@@ -95,6 +95,7 @@
 /* Button Styles */
 
 button {
+  position: relative;
   border-radius: 20px;
   border: none;
   border-radius: var(--lola-border-radius);
@@ -129,11 +130,7 @@ button {
 
 /* Button Default */
 .lola-button--default {
-  background: linear-gradient(
-    116.74deg,
-    var(--bgcolor1) 23.26%,
-    var(--bgcolor2) 111.43%
-  );
+  background: var(--bg);
 }
 
 /* Button Outline */
@@ -148,28 +145,30 @@ button {
   inset: 0;
   padding: 2px;
   border-radius: inherit;
-  background: linear-gradient(
-    116.74deg,
-    var(--color1) 23.26%,
-    var(--color2) 111.43%
-  );
+  background: var(--bg);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   z-index: -1;
 }
 
-/* Button Link */
-.lola-button--link {
+/* Button Link & Button Cancel */
+.lola-button--link,
+.lola-button--cancel {
   background-color: transparent;
-  text-decoration: underline;
+  text-decoration: none;
   border: 1px solid transparent;
 }
 
-/* Button Cancel */
-.lola-button--cancel {
-  background-color: transparent;
-  border: 1px solid transparent;
+.lola-button--link::before {
+  content: "";
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--link-bg);
+  z-index: 1;
 }
 
 /* Button Sizes */
@@ -325,11 +324,7 @@ button {
   position: relative;
   transition: height 0.25 ease-in-out;
   overflow: hidden;
-  background: linear-gradient(
-    to right,
-    var(--color1) 23.26%,
-    var(--color2) 111.43%
-  );
+  background: var(--bg);
 }
 
 .lola-layout--container {
@@ -417,13 +412,7 @@ button {
   color: transparent !important;
   width: fit-content;
   cursor: default;
-  background: linear-gradient(
-        116.74deg,
-        var(--color1) 23.26%,
-        var(--color2) 111.43%
-      )
-      text,
-    var(--bg);
+  background: var(--textColor);
 }
 
 .lola-gradient-text:hover:not(:disabled) {
@@ -528,11 +517,7 @@ button {
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(
-    116.74deg,
-    var(--color1) 23.26%,
-    var(--color2) 111.43%
-  );
+  background: var(--bg);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -581,15 +566,7 @@ button {
   margin-bottom: 8px;
 }
 
-.vgs-collect-iframe-wr {
-  display: block;
-  height: 50px;
-  border: 1px solid #222222;
-  border-radius: var(--rounded);
-  padding: 0 20px;
-  box-sizing: border-box;
-  width: 100%;
-}
+
 
 .zip-code {
   -moz-appearance: textfield;
@@ -623,14 +600,17 @@ button {
   height: 96%;
 }
 
+.vgs-collect-iframe-wr,
 .vgs-collect-container__dirty.vgs-collect-container__valid,
 .vgs-collect-container__invalid.vgs-collect-container__focused {
   position: relative;
   background-color: transparent;
   border-color: transparent;
   z-index: 10;
+  border-radius: var(--radius);
 }
 
+.vgs-collect-iframe-wr::before,
 .vgs-collect-container__dirty.vgs-collect-container__valid::before,
 .vgs-collect-container__invalid.vgs-collect-container__focused::before {
   content: "";
@@ -640,11 +620,7 @@ button {
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    var(--color1) 23.26%,
-    var(--color2) 111.43%
-  );
+  background: var(--bg) !important;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

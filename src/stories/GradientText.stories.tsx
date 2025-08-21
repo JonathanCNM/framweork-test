@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { GradientText, type TextProps } from "../components";
 import "../styles/index.css";
+import { backgroundGradient } from "../utils/constants";
 
 const meta: Meta<TextProps<"p">> = {
   title: "Components/GradientText",
@@ -12,16 +13,15 @@ export default meta;
 
 type Story = StoryObj<typeof GradientText>;
 
-export const Gradient: Story = {
+export const Default: Story = {
   args: {
-    colors: ["red", "blue"],
-    children: "Gradient Text",
+    children: "Solid text",
   },
 };
 
-export const Solid: Story = {
+export const Gradient: Story = {
   args: {
-    colors: ["#000", "#000"],
-    children: "Solid text",
+    textColor: backgroundGradient,
+    children: "Gradient Text",
   },
 };

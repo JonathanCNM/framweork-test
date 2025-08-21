@@ -1,6 +1,7 @@
 import { type ReactElement } from "react";
 import { BackArrow } from "../icons";
-import { GradientText } from "./GradientText";
+import { getSplittedColors } from "../utils/utils";
+import { Title } from "./Title";
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -10,8 +11,8 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   onIconClick?: () => void;
   onBackClick?: (link: string) => void;
   noBackButton?: boolean;
-  className?: string;
-  colors?: [string, string];
+  color?: string;
+  align?: "left" | "center" | "right";
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -23,7 +24,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onBackClick = () => {},
   noBackButton = false,
   className = "",
-  colors = ["#000", "#000"],
+  color = "#000",
+  align = "left",
   ...props
 }) => {
   const backLink = backUrl ? backUrl : (-1 as unknown as string);
@@ -38,11 +40,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     .filter(Boolean)
     .join(" ");
 
+  const finalColors = getSplittedColors(color);
+
   return (
-    <div className={classes} {...props}>
+    <div {...props} className={classes}>
       {!noBackButton ? (
         <BackArrow
-          colors={colors}
+          colors={finalColors}
           className="lola-navbar--back-icon"
           onClick={() => onBackClick(backLink)}
         />
@@ -51,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       )}
 
       <section onClick={onIconClick} className="lola-navbar--container">
-        <GradientText colors={colors}>{title}</GradientText>
+        <Title color={color} title={title} align={align} />
         {icon && <section className={iconClasses}>{icon}</section>}
       </section>
     </div>

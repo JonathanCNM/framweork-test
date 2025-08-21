@@ -3,6 +3,7 @@ import { Button, MotionWrapper } from "./components";
 import "./styles/index.css";
 import { GradientText } from "./components/GradientText";
 import { useBlockScroll } from "./hooks/useBlockScroll";
+import { backgroundGradient } from "./utils/constants";
 
 const Code = ({ title, children }: { title: string; children: ReactNode }) => (
   <section>
@@ -29,7 +30,7 @@ const App = () => {
       <section style={{ width: "80%", margin: "auto" }}>
         <GradientText
           as="h1"
-          colors={["red", "blue"]}
+          textColor={backgroundGradient}
           style={{ fontSize: "2rem" }}
         >
           Lola Framework UI - Style Framework

@@ -3,34 +3,34 @@ import * as React from "react";
 export type TextProps<T extends React.ElementType> = {
   as?: T;
   children: React.ReactNode;
-  colors?: [string, string];
+  textColor?: string;
   background?: string;
-  style?: React.CSSProperties;
-  className?: string;
 } & React.ComponentPropsWithoutRef<T>;
 
 export const GradientText = <T extends React.ElementType = "p">({
   as,
   children,
-  colors = ["#000", "#000"],
+  textColor = "#000",
   background = "transparent",
-  style = {},
   className = "",
   ...props
 }: TextProps<T>) => {
   const Component = as || "p";
 
+  const isGradient = textColor.includes("gradient");
   const clasess = ["lola-gradient-text", className].filter(Boolean).join(" ");
+  const finalTextColor = isGradient
+    ? `${textColor} text, ${background}`
+    : `linear-gradient(90deg, ${textColor} 0%, ${textColor} 100%) text, ${background}`;
 
   return (
     <Component
-      className={clasess}
       {...props}
+      className={clasess}
       style={
         {
-          ...style,
-          "--color1": colors[0],
-          "--color2": colors[1],
+          ...props.style,
+          "--textColor": finalTextColor,
           "--bg": background,
         } as React.CSSProperties & { [key: string]: string }
       }

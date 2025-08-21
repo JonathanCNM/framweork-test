@@ -7,8 +7,10 @@ export interface VgsInputProps {
   placeholder: string;
   autoFocus?: boolean;
   errorLabel?: string;
-  colors?: [string, string];
+  color: string;
   isActive?: boolean;
+  borderColor?: string;
+  borderRadius?: string;
 }
 
 const {
@@ -23,18 +25,27 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   autoFocus = false,
   placeholder,
   errorLabel = "",
-  colors = ["#000", "#000"],
+  color = "#000",
   isActive = false,
+  borderColor = "#979797",
+  borderRadius = 10,
 }) => {
   const [isFocus, setIsFocus] = useState(isActive);
   const errorColor = "#fd2a35";
   const onHanlderFocus = useCallback(() => setIsFocus(true), []);
 
+  const labelColor = errorLabel ? errorColor : isActive ? color : borderColor;
+  const inputColor = errorLabel ? errorColor : color;
+  const styles = { "--bg": inputColor, "--radius": `${borderRadius}px` };
+
   if (type === "card_holder_name")
     return (
       <>
-        <section className="lola-vgs--input">
-          <LabelInput colors={colors} isActive={isFocus}>
+        <section
+          className="lola-vgs--input"
+          style={styles as React.CSSProperties & { [key: string]: string }}
+        >
+          <LabelInput color={labelColor} isActive={isFocus}>
             {placeholder}
           </LabelInput>
           <TextField
@@ -42,6 +53,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             name="card_holder_name"
             validations={["required"]}
             placeholder=""
+            css={{ borderRadius: `${borderRadius}px !important` }}
             onFocus={onHanlderFocus}
           />
         </section>
@@ -52,8 +64,11 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   if (type === "card_number")
     return (
       <>
-        <section className="lola-vgs--input">
-          <LabelInput colors={colors} isActive={isFocus}>
+        <section
+          className="lola-vgs--input"
+          style={styles as React.CSSProperties & { [key: string]: string }}
+        >
+          <LabelInput color={labelColor} isActive={isFocus}>
             {placeholder}
           </LabelInput>
           <CardNumberField
@@ -73,8 +88,11 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   if (type === "card_exp_date")
     return (
       <section style={{ width: "100%" }}>
-        <section className="lola-vgs--input">
-          <LabelInput colors={colors} isActive={isFocus}>
+        <section
+          className="lola-vgs--input"
+          style={styles as React.CSSProperties & { [key: string]: string }}
+        >
+          <LabelInput color={labelColor} isActive={isFocus}>
             {placeholder}
           </LabelInput>
           <CardExpirationDateField
@@ -94,8 +112,11 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   if (type === "card_cvc")
     return (
       <section style={{ width: "100%" }}>
-        <section className="lola-vgs--input">
-          <LabelInput colors={colors} isActive={isFocus}>
+        <section
+          className="lola-vgs--input"
+          style={styles as React.CSSProperties & { [key: string]: string }}
+        >
+          <LabelInput color={labelColor} isActive={isFocus}>
             {placeholder}
           </LabelInput>
           <CardSecurityCodeField

@@ -2,7 +2,7 @@ import { GradientText } from "./GradientText";
 
 export interface LabelInputProps {
   isActive?: boolean;
-  colors?: [string, string];
+  color?: string;
   background?: string;
   labelStyle?: React.CSSProperties;
   children: React.ReactNode;
@@ -10,7 +10,7 @@ export interface LabelInputProps {
 
 export const LabelInput: React.FC<LabelInputProps> = ({
   isActive = false,
-  colors = ["#000", "#000"],
+  color = "#000",
   background = "#fff",
   labelStyle = {},
   children,
@@ -21,7 +21,7 @@ export const LabelInput: React.FC<LabelInputProps> = ({
   return (
     <GradientText
       as="label"
-      colors={colors}
+      textColor={color}
       style={
         {
           ...labelStyle,

@@ -4,7 +4,7 @@ import { getSplittedColors } from "../utils/utils";
 import { Title } from "./Title";
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
+  title?: string;
   backUrl?: string;
   icon?: ReactElement;
   disabled?: boolean;
@@ -16,7 +16,7 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  title,
+  title = "",
   backUrl,
   icon,
   disabled = false,
@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const finalColors = getSplittedColors(color);
 
   return (
-    <div {...props} className={classes}>
+    <div className={classes} {...props}>
       {!noBackButton ? (
         <BackArrow
           colors={finalColors}

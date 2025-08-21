@@ -14,4 +14,8 @@ export const gradientList = [
     title: "Landing port",
     value: "linear-gradient(90deg, #6B0ECF 23.26%, #FD0166 111.43%)",
   },
+  {
+    title: "Mandamoney",
+    value: "linear-gradient(313.4deg, #66B446 3.13%, #E3E333 120.6%)",
+  },
 ];

@@ -18,24 +18,24 @@ export default meta;
 type Story = StoryObj<typeof CircularProgress>;
 
 export const GradientDefault: Story = {
-  render: (_, context) => {
+  render: (props, context) => {
     const finalColors = getSplittedColors(context.globals.gradient);
-    return <CircularProgress colors={finalColors} />;
+    return <CircularProgress colors={finalColors} {...props} />;
   },
 };
 
 export const GradientFull: Story = {
-  render: (_, context) => {
+  render: (props, context) => {
     const finalColors = getSplittedColors(context.globals.gradient);
-    return <CircularProgress variant="full" colors={finalColors} />;
+    return <CircularProgress variant="full" colors={finalColors} {...props} />;
   },
 };
 
 export const GadientWithChildren: Story = {
-  render: (_, context) => {
+  render: (props, context) => {
     const finalColors = getSplittedColors(context.globals.gradient);
     return (
-      <CircularProgress colors={finalColors}>
+      <CircularProgress colors={finalColors} {...props}>
         <Loader strokeWidth={2} />
       </CircularProgress>
     );

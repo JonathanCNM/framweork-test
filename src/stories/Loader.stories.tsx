@@ -14,16 +14,16 @@ export default meta;
 type Story = StoryObj<typeof Loader>;
 
 export const Gradient: Story = {
-  render: (_, context) => {
+  render: (props, context) => {
     const finalColors = getSplittedColors(context.globals.gradient);
-    return <Loader colors={finalColors} />;
+    return <Loader colors={finalColors} {...props} />;
   },
 };
 
 export const GradientFull: Story = {
-  render: (_, context) => {
+  render: (props, context) => {
     const finalColors = getSplittedColors(context.globals.gradient);
-    return <Loader value={100} colors={finalColors} />;
+    return <Loader value={100} colors={finalColors} {...props} />;
   },
 };
 

@@ -13,16 +13,16 @@ export default meta;
 type Story = StoryObj<typeof LabelInput>;
 
 export const Gradient: Story = {
-  render: (_, context) => (
-    <LabelInput color={context.globals.gradient}>
+  render: (props, context) => (
+    <LabelInput color={context.globals.gradient} {...props}>
       Gradient label for inputs
     </LabelInput>
   ),
 };
 
 export const GradientActive: Story = {
-  render: (_, context) => (
-    <LabelInput isActive color={context.globals.gradient}>
+  render: (props, context) => (
+    <LabelInput isActive color={context.globals.gradient} {...props}>
       Gradient label (active) for inputs
     </LabelInput>
   ),

@@ -14,27 +14,29 @@ export default meta;
 type Story = StoryObj<typeof Title>;
 
 export const Gradient: Story = {
-  render: (_, context) => (
-    <Title title="Title Gradient" color={context.globals.gradient} />
+  render: (props, context) => (
+    <Title title="Title Gradient" color={context.globals.gradient} {...props} />
   ),
 };
 
 export const Centered: Story = {
-  render: (_, context) => (
+  render: (props, context) => (
     <Title
       title="Centered Title Gradient"
       align="center"
       color={context.globals.gradient}
+      {...props}
     />
   ),
 };
 
 export const Right: Story = {
-  render: (_, context) => (
+  render: (props, context) => (
     <Title
       title="Right Title Gradient"
       align="right"
       color={context.globals.gradient}
+      {...props}
     />
   ),
 };

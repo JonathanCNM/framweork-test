@@ -13,8 +13,8 @@ export default meta;
 type Story = StoryObj<typeof GradientText>;
 
 export const Gradient: Story = {
-  render: (_, context) => (
-    <GradientText textColor={context.globals.gradient}>
+  render: (props, context) => (
+    <GradientText textColor={context.globals.gradient} {...props}>
       Gradient Text
     </GradientText>
   ),

@@ -13,27 +13,28 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const GradientDefault: Story = {
-  render: (_, context) => (
-    <Button background={context.globals.gradient} color="#fff">
+  render: (props, context) => (
+    <Button background={context.globals.gradient} color="#fff" {...props}>
       Default Gradient Button
     </Button>
   ),
 };
 
 export const GradientLink: Story = {
-  render: (_, context) => (
-    <Button variant="link" color={context.globals.gradient}>
+  render: (props, context) => (
+    <Button variant="link" color={context.globals.gradient} {...props}>
       Link Gradient Button
     </Button>
   ),
 };
 
 export const GradientOutline: Story = {
-  render: (_, context) => (
+  render: (props, context) => (
     <Button
       variant="outline"
       background={context.globals.gradient}
       color={context.globals.gradient}
+      {...props}
     >
       Outline Gradient Button
     </Button>
@@ -41,11 +42,12 @@ export const GradientOutline: Story = {
 };
 
 export const GradienCancel: Story = {
-  render: (_, context) => (
+  render: (props, context) => (
     <Button
       variant="cancel"
       background={context.globals.gradient}
       color={context.globals.gradient}
+      {...props}
     >
       Cancel Gradient Button
     </Button>

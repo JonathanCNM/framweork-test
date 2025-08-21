@@ -13,22 +13,24 @@ export default meta;
 type Story = StoryObj<typeof InputField>;
 
 export const Gradient: Story = {
-  render: (_, context) => (
+  render: (props, context) => (
     <InputField
       name="test"
       label="Gradient input"
       color={context.globals.gradient}
+      {...props}
     />
   ),
 };
 
 export const GradientNoLabeled: Story = {
-  render: (_, context) => (
+  render: (props, context) => (
     <InputField
       name="test"
       noLabel
       placeholder="Gradient input not labeled"
       color={context.globals.gradient}
+      {...props}
     />
   ),
 };

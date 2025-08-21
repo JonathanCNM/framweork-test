@@ -13,8 +13,8 @@ export default meta;
 type Story = StoryObj<typeof Layout>;
 
 export const Gradient: Story = {
-  render: (_, context) => (
-    <Layout background={context.globals.gradient}>
+  render: (props, context) => (
+    <Layout background={context.globals.gradient} {...props}>
       <Layout.Header>
         <p>Layout.Header</p>
       </Layout.Header>

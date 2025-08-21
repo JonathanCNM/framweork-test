@@ -1,3 +1,4 @@
+import { GradientText } from "../../components";
 import {
   CameraGradient,
   UploadCloud,
@@ -95,9 +96,20 @@ export const IconsDemo = () => {
     <section className="icons-storybook-demo">
       <section className="icons-stoybook-demo-container">
         {iconList.map(({ label, Icon }, index) => (
-          <section key={index} className="icons-storybook-demo-slot">
+          <section
+            key={index}
+            className="icons-storybook-demo-slot"
+            style={
+              { "--bg": gradient } as React.CSSProperties & {
+                [key: string]: string;
+              }
+            }
+          >
             <Icon size={30} colors={colors} />
-            <p>{`<${label} />`}</p>
+            <GradientText
+              as="p"
+              textColor={gradient}
+            >{`<${label} />`}</GradientText>
           </section>
         ))}
       </section>

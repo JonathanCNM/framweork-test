@@ -1,7 +1,7 @@
 import { GradientText } from "./GradientText";
 
 export interface TitleProps {
-  title: string;
+  title?: string;
   subTitle?: string;
   size?: "sm" | "lg" | "xl";
   align?: "left" | "center" | "right";
@@ -9,7 +9,7 @@ export interface TitleProps {
 }
 
 export const Title: React.FC<TitleProps> = ({
-  title,
+  title = "",
   subTitle,
   size = "lg",
   align = "left",

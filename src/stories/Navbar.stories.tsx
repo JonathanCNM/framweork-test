@@ -15,7 +15,62 @@ export default meta;
 
 type Story = StoryObj<typeof Navbar>;
 
-const finalColors = getSplittedColors(backgroundGradient);
+export const Gradient: Story = {
+  render: (_, context) => (
+    <Navbar color={context.globals.gradient} title="Navbar Title Gradient" />
+  ),
+};
+
+export const GradientNoBackButtonIconLeft: Story = {
+  render: (_, context) => (
+    <Navbar
+      color={context.globals.gradient}
+      noBackButton
+      title="Navbar No back button Gradient"
+    />
+  ),
+};
+
+export const GradientNoBackButtonIconCentered: Story = {
+  render: (_, context) => (
+    <Navbar
+      align="center"
+      color={context.globals.gradient}
+      noBackButton
+      title="Centered Navbar No back button Gradient"
+    />
+  ),
+};
+
+export const GradientNoBackButtonIconRight: Story = {
+  args: {
+    title: "Navbar Title Gradient",
+    color: backgroundGradient,
+    align: "right",
+    noBackButton: true,
+  },
+  render: (_, context) => (
+    <Navbar
+      align="right"
+      color={context.globals.gradient}
+      noBackButton
+      title="Right Navbar No back button Gradient"
+    />
+  ),
+};
+
+export const GradientWithCustomIcon: Story = {
+  render: (_, context) => {
+    const colors = getSplittedColors(context.globals.gradient);
+    return (
+      <Navbar
+        color={context.globals.gradient}
+        title="Navbar Gradient With Custom Icon"
+        icon={<IconApp colors={colors} />}
+      />
+    );
+  },
+};
 
 export const Default: Story = {
   args: {
@@ -34,46 +89,5 @@ export const Right: Story = {
   args: {
     title: "Navbar Title",
     align: "right",
-  },
-};
-
-export const Gradient: Story = {
-  args: {
-    title: "Navbar Title Gradient",
-    color: backgroundGradient,
-  },
-};
-
-export const GradientNoIconLeft: Story = {
-  args: {
-    title: "Navbar Title Gradient",
-    color: backgroundGradient,
-    noBackButton: true,
-  },
-};
-
-export const GradientNoIconCentered: Story = {
-  args: {
-    title: "Navbar Title Gradient",
-    color: backgroundGradient,
-    align: "center",
-    noBackButton: true,
-  },
-};
-
-export const GradientNoIconRight: Story = {
-  args: {
-    title: "Navbar Title Gradient",
-    color: backgroundGradient,
-    align: "right",
-    noBackButton: true,
-  },
-};
-
-export const GradientWithCustomIcon: Story = {
-  args: {
-    title: "Navbar Title Gradient",
-    color: backgroundGradient,
-    icon: <IconApp colors={finalColors} />,
   },
 };

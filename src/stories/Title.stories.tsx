@@ -13,39 +13,42 @@ export default meta;
 
 type Story = StoryObj<typeof Title>;
 
-export const Default: Story = {
-  args: {
-    title: "Title Solid",
-  },
-};
-
 export const Gradient: Story = {
-  args: {
-    title: "Title Gradient",
-    color: backgroundGradient,
-  },
+  render: (_, context) => (
+    <Title title="Title Gradient" color={context.globals.gradient} />
+  ),
 };
 
 export const Centered: Story = {
-  args: {
-    title: "Title Gradient",
-    color: backgroundGradient,
-    align: "center",
-  },
+  render: (_, context) => (
+    <Title
+      title="Centered Title Gradient"
+      align="center"
+      color={context.globals.gradient}
+    />
+  ),
 };
 
 export const Right: Story = {
-  args: {
-    title: "Title Gradient",
-    color: backgroundGradient,
-    align: "right",
-  },
+  render: (_, context) => (
+    <Title
+      title="Right Title Gradient"
+      align="right"
+      color={context.globals.gradient}
+    />
+  ),
 };
 
 export const WithSubtitle: Story = {
   args: {
-    title: "Title Solid",
+    title: "Gradient Title",
     subTitle: "Subtitle Here",
     color: backgroundGradient,
+  },
+};
+
+export const Default: Story = {
+  args: {
+    title: "Title Solid",
   },
 };

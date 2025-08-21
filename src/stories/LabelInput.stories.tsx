@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { LabelInput, type LabelInputProps } from "../components";
 import "../styles/index.css";
-import { backgroundGradient } from "../utils/constants";
 
 const meta: Meta<LabelInputProps> = {
   title: "Components/LabelInput",
@@ -13,6 +12,22 @@ export default meta;
 
 type Story = StoryObj<typeof LabelInput>;
 
+export const Gradient: Story = {
+  render: (_, context) => (
+    <LabelInput color={context.globals.gradient}>
+      Gradient label for inputs
+    </LabelInput>
+  ),
+};
+
+export const GradientActive: Story = {
+  render: (_, context) => (
+    <LabelInput isActive color={context.globals.gradient}>
+      Gradient label (active) for inputs
+    </LabelInput>
+  ),
+};
+
 export const Default: Story = {
   args: {
     children: "Label for inputs",
@@ -22,21 +37,6 @@ export const Default: Story = {
 export const SolidActive: Story = {
   args: {
     children: "Label (active) for inputs",
-    isActive: true,
-  },
-};
-
-export const Gradient: Story = {
-  args: {
-    color: backgroundGradient,
-    children: "Gradient label for inputs",
-  },
-};
-
-export const GradientActive: Story = {
-  args: {
-    color: backgroundGradient,
-    children: "Gradient label (active) for inputs",
     isActive: true,
   },
 };

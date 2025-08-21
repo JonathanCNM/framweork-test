@@ -272,6 +272,11 @@ button {
   font-weight: 700;
 }
 
+.lola-title h2 {
+  margin: 0;
+  line-height: 1;
+}
+
 /* Title Sizes */
 .lola-title--sm {
   font-size: 1rem;

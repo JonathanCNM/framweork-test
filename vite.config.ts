@@ -24,8 +24,6 @@ export default defineConfig({
       ],
       output: {
         globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
           "body-scroll-lock": "body-scroll-lock",
           "@types/body-scroll-lock": "@types/body-scroll-lock",
           "framer-motion": "framer-motion",

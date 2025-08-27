@@ -13,8 +13,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        "react",
-        "react-dom",
         "body-scroll-lock",
         "@types/body-scroll-lock",
         "framer-motion",

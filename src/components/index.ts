@@ -14,7 +14,12 @@ export { LabelInput } from "./LabelInput";
 export type { LabelInputProps } from "./LabelInput";
 
 export { Layout } from "./Layout";
-export type { LayoutProps } from "./Layout";
+export type {
+  LayoutProps,
+  LayoutHeaderProps,
+  LayoutContentProps,
+  LayoutFooterProps,
+} from "./Layout";
 
 export { Loader } from "./Loader";
 export type { LoaderProps } from "./Loader";

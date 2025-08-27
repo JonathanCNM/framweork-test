@@ -102,9 +102,7 @@ button {
   cursor: pointer;
   display: flex;
   gap: 8px;
-  padding: 0.6em 1.2em;
-  /* font-size: 1em;
-  font-weight: 500; */
+  padding: 1.2em;
   font-family: var(--lola-font-family);
   background-color: #1a1a1a;
   cursor: pointer;
@@ -112,6 +110,16 @@ button {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.lola-button p {
+  margin: 0;
+}
+
+.lola-button--icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .lola-button .lola-gradient-text {
@@ -139,6 +147,7 @@ button {
   background-color: transparent;
   border-radius: var(--lola-border-radius);
 }
+
 .lola-button--outline::before {
   content: "";
   position: absolute;
@@ -174,22 +183,29 @@ button {
 
 /* Button Sizes */
 .lola-button--small {
-  padding: 0.375rem 0.75rem;
+  padding: 0.75rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  height: 40px;
+}
+
+.lola-button--small svg {
+  width: 21px;
+  height: 21px;
 }
 
 .lola-button--medium {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   font-size: 1rem;
   line-height: 1.5;
-  height: 50px;
+}
+
+.lola-button--medium svg {
+  width: 24px;
+  height: 24px;
 }
 
 .lola-button--large {
-  height: 74px;
-  padding: 0.75rem 1.5rem;
+  padding: 1.5rem;
   font-size: 1.125rem;
   line-height: 1.5;
 }
@@ -342,11 +358,9 @@ button {
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
   justify-content: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 32px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -364,6 +378,7 @@ button {
   flex-direction: column;
   gap: 20px;
   height: 100%;
+  position: relative;
 }
 
 /* Layout Header Styles */
@@ -404,10 +419,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
   width: 100%;
   position: sticky;
-  bottom: 20px;
+  bottom: 0;
   transition: all 0.25s ease-in-out;
   z-index: 10;
 }
@@ -721,4 +735,23 @@ button {
   font-weight: 600;
   font-size: clamp(0.5rem, 2.5vw, 0.875rem);
   line-height: 1;
+}
+
+.layout-design {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+  border: solid 1px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.layout-design-slot {
+  width: 100%;
+  height: 100%;
+  border: solid 1px rgba(0, 0, 0, 0.25);
 }

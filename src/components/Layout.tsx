@@ -1,27 +1,44 @@
 import * as React from "react";
 import { isValidElement, type ReactElement, type ReactNode } from "react";
 import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
+import DesignLayout from "./DesignLayout";
 
 export interface LayoutProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
   background?: string;
+  devMode?: boolean;
 }
 
-const Header = ({ children }: { children: ReactNode }) => (
-  <section className="lola-layout--container--header">{children}</section>
+export interface LayoutContentProps extends React.HTMLProps<HTMLDivElement> {
+  isOverflowauto?: boolean;
+  children: ReactNode;
+}
+
+export interface LayoutHeaderProps extends React.HTMLProps<HTMLDivElement> {
+  children: ReactNode;
+}
+
+export interface LayoutFooterProps extends React.HTMLProps<HTMLDivElement> {
+  children: ReactNode;
+}
+
+const Header = ({ children, ...props }: LayoutHeaderProps): ReactElement => (
+  <section
+    {...props}
+    className={`lola-layout--container--header ${props.className ?? ""}`}
+  >
+    {children}
+  </section>
 );
 
 const Content = ({
   isOverflowauto = false,
-  className = "",
   children,
-}: {
-  isOverflowauto?: boolean;
-  children: ReactNode;
-  className?: string;
-}) => {
+  ...props
+}: LayoutContentProps): ReactElement => {
   const overflowClassName = isOverflowauto ? "overflow" : "auto";
   const classes = [
+    `${props.className ?? ""}`,
     "lola-layout--container--content",
     `lola-layout--container--content--${overflowClassName}`,
   ]
@@ -29,10 +46,8 @@ const Content = ({
     .join(" ");
 
   return (
-    <main className={classes}>
-      <div
-        className={`lola-layout--container--content--container ${className}`}
-      >
+    <main {...props} className={classes}>
+      <div className="lola-layout--container--content--container">
         <div className="lola-layout--container--content--container--wrap">
           {children}
         </div>
@@ -41,14 +56,20 @@ const Content = ({
   );
 };
 
-const Footer = ({ children }: { children: ReactNode }) => (
-  <footer className="lola-layout--container--footer">{children}</footer>
+const Footer = ({ children, ...props }: LayoutFooterProps): ReactElement => (
+  <footer
+    {...props}
+    className={`lola-layout--container--footer ${props.className ?? ""}`}
+  >
+    {children}
+  </footer>
 );
 
 const Layout = ({
   children,
   className = "",
   background = "#fff",
+  devMode = false,
   ...props
 }: LayoutProps): ReactElement => {
   const childrenArray = React.Children.toArray(children);
@@ -97,6 +118,7 @@ const Layout = ({
       className={classes}
     >
       <section className="lola-layout--container">
+        {devMode && <DesignLayout />}
         {header && header}
         {content && content}
         {!content && children}

@@ -24,7 +24,12 @@ export type { CircularProgressProps } from "./components/CircularProgress";
 export type { TextProps } from "./components/GradientText";
 export type { InputFieldProps } from "./components/InputField";
 export type { LabelInputProps } from "./components/LabelInput";
-export type { LayoutProps } from "./components/Layout";
+export type {
+  LayoutProps,
+  LayoutHeaderProps,
+  LayoutContentProps,
+  LayoutFooterProps,
+} from "./components/Layout";
 export type { LoaderProps } from "./components/Loader";
 export type { MotionWrapperProps } from "./components/MotionWrapper";
 export type { NavbarProps } from "./components/Navbar";

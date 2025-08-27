@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { getSplittedColors } from "../utils/utils";
 import { GradientText } from "./GradientText";
 import { Loader } from "./Loader";
+import { RightRoundedIcon } from "../icons";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,6 +12,7 @@ export interface ButtonProps
   loading?: boolean;
   background?: string;
   color?: string;
+  showIcon?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -20,12 +22,15 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   background = "#000",
   color = "#fff",
+  showIcon = false,
   children,
   ...props
 }) => {
   const isDisabled = loading || props?.disabled;
+  const btnAlign = showIcon ? "icon" : "centered";
   const classes = [
     `lola-button`,
+    `lola-button--${btnAlign}`,
     `lola-button--${variant}`,
     `lola-button--${size}`,
     className,
@@ -50,6 +55,7 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {loading && <Loader colors={loaderColors} strokeWidth={2} />}
       <GradientText textColor={color}>{children}</GradientText>
+      {showIcon && <RightRoundedIcon colors={loaderColors} />}
     </button>
   );
 };

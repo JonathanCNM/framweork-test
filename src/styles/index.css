@@ -257,9 +257,6 @@ button {
 }
 
 .lola-navbar--container--title {
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 600;
   cursor: default;
 }
 
@@ -285,12 +282,10 @@ button {
 /* Title Styles */
 .lola-title {
   width: 100%;
-  font-weight: 700;
 }
 
 .lola-title h2 {
   margin: 0;
-  line-height: 1;
 }
 
 /* Title Sizes */
@@ -683,60 +678,6 @@ button {
   justify-content: space-between;
 }
 
-.h1 {
-  font-weight: 400;
-  font-size: clamp(1.5rem, 5vw, 2rem);
-  line-height: 1;
-}
-
-.hightlight {
-  font-weight: 700;
-  font-size: clamp(1.75rem, 5vw, 2rem);
-  line-height: 1;
-}
-
-.h2 {
-  font-weight: 600;
-  font-size: clamp(1.5rem, 5vw, 1.5rem);
-  line-height: 1;
-}
-
-.body-copy {
-  font-weight: 500;
-  font-size: clamp(0.5rem, 2.5vw, 1rem);
-  line-height: 1;
-}
-
-.secundary-cta {
-  font-weight: 500;
-  font-size: clamp(0.75rem, 2.5vw, 1.25rem);
-  line-height: 1;
-}
-
-.footer-text {
-  font-weight: 500;
-  font-size: clamp(0.5rem, 2.5vw, 0.85rem);
-  line-height: 1;
-}
-
-.main-button-text {
-  font-weight: 600;
-  font-size: clamp(16px, 2.5vw, 18px);
-  line-height: 1;
-}
-
-.secundary-button-text {
-  font-weight: 600;
-  font-size: clamp(0.5rem, 2.5vw, 1rem);
-  line-height: 1;
-}
-
-.step-text {
-  font-weight: 600;
-  font-size: clamp(0.5rem, 2.5vw, 0.875rem);
-  line-height: 1;
-}
-
 .layout-design {
   position: absolute;
   width: 100%;
@@ -754,4 +695,84 @@ button {
   width: 100%;
   height: 100%;
   border: solid 1px rgba(0, 0, 0, 0.25);
+}
+
+.h1 {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.hightlight {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.body-copy {
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.25rem;
+}
+
+.secundary-cta {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.footer-text {
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.main-button-text {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.secundary-button-text {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.step-text {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+@media (width <= 410px) {
+  .h1 {
+    font-size: 1.75rem;
+  }
+
+  .hightlight {
+    font-size: 1.75rem;
+  }
+
+  .h2 {
+    font-size: 1.25rem;
+  }
+
+  .body-copy {
+    font-size: 1rem;
+  }
+
+  .secundary-cta {
+    font-size: 1.15rem;
+  }
+
+  .main-button-text {
+    font-size: 1.15rem;
+  }
 }

@@ -21,7 +21,7 @@ export const Title: React.FC<TitleProps> = ({
 
   return (
     <section className={classes}>
-      <GradientText as="h2" textColor={color}>
+      <GradientText as="h2" textColor={color} className="h2">
         {title}
       </GradientText>
       {subTitle && <p className="lola-title--subtitle">{subTitle}</p>}

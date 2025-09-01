@@ -17,7 +17,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
   ...props
 }) => {
   const value = variant === "full" ? 100 : undefined;
-  const classes = ["lola-cirular-progress", ...(props.className ?? "")]
+  const classes = ["lola-cirular-progress", props.className ?? ""]
     .filter(Boolean)
     .join(" ");
 

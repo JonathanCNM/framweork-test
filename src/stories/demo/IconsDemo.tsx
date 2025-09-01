@@ -16,6 +16,7 @@ import {
   CardIcon,
   AddCardIcon,
   RightRoundedIcon,
+  HomeAddressIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -85,6 +86,10 @@ const iconList = [
   {
     label: "RightRoundedIcon",
     Icon: RightRoundedIcon,
+  },
+  {
+    label: "HomeAddressIcon",
+    Icon: HomeAddressIcon,
   },
 ];
 

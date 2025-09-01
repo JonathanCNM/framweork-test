@@ -15,4 +15,5 @@ export {
   CardIcon,
   AddCardIcon,
   RightRoundedIcon,
+  HomeAddressIcon,
 } from "./icons";

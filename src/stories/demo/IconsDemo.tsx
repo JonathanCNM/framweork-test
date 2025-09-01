@@ -17,6 +17,7 @@ import {
   AddCardIcon,
   RightRoundedIcon,
   HomeAddressIcon,
+  WhatsAppIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -90,6 +91,10 @@ const iconList = [
   {
     label: "HomeAddressIcon",
     Icon: HomeAddressIcon,
+  },
+  {
+    label: "WhatsAppIcon",
+    Icon: WhatsAppIcon,
   },
 ];
 

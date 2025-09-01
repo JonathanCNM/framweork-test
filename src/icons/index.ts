@@ -16,4 +16,5 @@ export {
   AddCardIcon,
   RightRoundedIcon,
   HomeAddressIcon,
+  WhatsAppIcon,
 } from "./icons";

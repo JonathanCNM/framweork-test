@@ -7,6 +7,7 @@ export interface CircularProgressProps
   children?: React.ReactNode;
   variant?: "full" | "loading";
   colors?: [string, string];
+  strokeWidth?: number;
 }
 
 export const CircularProgress: React.FC<CircularProgressProps> = ({
@@ -14,6 +15,7 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
   colors = ["#000", "#000"],
   children,
   variant = "loading",
+  strokeWidth = 4,
   ...props
 }) => {
   const value = variant === "full" ? 100 : undefined;
@@ -23,7 +25,12 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
 
   return (
     <section {...props} className={classes}>
-      <Loader size={size} value={value} colors={colors} />
+      <Loader
+        size={size}
+        value={value}
+        colors={colors}
+        strokeWidth={strokeWidth}
+      />
       {children && (
         <section className="lola-cirular-progress--element">{children}</section>
       )}

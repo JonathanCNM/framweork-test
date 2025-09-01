@@ -208,6 +208,7 @@ button {
   padding: 1.5rem;
   font-size: 1.125rem;
   line-height: 1.5;
+  height: 75px;
 }
 
 @keyframes rotate {
@@ -712,7 +713,7 @@ button {
 .h2 {
   font-weight: 600;
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
 }
 
 .body-copy {

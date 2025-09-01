@@ -17,9 +17,12 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
   ...props
 }) => {
   const value = variant === "full" ? 100 : undefined;
+  const classes = ["lola-cirular-progress", ...(props.className ?? "")]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <section {...props} className="lola-cirular-progress">
+    <section {...props} className={classes}>
       <Loader size={size} value={value} colors={colors} />
       {children && (
         <section className="lola-cirular-progress--element">{children}</section>

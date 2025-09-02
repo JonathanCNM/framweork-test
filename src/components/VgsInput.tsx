@@ -1,16 +1,21 @@
-import { useState, useCallback } from "react";
-import { VGSCollectForm } from "@vgs/collect-js-react";
+import { useState } from "react";
+import {
+  VGSCollectForm,
+  type VGSCollectFocusEventData,
+  type VGSCollectStateParams,
+} from "@vgs/collect-js-react";
 import { LabelInput } from "./LabelInput";
 
 export interface VgsInputProps {
   type: "card_holder_name" | "card_number" | "card_exp_date" | "card_cvc";
   placeholder: string;
+  cardNumberFormPlaceholder?: string;
   autoFocus?: boolean;
   errorLabel?: string;
-  color: string;
-  isActive?: boolean;
-  borderColor?: string;
   borderRadius?: string;
+  color?: string;
+  inactiveColor?: string;
+  activeColor?: string;
 }
 
 const {
@@ -24,19 +29,50 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   type,
   autoFocus = false,
   placeholder,
+  cardNumberFormPlaceholder,
   errorLabel = "",
-  color = "#000",
-  isActive = false,
-  borderColor = "#979797",
+  color = "#222",
   borderRadius = 10,
+  inactiveColor = "#979797",
+  activeColor = "#000",
 }) => {
-  const [isFocus, setIsFocus] = useState(isActive);
+  const [isFocus, setIsFocus] = useState(autoFocus);
+  const [isValid, setIsValid] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(true);
   const errorColor = "#fd2a35";
-  const onHanlderFocus = useCallback(() => setIsFocus(true), []);
 
-  const labelColor = errorLabel ? errorColor : isActive ? color : borderColor;
-  const inputColor = errorLabel ? errorColor : color;
-  const styles = { "--bg": inputColor, "--radius": `${borderRadius}px` };
+  const onHanlderFocus = (info: VGSCollectFocusEventData<"focus" | "blur">) =>
+    setIsFocus(info.type === "focus");
+
+  const showLabel = isFocus || !isEmpty;
+
+  const styles = {
+    "--radius": `${borderRadius}px`,
+    "--bg":
+      errorLabel && !isValid
+        ? errorColor
+        : isFocus
+        ? activeColor
+        : showLabel
+        ? color
+        : inactiveColor,
+  };
+
+  const labelColors =
+    errorLabel && !isValid
+      ? errorColor
+      : isFocus
+      ? activeColor
+      : showLabel
+      ? color
+      : inactiveColor;
+
+  const onUpdate = (state: VGSCollectStateParams) => {
+    const { isValid, isFocused, isEmpty } = state;
+    setIsFocus(isFocused);
+    setIsValid(isValid);
+    setIsEmpty(isEmpty);
+  };
 
   if (type === "card_holder_name")
     return (
@@ -45,7 +81,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
           className="lola-vgs--input"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
-          <LabelInput color={labelColor} isActive={isFocus}>
+          <LabelInput color={labelColors} isActive={showLabel}>
             {placeholder}
           </LabelInput>
           <TextField
@@ -55,6 +91,8 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             placeholder=""
             css={{ borderRadius: `${borderRadius}px !important` }}
             onFocus={onHanlderFocus}
+            onBlur={onHanlderFocus}
+            onUpdate={onUpdate}
           />
         </section>
         <ErrorLabel errorMessage={errorLabel} />
@@ -68,17 +106,19 @@ export const VgsInput: React.FC<VgsInputProps> = ({
           className="lola-vgs--input"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
-          <LabelInput color={labelColor} isActive={isFocus}>
-            {placeholder}
+          <LabelInput color={labelColors} isActive={showLabel}>
+            {showLabel ? placeholder : cardNumberFormPlaceholder}
           </LabelInput>
           <CardNumberField
             autoFocus={autoFocus}
             name="card_number"
             validations={["required", "validCardNumber"]}
             placeholder=""
-            onFocus={onHanlderFocus}
             showCardIcon={true}
             errorColor={errorColor}
+            onFocus={onHanlderFocus}
+            onBlur={onHanlderFocus}
+            onUpdate={onUpdate}
           />
         </section>
         <ErrorLabel errorMessage={errorLabel} />
@@ -92,7 +132,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
           className="lola-vgs--input"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
-          <LabelInput color={labelColor} isActive={isFocus}>
+          <LabelInput color={labelColors} isActive={showLabel}>
             {placeholder}
           </LabelInput>
           <CardExpirationDateField
@@ -101,8 +141,10 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             validations={["required", "validCardExpirationDate"]}
             placeholder=""
             yearLength={2}
-            onFocus={onHanlderFocus}
             errorColor={errorColor}
+            onFocus={onHanlderFocus}
+            onBlur={onHanlderFocus}
+            onUpdate={onUpdate}
           />
         </section>
         <ErrorLabel errorMessage={errorLabel} />
@@ -116,7 +158,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
           className="lola-vgs--input"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
-          <LabelInput color={labelColor} isActive={isFocus}>
+          <LabelInput color={labelColors} isActive={showLabel}>
             {placeholder}
           </LabelInput>
           <CardSecurityCodeField
@@ -125,8 +167,10 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             validations={["required", "validCardSecurityCode"]}
             placeholder=""
             hideValue
-            onFocus={onHanlderFocus}
             errorColor={errorColor}
+            onFocus={onHanlderFocus}
+            onBlur={onHanlderFocus}
+            onUpdate={onUpdate}
           />
         </section>
         <ErrorLabel errorMessage={errorLabel} />

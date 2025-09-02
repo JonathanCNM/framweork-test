@@ -85,9 +85,7 @@ const Layout = ({
   });
 
   if (!isValidStructure) {
-    console.warn(
-      "[Layout] Children must be in order: <Layout.Header /> <Layout.Content /> <Layout.Footer /> (Header/Footer optional)"
-    );
+    console.log("");
   }
 
   const classes = ["lola-layout", className].filter(Boolean).join(" ");

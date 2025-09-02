@@ -17,7 +17,7 @@ export const GradientCardholder: Story = {
     <VgsInput
       type="card_holder_name"
       placeholder="Cardholder name"
-      color={context.globals.gradient}
+      activeColor={context.globals.gradient}
     />
   ),
 };
@@ -27,7 +27,7 @@ export const GradientCardnumber: Story = {
     <VgsInput
       type="card_number"
       placeholder="Card number"
-      color={context.globals.gradient}
+      activeColor={context.globals.gradient}
     />
   ),
 };
@@ -37,7 +37,7 @@ export const GradientExpirationDate: Story = {
     <VgsInput
       type="card_exp_date"
       placeholder="Due date"
-      color={context.globals.gradient}
+      activeColor={context.globals.gradient}
     />
   ),
 };
@@ -47,7 +47,7 @@ export const GradientCvc: Story = {
     <VgsInput
       type="card_cvc"
       placeholder="CVV"
-      color={context.globals.gradient}
+      activeColor={context.globals.gradient}
     />
   ),
 };

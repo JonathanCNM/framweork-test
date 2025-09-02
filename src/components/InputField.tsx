@@ -12,9 +12,10 @@ export interface InputFieldProps {
   labelStyle?: React.CSSProperties;
   noLabel?: boolean;
   isValid?: boolean;
-  color?: string;
-  borderColor?: string;
   borderRadius?: string;
+  color?: string;
+  inactiveColor?: string;
+  activeColor?: string;
   errorColor?: string;
   labelBackground?: string;
   placeholder?: string;
@@ -31,9 +32,10 @@ export const InputField: React.FC<InputFieldProps> = ({
   inputStyle = {},
   labelStyle = {},
   isValid = true,
-  color = "#000",
-  borderColor = "#979797",
   borderRadius = "10",
+  color = "#222",
+  inactiveColor = "#979797",
+  activeColor = "#000",
   errorColor = "#fd2a35",
   labelBackground = "#fff",
   placeholder = "",
@@ -48,19 +50,26 @@ export const InputField: React.FC<InputFieldProps> = ({
     onChange(event);
   };
 
-  const isInputEmpty = inputValue.length === 0 && focused;
   const showLabel = focused || inputValue.length > 0;
 
   const styles = {
     borderRadius: `${borderRadius}px`,
-    "--bg": isInputEmpty ? errorColor : isValid ? color : errorColor,
+    "--bg": !isValid
+      ? errorColor
+      : focused
+      ? activeColor
+      : showLabel
+      ? color
+      : inactiveColor,
   };
 
-  const labelColors = isInputEmpty
+  const labelColors = !isValid
     ? errorColor
+    : focused
+    ? activeColor
     : showLabel
     ? color
-    : borderColor;
+    : inactiveColor;
 
   const finalPlaceHolder = noLabel ? placeholder : "";
 

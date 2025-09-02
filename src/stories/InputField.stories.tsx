@@ -17,7 +17,8 @@ export const Gradient: Story = {
     <InputField
       name="test"
       label="Gradient input"
-      color={context.globals.gradient}
+      color="#222222"
+      activeColor={context.globals.gradient}
       {...props}
     />
   ),
@@ -29,7 +30,8 @@ export const GradientNoLabeled: Story = {
       name="test"
       noLabel
       placeholder="Gradient input not labeled"
-      color={context.globals.gradient}
+      color="#222222"
+      activeColor={context.globals.gradient}
       {...props}
     />
   ),

@@ -17,4 +17,5 @@ export {
   RightRoundedIcon,
   HomeAddressIcon,
   WhatsAppIcon,
+  UploadIcon,
 } from "./icons";

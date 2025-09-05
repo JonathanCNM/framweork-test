@@ -4,6 +4,7 @@ import "./styles/index.css";
 import { GradientText } from "./components/GradientText";
 import { useBlockScroll } from "./hooks/useBlockScroll";
 import { backgroundGradient } from "./utils/constants";
+import { UploadIcon } from "./icons";
 
 const Code = ({ title, children }: { title: string; children: ReactNode }) => (
   <section>
@@ -57,7 +58,13 @@ const App = () => {
             {"<Button>Default Button</Button>"}
           </Code>
           <p>Result:</p>
-          <Button loading>Default Button</Button>
+          <Button
+            loading
+            showIcon
+            icon={<UploadIcon colors={["#fff", "#fff"]} />}
+          >
+            Default Button
+          </Button>
         </div>
       </section>
     </MotionWrapper>

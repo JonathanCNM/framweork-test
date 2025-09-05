@@ -31,7 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const backLink = backUrl ? backUrl : (-1 as unknown as string);
   const isDisabled = disabled ? "disabled" : "active";
 
-  const classes = [`lola-navbar`, className].filter(Boolean).join(" ");
+  const classes = ["lola-navbar", `lola-navbar-${align}`, className]
+    .filter(Boolean)
+    .join(" ");
 
   const iconClasses = [
     "lola-navbar--container--icon",

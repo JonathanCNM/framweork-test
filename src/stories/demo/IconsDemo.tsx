@@ -18,6 +18,7 @@ import {
   RightRoundedIcon,
   HomeAddressIcon,
   WhatsAppIcon,
+  UploadIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -95,6 +96,10 @@ const iconList = [
   {
     label: "WhatsAppIcon",
     Icon: WhatsAppIcon,
+  },
+  {
+    label: "UploadIcon",
+    Icon: UploadIcon,
   },
 ];
 

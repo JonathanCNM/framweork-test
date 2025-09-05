@@ -116,10 +116,22 @@ button {
   margin: 0;
 }
 
+.lola-button-text {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .lola-button--icon {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.lola-button--centerd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lola-button .lola-gradient-text {
@@ -235,6 +247,20 @@ button {
   gap: 8px;
   z-index: 10000;
   color: var(--lola-text-color);
+}
+
+.lola-navbar-center .lola-navbar--back-icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.lola-navbar-center .lola-navbar--container--icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
 }
 
 /* Navbar Back Icon Styles */

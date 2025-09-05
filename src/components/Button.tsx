@@ -13,6 +13,7 @@ export interface ButtonProps
   background?: string;
   color?: string;
   showIcon?: boolean;
+  icon?: React.ReactNode;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -23,6 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
   background = "#000",
   color = "#fff",
   showIcon = false,
+  icon,
   children,
   ...props
 }) => {
@@ -53,9 +55,13 @@ export const Button: React.FC<ButtonProps> = ({
         } as React.CSSProperties & { [key: string]: string }
       }
     >
-      {loading && <Loader colors={loaderColors} strokeWidth={2} />}
-      <GradientText textColor={color}>{children}</GradientText>
-      {showIcon && <RightRoundedIcon colors={loaderColors} />}
+      <span className="lola-button-text">
+        {loading && <Loader colors={loaderColors} strokeWidth={2} />}
+        <GradientText textColor={color}>{children}</GradientText>
+      </span>
+      {showIcon && (
+        <>{icon ? icon : <RightRoundedIcon colors={loaderColors} />}</>
+      )}
     </button>
   );
 };

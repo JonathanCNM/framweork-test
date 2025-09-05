@@ -808,3 +808,59 @@ export const WhatsAppIcon: React.FC<
     </svg>
   );
 };
+
+export const UploadIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 23 23"
+      fill="none"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="23"
+          y2="23"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+      <path
+        d="M21.3091 14.7955V19.1551C21.3091 19.7332 21.0794 20.2876 20.6706 20.6964C20.2618 21.1052 19.7074 21.3348 19.1293 21.3348L3.87093 21.3348C3.29282 21.3348 2.73839 21.1052 2.3296 20.6964C1.92082 20.2876 1.69116 19.7332 1.69116 19.1551L1.69116 14.7955"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="2.15318"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.9496 7.16638L11.5002 1.71697L6.05078 7.16638"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="2.15318"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.5 1.71693V14.7955"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="2.15318"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

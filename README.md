@@ -31,11 +31,13 @@ En equipos con múltiples proyectos, mantener una identidad visual consistente p
 ### Instalación:
 
 **npm**
+
 ```bash
 npm install lola-framework-ui
 ```
 
 **yarn**
+
 ```bash
 yarn add lola-framework-ui
 ```
@@ -43,8 +45,18 @@ yarn add lola-framework-ui
 ### Implementación:
 
 ```typescript
-// in your main.tsx or app.tsx file
-import "lola-framework-ui/styles";
+// Importa los estilos en los archivos main.tsx ó app.tsx así:
+import "lola-framework-ui/src/styles";
+
+// Para implementar los iconos:
+import  { IconApp } "lola-framework-ui-test/src/icons";
+<IconApp />
+
+// Para implementar los hooks:
+import  { useKeyboardVisible } "lola-framework-ui-test/src/hooks";
+useKeyboardVisible()
+
+// Para implementar los componentes:
 import { Button } from "lola-framework-ui";
 
 <Button>Default Button</Button>

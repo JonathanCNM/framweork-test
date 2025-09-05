@@ -247,6 +247,7 @@ button {
   gap: 8px;
   z-index: 10000;
   color: var(--lola-text-color);
+  position: relative;
 }
 
 .lola-navbar-center .lola-navbar--back-icon {
@@ -254,6 +255,7 @@ button {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+  height: 100%;
 }
 
 .lola-navbar-center .lola-navbar--container--icon {

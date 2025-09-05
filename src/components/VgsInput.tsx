@@ -49,7 +49,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   const styles = {
     "--radius": `${borderRadius}px`,
     "--bg":
-      errorLabel && !isValid
+      !isValid && isFocus
         ? errorColor
         : isFocus
         ? activeColor
@@ -59,7 +59,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   };
 
   const labelColors =
-    errorLabel && !isValid
+    !isValid && isFocus
       ? errorColor
       : isFocus
       ? activeColor

@@ -839,53 +839,43 @@ button {
 .h1 {
   font-weight: 400;
   font-size: clamp(1.5rem, 2vw + 0.25rem, 2rem);
-  line-height: 1.75rem; /* opción fija */
-  /* line-height: 87.5%;  opción porcentual */
-  /* line-height: 1;      opción relativa */
+  line-height: 1;
 }
 
 /* Highlight */
 .highlight {
   font-weight: 700;
   font-size: clamp(1.5rem, 2vw + 0.25rem, 2rem);
-  line-height: 2.5rem; /* opción fija */
-  /* line-height: 100%;  opción porcentual */
-  /* line-height: 0.95;  opción ajustada */
+  line-height: 0.95;
 }
 
 /* H2 */
 .h2 {
   font-weight: 600;
   font-size: clamp(1rem, 1.5vw + 0.25rem, 1.5rem);
-  line-height: 2rem; /* opción fija */
-  /* line-height: 133.1%; opción porcentual */
-  /* line-height: 1;       opción relativa */
+  line-height: 1;
 }
 
 /* Body Copy */
 .bodycopy {
   font-weight: 500;
   font-size: clamp(0.75rem, 1vw + 0.25rem, 1rem);
-  line-height: 1.25rem; /* opción fija */
-  /* line-height: 125%; opción porcentual */
+  line-height: 1.25rem;
 }
 
 /* Secondary Text */
 .secondary-cta {
   font-weight: 500;
   font-size: clamp(0.75rem, 1vw + 0.25rem, 1.25rem);
-  line-height: 2rem; /* opción fija */
-  /* line-height: 160%; opción porcentual */
-  /* line-height: 1;     opción relativa */
+  line-height: 2rem;
+  line-height: 1;
 }
 
 /* Footer Text */
-.footer {
+.footer-text {
   font-weight: 500;
   font-size: clamp(0.5rem, 0.75vw + 0.25rem, 0.85rem);
-  line-height: 1.125rem; /* opción fija */
-  /* line-height: 128.5%; opción porcentual */
-  /* line-height: 1;       opción relativa */
+  line-height: 1;
 }
 
 /* Button */
@@ -900,7 +890,5 @@ button {
 .step {
   font-weight: 600;
   font-size: clamp(0.5rem, 0.75vw + 0.25rem, 0.875rem);
-  line-height: 0.875rem; /* opción fija */
-  /* line-height: 100%; opción porcentual */
-  /* line-height: 1;     opción relativa */
+  line-height: 1;
 }

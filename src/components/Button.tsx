@@ -35,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
     `lola-button--${btnAlign}`,
     `lola-button--${variant}`,
     `lola-button--${size}`,
+    'button-text',
     className,
   ]
     .filter(Boolean)

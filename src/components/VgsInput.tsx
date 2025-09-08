@@ -78,7 +78,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
     return (
       <>
         <section
-          className="lola-vgs--input"
+          className="lola-vgs--input secondary-cta"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>
@@ -103,7 +103,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
     return (
       <>
         <section
-          className="lola-vgs--input"
+          className="lola-vgs--input secondary-cta"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>
@@ -129,7 +129,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
     return (
       <section style={{ width: "100%" }}>
         <section
-          className="lola-vgs--input"
+          className="lola-vgs--input secondary-cta"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>
@@ -155,7 +155,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
     return (
       <section style={{ width: "100%" }}>
         <section
-          className="lola-vgs--input"
+          className="lola-vgs--input secondary-cta"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>

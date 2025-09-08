@@ -75,19 +75,6 @@ const Layout = ({
   const childrenArray = React.Children.toArray(children);
   const { viewportHeight } = useKeyboardVisible();
 
-  const isValidStructure = childrenArray.every((child, index) => {
-    if (!isValidElement(child)) return false;
-    if (index === 0 && child.type !== Header) return false;
-    if (index === 1 && child.type !== Content) return false;
-    if (index === 2 && child.type !== Footer) return false;
-    if (index > 2) return false;
-    return true;
-  });
-
-  if (!isValidStructure) {
-    console.log("");
-  }
-
   const classes = ["lola-layout", className].filter(Boolean).join(" ");
 
   const header = childrenArray.find((child) => {

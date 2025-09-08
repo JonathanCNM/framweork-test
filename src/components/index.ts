@@ -1,3 +1,6 @@
+export { BodyCopy } from "./BodyCopy";
+export type { BodyCopyProps } from "./BodyCopy";
+
 export { Button } from "./Button";
 export type { ButtonProps } from "./Button";
 
@@ -9,6 +12,9 @@ export type { TextProps } from "./GradientText";
 
 export { InputField } from "./InputField";
 export type { InputFieldProps } from "./InputField";
+
+export { IproovButtonSlot } from "./IproovButtonSlot";
+export type { IproovButtonSlotProps } from "./IproovButtonSlot";
 
 export { LabelInput } from "./LabelInput";
 export type { LabelInputProps } from "./LabelInput";
@@ -29,6 +35,9 @@ export type { MotionWrapperProps } from "./MotionWrapper";
 
 export { Navbar } from "./Navbar";
 export type { NavbarProps } from "./Navbar";
+
+export { PageTitle } from "./PageTitle";
+export type { PageTitleProps } from "./PageTitle";
 
 export { Title } from "./Title";
 export type { TitleProps } from "./Title";

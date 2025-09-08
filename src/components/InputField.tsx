@@ -74,7 +74,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   const finalPlaceHolder = noLabel ? placeholder : "";
 
   return (
-    <div className="lola-input-field">
+    <div className="lola-input-field secondary-cta">
       {!noLabel && (
         <LabelInput
           isActive={showLabel}

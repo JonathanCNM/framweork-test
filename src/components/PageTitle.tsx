@@ -15,7 +15,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({
 }) => (
   <GradientText
     as="h1"
-    className="lola-title-highlight hightlight"
+    className="lola-title-highlight highlight"
     textColor={highlightColor}
   >
     {highlight}

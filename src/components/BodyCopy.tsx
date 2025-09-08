@@ -15,7 +15,7 @@ export const BodyCopy = <T extends React.ElementType = "p">({
   ...props
 }: BodyCopyProps<T>) => {
   const Component = as || "p";
-  const classes = ["lola-body-copy", "body-copy", props.className ?? ""]
+  const classes = ["lola-body-copy", "bodycopy", props.className ?? ""]
     .filter(Boolean)
     .join(" ");
 

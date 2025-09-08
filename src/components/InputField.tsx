@@ -85,7 +85,6 @@ export const InputField: React.FC<InputFieldProps> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     onChange(event);
-    // setIconColors(getSplittedColors(labelColors));
   };
 
   useEffect(() => {

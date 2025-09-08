@@ -317,11 +317,6 @@ button {
   line-height: 1rem;
 }
 
-.lola-title--lg {
-  font-size: 1.25rem;
-  line-height: 1.25rem;
-}
-
 .lola-title--xl {
   font-size: 1.5rem;
   line-height: 1.75rem;
@@ -547,6 +542,13 @@ button {
   height: 56px;
 }
 
+.lola-input-icon svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .lola-input-field .lola--label-input {
   z-index: 2;
 }
@@ -587,6 +589,11 @@ button {
   border: none;
   background-color: transparent;
 }
+
+.lola-input-icon .lola-input-field--container input {
+  padding-left: 44px;
+}
+
 
 /* Map Styles */
 

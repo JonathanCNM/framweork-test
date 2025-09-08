@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LabelInput } from "./LabelInput";
+import { getSplittedColors } from "../utils/utils";
 
 export interface InputFieldProps {
   label?: string;
@@ -19,6 +20,8 @@ export interface InputFieldProps {
   errorColor?: string;
   labelBackground?: string;
   placeholder?: string;
+  icon?: React.ReactNode;
+  setIconColors?: (colors?: [string, string]) => void;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
@@ -39,18 +42,21 @@ export const InputField: React.FC<InputFieldProps> = ({
   errorColor = "#fd2a35",
   labelBackground = "#fff",
   placeholder = "",
+  setIconColors = () => ["#000", "#000"],
+  icon,
 }) => {
   const [focused, setFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value || "");
 
-  const handleFocus = () => setFocused(true);
-  const handleBlur = () => setFocused(false);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-    onChange(event);
-  };
-
   const showLabel = focused || inputValue.length > 0;
+
+  const classes = [
+    "lola-input-field",
+    "secondary-cta",
+    `lola-input-${icon ? "icon" : "default"}`,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const styles = {
     borderRadius: `${borderRadius}px`,
@@ -73,8 +79,22 @@ export const InputField: React.FC<InputFieldProps> = ({
 
   const finalPlaceHolder = noLabel ? placeholder : "";
 
+  const handleFocus = () => setFocused(true);
+  const handleBlur = () => setFocused(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+    onChange(event);
+    // setIconColors(getSplittedColors(labelColors));
+  };
+
+  useEffect(() => {
+    setIconColors(getSplittedColors(labelColors));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [labelColors]);
+
   return (
-    <div className="lola-input-field secondary-cta">
+    <div className={classes}>
       {!noLabel && (
         <LabelInput
           isActive={showLabel}
@@ -101,6 +121,7 @@ export const InputField: React.FC<InputFieldProps> = ({
           className=""
         />
       </section>
+      {icon && icon}
     </div>
   );
 };

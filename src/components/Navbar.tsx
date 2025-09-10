@@ -12,7 +12,11 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   onBackClick?: (link: string) => void;
   noBackButton?: boolean;
   color?: string;
+  backIconColors?: [string, string];
   align?: "left" | "center" | "right";
+  isLeaving?: boolean;
+  textAnimated?: boolean;
+  textAnimatedDelay?: number;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -25,7 +29,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   noBackButton = false,
   className = "",
   color = "#000",
+  backIconColors,
   align = "left",
+  isLeaving = false,
+  textAnimated = false,
+  textAnimatedDelay = 0,
   ...props
 }) => {
   const backLink = backUrl ? backUrl : (-1 as unknown as string);
@@ -42,12 +50,15 @@ export const Navbar: React.FC<NavbarProps> = ({
     .filter(Boolean)
     .join(" ");
 
-  const finalColors = getSplittedColors(color);
+  const finalColors = backIconColors
+    ? backIconColors
+    : getSplittedColors(color);
 
   return (
     <div className={classes} {...props}>
       {!noBackButton ? (
         <BackArrow
+          size={26}
           colors={finalColors}
           className="lola-navbar--back-icon"
           onClick={() => onBackClick(backLink)}
@@ -57,7 +68,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       )}
 
       <section onClick={onIconClick} className="lola-navbar--container">
-        <Title color={color} title={title} align={align} />
+        <Title
+          color={color}
+          title={title}
+          align={align}
+          isLeaving={isLeaving}
+          textAnimated={textAnimated}
+          textAnimatedDelay={textAnimatedDelay}
+        />
         {icon && <section className={iconClasses}>{icon}</section>}
       </section>
     </div>

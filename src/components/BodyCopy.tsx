@@ -6,11 +6,17 @@ export type BodyCopyProps<T extends React.ElementType> = {
   children: React.ReactNode | string;
   textColor?: string;
   background?: string;
+  isLeaving?: boolean;
+  textAnimated?: boolean;
+  textAnimatedDelay?: number;
 } & React.ComponentPropsWithoutRef<T>;
 
 export const BodyCopy = <T extends React.ElementType = "p">({
   as,
   textColor = "#222",
+  isLeaving = false,
+  textAnimated = false,
+  textAnimatedDelay = 0,
   children,
   ...props
 }: BodyCopyProps<T>) => {
@@ -25,6 +31,9 @@ export const BodyCopy = <T extends React.ElementType = "p">({
       as={Component}
       textColor={textColor}
       className={classes}
+      isLeaving={isLeaving}
+      textAnimated={textAnimated}
+      textAnimatedDelay={textAnimatedDelay}
     >
       {children}
     </GradientText>

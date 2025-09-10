@@ -14,6 +14,9 @@ export interface ButtonProps
   color?: string;
   showIcon?: boolean;
   icon?: React.ReactNode;
+  isLeaving?: boolean;
+  textAnimated?: boolean;
+  textAnimatedDelay?: number;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -25,6 +28,9 @@ export const Button: React.FC<ButtonProps> = ({
   color = "#fff",
   showIcon = false,
   icon,
+  isLeaving = false,
+  textAnimated = false,
+  textAnimatedDelay = 0,
   children,
   ...props
 }) => {
@@ -35,7 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
     `lola-button--${btnAlign}`,
     `lola-button--${variant}`,
     `lola-button--${size}`,
-    'button-text',
+    "button-text",
     className,
   ]
     .filter(Boolean)
@@ -58,7 +64,14 @@ export const Button: React.FC<ButtonProps> = ({
     >
       <span className="lola-button-text">
         {loading && <Loader colors={loaderColors} strokeWidth={2} />}
-        <GradientText textColor={color}>{children}</GradientText>
+        <GradientText
+          textColor={color}
+          isLeaving={isLeaving}
+          textAnimated={textAnimated}
+          textAnimatedDelay={textAnimatedDelay}
+        >
+          {children}
+        </GradientText>
       </span>
       {showIcon && (
         <>{icon ? icon : <RightRoundedIcon colors={loaderColors} />}</>

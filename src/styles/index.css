@@ -309,6 +309,7 @@ button {
 
 .lola-title h2 {
   margin: 0;
+  line-height: 2.5rem;
 }
 
 /* Title Sizes */
@@ -594,7 +595,6 @@ button {
   padding-left: 44px;
 }
 
-
 /* Map Styles */
 
 /* Autocomplete Styles*/
@@ -845,14 +845,14 @@ button {
 /* H1 */
 .h1 {
   font-weight: 400;
-  font-size: clamp(1.5rem, 2vw + 0.25rem, 2rem);
+  font-size: clamp(1.75rem, 2vw + 0.25rem, 2rem);
   line-height: 1;
 }
 
 /* Highlight */
 .highlight {
   font-weight: 700;
-  font-size: clamp(1.5rem, 2vw + 0.25rem, 2rem);
+  font-size: clamp(1.75rem, 2vw + 0.25rem, 2rem);
   line-height: 0.95;
 }
 
@@ -866,7 +866,7 @@ button {
 /* Body Copy */
 .bodycopy {
   font-weight: 500;
-  font-size: clamp(0.75rem, 1vw + 0.25rem, 1rem);
+  font-size: clamp(1rem, 1vw + 0.25rem, 1.25rem);
   line-height: 1.25rem;
 }
 
@@ -881,14 +881,14 @@ button {
 /* Footer Text */
 .footer-text {
   font-weight: 500;
-  font-size: clamp(0.5rem, 0.75vw + 0.25rem, 0.85rem);
+  font-size: 0.85rem;
   line-height: 1;
 }
 
 /* Button */
 .button-text {
   font-weight: 600;
-  font-size: clamp(0.75rem, 1vw + 0.25rem, 1.25rem);
+  font-size: clamp(1rem, 1vw + 0.25rem, 1.25rem);
   line-height: 1.25rem; /* opción fija */
   /* line-height: 111.111%; opción porcentual */
 }
@@ -898,4 +898,43 @@ button {
   font-weight: 600;
   font-size: clamp(0.5rem, 0.75vw + 0.25rem, 0.875rem);
   line-height: 1;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes typing-reverse {
+  from {
+    width: 100%;
+    opacity: 1;
+  }
+  to {
+    width: 0;
+    opacity: 1;
+  }
+}
+
+.typing-text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.typing-in {
+  animation: typing 0.5s steps(40, end) forwards;
+  animation-delay: var(--delay);
+}
+
+.typing-out {
+  animation: typing-reverse 0.5s steps(40, end) forwards;
+  animation-delay: calc(var(--delay) - var(--delay));
 }

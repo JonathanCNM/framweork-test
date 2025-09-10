@@ -5,6 +5,9 @@ export type TextProps<T extends React.ElementType> = {
   children: React.ReactNode;
   textColor?: string;
   background?: string;
+  isLeaving?: boolean;
+  textAnimated?: boolean;
+  textAnimatedDelay?: number;
 } & React.ComponentPropsWithoutRef<T>;
 
 export const GradientText = <T extends React.ElementType = "p">({
@@ -13,12 +16,23 @@ export const GradientText = <T extends React.ElementType = "p">({
   textColor = "#000",
   background = "transparent",
   className = "",
+  isLeaving = false,
+  textAnimated = false,
+  textAnimatedDelay = 0,
   ...props
 }: TextProps<T>) => {
   const Component = as || "p";
 
   const isGradient = textColor.includes("gradient");
-  const clasess = ["lola-gradient-text", className].filter(Boolean).join(" ");
+  const clasess = [
+    "lola-gradient-text",
+    "typing-text",
+    textAnimated ? "typing-in" : "",
+    isLeaving ? "typing-out" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
   const finalTextColor = isGradient
     ? `${textColor} text, ${background}`
     : `linear-gradient(90deg, ${textColor} 0%, ${textColor} 100%) text, ${background}`;
@@ -32,6 +46,7 @@ export const GradientText = <T extends React.ElementType = "p">({
           ...props.style,
           "--textColor": finalTextColor,
           "--bg": background,
+          "--delay": `${textAnimatedDelay}s`,
         } as React.CSSProperties & { [key: string]: string }
       }
     >

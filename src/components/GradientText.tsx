@@ -26,7 +26,7 @@ export const GradientText = <T extends React.ElementType = "p">({
   const isGradient = textColor.includes("gradient");
   const clasess = [
     "lola-gradient-text",
-    "typing-text",
+    textAnimated ? "typing-text" : "",
     textAnimated ? "typing-in" : "",
     isLeaving ? "typing-out" : "",
     className,

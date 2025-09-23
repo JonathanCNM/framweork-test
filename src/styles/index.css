@@ -816,7 +816,7 @@ button {
   bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: calc(100% - 64px);
   max-width: 500px;
   margin: auto;
 }

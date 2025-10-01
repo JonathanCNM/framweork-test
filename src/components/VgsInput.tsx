@@ -12,6 +12,7 @@ export interface VgsInputProps {
   cardNumberFormPlaceholder?: string;
   autoFocus?: boolean;
   errorLabel?: string;
+  setErrorLabel?: (label?: string) => void;
   borderRadius?: string;
   color?: string;
   inactiveColor?: string;
@@ -35,6 +36,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   borderRadius = 10,
   inactiveColor = "#979797",
   activeColor = "#000",
+  setErrorLabel = () => {},
 }) => {
   const [isFocus, setIsFocus] = useState(autoFocus);
   const [isValid, setIsValid] = useState(true);
@@ -53,6 +55,8 @@ export const VgsInput: React.FC<VgsInputProps> = ({
         ? errorColor
         : isFocus
         ? activeColor
+        : !isValid
+        ? errorColor
         : showLabel
         ? color
         : inactiveColor,
@@ -63,12 +67,15 @@ export const VgsInput: React.FC<VgsInputProps> = ({
       ? errorColor
       : isFocus
       ? activeColor
+      : !isValid
+      ? errorColor
       : showLabel
       ? color
       : inactiveColor;
 
   const onUpdate = (state: VGSCollectStateParams) => {
     const { isValid, isFocused, isEmpty } = state;
+    if (isValid || isFocused) setErrorLabel("");
     setIsFocus(isFocused);
     setIsValid(isValid);
     setIsEmpty(isEmpty);

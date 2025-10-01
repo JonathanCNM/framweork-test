@@ -809,6 +809,7 @@ button {
 .lola-title-highlight .lola-title-h1 {
   margin: auto;
   padding-bottom: 0.2em;
+  display: block;
 }
 
 .lola-iproov-button-slot {

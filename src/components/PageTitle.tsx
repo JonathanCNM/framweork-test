@@ -29,7 +29,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({
     {highlight}
     {secudnary && (
       <GradientText
-        as="h1"
+        as="span"
         className="lola-title-h1 h1"
         textColor={secudnaryColor}
         isLeaving={isLeaving}

@@ -938,3 +938,50 @@ button {
   animation: typing-reverse 0.5s steps(40, end) forwards;
   animation-delay: calc(var(--delay) - var(--delay));
 }
+
+.vgs {
+  .lola-layout--container--content--container {
+    height: 100%;
+
+    .lola-layout--container--content--container--wrap {
+      height: 100%;
+
+      div {
+        height: 100%;
+
+        div {
+          height: 100%;
+
+          form section article div {
+            background: transparent !important;
+
+            iframe,
+            input {
+              max-height: 45px !important;
+              background: transparent !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+input[type="number"] {
+  -moz-appearance: textfield !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}

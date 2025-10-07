@@ -5,6 +5,7 @@ import { GradientText } from "./components/GradientText";
 import { useBlockScroll } from "./hooks/useBlockScroll";
 import { backgroundGradient } from "./utils/constants";
 import { UploadIcon } from "./icons";
+import { Page } from "./components/Page";
 
 const Code = ({ title, children }: { title: string; children: ReactNode }) => (
   <section>
@@ -27,47 +28,49 @@ const App = () => {
   useBlockScroll();
 
   return (
-    <MotionWrapper>
-      <section style={{ width: "80%", margin: "auto" }}>
-        <GradientText
-          as="h1"
-          textColor={backgroundGradient}
-          style={{ fontSize: "2rem" }}
-        >
-          Lola Framework UI - Style Framework
-        </GradientText>
-        <p style={{ marginBottom: "2rem" }}>
-          A React TypeScript component library built with Vite.
-        </p>
-        <div>
-          <GradientText as="h2">Getting Started</GradientText>
-          <Code title="Install the package:">
-            npm install lola-framework-ui
-          </Code>
-
-          <Code title="Import styles:">
-            <span className="comment">// in main.tsx or app.tsx file</span>
-            <br />
-            "lola-framework-ui-test/src/styles";
-          </Code>
-
-          <Code title="Import components and usage:">
-            import {"{ Button }"} from 'lola-framework-ui';
-            <br />
-            <br />
-            {"<Button>Default Button</Button>"}
-          </Code>
-          <p>Result:</p>
-          <Button
-            loading
-            showIcon
-            icon={<UploadIcon colors={["#fff", "#fff"]} />}
+    <Page>
+      <MotionWrapper>
+        <section style={{ width: "80%", margin: "auto" }}>
+          <GradientText
+            as="h1"
+            textColor={backgroundGradient}
+            style={{ fontSize: "2rem" }}
           >
-            Default Button
-          </Button>
-        </div>
-      </section>
-    </MotionWrapper>
+            Lola Framework UI - Style Framework
+          </GradientText>
+          <p style={{ marginBottom: "2rem" }}>
+            A React TypeScript component library built with Vite.
+          </p>
+          <div>
+            <GradientText as="h2">Getting Started</GradientText>
+            <Code title="Install the package:">
+              npm install lola-framework-ui
+            </Code>
+
+            <Code title="Import styles:">
+              <span className="comment">// in main.tsx or app.tsx file</span>
+              <br />
+              "lola-framework-ui-test/src/styles";
+            </Code>
+
+            <Code title="Import components and usage:">
+              import {"{ Button }"} from 'lola-framework-ui';
+              <br />
+              <br />
+              {"<Button>Default Button</Button>"}
+            </Code>
+            <p>Result:</p>
+            <Button
+              loading
+              showIcon
+              icon={<UploadIcon colors={["#fff", "#fff"]} />}
+            >
+              Default Button
+            </Button>
+          </div>
+        </section>
+      </MotionWrapper>
+    </Page>
   );
 };
 

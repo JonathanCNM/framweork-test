@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -144,4 +144,36 @@ button:focus-visible {
   .icons-stoybook-demo-container {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.font-demo-container {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.font-demo-api {
+  display: flex;
+  gap: 8px;
+
+  input {
+    width: calc(70% - 4px);
+  }
+
+  svg {
+    width: calc(30% - 4px);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.font-demo-footer {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

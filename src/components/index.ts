@@ -36,8 +36,14 @@ export type { MotionWrapperProps } from "./MotionWrapper";
 export { Navbar } from "./Navbar";
 export type { NavbarProps } from "./Navbar";
 
+export { Page } from "./Page";
+export type { PageProps } from "./Page";
+
 export { PageTitle } from "./PageTitle";
 export type { PageTitleProps } from "./PageTitle";
+
+export { Select } from "./Select";
+export type { SelectProps, ISelectItem } from "./Select";
 
 export { Title } from "./Title";
 export type { TitleProps } from "./Title";

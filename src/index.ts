@@ -14,6 +14,9 @@ export * from "./components/Layout";
 export * from "./components/Loader";
 export * from "./components/MotionWrapper";
 export * from "./components/Navbar";
+export * from "./components/Page";
+export * from "./components/PageTitle";
+export * from "./components/Select";
 export * from "./components/Title";
 export * from "./components/VgsFormWrapper";
 export * from "./components/VgsInput";
@@ -33,16 +36,21 @@ export type {
 export type { LoaderProps } from "./components/Loader";
 export type { MotionWrapperProps } from "./components/MotionWrapper";
 export type { NavbarProps } from "./components/Navbar";
+export type { PageProps } from "./components/Page";
+export type { PageTitleProps } from "./components/PageTitle";
+export type { SelectProps, ISelectItem } from "./components/Select";
 export type { TitleProps } from "./components/Title";
 export type { VgsInputProps } from "./components/VgsInput";
 
 export type { UseVgsCollectLoaderProps } from "./hooks/useVgsCollectLoader";
+export type { UseFontsProps } from "./hooks/useFonts";
 
 // Export Hooks
 export * from "./hooks/useBlockScroll";
 export * from "./hooks/useKeyboardVisible";
 export * from "./hooks/usePreventReload";
 export * from "./hooks/useVgsCollectLoader";
+export * from "./hooks/useFonts";
 
 // Export Icons
 export * from "./icons/icons";

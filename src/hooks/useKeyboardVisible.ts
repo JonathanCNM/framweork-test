@@ -7,6 +7,18 @@ export const useKeyboardVisible = () => {
   );
 
   useEffect(() => {
+    const handleResize = () =>
+      setViewportHeight(window.visualViewport?.height || window.innerHeight);
+    window.visualViewport?.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.visualViewport?.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (!isMobile) return;
@@ -21,19 +33,12 @@ export const useKeyboardVisible = () => {
       setIsKeyboardOpen(false);
     };
 
-    const handleResize = () =>
-      setViewportHeight(window.visualViewport?.height || window.innerHeight);
-
     window.addEventListener("focusin", handleFocus);
     window.addEventListener("focusout", handleBlur);
-    window.visualViewport?.addEventListener("resize", handleResize);
-    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("focusin", handleFocus);
       window.removeEventListener("focusout", handleBlur);
-      window.visualViewport?.removeEventListener("resize", handleResize);
-      window.removeEventListener("resize", handleResize);
       document.body.style.overflow = "";
     };
   }, []);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { listenLocalStorage, setLocalStorage } from "./useLocalStorage";
-import { isKeyboardOpenKey } from "../utils/constants";
+
+export const isKeyboardOpenKey = "isKeyboardOpen";
 
 export const useKeyboardVisible = () => {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);

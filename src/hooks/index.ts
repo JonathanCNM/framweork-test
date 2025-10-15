@@ -5,4 +5,4 @@ export { useVgsCollectLoader } from "./useVgsCollectLoader";
 export type { UseVgsCollectLoaderProps } from "./useVgsCollectLoader";
 export { useFonts } from "./useFonts";
 export type { UseFontsProps } from "./useFonts";
-export { setLocalStorage, listenLocalStorage } from "./useLocalStorage";
+export { useLocalStorage } from "./useLocalStorage";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { listenLocalStorage, setLocalStorage } from "./useLocalStorage";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const isKeyboardOpenKey = "isKeyboardOpen";
 
@@ -8,6 +8,7 @@ export const useKeyboardVisible = () => {
   const [viewportHeight, setViewportHeight] = useState(
     window.visualViewport?.height || window.innerHeight
   );
+  const { listenLocalStorage, setLocalStorage } = useLocalStorage();
 
   useEffect(() => {
     const handleResize = () =>

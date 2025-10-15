@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocalStorage } from "./useLocalStorage";
+import { listenLocalStorage, setLocalStorage } from "./useLocalStorage";
 
 export const useKeyboardVisible = () => {
   const isKeyboardOpenKey = "isKeyboardOpen";
@@ -7,7 +7,6 @@ export const useKeyboardVisible = () => {
   const [viewportHeight, setViewportHeight] = useState(
     window.visualViewport?.height || window.innerHeight
   );
-  const { listenLocalStorage, setLocalStorage } = useLocalStorage();
 
   useEffect(() => {
     const handleResize = () =>
@@ -44,6 +43,7 @@ export const useKeyboardVisible = () => {
       window.removeEventListener("focusout", handleBlur);
       document.body.style.overflow = "";
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export const useKeyboardVisible = () => {
       setIsKeyboardOpen(localStorage.getItem(isKeyboardOpenKey) === "true")
     );
     return unlisten;
-  }, []);
+  }, [listenLocalStorage]);
 
   const handlerSetIsKeyboardOpen = (isOpen: boolean) => {
     setLocalStorage(isKeyboardOpenKey, JSON.stringify(isOpen));

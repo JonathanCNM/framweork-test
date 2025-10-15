@@ -39,3 +39,5 @@ export const registeredFonts = [
     cdn: "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700",
   },
 ];
+
+export const isKeyboardOpenKey = "isKeyboardOpen";

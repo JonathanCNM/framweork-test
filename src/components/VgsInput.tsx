@@ -5,6 +5,8 @@ import {
   type VGSCollectStateParams,
 } from "@vgs/collect-js-react";
 import { LabelInput } from "./LabelInput";
+import { useKeyboardVisible } from "../hooks";
+import { ErrorIcon } from "../icons";
 
 export interface VgsInputProps {
   type: "card_holder_name" | "card_number" | "card_exp_date" | "card_cvc";
@@ -26,6 +28,8 @@ const {
   CardSecurityCodeField,
 } = VGSCollectForm;
 
+const errorColor = "#fd2a35";
+
 export const VgsInput: React.FC<VgsInputProps> = ({
   type,
   autoFocus = false,
@@ -41,37 +45,34 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   const [isFocus, setIsFocus] = useState(autoFocus);
   const [isValid, setIsValid] = useState(true);
   const [isEmpty, setIsEmpty] = useState(true);
-  const errorColor = "#fd2a35";
 
-  const onHanlderFocus = (info: VGSCollectFocusEventData<"focus" | "blur">) =>
+  const { handlerSetIsKeyboardOpen } = useKeyboardVisible();
+
+  const onHanlderFocus = (info: VGSCollectFocusEventData<"focus" | "blur">) => {
     setIsFocus(info.type === "focus");
+    handlerSetIsKeyboardOpen(info.type === "focus");
+  };
 
   const showLabel = isFocus || !isEmpty;
 
   const styles = {
     "--radius": `${borderRadius}px`,
-    "--bg":
-      !isValid && isFocus
-        ? errorColor
-        : isFocus
-        ? activeColor
-        : !isValid
-        ? errorColor
-        : showLabel
-        ? color
-        : inactiveColor,
-  };
-
-  const labelColors =
-    !isValid && isFocus
-      ? errorColor
-      : isFocus
+    "--bg": isFocus
       ? activeColor
-      : !isValid
+      : !isValid && errorLabel
       ? errorColor
       : showLabel
       ? color
-      : inactiveColor;
+      : inactiveColor,
+  };
+
+  const labelColors = isFocus
+    ? activeColor
+    : !isValid && errorLabel
+    ? errorColor
+    : showLabel
+    ? color
+    : inactiveColor;
 
   const onUpdate = (state: VGSCollectStateParams) => {
     const { isValid, isFocused, isEmpty } = state;
@@ -102,7 +103,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             onUpdate={onUpdate}
           />
         </section>
-        <ErrorLabel errorMessage={errorLabel} />
+        <ErrorLabel errorMessage={errorLabel} color={errorColor} />
       </>
     );
 
@@ -122,13 +123,12 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             validations={["required", "validCardNumber"]}
             placeholder=""
             showCardIcon={true}
-            errorColor={errorColor}
             onFocus={onHanlderFocus}
             onBlur={onHanlderFocus}
             onUpdate={onUpdate}
           />
         </section>
-        <ErrorLabel errorMessage={errorLabel} />
+        <ErrorLabel errorMessage={errorLabel} color={errorColor} />
       </>
     );
 
@@ -136,7 +136,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
     return (
       <section style={{ width: "100%" }}>
         <section
-          className="lola-vgs--input secondary-cta"
+          className="lola-vgs--input secondary-cta exp-cvc"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>
@@ -148,13 +148,12 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             validations={["required", "validCardExpirationDate"]}
             placeholder=""
             yearLength={2}
-            errorColor={errorColor}
             onFocus={onHanlderFocus}
             onBlur={onHanlderFocus}
             onUpdate={onUpdate}
           />
         </section>
-        <ErrorLabel errorMessage={errorLabel} />
+        <ErrorLabel errorMessage={errorLabel} color={errorColor} />
       </section>
     );
 
@@ -162,7 +161,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
     return (
       <section style={{ width: "100%" }}>
         <section
-          className="lola-vgs--input secondary-cta"
+          className="lola-vgs--input secondary-cta exp-cvc"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>
@@ -174,22 +173,35 @@ export const VgsInput: React.FC<VgsInputProps> = ({
             validations={["required", "validCardSecurityCode"]}
             placeholder=""
             hideValue
-            errorColor={errorColor}
             onFocus={onHanlderFocus}
             onBlur={onHanlderFocus}
             onUpdate={onUpdate}
           />
         </section>
-        <ErrorLabel errorMessage={errorLabel} />
+        <ErrorLabel errorMessage={errorLabel} color={errorColor} />
       </section>
     );
 };
 
-export const ErrorLabel = ({ errorMessage }: { errorMessage?: string }) => {
+export const ErrorLabel = ({
+  errorMessage,
+  color = errorColor,
+}: {
+  errorMessage?: string;
+  color?: string;
+}) => {
   return (
     <>
       {errorMessage && (
-        <p className="-mt-2 mb-2 text-xs w-full text-left text-red-600">
+        <p
+          className="error-label"
+          style={
+            { "--errorColor": color } as React.CSSProperties & {
+              [key: string]: string;
+            }
+          }
+        >
+          <ErrorIcon size={16} colors={[color, color]} />
           {errorMessage}
         </p>
       )}

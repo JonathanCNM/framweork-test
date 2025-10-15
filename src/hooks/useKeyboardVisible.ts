@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { listenLocalStorage, setLocalStorage } from "./useLocalStorage";
+import { isKeyboardOpenKey } from "../utils/constants";
 
 export const useKeyboardVisible = () => {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
@@ -23,11 +25,13 @@ export const useKeyboardVisible = () => {
 
     const handleFocus = () => {
       if (isMobile) document.body.style.overflow = "hidden";
+      setLocalStorage(isKeyboardOpenKey, JSON.stringify(true));
       setIsKeyboardOpen(true);
     };
 
     const handleBlur = () => {
       if (isMobile) document.body.style.overflow = "";
+      setLocalStorage(isKeyboardOpenKey, JSON.stringify(false));
       setIsKeyboardOpen(false);
     };
 
@@ -41,5 +45,17 @@ export const useKeyboardVisible = () => {
     };
   }, []);
 
-  return { isKeyboardOpen, viewportHeight };
+  useEffect(() => {
+    const unlisten = listenLocalStorage(isKeyboardOpenKey, () =>
+      setIsKeyboardOpen(localStorage.getItem(isKeyboardOpenKey) === "true")
+    );
+    return unlisten;
+  }, []);
+
+  const handlerSetIsKeyboardOpen = (isOpen: boolean) => {
+    setLocalStorage(isKeyboardOpenKey, JSON.stringify(isOpen));
+    setIsKeyboardOpen(isOpen);
+  };
+
+  return { isKeyboardOpen, viewportHeight, handlerSetIsKeyboardOpen };
 };

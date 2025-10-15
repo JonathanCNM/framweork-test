@@ -21,15 +21,13 @@ export const useKeyboardVisible = () => {
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    if (!isMobile) return;
-
     const handleFocus = () => {
-      document.body.style.overflow = "hidden";
+      if (!isMobile) document.body.style.overflow = "hidden";
       setIsKeyboardOpen(true);
     };
 
     const handleBlur = () => {
-      document.body.style.overflow = "";
+      if (!isMobile) document.body.style.overflow = "";
       setIsKeyboardOpen(false);
     };
 

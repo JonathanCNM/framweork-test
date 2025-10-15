@@ -177,3 +177,13 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
 }
+
+
+.font-demo {
+  display: flex;
+  gap: 20px;
+
+  .lola-layout {
+    width: calc(50% - 20px)
+  }
+}

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-export const isKeyboardOpenKey = "isKeyboardOpen";
-
 export const useKeyboardVisible = () => {
+  const isKeyboardOpenKey = "isKeyboardOpen";
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(
     window.visualViewport?.height || window.innerHeight

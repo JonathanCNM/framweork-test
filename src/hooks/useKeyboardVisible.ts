@@ -22,12 +22,12 @@ export const useKeyboardVisible = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     const handleFocus = () => {
-      if (!isMobile) document.body.style.overflow = "hidden";
+      if (isMobile) document.body.style.overflow = "hidden";
       setIsKeyboardOpen(true);
     };
 
     const handleBlur = () => {
-      if (!isMobile) document.body.style.overflow = "";
+      if (isMobile) document.body.style.overflow = "";
       setIsKeyboardOpen(false);
     };
 

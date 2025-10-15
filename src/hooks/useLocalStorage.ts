@@ -1,6 +1,5 @@
-const storageEventTarget = new EventTarget();
-
 export const useLocalStorage = () => {
+  const storageEventTarget = new EventTarget();
   const setLocalStorage = (key: string, value: string) => {
     localStorage.setItem(key, value);
     storageEventTarget.dispatchEvent(new Event(key));

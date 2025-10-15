@@ -51,6 +51,7 @@ export * from "./hooks/useKeyboardVisible";
 export * from "./hooks/usePreventReload";
 export * from "./hooks/useVgsCollectLoader";
 export * from "./hooks/useFonts";
+export * from "./hooks/useLocalStorage";
 
 // Export Icons
 export * from "./icons/icons";

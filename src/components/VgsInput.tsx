@@ -19,6 +19,7 @@ export interface VgsInputProps {
   color?: string;
   inactiveColor?: string;
   activeColor?: string;
+  errorColor?: string;
 }
 
 const {
@@ -27,8 +28,6 @@ const {
   CardExpirationDateField,
   CardSecurityCodeField,
 } = VGSCollectForm;
-
-const errorColor = "#fd2a35";
 
 export const VgsInput: React.FC<VgsInputProps> = ({
   type,
@@ -40,6 +39,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   borderRadius = 10,
   inactiveColor = "#979797",
   activeColor = "#000",
+  errorColor = "#fd2a35",
   setErrorLabel = () => {},
 }) => {
   const [isFocus, setIsFocus] = useState(autoFocus);
@@ -185,10 +185,10 @@ export const VgsInput: React.FC<VgsInputProps> = ({
 
 export const ErrorLabel = ({
   errorMessage,
-  color = errorColor,
+  color,
 }: {
   errorMessage?: string;
-  color?: string;
+  color: string;
 }) => {
   return (
     <>

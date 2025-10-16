@@ -48,7 +48,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   const [focused, setFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value || "");
 
-  const showLabel = focused || inputValue.length > 0;
+  const showLabel = focused || inputValue.length > 0 || !!value;
 
   const classes = [
     "lola-input-field",

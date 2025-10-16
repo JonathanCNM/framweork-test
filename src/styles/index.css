@@ -578,6 +578,7 @@ button {
   mask-composite: exclude;
   z-index: 1;
   pointer-events: none;
+  box-sizing: border-box;
 }
 
 .lola-input-field .lola-input-field--container input {
@@ -1112,6 +1113,7 @@ input[type="number"]::-webkit-outer-spin-button {
           align-items: center;
           border: solid 2px #000;
           border-radius: 100%;
+          pointer-events: none;
         }
       }
     }

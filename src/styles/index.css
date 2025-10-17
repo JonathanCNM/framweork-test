@@ -731,6 +731,10 @@ button {
   text-align: left;
   color: var(--errorColor);
 
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
   svg {
     border: solid 1px var(--errorColor);
     border-radius: 100%;

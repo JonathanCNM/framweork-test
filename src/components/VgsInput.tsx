@@ -193,17 +193,19 @@ export const ErrorLabel = ({
   return (
     <>
       {errorMessage && (
-        <p
-          className="error-label"
-          style={
-            { "--errorColor": color } as React.CSSProperties & {
-              [key: string]: string;
-            }
-          }
-        >
+        <section className="error-label-container">
           <ErrorIcon size={16} colors={[color, color]} />
-          {errorMessage}
-        </p>
+          <p
+            className="error-label"
+            style={
+              { "--errorColor": color } as React.CSSProperties & {
+                [key: string]: string;
+              }
+            }
+          >
+            {errorMessage}
+          </p>
+        </section>
       )}
     </>
   );

@@ -12,11 +12,11 @@ import {
 import { IconApp, SuccessIcon } from "../../icons";
 import { useGradient } from "../../store/useGradient";
 import { getSplittedColors } from "../../utils/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFonts, type UseFontsProps } from "../../hooks";
 import { defaultFont, registeredFonts } from "../../utils/constants";
-import "../../index.css";
 import { useTheme } from "../../hooks/useTheme";
+import "../../index.css";
 
 interface FontInput {
   fontWeight: string;
@@ -35,6 +35,7 @@ interface IFormFont {
   step: FontInput;
   [key: string]: FontInput;
 }
+
 const formFontInitialState: IFormFont = {
   h1: {
     fontWeight: "400",
@@ -86,15 +87,87 @@ const formFontInitialState: IFormFont = {
   },
 };
 
+interface IColorForm {
+  primaryGradient: string;
+  secondaryGradient: string;
+  secondaryColor: string;
+  whiteColor: string;
+  inactived: string;
+  errorColor: string;
+  partnerHighlights: string;
+  gradientDeg: string;
+  primaryMesh: string;
+}
 
+const formColorList = [
+  {
+    key: "primaryGradient",
+    value: "#4BA84B",
+    type: "color",
+  },
+  {
+    key: "secondaryGradient",
+    value: "#008433",
+    type: "color",
+  },
+  {
+    key: "secondaryColor",
+    value: "#252525",
+    type: "color",
+  },
+  {
+    key: "whiteColor",
+    value: "#FFFFFF",
+    type: "color",
+  },
+  {
+    key: "inactived",
+    value: "#979797",
+    type: "color",
+  },
+  {
+    key: "errorColor",
+    value: "#E81C1C",
+    type: "color",
+  },
+  {
+    key: "partnerHighlights",
+    value: "#AAFF74",
+    type: "color",
+  },
+  {
+    key: "gradientDeg",
+    value: "116.74deg",
+    type: "text",
+  },
+  {
+    key: "primaryMesh",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+  },
+];
+
+const formColorInitialState: IColorForm = {
+  primaryGradient: "#4BA84B",
+  secondaryGradient: "#008433",
+  secondaryColor: "#252525",
+  whiteColor: "#FFFFFF",
+  inactived: "#979797",
+  errorColor: "#E81C1C",
+  partnerHighlights: "#AAFF74",
+  gradientDeg: "116.74deg",
+  primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+};
 
 export const FontSettingDemo = () => {
   const [inputFont, setInputFont] = useState(defaultFont);
   const [selectedFont, setSelectedFont] = useState(registeredFonts[0]);
   const [fontTop, setFontTop] = useState(0);
-  const { gradient } = useGradient();
-  const colors = getSplittedColors(gradient);
+  const { gradient, setGradient } = useGradient();
   const [formFont, setFormFont] = useState<IFormFont>(formFontInitialState);
+  const [formColors, setFormColors] = useState<IColorForm>(
+    formColorInitialState
+  );
   const { downloadThemeTxt } = useTheme(formFont);
   const { fontStyle, onChangeFont } = useFonts(inputFont);
 
@@ -128,7 +201,6 @@ export const FontSettingDemo = () => {
     if (font) {
       setSelectedFont(font);
       setFontTop(index);
-
       onChangeFont(font);
     }
   };
@@ -146,9 +218,24 @@ export const FontSettingDemo = () => {
     });
   };
 
+  const onHandlerFormColors = (event?: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event) return false;
+    const { name, value } = event.currentTarget;
+    setFormColors({
+      ...formColors,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    setGradient(formColors.primaryMesh);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formColors]);
+
   const onDownloadTheme = () => {
     downloadThemeTxt({
       ...formFont,
+      ...formColors,
       fontfamily: inputFont.name,
       fontcdn: inputFont.cdn,
       gradient,
@@ -158,6 +245,7 @@ export const FontSettingDemo = () => {
   const onViewDemo = () => {
     const theme = {
       ...formFont,
+      ...formColors,
       fontfamily: inputFont.name,
       fontcdn: inputFont.cdn,
       gradient,
@@ -182,6 +270,7 @@ export const FontSettingDemo = () => {
       }
     }, 500);
   };
+  const colors = getSplittedColors(gradient);
 
   return (
     <Page font={fontStyle}>
@@ -263,9 +352,20 @@ export const FontSettingDemo = () => {
             />
           </Layout.Header>
           <Layout.Content>
-            <section className="font-form">
-              <Title title="Formulario de colores" />
-
+            <section className="color-form">
+              <Title title="Formulario de colores" subTitle="En Hexadecimal" />
+              <section className="color-form-container">
+                {formColorList.map(({ key, type }) => (
+                  <InputField
+                    key={key}
+                    type={type}
+                    label={key}
+                    name={key}
+                    value={formColors[key as keyof IColorForm]}
+                    onChange={onHandlerFormColors}
+                  />
+                ))}
+              </section>
             </section>
             <section className="font-form">
               <Title title="Formulario de la fuente" />

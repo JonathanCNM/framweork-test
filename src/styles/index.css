@@ -597,6 +597,26 @@ button {
   padding-left: 44px;
 }
 
+.lola-input-field--container .lola-input-field-color-text {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.lola-input-field--container .lola-input-field-color-square {
+  position: absolute;
+  right: 14px;
+  height: 20px;
+  width: 20px;
+  background: var(--color);
+  top: 50%;
+  border: solid 1px #ccc;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 /* Map Styles */
 
 /* Autocomplete Styles*/
@@ -865,6 +885,10 @@ button {
       }
     }
   }
+}
+
+input[type="color"]::-webkit-color-swatch {
+  display: none;
 }
 
 input[type="number"] {

@@ -117,8 +117,20 @@ export const InputField: React.FC<InputFieldProps> = ({
           onChange={handleChange}
           maxLength={maxLength}
           style={{ ...inputStyle }}
-          className=""
         />
+        {type === "color" && (
+          <>
+            <label className="lola-input-field-color-text">{value}</label>
+            <span
+              style={
+                { "--color": value } as React.CSSProperties & {
+                  [key: string]: string;
+                }
+              }
+              className="lola-input-field-color-square"
+            />
+          </>
+        )}
       </section>
       {icon && icon}
     </div>

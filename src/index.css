@@ -222,6 +222,19 @@ button:focus-visible {
   }
 }
 
+.color-form {
+  margin-bottom: 20px;
+  border-bottom: solid 1px #979797;
+  padding-bottom: 20px;
+
+  .color-form-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 8px;
+  }
+}
+
 .font-demo-footer-btns {
   width: 100%;
   background: #fff;

@@ -178,12 +178,54 @@ button:focus-visible {
   flex-direction: column;
 }
 
-
 .font-demo {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
 
-  .lola-layout {
-    width: calc(50% - 20px)
+.lola-layout.lola-form {
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+
+  .lola-layout--container {
+    max-width: 100%;
+    overflow: auto;
   }
+}
+
+.font-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .font-form-container {
+    position: relative;
+    border-bottom: solid 1px #979797;
+    padding-bottom: 8px;
+
+    &:nth-last-child(1) {
+      border: none;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .font-form-inputs {
+      display: flex;
+      gap: 8px;
+    }
+  }
+}
+
+.font-demo-footer-btns {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  gap: 8px;
+  padding-top: 12px;
 }

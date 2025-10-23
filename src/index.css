@@ -242,3 +242,254 @@ button:focus-visible {
   gap: 8px;
   padding-top: 12px;
 }
+
+.demo-sliders {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  .demo-slide {
+    width: 500px;
+    min-width: 500px;
+    border-right: solid 1px #ccc;
+
+    .lola-layout {
+      display: block;
+      position: relative;
+    }
+  }
+}
+
+.homepage-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.homepage-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  .terms-text {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 12px;
+
+    .text-link {
+      color: #2587ff;
+      font-weight: 600;
+    }
+  }
+}
+
+.elevated-circle-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+
+  .elevated-circle {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin-inline: auto;
+    padding: 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 33%;
+
+    .elevated-circle-section {
+      position: relative;
+      z-index: 10;
+      display: contents;
+    }
+  }
+}
+
+@media (height <= 732px) {
+  .elevated-circle {
+    margin-top: 20%;
+  }
+  .elevated-homepage {
+    margin-top: 50%;
+  }
+  .elevated-loading {
+    margin-top: 40%;
+  }
+}
+
+@media (height <= 688px) {
+  .elevated-circle {
+    margin-top: 15%;
+  }
+}
+
+@media (height <= 670px) {
+  .elevated-circle {
+    margin-top: 40px;
+  }
+}
+
+@media (height <= 660px) {
+  .elevated-circle {
+    margin-top: 20px;
+  }
+}
+
+@media (height <= 639px) {
+  .elevated-circle {
+    margin-top: 0px;
+  }
+}
+
+.elevated-circle {
+  transform: scale(0.9);
+}
+
+.step {
+  height: 100%;
+}
+
+.stepper-section {
+  width: 100%;
+  margin-top: 25%;
+}
+
+.layout-success::before {
+  content: "";
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--bgc);
+  z-index: 0;
+  animation: success 1.5s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes success {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200vmax;
+    height: 200vmax;
+    opacity: 1;
+  }
+}
+
+.desktop-dropzone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 36px;
+  max-width: 584px;
+  margin: auto;
+  min-height: 100%;
+
+  .desktop-dropzone-section {
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: -33%;
+    width: 100%;
+  }
+
+  .desktop-dropzone-input {
+    width: 100%;
+    padding-block: 44px;
+    min-height: 256px;
+    max-height: 320px;
+    border: dashed 3px;
+    border-radius: 30px;
+    cursor: pointer;
+
+    .desktop-dropzone-input-area {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+
+      .elevated-circle-container {
+        margin-top: 0;
+
+        .elevated-circle {
+          margin-top: 0;
+        }
+      }
+
+      .desktop-dropzone-input-disclaimer {
+        max-width: 350px;
+        margin: auto;
+      }
+    }
+  }
+}
+
+.dropzone-btn {
+  border-radius: 100%;
+  padding: 8px;
+}
+
+.upload-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  backdrop-filter: blur(10px);
+  gap: 16px;
+
+  .upload-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 33%;
+
+    .upload-circular-progress {
+      .elevated-circle {
+        position: relative;
+        width: 128px;
+        height: 128px;
+        margin-inline: auto;
+        padding: 20px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        scale: .9;
+
+        .elevated-circle-section {
+          position: relative;
+          z-index: 10;
+          display: contents;
+        }
+      }
+    }
+  }
+}

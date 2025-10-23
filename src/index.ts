@@ -7,6 +7,7 @@ export * from "./icons";
 // Export components
 export * from "./components/Button";
 export * from "./components/CircularProgress";
+export * from "./components/CustomStepper";
 export * from "./components/GradientText";
 export * from "./components/InputField";
 export * from "./components/LabelInput";
@@ -24,6 +25,7 @@ export * from "./components/VgsInput";
 // Export types
 export type { ButtonProps } from "./components/Button";
 export type { CircularProgressProps } from "./components/CircularProgress";
+export type { ISteps, CustomStepperProps } from "./components/CustomStepper";
 export type { TextProps } from "./components/GradientText";
 export type { InputFieldProps } from "./components/InputField";
 export type { LabelInputProps } from "./components/LabelInput";
@@ -44,9 +46,11 @@ export type { VgsInputProps } from "./components/VgsInput";
 
 export type { UseVgsCollectLoaderProps } from "./hooks/useVgsCollectLoader";
 export type { UseFontsProps } from "./hooks/useFonts";
+export type { ThemeText, IUseTheme } from "./hooks/useTheme";
 
 // Export Hooks
 export * from "./hooks/useBlockScroll";
+export * from "./hooks/useTheme";
 export * from "./hooks/useKeyboardVisible";
 export * from "./hooks/usePreventReload";
 export * from "./hooks/useVgsCollectLoader";

@@ -1038,3 +1038,65 @@ input[type="number"]::-webkit-outer-spin-button {
     opacity: 1;
   }
 }
+
+.stepper-component {
+  margin: auto;
+  position: relative;
+
+  .stepper-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    .step-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+      margin: auto;
+      font-weight: 600;
+      position: relative;
+      width: 100%;
+
+      .step-index {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #e8e8e8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        border: solid 2px #ccc;
+        color: #ccc;
+      }
+
+      .step-progress {
+        position: absolute;
+        height: 20px;
+        width: 100%;
+        left: 50%;
+        top: 16px;
+        transform: translateY(-50%);
+        background: #e8e8e8;
+        z-index: 1;
+
+        &.active {
+          background: var(--bg);
+        }
+      }
+
+      &:nth-last-child(1) .step-progress {
+        display: none;
+      }
+
+      &.active {
+        .step-index {
+          background: var(--bg);
+          color: var(--color);
+        }
+      }
+    }
+  }
+}

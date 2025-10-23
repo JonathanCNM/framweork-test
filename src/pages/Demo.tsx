@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-  Button,
-  CircularProgress,
-  Layout,
-  MotionWrapper,
-  Navbar,
-  Page,
-  Title,
-} from "../components";
+import { CircularProgress, MotionWrapper, Page } from "../components";
 import { useTheme } from "../hooks/useTheme";
+import { HomePage } from "../demo/pages/HomePage";
+import "../index.css";
+import { StepPage } from "../demo/pages/StepPage";
+import { DropzoneDesktop } from "../demo/pages/DropzoneDesktop";
+import { DropzoneMobile } from "../demo/pages/DropzoneMobile";
 
 export const Demo = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,21 +31,21 @@ export const Demo = () => {
   return (
     <Page font={{ name: theme?.fontfamily ?? "", cdn: theme?.fontcdn ?? "" }}>
       <MotionWrapper>
-        <section>
-          <section>
-            <Layout>
-              <Layout.Header>
-                <Navbar title="Demo Page" />
-              </Layout.Header>
-              <Layout.Content>
-                <section>
-                  <Title title="Hellow" />
-                </section>
-              </Layout.Content>
-              <Layout.Footer>
-                <Button>Button Sampler</Button>
-              </Layout.Footer>
-            </Layout>
+        <section className="demo-sliders">
+          <section className="demo-slide">
+            <HomePage theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <StepPage theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <DropzoneDesktop theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <DropzoneMobile theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <DropzoneMobile theme={theme} isLoading />
           </section>
         </section>
       </MotionWrapper>

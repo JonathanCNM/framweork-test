@@ -8,3 +8,15 @@ export const getSplittedColors = (color: string): [string, string] => {
   }
   return finalColors;
 };
+
+export const generateGradient = (
+  colors: [string, string],
+  gradientDeg: string = "90deg",
+  primaryGradientPoint?: string,
+  secondaryGradientPoint?: string
+) => {
+  if (colors.length !== 2) return "";
+  if (!primaryGradientPoint) primaryGradientPoint = "0%";
+  if (!secondaryGradientPoint) secondaryGradientPoint = "100%";
+  return `linear-gradient(${gradientDeg}, ${colors[0]} ${primaryGradientPoint}, ${colors[1]} ${secondaryGradientPoint})`;
+};

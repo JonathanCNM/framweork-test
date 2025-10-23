@@ -7,6 +7,9 @@ export type { ButtonProps } from "./Button";
 export { CircularProgress } from "./CircularProgress";
 export type { CircularProgressProps } from "./CircularProgress";
 
+export { CustomStepper } from "./CustomStepper";
+export type { ISteps, CustomStepperProps } from "./CustomStepper";
+
 export { GradientText } from "./GradientText";
 export type { TextProps } from "./GradientText";
 

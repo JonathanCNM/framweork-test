@@ -11,7 +11,7 @@ import {
 } from "../../components";
 import { IconApp, SuccessIcon } from "../../icons";
 import { useGradient } from "../../store/useGradient";
-import { getSplittedColors } from "../../utils/utils";
+import { generateGradient, getSplittedColors } from "../../utils/utils";
 import { useEffect, useState } from "react";
 import { useFonts, type UseFontsProps } from "../../hooks";
 import { defaultFont, registeredFonts } from "../../utils/constants";
@@ -96,6 +96,8 @@ interface IColorForm {
   errorColor: string;
   partnerHighlights: string;
   gradientDeg: string;
+  primaryGradientPoint: string;
+  secundaryGradientPoint: string;
   primaryMesh: string;
 }
 
@@ -106,9 +108,19 @@ const formColorList = [
     type: "color",
   },
   {
+    key: "primaryGradientPoint",
+    value: "23.26%",
+    type: "text",
+  },
+  {
     key: "secondaryGradient",
     value: "#008433",
     type: "color",
+  },
+  {
+    key: "secundaryGradientPoint",
+    value: "111.43%",
+    type: "text",
   },
   {
     key: "secondaryColor",
@@ -156,6 +168,8 @@ const formColorInitialState: IColorForm = {
   errorColor: "#E81C1C",
   partnerHighlights: "#AAFF74",
   gradientDeg: "116.74deg",
+  primaryGradientPoint: "23.26%",
+  secundaryGradientPoint: "111.43%",
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
 };
 
@@ -202,6 +216,7 @@ export const FontSettingDemo = () => {
       setSelectedFont(font);
       setFontTop(index);
       onChangeFont(font);
+      setInputFont(font);
     }
   };
 
@@ -228,9 +243,44 @@ export const FontSettingDemo = () => {
   };
 
   useEffect(() => {
+    setFormColors({
+      ...formColors,
+      primaryMesh: generateGradient(
+        [formColors.primaryGradient, formColors.secondaryGradient],
+        formColors.gradientDeg,
+        formColors.primaryGradientPoint,
+        formColors.secundaryGradientPoint
+      ),
+    });
+    setGradient(
+      generateGradient(
+        [formColors.primaryGradient, formColors.secondaryGradient],
+        formColors.gradientDeg,
+        formColors.primaryGradientPoint,
+        formColors.secundaryGradientPoint
+      )
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    formColors.primaryGradient,
+    formColors.secondaryGradient,
+    formColors.gradientDeg,
+    formColors.primaryGradientPoint,
+    formColors.secundaryGradientPoint,
+  ]);
+
+  useEffect(() => {
+    setFormColors({
+      ...formColors,
+      primaryMesh: gradient,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gradient]);
+
+  useEffect(() => {
     setGradient(formColors.primaryMesh);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formColors]);
+  }, [formColors.primaryMesh]);
 
   const onDownloadTheme = () => {
     downloadThemeTxt({

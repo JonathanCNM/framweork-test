@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ISteps {
   label: string;
   index: number;
@@ -31,7 +33,7 @@ export const CustomStepper: React.FC<CustomStepperProps> = ({
         }
       >
         {steps.map(({ label, index }) => (
-          <>
+          <React.Fragment key={index}>
             <section
               className={`step-info ${currentStep >= index ? "active" : ""}`}
             >
@@ -43,7 +45,7 @@ export const CustomStepper: React.FC<CustomStepperProps> = ({
                 }`}
               />
             </section>
-          </>
+          </React.Fragment>
         ))}
       </section>
     </section>

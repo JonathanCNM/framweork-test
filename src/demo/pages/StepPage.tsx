@@ -3,23 +3,9 @@ import { FaceIcon } from "../../icons";
 import { getSplittedColors } from "../../utils/utils";
 import { CustomStepper } from "../../components/CustomStepper";
 import { ElevatedCircle } from "../components/ElevatedCircle";
+import { steps } from "../../utils/constants";
 
-const steps = [
-  {
-    label: "ID",
-    index: 1,
-  },
-  {
-    label: "Selfie",
-    index: 2,
-  },
-  {
-    label: "Payment",
-    index: 3,
-  },
-];
-
-const currentStep = 2;
+const currentStep = 1;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StepPage = ({ theme }: { theme: Record<string, any> | null }) => {

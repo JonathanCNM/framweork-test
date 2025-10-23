@@ -41,3 +41,18 @@ export const registeredFonts = [
 ];
 
 export const isKeyboardOpenKey = "isKeyboardOpen";
+
+export const steps = [
+  {
+    label: "ID",
+    index: 1,
+  },
+  {
+    label: "Selfie",
+    index: 2,
+  },
+  {
+    label: "Payment",
+    index: 3,
+  },
+];

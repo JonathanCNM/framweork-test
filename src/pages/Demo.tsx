@@ -6,6 +6,10 @@ import "../index.css";
 import { StepPage } from "../demo/pages/StepPage";
 import { DropzoneDesktop } from "../demo/pages/DropzoneDesktop";
 import { DropzoneMobile } from "../demo/pages/DropzoneMobile";
+import { IproovReadySlot } from "../demo/pages/IproovReadySlot";
+import { IproovSuccessSlot } from "../demo/pages/IproovSuccessSlot";
+import { IproovCamera } from "../demo/pages/IproovCamera";
+import { IproovError } from "../demo/pages/IproovError";
 
 export const Demo = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,6 +50,18 @@ export const Demo = () => {
           </section>
           <section className="demo-slide">
             <DropzoneMobile theme={theme} isLoading />
+          </section>
+          <section className="demo-slide">
+            <IproovReadySlot theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <IproovCamera theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <IproovError theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <IproovSuccessSlot theme={theme} />
           </section>
         </section>
       </MotionWrapper>

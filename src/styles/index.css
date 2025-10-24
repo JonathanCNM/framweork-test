@@ -1072,6 +1072,10 @@ input[type="number"]::-webkit-outer-spin-button {
         color: #ccc;
       }
 
+      .step-label {
+        color: var(--label-color);
+      }
+
       .step-progress {
         position: absolute;
         height: 20px;

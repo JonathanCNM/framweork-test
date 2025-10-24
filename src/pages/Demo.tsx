@@ -10,6 +10,7 @@ import { IproovReadySlot } from "../demo/pages/IproovReadySlot";
 import { IproovSuccessSlot } from "../demo/pages/IproovSuccessSlot";
 import { IproovCamera } from "../demo/pages/IproovCamera";
 import { IproovError } from "../demo/pages/IproovError";
+import { AddressPage } from "../demo/pages/AddressPage";
 
 export const Demo = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,6 +63,9 @@ export const Demo = () => {
           </section>
           <section className="demo-slide">
             <IproovSuccessSlot theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <AddressPage theme={theme} isHomeAddress />
           </section>
         </section>
       </MotionWrapper>

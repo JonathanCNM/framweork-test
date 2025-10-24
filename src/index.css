@@ -492,3 +492,27 @@ button:focus-visible {
     }
   }
 }
+
+.autocomplete-container {
+  width: 100%;
+
+  .autocomplete-input {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+  }
+
+  .autocomplete-aditional-fields {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+}
+
+.map-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  border-color: #e4e4e4;
+}

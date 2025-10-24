@@ -56,3 +56,18 @@ export const steps = [
     index: 3,
   },
 ];
+
+export const mapContainerStyle = {
+  width: "100%",
+  height: "200px",
+  borderRadius: "16px",
+  borderColor: "#E4E4E4",
+};
+
+export const mapOptions = {
+  disableDefaultUI: true,
+  draggable: false,
+  zoomControl: false,
+  scrollwheel: false,
+  disableDoubleClickZoom: true,
+};

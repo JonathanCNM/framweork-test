@@ -44,6 +44,7 @@ export const IproovReadySlot = ({
             color={theme?.whiteColor}
             background={theme?.primaryMesh}
             trackBackground={theme?.partnerHighlights}
+            labelColor={theme?.whiteColor}
             width={230}
           />
         </section>

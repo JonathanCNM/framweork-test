@@ -11,6 +11,10 @@ import { IproovSuccessSlot } from "../demo/pages/IproovSuccessSlot";
 import { IproovCamera } from "../demo/pages/IproovCamera";
 import { IproovError } from "../demo/pages/IproovError";
 import { AddressPage } from "../demo/pages/AddressPage";
+import { CardPage } from "../demo/pages/CardPage";
+import { ValidatingPage } from "../demo/pages/ValidatingPage";
+import { SummaryPage } from "../demo/pages/SummaryPage";
+import { SendingMoneyPage } from "../demo/pages/SendingMoneyPage";
 
 export const Demo = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,7 +25,13 @@ export const Demo = () => {
 
   useEffect(() => {
     const handler = (event: MessageEvent) => {
-      if (event.origin !== "http://localhost:6006") return;
+      if (
+        ![
+          "http://localhost:6006",
+          "https://lola-framweork-ui.vercel.app",
+        ].includes(event.origin)
+      )
+        return;
       if (event.data?.type === "storybook-config") {
         setTheme(event.data.payload);
         setIsLoading(false);
@@ -66,6 +76,21 @@ export const Demo = () => {
           </section>
           <section className="demo-slide">
             <AddressPage theme={theme} isHomeAddress />
+          </section>
+          <section className="demo-slide">
+            <CardPage theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <AddressPage theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <ValidatingPage theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <SummaryPage theme={theme} />
+          </section>
+          <section className="demo-slide">
+            <SendingMoneyPage theme={theme} />
           </section>
         </section>
       </MotionWrapper>

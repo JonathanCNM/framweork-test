@@ -1,7 +1,7 @@
 import { GradientText, Layout, PageTitle } from "../../components";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { LolaLogo, RightIcon } from "../../icons";
 import { getSplittedColors } from "../../utils/utils";
-import { ElevatedCircle } from "../components/ElevatedCircle";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const HomePage = ({ theme }: { theme: Record<string, any> | null }) => {

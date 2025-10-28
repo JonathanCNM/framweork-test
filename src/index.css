@@ -299,66 +299,10 @@ button:focus-visible {
   align-items: center;
   justify-content: flex-start;
   gap: 16px;
-
-  .elevated-circle {
-    position: relative;
-    width: 128px;
-    height: 128px;
-    margin-inline: auto;
-    padding: 20px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 33%;
-
-    .elevated-circle-section {
-      position: relative;
-      z-index: 10;
-      display: contents;
-    }
-  }
 }
 
-@media (height <= 732px) {
-  .elevated-circle {
-    margin-top: 20%;
-  }
-  .elevated-homepage {
-    margin-top: 50%;
-  }
-  .elevated-loading {
-    margin-top: 40%;
-  }
-}
 
-@media (height <= 688px) {
-  .elevated-circle {
-    margin-top: 15%;
-  }
-}
 
-@media (height <= 670px) {
-  .elevated-circle {
-    margin-top: 40px;
-  }
-}
-
-@media (height <= 660px) {
-  .elevated-circle {
-    margin-top: 20px;
-  }
-}
-
-@media (height <= 639px) {
-  .elevated-circle {
-    margin-top: 0px;
-  }
-}
-
-.elevated-circle {
-  transform: scale(0.9);
-}
 
 .step {
   height: 100%;
@@ -450,6 +394,11 @@ button:focus-visible {
 .dropzone-btn {
   border-radius: 100%;
   padding: 8px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .upload-loading {
@@ -462,6 +411,7 @@ button:focus-visible {
   backdrop-filter: blur(10px);
   gap: 16px;
 }
+
 .upload-loading-container {
   display: flex;
   flex-direction: column;
@@ -469,28 +419,6 @@ button:focus-visible {
   justify-content: center;
   gap: 16px;
   margin-top: 33%;
-
-  .upload-circular-progress {
-    .elevated-circle {
-      position: relative;
-      width: 128px;
-      height: 128px;
-      margin-inline: auto;
-      padding: 20px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      scale: 0.9;
-
-      .elevated-circle-section {
-        position: relative;
-        z-index: 10;
-        display: contents;
-      }
-    }
-  }
 }
 
 .autocomplete-container {
@@ -621,5 +549,15 @@ button:focus-visible {
     height: 100%;
     width: fit-content;
     background: transparent;
+  }
+}
+
+.upload-circular-progress {
+  transform: scale(0.9);
+  padding: 4px;
+
+  .elevated-circle {
+    margin: 0;
+    scale: 0.8;
   }
 }

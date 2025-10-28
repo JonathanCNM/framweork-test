@@ -4,8 +4,8 @@ import {
   Layout,
   PageTitle,
 } from "../../components";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { UploadCloud } from "../../icons";
-import { ElevatedCircle } from "./ElevatedCircle";
 
 export const UploadLoading: React.FC<{
   colors: [string, string];
@@ -19,7 +19,7 @@ export const UploadLoading: React.FC<{
           colors={[gradientViewText, gradientViewText]}
           size={128}
           strokeWidth={6}
-          className="upload-circular-progress elevated-circle"
+          className="upload-circular-progress"
         >
           <ElevatedCircle>
             <UploadCloud colors={colors} />

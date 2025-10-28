@@ -1,7 +1,7 @@
 import { BodyCopy, Button, Layout, PageTitle } from "../../components";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { UploadCloud, UploadIcon } from "../../icons";
 import { getSplittedColors } from "../../utils/utils";
-import { ElevatedCircle } from "../components/ElevatedCircle";
 import { UploadLoading } from "../components/UploadLoading";
 
 export interface DropzoneProps {

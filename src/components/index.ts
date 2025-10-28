@@ -10,6 +10,9 @@ export type { CircularProgressProps } from "./CircularProgress";
 export { CustomStepper } from "./CustomStepper";
 export type { ISteps, CustomStepperProps } from "./CustomStepper";
 
+export { ElevatedCircle } from "./ElevatedCircle";
+export type { ElevatedCircleProps } from "./ElevatedCircle";
+
 export { GradientText } from "./GradientText";
 export type { TextProps } from "./GradientText";
 

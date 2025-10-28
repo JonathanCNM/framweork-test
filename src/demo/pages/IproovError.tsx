@@ -1,7 +1,7 @@
 import { BodyCopy, Button, Layout, PageTitle } from "../../components";
 import { IproovCameraErrorIcon } from "../../icons";
 import { getSplittedColors } from "../../utils/utils";
-import { ElevatedCircle } from "../components/ElevatedCircle";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 
 export const IproovError = ({
   theme,

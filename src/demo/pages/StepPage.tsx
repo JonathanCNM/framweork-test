@@ -2,7 +2,7 @@ import { BodyCopy, Button, Layout, PageTitle } from "../../components";
 import { FaceIcon } from "../../icons";
 import { getSplittedColors } from "../../utils/utils";
 import { CustomStepper } from "../../components/CustomStepper";
-import { ElevatedCircle } from "../components/ElevatedCircle";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { steps } from "../../utils/constants";
 
 const currentStep = 1;

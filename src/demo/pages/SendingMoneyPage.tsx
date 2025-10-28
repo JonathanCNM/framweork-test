@@ -7,7 +7,7 @@ import {
 } from "../../components";
 import { LolaLogo, WhatsAppIcon } from "../../icons";
 import { getSplittedColors } from "../../utils/utils";
-import { ElevatedCircle } from "../components/ElevatedCircle";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 
 export interface SendingMoneyPageProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -77,7 +77,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
             colors={finalIconColor}
             size={128}
             strokeWidth={6}
-            className="upload-circular-progress elevated-circle"
+            className="upload-circular-progress"
           >
             <ElevatedCircle>{icon}</ElevatedCircle>
           </CircularProgress>

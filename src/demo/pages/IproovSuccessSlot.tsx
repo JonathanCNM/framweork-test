@@ -6,7 +6,7 @@ import {
 } from "../../components";
 import { FaceIcon } from "../../icons";
 import { getSplittedColors } from "../../utils/utils";
-import { ElevatedCircle } from "../components/ElevatedCircle";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 
 export const IproovSuccessSlot = ({
   theme,
@@ -24,7 +24,7 @@ export const IproovSuccessSlot = ({
             colors={[theme?.partnerHighlights, theme?.partnerHighlights]}
             size={128}
             strokeWidth={6}
-            className="upload-circular-progress elevated-circle"
+            className="upload-circular-progress"
           >
             <ElevatedCircle>
               <FaceIcon colors={iconColors} />

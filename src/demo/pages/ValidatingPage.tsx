@@ -8,7 +8,7 @@ import {
 import { CardIcon } from "../../icons";
 import { steps } from "../../utils/constants";
 import { getSplittedColors } from "../../utils/utils";
-import { ElevatedCircle } from "../components/ElevatedCircle";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 
 export const ValidatingPage = ({
   theme,
@@ -26,7 +26,7 @@ export const ValidatingPage = ({
             colors={iconColors}
             size={128}
             strokeWidth={6}
-            className="upload-circular-progress elevated-circle"
+            className="upload-circular-progress"
           >
             <ElevatedCircle>
               <CardIcon colors={iconColors} />

@@ -8,7 +8,7 @@ import {
 import { CameraGradient } from "../../icons";
 import { steps } from "../../utils/constants";
 import { getSplittedColors } from "../../utils/utils";
-import { ElevatedCircle } from "../components/ElevatedCircle";
+import { ElevatedCircle } from "../../components/ElevatedCircle";
 
 export const IproovReadySlot = ({
   theme,

@@ -284,21 +284,29 @@ export const FontSettingDemo = () => {
 
   const onDownloadTheme = () => {
     downloadThemeTxt({
-      ...formFont,
-      ...formColors,
-      fontfamily: inputFont.name,
-      fontcdn: inputFont.cdn,
-      gradient,
+      font: {
+        ...formFont,
+        fontfamily: inputFont.name,
+        fontcdn: inputFont.cdn,
+      },
+      colors: {
+        ...formColors,
+        gradient,
+      },
     });
   };
 
   const onViewDemo = () => {
     const theme = {
-      ...formFont,
-      ...formColors,
-      fontfamily: inputFont.name,
-      fontcdn: inputFont.cdn,
-      gradient,
+      font: {
+        ...formFont,
+        fontfamily: inputFont.name,
+        fontcdn: inputFont.cdn,
+      },
+      colors: {
+        ...formColors,
+        gradient,
+      },
     };
     const child = window.open("http://localhost:5176/demo", "_blank");
 

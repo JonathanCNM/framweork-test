@@ -20,8 +20,11 @@ export const Demo = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [theme, setTheme] = useState<Record<string, any> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  useTheme(theme || {});
+  const themeFormatted = {
+    ...theme?.font,
+    ...theme?.colors,
+  };
+  useTheme(themeFormatted || {});
 
   useEffect(() => {
     const handler = (event: MessageEvent) => {
@@ -44,53 +47,58 @@ export const Demo = () => {
   if (isLoading) return <CircularProgress />;
 
   return (
-    <Page font={{ name: theme?.fontfamily ?? "", cdn: theme?.fontcdn ?? "" }}>
+    <Page
+      font={{
+        name: themeFormatted?.fontfamily ?? "",
+        cdn: themeFormatted?.fontcdn ?? "",
+      }}
+    >
       <MotionWrapper>
         <section className="demo-sliders">
           <section className="demo-slide">
-            <HomePage theme={theme} />
+            <HomePage theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <StepPage theme={theme} />
+            <StepPage theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <DropzoneDesktop theme={theme} />
+            <DropzoneDesktop theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <DropzoneMobile theme={theme} />
+            <DropzoneMobile theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <DropzoneMobile theme={theme} isLoading />
+            <DropzoneMobile theme={themeFormatted} isLoading />
           </section>
           <section className="demo-slide">
-            <IproovReadySlot theme={theme} />
+            <IproovReadySlot theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <IproovCamera theme={theme} />
+            <IproovCamera theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <IproovError theme={theme} />
+            <IproovError theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <IproovSuccessSlot theme={theme} />
+            <IproovSuccessSlot theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <AddressPage theme={theme} isHomeAddress />
+            <AddressPage theme={themeFormatted} isHomeAddress />
           </section>
           <section className="demo-slide">
-            <CardPage theme={theme} />
+            <CardPage theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <AddressPage theme={theme} />
+            <AddressPage theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <ValidatingPage theme={theme} />
+            <ValidatingPage theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <SummaryPage theme={theme} />
+            <SummaryPage theme={themeFormatted} />
           </section>
           <section className="demo-slide">
-            <SendingMoneyPage theme={theme} />
+            <SendingMoneyPage theme={themeFormatted} />
           </section>
         </section>
       </MotionWrapper>

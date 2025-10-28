@@ -15,7 +15,12 @@ export const HomePage = ({ theme }: { theme: Record<string, any> | null }) => {
           </ElevatedCircle>
 
           <PageTitle
-            highlight='Send money like "Texting"'
+            textAnimated
+            highlight={
+              <>
+                Send money <br /> like "Texting"
+              </>
+            }
             highlightColor={theme?.partnerHighlights}
             secudnary={"That's easy"}
             secudnaryColor={theme?.whiteColor}

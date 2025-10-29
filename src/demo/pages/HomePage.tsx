@@ -36,7 +36,7 @@ export const HomePage = ({ theme }: { theme: IViewConfig }) => {
       <Layout.Footer>
         <section className="homepage-footer">
           <GradientText className="footer-text" textColor={footerColor}>
-            Powered by
+            Operated by
           </GradientText>
           <LolaLogo size={23} colors={[backgroundIcon, backgroundIcon]} />
           <GradientText className="mx-auto footer-text" textColor={footerColor}>

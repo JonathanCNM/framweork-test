@@ -573,15 +573,25 @@ export const SuccessIcon: React.FC<
           <stop offset="0%" stopColor={colors[0]} />
           <stop offset="100%" stopColor={colors[1]} />
         </linearGradient>
+
+        <mask id="checkMask">
+          <rect width="64" height="64" fill="white" />
+          <path
+            d="M46.2413 21.3287L26.6858 42.6621L17.7969 32.9651"
+            stroke="black"
+            strokeWidth="3.55556"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </mask>
       </defs>
 
-      <circle cx="32" cy="32" r="32" fill={`url(#${gradientId})`} />
-      <path
-        d="M46.2413 21.3287L26.6858 42.6621L17.7969 32.9651"
-        stroke="white"
-        strokeWidth="3.55556"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      <circle
+        cx="32"
+        cy="32"
+        r="32"
+        fill={`url(#${gradientId})`}
+        mask="url(#checkMask)"
       />
     </svg>
   );

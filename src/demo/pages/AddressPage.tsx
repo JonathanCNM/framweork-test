@@ -1,5 +1,5 @@
 import { Button, InputField, Layout, Navbar } from "../../components";
-import { getSplittedColors } from "../../utils/utils";
+import type { IViewConfig } from "../../hooks/useTheme";
 import { HomeAddressIcon } from "../../icons";
 import mapDemo from "../assets/map-demo.png";
 
@@ -7,21 +7,23 @@ export const AddressPage = ({
   theme,
   isHomeAddress = false,
 }: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
+  theme: IViewConfig;
   isHomeAddress?: boolean;
 }) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+  const {
+    background,
+    title,
+    bodyCopy,
+    iconColors,
+    backgroundBtn,
+    textColorBtn,
+  } = theme.whiteView;
 
   const addressTitle = isHomeAddress ? "Home address" : "Billing address";
   return (
-    <Layout>
+    <Layout background={background}>
       <Layout.Header>
-        <Navbar
-          title={addressTitle}
-          color={theme?.primaryMesh}
-          align="center"
-        />
+        <Navbar title={addressTitle} color={title} align="center" />
       </Layout.Header>
       <Layout.Content>
         <div className="autocomplete-container">
@@ -29,8 +31,8 @@ export const AddressPage = ({
             <InputField
               label={addressTitle}
               inputStyle={{ paddingLeft: "44px" }}
-              activeColor={theme?.primaryMesh}
-              color={theme?.secondaryColor}
+              activeColor={title}
+              color={bodyCopy}
               value="Tamarac, Florida 33321, EE. UU."
               icon={<HomeAddressIcon colors={iconColors} size={18} />}
             />
@@ -40,8 +42,8 @@ export const AddressPage = ({
             <InputField
               label="City"
               value="Tamarac"
-              activeColor={theme?.primaryMesh}
-              color={theme?.secondaryColor}
+              activeColor={title}
+              color={bodyCopy}
             />
 
             <InputField
@@ -49,8 +51,8 @@ export const AddressPage = ({
               maxLength={10}
               label="Zipcode"
               value="33321"
-              activeColor={theme?.primaryMesh}
-              color={theme?.secondaryColor}
+              activeColor={title}
+              color={bodyCopy}
             />
           </div>
 
@@ -64,8 +66,8 @@ export const AddressPage = ({
           showIcon
           type="submit"
           size="large"
-          color={theme?.whiteColor}
-          background={theme?.primaryMesh}
+          color={textColorBtn}
+          background={backgroundBtn}
         >
           Confirm address
         </Button>

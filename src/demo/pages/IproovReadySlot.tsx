@@ -7,33 +7,39 @@ import {
 } from "../../components";
 import { CameraGradient } from "../../icons";
 import { steps } from "../../utils/constants";
-import { getSplittedColors } from "../../utils/utils";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
+import type { IViewConfig } from "../../hooks/useTheme";
 
-export const IproovReadySlot = ({
-  theme,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
-}) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+export const IproovReadySlot = ({ theme }: { theme: IViewConfig }) => {
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+    stepsColors,
+    stepsLabelColor,
+  } = theme.specialView;
 
   return (
-    <Layout background={theme?.primaryMesh} className="step">
+    <Layout background={background} className="step">
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
-          <ElevatedCircle>
+          <ElevatedCircle background={backgroundIcon}>
             <CameraGradient colors={iconColors} />
           </ElevatedCircle>
 
           <PageTitle
             highlight="Say"
-            highlightColor={theme?.partnerHighlights}
+            highlightColor={title}
             secudnary="Cheese!"
-            secudnaryColor={theme?.whiteColor}
+            secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={theme?.whiteColor} className="mt-4">
+          <BodyCopy textColor={bodyCopy} className="mt-4">
             Remove glasses, face coverings, and ensure you have good lighting.
           </BodyCopy>
         </div>
@@ -41,10 +47,10 @@ export const IproovReadySlot = ({
           <CustomStepper
             currentStep={2}
             steps={steps}
-            color={theme?.whiteColor}
-            background={theme?.primaryMesh}
-            trackBackground={theme?.partnerHighlights}
-            labelColor={theme?.whiteColor}
+            color={stepsLabelColor}
+            background={stepsColors}
+            trackBackground={title}
+            labelColor={bodyCopy}
             width={230}
           />
         </section>
@@ -54,8 +60,8 @@ export const IproovReadySlot = ({
           showIcon
           type="submit"
           size="large"
-          background={theme?.whiteColor}
-          color={theme?.primaryMesh}
+          background={backgroundBtn}
+          color={textColorBtn}
         >
           Take selfie
         </Button>

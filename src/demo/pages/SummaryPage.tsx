@@ -1,17 +1,15 @@
 import { Button, Layout, Navbar } from "../../components";
 import { IconApp } from "../../icons";
+import type { IViewConfig } from "../../hooks/useTheme";
 import { SummaryInfo } from "../components/SummaryInfo";
 
-export const SummaryPage = ({
-  theme,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
-}) => {
+export const SummaryPage = ({ theme }: { theme: IViewConfig }) => {
+  const { background, title, backgroundBtn, textColorBtn } = theme.whiteView;
+
   return (
-    <Layout>
+    <Layout background={background}>
       <Layout.Header>
-        <Navbar color={theme?.primaryMesh} title="Summary" align="center" />
+        <Navbar color={title} title="Summary" align="center" />
       </Layout.Header>
       <Layout.Content>
         <SummaryInfo />
@@ -29,8 +27,8 @@ export const SummaryPage = ({
             showIcon
             type="submit"
             size="large"
-            color={theme?.whiteColor}
-            background={theme?.primaryMesh}
+            background={backgroundBtn}
+            color={textColorBtn}
           >
             Pay
           </Button>

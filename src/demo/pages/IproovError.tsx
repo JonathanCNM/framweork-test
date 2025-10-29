@@ -1,32 +1,36 @@
 import { BodyCopy, Button, Layout, PageTitle } from "../../components";
 import { IproovCameraErrorIcon } from "../../icons";
-import { getSplittedColors } from "../../utils/utils";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
+import type { IViewConfig } from "../../hooks/useTheme";
 
-export const IproovError = ({
-  theme,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
-}) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+export const IproovError = ({ theme }: { theme: IViewConfig }) => {
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+  } = theme.errorView;
 
   return (
-    <Layout background={theme?.primaryMesh}>
+    <Layout background={background}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
-          <ElevatedCircle>
+          <ElevatedCircle background={backgroundIcon}>
             <IproovCameraErrorIcon colors={iconColors} />
           </ElevatedCircle>
 
           <PageTitle
             highlight="Verification"
-            highlightColor={theme?.partnerHighlights}
+            highlightColor={title}
             secudnary="Failed"
-            secudnaryColor={theme?.whiteColor}
+            secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={theme?.whiteColor} className="mt-4">
+          <BodyCopy textColor={bodyCopy} className="mt-4">
             Remember use good lighting; <br /> no glasses or face coverings.
           </BodyCopy>
         </div>
@@ -36,8 +40,8 @@ export const IproovError = ({
           showIcon
           size="large"
           type="submit"
-          background={theme?.whiteColor}
-          color={theme?.primaryMesh}
+          background={backgroundBtn}
+          color={textColorBtn}
         >
           Retry
         </Button>

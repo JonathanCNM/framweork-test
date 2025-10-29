@@ -1,32 +1,41 @@
 import { BodyCopy, Button, Layout, PageTitle } from "../../components";
 import { FaceIcon } from "../../icons";
-import { getSplittedColors } from "../../utils/utils";
 import { CustomStepper } from "../../components/CustomStepper";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { steps } from "../../utils/constants";
+import type { IViewConfig } from "../../hooks/useTheme";
 
 const currentStep = 1;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const StepPage = ({ theme }: { theme: Record<string, any> | null }) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+export const StepPage = ({ theme }: { theme: IViewConfig }) => {
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+    stepsColors,
+  } = theme.dataView;
 
   return (
-    <Layout className="step">
+    <Layout className="step" background={background}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
-          <ElevatedCircle>
+          <ElevatedCircle background={backgroundIcon}>
             <FaceIcon colors={iconColors} />
           </ElevatedCircle>
 
           <PageTitle
             highlight="We're making"
-            highlightColor={theme?.primaryMesh}
+            highlightColor={title}
             secudnary="sure it's you"
-            secudnaryColor={theme?.primaryMesh}
+            secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={theme?.secondaryColor} className="mt-4">
+          <BodyCopy textColor={bodyCopy} className="mt-4">
             Use your Passport, Driver’s License, State ID, Green Card or
             Consular ID.
           </BodyCopy>
@@ -35,8 +44,8 @@ export const StepPage = ({ theme }: { theme: Record<string, any> | null }) => {
           <CustomStepper
             steps={steps}
             currentStep={currentStep}
-            color={theme?.whiteColor}
-            background={theme?.primaryMesh}
+            color={textColorBtn}
+            background={stepsColors}
             width={230}
           />
         </section>
@@ -55,8 +64,8 @@ export const StepPage = ({ theme }: { theme: Record<string, any> | null }) => {
             size="large"
             type="submit"
             className="leading-6"
-            color={theme?.whiteColor}
-            background={theme?.primaryMesh}
+            color={textColorBtn}
+            background={backgroundBtn}
           >
             Continue
           </Button>

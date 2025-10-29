@@ -1,32 +1,36 @@
 import { BodyCopy, Button, Layout, PageTitle } from "../../components";
 import { IproovCameraErrorIcon } from "../../icons";
-import { getSplittedColors } from "../../utils/utils";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
+import type { IViewConfig } from "../../hooks/useTheme";
 
-export const IproovCamera = ({
-  theme,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
-}) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+export const IproovCamera = ({ theme }: { theme: IViewConfig }) => {
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+  } = theme.errorView;
 
   return (
-    <Layout background={theme?.primaryMesh}>
+    <Layout background={background}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
-          <ElevatedCircle>
+          <ElevatedCircle background={backgroundIcon}>
             <IproovCameraErrorIcon colors={iconColors} />
           </ElevatedCircle>
 
           <PageTitle
             highlight="Camera access"
-            highlightColor={theme?.partnerHighlights}
+            highlightColor={title}
             secudnary="needed"
-            secudnaryColor={theme?.whiteColor}
+            secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={theme?.whiteColor}>
+          <BodyCopy textColor={bodyCopy}>
             Please allow access to your camera to continue.
           </BodyCopy>
         </div>
@@ -36,8 +40,8 @@ export const IproovCamera = ({
           showIcon
           type="submit"
           size="large"
-          background={theme?.whiteColor}
-          color={theme?.primaryMesh}
+          background={backgroundBtn}
+          color={textColorBtn}
         >
           Grant access
         </Button>

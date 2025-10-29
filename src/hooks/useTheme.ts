@@ -13,6 +13,29 @@ export interface IUseTheme {
   [className: string]: ThemeText;
 }
 
+export interface IViewColorConfig {
+  background: string;
+  iconColors: [string, string];
+  backgroundIcon: string;
+  title: string;
+  subtitile: string;
+  bodyCopy: string;
+  footerColor: string;
+  backgroundBtn: string;
+  textColorBtn: string;
+  stepsColors: string;
+  dropzoneColors: [string, string];
+  stepsLabelColor: string;
+}
+
+export interface IViewConfig {
+  primaryMeshGradientView: IViewColorConfig;
+  specialView: IViewColorConfig;
+  dataView: IViewColorConfig;
+  whiteView: IViewColorConfig;
+  errorView: IViewColorConfig;
+}
+
 export const useTheme = (theme: IUseTheme) => {
   const onSetTheme = (theme: IUseTheme) => {
     const styleTagId = "global-theme-styles";
@@ -71,7 +94,165 @@ export const useTheme = (theme: IUseTheme) => {
     document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
   };
-  return { onSetTheme, downloadThemeTxt };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const generateColorsByView = (theme: Record<string, any> | null) => {
+    let newTheme: IViewConfig | null = null;
+    if (theme?.lightness === "dark") {
+      newTheme = {
+        primaryMeshGradientView: {
+          background: theme?.primaryMesh,
+          iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
+          backgroundIcon: theme?.whiteColor,
+          title: theme?.partnerHighlights,
+          subtitile: theme?.whiteColor,
+          bodyCopy: theme?.whiteColor,
+          footerColor: theme?.whiteColor,
+          backgroundBtn: theme?.whiteColor,
+          textColorBtn: theme?.primaryMesh,
+          stepsColors: theme?.primaryMesh,
+          stepsLabelColor: theme?.whiteColor,
+          dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
+        },
+        specialView: {
+          background: theme?.primaryMesh,
+          iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
+          backgroundIcon: theme?.whiteColor,
+          title: theme?.partnerHighlights,
+          subtitile: theme?.whiteColor,
+          bodyCopy: theme?.whiteColor,
+          footerColor: theme?.whiteColor,
+          backgroundBtn: theme?.whiteColor,
+          textColorBtn: theme?.primaryMesh,
+          stepsColors: theme?.primaryMesh,
+          stepsLabelColor: theme?.whiteColor,
+          dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
+        },
+        dataView: {
+          background: theme?.whiteColor,
+          iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
+          backgroundIcon: theme?.whiteColor,
+          title: theme?.primaryGradient,
+          subtitile: theme?.primaryGradient,
+          bodyCopy: theme?.secondaryColor,
+          footerColor: theme?.secondaryColor,
+          backgroundBtn: theme?.primaryMesh,
+          textColorBtn: theme?.whiteColor,
+          stepsColors: theme?.primaryMesh,
+          stepsLabelColor: theme?.secondaryColor,
+          dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
+        },
+        whiteView: {
+          background: theme?.whiteColor,
+          iconColors: [theme?.secondaryColor, theme?.secondaryColor],
+          backgroundIcon: theme?.whiteColor,
+          title: theme?.primaryMesh,
+          subtitile: theme?.primaryMesh,
+          bodyCopy: theme?.secondaryColor,
+          footerColor: theme?.secondaryColor,
+          backgroundBtn: theme?.primaryMesh,
+          textColorBtn: theme?.whiteColor,
+          stepsColors: theme?.primaryMesh,
+          stepsLabelColor: theme?.secondaryColor,
+          dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
+        },
+        errorView: {
+          background: theme?.secondaryColor,
+          iconColors: [theme?.secondaryColor, theme?.secondaryColor],
+          backgroundIcon: theme?.whiteColor,
+          title: theme?.whiteColor,
+          subtitile: theme?.whiteColor,
+          bodyCopy: theme?.whiteColor,
+          footerColor: theme?.whiteColor,
+          backgroundBtn: theme?.whiteColor,
+          textColorBtn: theme?.secondaryColor,
+          stepsColors: theme?.primaryMesh,
+          stepsLabelColor: theme?.whiteColor,
+          dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
+        },
+      };
+    } else {
+      newTheme = {
+        primaryMeshGradientView: {
+          background: theme?.primaryMesh,
+          iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
+          backgroundIcon: theme?.secondaryColor,
+          title: theme?.secondaryColor,
+          subtitile: theme?.secondaryColor,
+          bodyCopy: theme?.secondaryColor,
+          footerColor: theme?.secondaryColor,
+          backgroundBtn: theme?.secondaryColor,
+          textColorBtn: theme?.whiteColor,
+          stepsColors: theme?.secondaryColor,
+          stepsLabelColor: theme?.whiteColor,
+          dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
+        },
+        specialView: {
+          background: theme?.primaryMesh,
+          iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
+          backgroundIcon: theme?.secondaryColor,
+          title: theme?.secondaryColor,
+          subtitile: theme?.secondaryColor,
+          bodyCopy: theme?.secondaryColor,
+          footerColor: theme?.secondaryColor,
+          backgroundBtn: theme?.secondaryColor,
+          textColorBtn: theme?.whiteColor,
+          stepsColors: theme?.secondaryColor,
+          stepsLabelColor: theme?.whiteColor,
+          dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
+        },
+        dataView: {
+          background: theme?.primaryMesh,
+          iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
+          backgroundIcon: theme?.secondaryColor,
+          title: theme?.secondaryColor,
+          subtitile: theme?.secondaryColor,
+          bodyCopy: theme?.secondaryColor,
+          footerColor: theme?.secondaryColor,
+          backgroundBtn: theme?.secondaryColor,
+          textColorBtn: theme?.whiteColor,
+          stepsColors: theme?.secondaryColor,
+          stepsLabelColor: theme?.whiteColor,
+          dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
+        },
+        whiteView: {
+          background: theme?.whiteColor,
+          iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
+          backgroundIcon: theme?.whiteColor,
+          title: theme?.secondaryColor,
+          subtitile: theme?.secondaryColor,
+          bodyCopy: theme?.secondaryColor,
+          footerColor: theme?.secondaryColor,
+          backgroundBtn: theme?.primaryMesh,
+          textColorBtn: theme?.secondaryColor,
+          stepsColors: theme?.secondaryColor,
+          stepsLabelColor: theme?.secondaryColor,
+          dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
+        },
+        errorView: {
+          background: theme?.secondaryColor,
+          iconColors: [theme?.secondaryColor, theme?.secondaryColor],
+          backgroundIcon: theme?.whiteColor,
+          title: theme?.whiteColor,
+          subtitile: theme?.whiteColor,
+          bodyCopy: theme?.whiteColor,
+          footerColor: theme?.whiteColor,
+          backgroundBtn: theme?.whiteColor,
+          textColorBtn: theme?.secondaryColor,
+          stepsColors: theme?.secondaryColor,
+          stepsLabelColor: theme?.secondaryColor,
+          dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
+        },
+      };
+    }
+    return newTheme;
+  };
+
+  return {
+    onSetTheme,
+    downloadThemeTxt,
+    generateColorsByView,
+  };
 };
 
 const camelToKebab = (str: string) =>

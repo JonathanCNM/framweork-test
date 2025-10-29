@@ -43,7 +43,6 @@ export const useKeyboardVisible = () => {
       window.removeEventListener("focusout", handleBlur);
       document.body.style.overflow = "";
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -51,6 +50,7 @@ export const useKeyboardVisible = () => {
       setIsKeyboardOpen(localStorage.getItem(isKeyboardOpenKey) === "true")
     );
     return unlisten;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listenLocalStorage]);
 
   const handlerSetIsKeyboardOpen = (isOpen: boolean) => {

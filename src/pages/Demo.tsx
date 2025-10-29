@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { CircularProgress, MotionWrapper, Page } from "../components";
-import { useTheme } from "../hooks/useTheme";
+import { useTheme, type IViewConfig } from "../hooks/useTheme";
 import { HomePage } from "../demo/pages/HomePage";
-import "../index.css";
 import { StepPage } from "../demo/pages/StepPage";
 import { DropzoneDesktop } from "../demo/pages/DropzoneDesktop";
 import { DropzoneMobile } from "../demo/pages/DropzoneMobile";
@@ -15,6 +14,7 @@ import { CardPage } from "../demo/pages/CardPage";
 import { ValidatingPage } from "../demo/pages/ValidatingPage";
 import { SummaryPage } from "../demo/pages/SummaryPage";
 import { SendingMoneyPage } from "../demo/pages/SendingMoneyPage";
+import "../index.css";
 
 export const Demo = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,7 +24,7 @@ export const Demo = () => {
     ...theme?.font,
     ...theme?.colors,
   };
-  useTheme(themeFormatted || {});
+  const { generateColorsByView } = useTheme(themeFormatted || {});
 
   useEffect(() => {
     const handler = (event: MessageEvent) => {
@@ -46,6 +46,8 @@ export const Demo = () => {
 
   if (isLoading) return <CircularProgress />;
 
+  const newTheme: IViewConfig = generateColorsByView(theme?.colors);
+
   return (
     <Page
       font={{
@@ -56,49 +58,49 @@ export const Demo = () => {
       <MotionWrapper>
         <section className="demo-sliders">
           <section className="demo-slide">
-            <HomePage theme={themeFormatted} />
+            <HomePage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <StepPage theme={themeFormatted} />
+            <StepPage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <DropzoneDesktop theme={themeFormatted} />
+            <DropzoneDesktop theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <DropzoneMobile theme={themeFormatted} />
+            <DropzoneMobile theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <DropzoneMobile theme={themeFormatted} isLoading />
+            <DropzoneMobile theme={newTheme} isLoading />
           </section>
           <section className="demo-slide">
-            <IproovReadySlot theme={themeFormatted} />
+            <IproovReadySlot theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <IproovCamera theme={themeFormatted} />
+            <IproovCamera theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <IproovError theme={themeFormatted} />
+            <IproovError theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <IproovSuccessSlot theme={themeFormatted} />
+            <IproovSuccessSlot theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <AddressPage theme={themeFormatted} isHomeAddress />
+            <AddressPage theme={newTheme} isHomeAddress />
           </section>
           <section className="demo-slide">
-            <CardPage theme={themeFormatted} />
+            <CardPage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <AddressPage theme={themeFormatted} />
+            <AddressPage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <ValidatingPage theme={themeFormatted} />
+            <ValidatingPage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <SummaryPage theme={themeFormatted} />
+            <SummaryPage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <SendingMoneyPage theme={themeFormatted} />
+            <SendingMoneyPage theme={newTheme} />
           </section>
         </section>
       </MotionWrapper>

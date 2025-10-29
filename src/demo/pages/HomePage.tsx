@@ -1,16 +1,22 @@
 import { GradientText, Layout, PageTitle } from "../../components";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { LolaLogo, RightIcon } from "../../icons";
-import { getSplittedColors } from "../../utils/utils";
+import type { IViewConfig } from "../../hooks/useTheme";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const HomePage = ({ theme }: { theme: Record<string, any> | null }) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+export const HomePage = ({ theme }: { theme: IViewConfig }) => {
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    footerColor,
+  } = theme.primaryMeshGradientView;
   return (
-    <Layout background={theme?.primaryMesh ?? ""}>
+    <Layout background={background}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
-          <ElevatedCircle>
+          <ElevatedCircle background={backgroundIcon}>
             <RightIcon colors={iconColors} />
           </ElevatedCircle>
 
@@ -21,22 +27,19 @@ export const HomePage = ({ theme }: { theme: Record<string, any> | null }) => {
                 Send money <br /> like "Texting"
               </>
             }
-            highlightColor={theme?.partnerHighlights}
+            highlightColor={title}
             secudnary={"That's easy"}
-            secudnaryColor={theme?.whiteColor}
+            secudnaryColor={subtitile}
           />
         </div>
       </Layout.Content>
       <Layout.Footer>
         <section className="homepage-footer">
-          <GradientText className="footer-text" textColor={theme?.whiteColor}>
+          <GradientText className="footer-text" textColor={footerColor}>
             Powered by
           </GradientText>
-          <LolaLogo size={23} colors={["#fff", "#fff"]} />
-          <GradientText
-            className="mx-auto footer-text"
-            textColor={theme?.whiteColor}
-          >
+          <LolaLogo size={23} colors={[backgroundIcon, backgroundIcon]} />
+          <GradientText className="mx-auto footer-text" textColor={footerColor}>
             Registered Agent
           </GradientText>
         </section>

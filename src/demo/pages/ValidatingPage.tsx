@@ -7,50 +7,57 @@ import {
 } from "../../components";
 import { CardIcon } from "../../icons";
 import { steps } from "../../utils/constants";
-import { getSplittedColors } from "../../utils/utils";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
+import type { IViewConfig } from "../../hooks/useTheme";
 
-export const ValidatingPage = ({
-  theme,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
-}) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    stepsLabelColor,
+    stepsColors,
+    bodyCopy,
+    footerColor,
+  } = theme.specialView;
 
   return (
-    <Layout>
+    <Layout background={background}>
       <Layout.Content>
         <div className="upload-loading-container">
           <CircularProgress
-            colors={iconColors}
+            colors={[title, title]}
             size={128}
             strokeWidth={6}
             className="upload-circular-progress"
           >
-            <ElevatedCircle>
+            <ElevatedCircle background={backgroundIcon}>
               <CardIcon colors={iconColors} />
             </ElevatedCircle>
           </CircularProgress>
 
           <PageTitle
             highlight="Validating"
-            highlightColor={theme?.primaryMesh}
+            highlightColor={title}
             secudnary="information"
-            secudnaryColor={theme?.primaryMesh}
+            secudnaryColor={subtitile}
           />
 
           <CustomStepper
-            steps={steps}
             currentStep={3}
-            color={theme?.whiteColor}
-            background={theme?.primaryMesh}
+            steps={steps}
+            color={stepsLabelColor}
+            background={stepsColors}
+            trackBackground={title}
+            labelColor={bodyCopy}
             width={230}
           />
         </div>
       </Layout.Content>
       <Layout.Footer>
-        <GradientText as="p" className="footer-text">
+        <GradientText as="p" className="footer-text" textColor={footerColor}>
           This may take a moment
         </GradientText>
       </Layout.Footer>

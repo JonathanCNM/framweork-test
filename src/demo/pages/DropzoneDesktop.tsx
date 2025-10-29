@@ -1,27 +1,38 @@
 import { BodyCopy, Button, Layout, PageTitle } from "../../components";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { UploadCloud, UploadIcon } from "../../icons";
-import { getSplittedColors } from "../../utils/utils";
+import type { IViewConfig } from "../../hooks/useTheme";
 import { UploadLoading } from "../components/UploadLoading";
 
 export interface DropzoneProps {
   isLoading?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
+  theme: IViewConfig;
 }
 
 export const DropzoneDesktop: React.FC<DropzoneProps> = ({
   isLoading = false,
   theme,
 }) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    footerColor,
+    title,
+    subtitile,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+    dropzoneColors,
+  } = theme.dataView;
 
   return (
     <Layout
+      background={background}
       className={`dropzone ${isLoading ? "layout-success" : ""}`}
       style={
         {
-          "--bgc": theme?.primaryMesh,
+          "--bgc": background,
           "--delay": "0s",
         } as React.CSSProperties & {
           [key: string]: string;
@@ -38,22 +49,22 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
                   <br />I need to see your ID
                 </p>
               }
-              highlightColor={theme?.primaryMesh}
+              highlightColor={title}
             />
           </section>
 
           <div
             className="desktop-dropzone-input"
-            style={{ borderColor: iconColors[0] }}
+            style={{ borderColor: dropzoneColors[0] }}
           >
             <div className="desktop-dropzone-input-area">
               <div className="elevated-circle-container">
-                <ElevatedCircle>
+                <ElevatedCircle background={backgroundIcon}>
                   <UploadCloud colors={iconColors} />
                 </ElevatedCircle>
               </div>
               <section className="desktop-dropzone-input-disclaimer">
-                <BodyCopy textColor={theme?.secondaryColor}>
+                <BodyCopy textColor={bodyCopy}>
                   Tap to upload your Passport, State ID, Green Card, Driver’s
                   License or Consular ID.
                 </BodyCopy>
@@ -66,8 +77,11 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
       {isLoading && (
         <UploadLoading
           colors={iconColors}
-          gradientViewText={theme?.partnerHighlights}
-          footerTextColor={theme?.whiteColor}
+          progressColors={dropzoneColors}
+          backgroundIcon={backgroundIcon}
+          title={title}
+          subtitle={subtitile}
+          footerTextColor={footerColor}
         />
       )}
       {!isLoading && (
@@ -76,15 +90,15 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
             showIcon
             type="button"
             size="large"
-            background={theme?.primaryMesh}
-            color={theme?.whiteColor}
+            background={backgroundBtn}
+            color={textColorBtn}
             disabled={isLoading}
             icon={
               <span
                 className="dropzone-btn"
-                style={{ background: theme?.whiteColor }}
+                style={{ background: textColorBtn }}
               >
-                <UploadIcon colors={iconColors} size={18} />
+                <UploadIcon colors={dropzoneColors} size={18} />
               </span>
             }
           >

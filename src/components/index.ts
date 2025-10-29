@@ -16,6 +16,9 @@ export type { ElevatedCircleProps } from "./ElevatedCircle";
 export { GradientText } from "./GradientText";
 export type { TextProps } from "./GradientText";
 
+export { SearchSelect } from "./SearchSelect";
+export type { SearchSelectProps, SelectItem } from "./SearchSelect";
+
 export { InputField } from "./InputField";
 export type { InputFieldProps } from "./InputField";
 

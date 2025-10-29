@@ -10,6 +10,7 @@ export * from "./components/CircularProgress";
 export * from "./components/CustomStepper";
 export * from "./components/ElevatedCircle";
 export * from "./components/GradientText";
+export * from "./components/SearchSelect";
 export * from "./components/InputField";
 export * from "./components/LabelInput";
 export * from "./components/Layout";
@@ -29,6 +30,7 @@ export type { CircularProgressProps } from "./components/CircularProgress";
 export type { ISteps, CustomStepperProps } from "./components/CustomStepper";
 export type { ElevatedCircleProps } from "./components/ElevatedCircle";
 export type { TextProps } from "./components/GradientText";
+export type { SearchSelectProps, SelectItem } from "./components/SearchSelect";
 export type { InputFieldProps } from "./components/InputField";
 export type { LabelInputProps } from "./components/LabelInput";
 export type {
@@ -48,7 +50,12 @@ export type { VgsInputProps } from "./components/VgsInput";
 
 export type { UseVgsCollectLoaderProps } from "./hooks/useVgsCollectLoader";
 export type { UseFontsProps } from "./hooks/useFonts";
-export type { ThemeText, IUseTheme } from "./hooks/useTheme";
+export type {
+  ThemeText,
+  IUseTheme,
+  IViewColorConfig,
+  IViewConfig,
+} from "./hooks/useTheme";
 
 // Export Hooks
 export * from "./hooks/useBlockScroll";

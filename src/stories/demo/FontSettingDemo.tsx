@@ -6,8 +6,10 @@ import {
   Navbar,
   Page,
   PageTitle,
+  SearchSelect,
   Select,
   Title,
+  type SelectItem,
 } from "../../components";
 import { IconApp, SuccessIcon } from "../../icons";
 import { useGradient } from "../../store/useGradient";
@@ -182,6 +184,8 @@ export const FontSettingDemo = () => {
   const [formColors, setFormColors] = useState<IColorForm>(
     formColorInitialState
   );
+  const [themeLightnessPreferences, setThemeLightnessPreferences] =
+    useState("dark");
   const { downloadThemeTxt } = useTheme(formFont);
   const { fontStyle, onChangeFont } = useFonts(inputFont);
 
@@ -292,6 +296,7 @@ export const FontSettingDemo = () => {
       colors: {
         ...formColors,
         gradient,
+        lightness: themeLightnessPreferences,
       },
     });
   };
@@ -306,6 +311,7 @@ export const FontSettingDemo = () => {
       colors: {
         ...formColors,
         gradient,
+        lightness: themeLightnessPreferences,
       },
     };
     const child = window.open("http://localhost:5176/demo", "_blank");
@@ -329,6 +335,16 @@ export const FontSettingDemo = () => {
     }, 500);
   };
   const colors = getSplittedColors(gradient);
+  const themeLightnessPreferencesItems: SelectItem[] = [
+    { label: "light", code: "light" },
+    { label: "dark", code: "dark" },
+  ];
+
+  const onSelectThemeLightnessPreferencesItems = (
+    themeLightnessPreferencesSelected: string
+  ) => {
+    setThemeLightnessPreferences(themeLightnessPreferencesSelected);
+  };
 
   return (
     <Page font={fontStyle}>
@@ -423,6 +439,11 @@ export const FontSettingDemo = () => {
                     onChange={onHandlerFormColors}
                   />
                 ))}
+                <SearchSelect
+                  items={themeLightnessPreferencesItems}
+                  value={themeLightnessPreferences}
+                  onChange={onSelectThemeLightnessPreferencesItems}
+                />
               </section>
             </section>
             <section className="font-form">

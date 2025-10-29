@@ -1,14 +1,17 @@
 import { Button, Layout, Navbar, VgsInput } from "../../components";
 import { useKeyboardVisible } from "../../hooks";
+import type { IViewConfig } from "../../hooks/useTheme";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const CardPage = ({ theme }: { theme: Record<string, any> | null }) => {
+export const CardPage = ({ theme }: { theme: IViewConfig }) => {
   const { isKeyboardOpen } = useKeyboardVisible();
 
+  const { background, title, bodyCopy, backgroundBtn, textColorBtn } =
+    theme.whiteView;
+
   return (
-    <Layout>
+    <Layout background={background}>
       <Layout.Header>
-        <Navbar color={theme?.primaryMesh} title="Add card" align="center" />
+        <Navbar color={title} title="Add card" align="center" />
       </Layout.Header>
       <Layout.Content>
         <section
@@ -21,17 +24,17 @@ export const CardPage = ({ theme }: { theme: Record<string, any> | null }) => {
           <VgsInput
             type="card_holder_name"
             placeholder="Name on card"
-            activeColor={theme?.primaryMesh}
-            color={theme?.secondaryColor}
-            errorColor={theme?.secondaryColor}
+            activeColor={background}
+            color={bodyCopy}
+            errorColor={bodyCopy}
           />
           <VgsInput
             type="card_number"
             placeholder="Card number"
             cardNumberFormPlaceholder={"XXXX XXXX XXXX XXXX"}
-            activeColor={theme?.primaryMesh}
-            color={theme?.secondaryColor}
-            errorColor={theme?.secondaryColor}
+            activeColor={background}
+            color={bodyCopy}
+            errorColor={bodyCopy}
           />
           <article
             className="double-input"
@@ -40,16 +43,16 @@ export const CardPage = ({ theme }: { theme: Record<string, any> | null }) => {
             <VgsInput
               type="card_exp_date"
               placeholder="MM / YY"
-              activeColor={theme?.primaryMesh}
-              color={theme?.secondaryColor}
-              errorColor={theme?.secondaryColor}
+              activeColor={background}
+              color={bodyCopy}
+              errorColor={bodyCopy}
             />
             <VgsInput
               type="card_cvc"
               placeholder="CVV"
-              activeColor={theme?.primaryMesh}
-              color={theme?.secondaryColor}
-              errorColor={theme?.secondaryColor}
+              activeColor={background}
+              color={bodyCopy}
+              errorColor={bodyCopy}
             />
           </article>
         </section>
@@ -65,8 +68,8 @@ export const CardPage = ({ theme }: { theme: Record<string, any> | null }) => {
             showIcon
             type="submit"
             size="large"
-            color={theme?.whiteColor}
-            background={theme?.primaryMesh}
+            color={textColorBtn}
+            background={backgroundBtn}
           >
             Add card
           </Button>

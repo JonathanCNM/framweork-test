@@ -6,19 +6,26 @@ import {
   PageTitle,
 } from "../../components";
 import { LolaLogo, WhatsAppIcon } from "../../icons";
-import { getSplittedColors } from "../../utils/utils";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
+import type { IViewConfig } from "../../hooks/useTheme";
 
 export interface SendingMoneyPageProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: Record<string, any> | null;
+  theme: IViewConfig;
 }
 
 export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
   theme,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    bodyCopy,
+    textColorBtn,
+  } = theme.specialView;
 
   useEffect(() => {
     (async () => {
@@ -27,13 +34,13 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
     })();
   }, []);
 
+  const finalBackground = isLoading ? textColorBtn : background;
+
   const finalIconColor: [string, string] = isLoading
     ? iconColors
-    : [theme?.partnerHighlights, theme?.partnerHighlights];
+    : [title, title];
 
-  const finalFooterColor = isLoading
-    ? theme?.secondaryColor
-    : theme?.whiteColor;
+  const finalFooterColor = bodyCopy;
 
   const variant = isLoading ? "loading" : "full";
   const icon = isLoading ? (
@@ -45,25 +52,26 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
   const copy = isLoading ? (
     <PageTitle
       highlight="Sending your"
-      highlightColor={theme?.primaryMesh}
+      highlightColor={title}
       secudnary="money now"
-      secudnaryColor={theme?.primaryMesh}
+      secudnaryColor={title}
     />
   ) : (
     <PageTitle
       highlight="Going back"
-      highlightColor={theme?.partnerHighlights}
+      highlightColor={title}
       secudnary="to WhatsApp"
-      secudnaryColor={theme?.whiteColor}
+      secudnaryColor={subtitile}
     />
   );
 
   return (
     <Layout
+      background={finalBackground}
       className="layout-success"
       style={
         {
-          "--bgc": theme?.primaryMesh,
+          "--bgc": background,
           "--delay": "4s",
         } as React.CSSProperties & {
           [key: string]: string;
@@ -79,7 +87,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
             strokeWidth={6}
             className="upload-circular-progress"
           >
-            <ElevatedCircle>{icon}</ElevatedCircle>
+            <ElevatedCircle background={backgroundIcon}>{icon}</ElevatedCircle>
           </CircularProgress>
 
           {copy}

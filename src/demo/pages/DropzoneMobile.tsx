@@ -1,6 +1,5 @@
 import { BodyCopy, Button, Layout, PageTitle } from "../../components";
 import { UploadCloud, UploadIcon } from "../../icons";
-import { getSplittedColors } from "../../utils/utils";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { UploadLoading } from "../components/UploadLoading";
 import type { DropzoneProps } from "./DropzoneDesktop";
@@ -9,14 +8,26 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
   isLoading = false,
   theme,
 }) => {
-  const iconColors = getSplittedColors(theme?.primaryMesh ?? "#000");
+  const {
+    background,
+    iconColors,
+    backgroundIcon,
+    footerColor,
+    title,
+    subtitile,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+    dropzoneColors
+  } = theme.dataView;
 
   return (
     <Layout
+      background={background}
       className={`${isLoading ? "layout-success" : ""}`}
       style={
         {
-          "--bgc": theme?.primaryMesh,
+          "--bgc": background,
           "--delay": "0s",
         } as React.CSSProperties & {
           [key: string]: string;
@@ -26,18 +37,18 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
       {!isLoading && (
         <Layout.Content>
           <div className="homepage-content elevated-circle-container">
-            <ElevatedCircle>
+            <ElevatedCircle background={backgroundIcon}>
               <UploadCloud colors={iconColors} />
             </ElevatedCircle>
 
             <PageTitle
               highlight="Got your ID"
-              highlightColor={theme?.primaryMesh}
+              highlightColor={title}
               secudnary="at hand?"
-              secudnaryColor={theme?.primaryMesh}
+              secudnaryColor={subtitile}
             />
 
-            <BodyCopy textColor={theme?.secondaryColor}>
+            <BodyCopy textColor={bodyCopy}>
               Tap to upload your Passport, State ID, Green Card, Driver’s
               License or Consular ID.
             </BodyCopy>
@@ -47,8 +58,11 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
       {isLoading && (
         <UploadLoading
           colors={iconColors}
-          gradientViewText={theme?.partnerHighlights}
-          footerTextColor={theme?.whiteColor}
+          progressColors={dropzoneColors}
+          backgroundIcon={backgroundIcon}
+          title={title}
+          subtitle={subtitile}
+          footerTextColor={footerColor}
         />
       )}
       {!isLoading && (
@@ -57,15 +71,18 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
             showIcon
             type="button"
             size="large"
-            background={theme?.primaryMesh}
-            color={theme?.whiteColor}
+            background={backgroundBtn}
+            color={textColorBtn}
             disabled={isLoading}
             icon={
               <span
                 className="dropzone-btn"
-                style={{ background: theme?.whiteColor }}
+                style={{ background: textColorBtn }}
               >
-                <UploadIcon colors={iconColors} size={18} />
+                <UploadIcon
+                  colors={dropzoneColors}
+                  size={18}
+                />
               </span>
             }
           >

@@ -175,8 +175,8 @@ const formColorInitialState: IColorForm = {
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
 };
 
-const localhost = "http://localhost:5176/demo";
-const vercelhost = "https://lola-framweork-ui-demo.vercel.app/demo";
+const localhost = "http://localhost:5176";
+const vercelhost = "https://lola-framweork-ui-demo.vercel.app";
 
 export const FontSettingDemo = () => {
   const [inputFont, setInputFont] = useState(defaultFont);

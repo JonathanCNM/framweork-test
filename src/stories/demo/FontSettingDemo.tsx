@@ -176,7 +176,7 @@ const formColorInitialState: IColorForm = {
 };
 
 const localhost = "http://localhost:5176/demo";
-const vercelhost = "http://localhost:5176/demo";
+const vercelhost = "lola-framweork-ui-demo.vercel.app/demo";
 
 export const FontSettingDemo = () => {
   const [inputFont, setInputFont] = useState(defaultFont);

@@ -175,6 +175,8 @@ const formColorInitialState: IColorForm = {
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
 };
 
+const localHost = "http://localhost:5176/demo";
+
 export const FontSettingDemo = () => {
   const [inputFont, setInputFont] = useState(defaultFont);
   const [selectedFont, setSelectedFont] = useState(registeredFonts[0]);
@@ -314,7 +316,10 @@ export const FontSettingDemo = () => {
         lightness: themeLightnessPreferences,
       },
     };
-    const child = window.open("http://localhost:5176/demo", "_blank");
+    const location = window.location.hostname;
+    console.log("location", location);
+
+    const child = window.open(localHost, "_blank");
 
     const sendMessage = () => {
       if (!child) return;
@@ -323,7 +328,7 @@ export const FontSettingDemo = () => {
           type: "storybook-config",
           payload: theme,
         },
-        "http://localhost:5176/demo"
+        localHost
       );
     };
 

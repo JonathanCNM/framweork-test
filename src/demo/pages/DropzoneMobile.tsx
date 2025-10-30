@@ -18,7 +18,7 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
     bodyCopy,
     backgroundBtn,
     textColorBtn,
-    dropzoneColors
+    dropzoneColors,
   } = theme.dataView;
 
   return (
@@ -79,10 +79,7 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
                 className="dropzone-btn"
                 style={{ background: textColorBtn }}
               >
-                <UploadIcon
-                  colors={dropzoneColors}
-                  size={18}
-                />
+                <UploadIcon colors={dropzoneColors} size={18} />
               </span>
             }
           >

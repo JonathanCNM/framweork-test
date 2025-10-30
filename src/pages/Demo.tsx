@@ -14,6 +14,9 @@ import { CardPage } from "../demo/pages/CardPage";
 import { ValidatingPage } from "../demo/pages/ValidatingPage";
 import { SummaryPage } from "../demo/pages/SummaryPage";
 import { SendingMoneyPage } from "../demo/pages/SendingMoneyPage";
+import { SuccessId } from "../demo/pages/SuccessId";
+import { LastStepsPage } from "../demo/pages/LastStepsPage";
+import AddedCardPage from "../demo/pages/AddedCardPage";
 import "../index.css";
 
 export const Demo = () => {
@@ -64,6 +67,9 @@ export const Demo = () => {
             <StepPage theme={newTheme} />
           </section>
           <section className="demo-slide">
+            <IproovCamera theme={newTheme} />
+          </section>
+          <section className="demo-slide">
             <DropzoneDesktop theme={newTheme} />
           </section>
           <section className="demo-slide">
@@ -71,6 +77,9 @@ export const Demo = () => {
           </section>
           <section className="demo-slide">
             <DropzoneMobile theme={newTheme} isLoading />
+          </section>
+          <section className="demo-slide">
+            <SuccessId theme={newTheme} />
           </section>
           <section className="demo-slide">
             <IproovReadySlot theme={newTheme} />
@@ -88,6 +97,9 @@ export const Demo = () => {
             <AddressPage theme={newTheme} isHomeAddress />
           </section>
           <section className="demo-slide">
+            <LastStepsPage theme={newTheme} />
+          </section>
+          <section className="demo-slide">
             <CardPage theme={newTheme} />
           </section>
           <section className="demo-slide">
@@ -97,7 +109,13 @@ export const Demo = () => {
             <ValidatingPage theme={newTheme} />
           </section>
           <section className="demo-slide">
+            <AddedCardPage theme={newTheme} />
+          </section>
+          <section className="demo-slide">
             <SummaryPage theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <SendingMoneyPage theme={newTheme} isLoading />
           </section>
           <section className="demo-slide">
             <SendingMoneyPage theme={newTheme} />

@@ -52,7 +52,7 @@ export const steps = [
     index: 2,
   },
   {
-    label: "Payment",
+    label: "Pay",
     index: 3,
   },
 ];

@@ -1,11 +1,19 @@
-import {
-  BodyCopy,
-  CircularProgress,
-  Layout,
-  PageTitle,
-} from "../../components";
+import { CircularProgress, Layout, PageTitle } from "../../components";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
+import RotatingText from "../../components/RotatingText";
 import { UploadCloud } from "../../icons";
+
+const loadingMessages = [
+  "Loading photo…",
+  "Checking image quality…",
+  "Detecting document type…",
+  "Aligning & cropping…",
+  "Reducing glare & blur…",
+  "Reading text (OCR)…",
+  "Reading MRZ / barcodes…",
+  "Extracting key fields…",
+  "Validating names & dates…",
+];
 
 export const UploadLoading: React.FC<{
   colors: [string, string];
@@ -14,7 +22,14 @@ export const UploadLoading: React.FC<{
   subtitle: string;
   footerTextColor: string;
   backgroundIcon: string;
-}> = ({ colors, title, footerTextColor, backgroundIcon, subtitle, progressColors }) => {
+}> = ({
+  colors,
+  title,
+  footerTextColor,
+  backgroundIcon,
+  subtitle,
+  progressColors,
+}) => {
   return (
     <Layout.Content className="upload-loading">
       <div className="upload-loading-container">
@@ -34,10 +49,7 @@ export const UploadLoading: React.FC<{
           secudnary="good!"
           secudnaryColor={subtitle}
         />
-        <BodyCopy textColor={footerTextColor} className="mt-4">
-          We're validating your document, please wait a moment. Please don't
-          close this window.
-        </BodyCopy>
+        <RotatingText messages={loadingMessages} textColor={footerTextColor} />
       </div>
     </Layout.Content>
   );

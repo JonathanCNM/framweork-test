@@ -1164,7 +1164,16 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
+.upload-loading {
+  width: 100%;
+
+  .lola-layout--container--content--container {
+    width: 100%;
+  }
+}
+
 .upload-loading-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1328,4 +1337,23 @@ input[type="number"]::-webkit-outer-spin-button {
       }
     }
   }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-fade {
+  animation: fade 3s linear infinite;
 }

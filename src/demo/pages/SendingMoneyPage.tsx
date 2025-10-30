@@ -1,52 +1,30 @@
-import { useEffect, useState } from "react";
 import {
   CircularProgress,
   GradientText,
   Layout,
   PageTitle,
 } from "../../components";
-import { LolaLogo, WhatsAppIcon } from "../../icons";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import type { IViewConfig } from "../../hooks/useTheme";
+import { LolaLogo, SuccessIcon } from "../../icons";
 
 export interface SendingMoneyPageProps {
   theme: IViewConfig;
+  isLoading?: boolean;
 }
 
 export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
   theme,
+  isLoading = false,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const {
-    background,
-    iconColors,
-    backgroundIcon,
-    title,
-    subtitile,
-    bodyCopy,
-    textColorBtn,
-  } = theme.specialView;
-
-  useEffect(() => {
-    (async () => {
-      await new Promise((resolve) => setTimeout(resolve, 4000));
-      setIsLoading(false);
-    })();
-  }, []);
-
-  const finalBackground = isLoading ? textColorBtn : background;
-
-  const finalIconColor: [string, string] = isLoading
-    ? iconColors
-    : [title, title];
-
-  const finalFooterColor = bodyCopy;
+  const { background, backgroundIcon, title, subtitile, bodyCopy, iconColors } =
+    theme.specialView;
 
   const variant = isLoading ? "loading" : "full";
   const icon = isLoading ? (
-    <LolaLogo colors={iconColors} />
+    <LolaLogo colors={iconColors} size={80} />
   ) : (
-    <WhatsAppIcon size={60} />
+    <SuccessIcon colors={iconColors} size={80} />
   );
 
   const copy = isLoading ? (
@@ -54,7 +32,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
       highlight="Sending your"
       highlightColor={title}
       secudnary="money now"
-      secudnaryColor={title}
+      secudnaryColor={subtitile}
     />
   ) : (
     <PageTitle
@@ -67,7 +45,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
 
   return (
     <Layout
-      background={finalBackground}
+      background={background}
       className="layout-success"
       style={
         {
@@ -82,7 +60,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
         <div className="upload-loading-container">
           <CircularProgress
             variant={variant}
-            colors={finalIconColor}
+            colors={[title, title]}
             size={128}
             strokeWidth={6}
             className="upload-circular-progress"
@@ -94,11 +72,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
         </div>
       </Layout.Content>
       <Layout.Footer>
-        <GradientText
-          textColor={finalFooterColor}
-          as="p"
-          className="footer-text"
-        >
+        <GradientText textColor={bodyCopy} as="p" className="footer-text">
           This may take a moment
         </GradientText>
       </Layout.Footer>

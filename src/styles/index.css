@@ -1063,13 +1063,13 @@ input[type="number"]::-webkit-outer-spin-button {
         width: 32px;
         height: 32px;
         border-radius: 50%;
-        background: #e8e8e8;
+        background: var(--index-inactive-bg);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 2;
-        border: solid 2px #ccc;
-        color: #ccc;
+        border: solid 2px var(--index-inactive-color);
+        color: var(--index-inactive-color);
       }
 
       .step-label {
@@ -1083,7 +1083,7 @@ input[type="number"]::-webkit-outer-spin-button {
         left: 50%;
         top: 16px;
         transform: translateY(-50%);
-        background: #e8e8e8;
+        background: var(--track-inactive-bg);
         z-index: 1;
 
         &.active {
@@ -1099,6 +1099,7 @@ input[type="number"]::-webkit-outer-spin-button {
         .step-index {
           background: var(--bg);
           color: var(--color);
+          border-color: var(--bg);
         }
       }
     }

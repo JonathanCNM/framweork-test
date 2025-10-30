@@ -13,6 +13,9 @@ export interface CustomStepperProps {
   width?: string | number;
   trackBackground?: string;
   labelColor?: string;
+  trackInactiveBackground?: string;
+  indexkInactiveBackground?: string;
+  indexkInactiveColor?: string;
 }
 
 export const CustomStepper: React.FC<CustomStepperProps> = ({
@@ -23,6 +26,9 @@ export const CustomStepper: React.FC<CustomStepperProps> = ({
   width = "100%",
   trackBackground,
   labelColor = "#000",
+  trackInactiveBackground = "#e8e8e8",
+  indexkInactiveBackground = "#e8e8e8",
+  indexkInactiveColor = "#ccc",
 }) => {
   if (!steps?.length) return <></>;
   if (!trackBackground) trackBackground = background;
@@ -36,6 +42,9 @@ export const CustomStepper: React.FC<CustomStepperProps> = ({
             "--color": color,
             "--track-bg": trackBackground,
             "--label-color": labelColor,
+            "--track-inactive-bg": trackInactiveBackground,
+            "--index-inactive-bg": indexkInactiveBackground,
+            "--index-inactive-color": indexkInactiveColor,
           } as React.CSSProperties & { [key: string]: string }
         }
       >

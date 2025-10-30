@@ -50,7 +50,6 @@ export const Demo = () => {
   if (isLoading) return <CircularProgress />;
 
   const newTheme: IViewConfig = generateColorsByView(theme?.colors);
-
   return (
     <Page
       font={{

@@ -175,7 +175,8 @@ const formColorInitialState: IColorForm = {
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
 };
 
-const localHost = "http://localhost:5176/demo";
+const localhost = "http://localhost:5176/demo";
+const vercelhost = "http://localhost:5176/demo";
 
 export const FontSettingDemo = () => {
   const [inputFont, setInputFont] = useState(defaultFont);
@@ -317,9 +318,8 @@ export const FontSettingDemo = () => {
       },
     };
     const location = window.location.hostname;
-    console.log("location", location);
-
-    const child = window.open(localHost, "_blank");
+    const host = location.includes("localhost") ? localhost : vercelhost;
+    const child = window.open(host, "_blank");
 
     const sendMessage = () => {
       if (!child) return;
@@ -328,7 +328,7 @@ export const FontSettingDemo = () => {
           type: "storybook-config",
           payload: theme,
         },
-        localHost
+        host
       );
     };
 

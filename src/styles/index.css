@@ -138,11 +138,6 @@ button {
   pointer-events: none;
 }
 
-.lola-button:hover {
-  opacity: 0.75;
-  cursor: pointer;
-}
-
 .lola-button:disabled {
   opacity: 0.65;
   cursor: not-allowed !important;

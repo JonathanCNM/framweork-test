@@ -114,8 +114,9 @@ const App = () => {
           <section className="demo-slide">
             <SummaryPage theme={newTheme} />
           </section>
-          <section className="demo-slide"></section>
-          <SendingMoneyPage theme={newTheme} isLoading />
+          <section className="demo-slide">
+            <SendingMoneyPage theme={newTheme} isLoading />
+          </section>
           <section className="demo-slide">
             <SendingMoneyPage theme={newTheme} />
           </section>

@@ -38,7 +38,7 @@ export const HomePage = ({ theme }: { theme: IViewConfig }) => {
           <GradientText className="footer-text" textColor={footerColor}>
             Operated by
           </GradientText>
-          <LolaLogo size={23} colors={[backgroundIcon, backgroundIcon]} />
+          <LolaLogo size={30} colors={[backgroundIcon, backgroundIcon]} />
           <GradientText className="mx-auto footer-text" textColor={footerColor}>
             Registered Agent
           </GradientText>

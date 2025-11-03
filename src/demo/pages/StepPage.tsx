@@ -7,7 +7,13 @@ import type { IViewConfig } from "../../hooks/useTheme";
 
 const currentStep = 1;
 
-export const StepPage = ({ theme }: { theme: IViewConfig }) => {
+export const StepPage = ({
+  theme,
+  isLightTheme = false,
+}: {
+  theme: IViewConfig;
+  isLightTheme?: boolean;
+}) => {
   const {
     background,
     iconColors,
@@ -19,6 +25,10 @@ export const StepPage = ({ theme }: { theme: IViewConfig }) => {
     textColorBtn,
     stepsColors,
   } = theme.dataView;
+
+  const themeType = isLightTheme ? "light" : "dark";
+  const customStepperTrackInactiveBg = isLightTheme ? textColorBtn : undefined;
+  const customStepperIndexInactiveBg = isLightTheme ? backgroundBtn : undefined;
 
   return (
     <Layout className="step" background={background}>
@@ -47,18 +57,29 @@ export const StepPage = ({ theme }: { theme: IViewConfig }) => {
             color={textColorBtn}
             background={stepsColors}
             width={230}
+            trackInactiveBackground={customStepperTrackInactiveBg}
+            indexkInactiveBackground={customStepperIndexInactiveBg}
+            indexkInactiveColor={customStepperTrackInactiveBg}
           />
         </section>
       </Layout.Content>
       <Layout.Footer>
         <section className="homepage-footer">
-          <p className="footer-text terms-text">
+          <section
+            className={`footer-text terms-text footer-link ${themeType}`}
+            style={
+              { "--color": bodyCopy } as React.CSSProperties & {
+                [key: string]: string;
+              }
+            }
+          >
             <span>By continuing, you agree to our</span>
             <br />
             <span className="text-link">Terms & Conditions</span>
             <span> and </span>
             <span className="text-link">Privacy Policy</span>
-          </p>
+          </section>
+          <p className="footer-text terms-text"></p>
           <Button
             showIcon
             size="large"

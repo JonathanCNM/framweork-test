@@ -50,6 +50,7 @@ const App = () => {
 
   if (isLoading) return <CircularProgress />;
   const newTheme: IViewConfig = generateColorsByView(theme?.colors);
+  const isLightTheme = themeFormatted.lightness === "light";
 
   return (
     <Page
@@ -64,7 +65,7 @@ const App = () => {
             <HomePage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <StepPage theme={newTheme} />
+            <StepPage theme={newTheme} isLightTheme={isLightTheme} />
           </section>
           <section className="demo-slide">
             <IproovCamera theme={newTheme} />
@@ -82,7 +83,7 @@ const App = () => {
             <SuccessId theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <IproovReadySlot theme={newTheme} />
+            <IproovReadySlot theme={newTheme} isLightTheme={isLightTheme} />
           </section>
           <section className="demo-slide">
             <IproovCamera theme={newTheme} />

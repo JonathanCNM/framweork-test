@@ -1,6 +1,8 @@
-import { Button, Layout, Navbar, VgsInput } from "../../components";
+import { BodyCopy, Button, Layout, Navbar, VgsInput } from "../../components";
 import { useKeyboardVisible } from "../../hooks";
 import type { IViewConfig } from "../../hooks/useTheme";
+import visaLogo from '../assets/visa_icon.png'
+import mastercardLogo from '../assets/mastercard_icon.png'
 
 export const CardPage = ({ theme }: { theme: IViewConfig }) => {
   const { isKeyboardOpen } = useKeyboardVisible();
@@ -60,9 +62,15 @@ export const CardPage = ({ theme }: { theme: IViewConfig }) => {
       <Layout.Footer>
         <section className="homepage-footer">
           {!isKeyboardOpen && (
-            <p className="text-xs text-text-base-color mb-3">
-              Visa, Mastercard & American Express
-            </p>
+            <section className="footer-card">
+              <section className="footer-card-images">
+                <img src={mastercardLogo} alt="mastercard logo" />
+                <img src={visaLogo} alt="visa logo" />
+              </section>
+              <BodyCopy className="footer-text">
+                Only Visa, Mastercard accepted
+              </BodyCopy>
+            </section>
           )}
           <Button
             showIcon

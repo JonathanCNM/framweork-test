@@ -10,7 +10,13 @@ import { steps } from "../../utils/constants";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import type { IViewConfig } from "../../hooks/useTheme";
 
-export const IproovReadySlot = ({ theme }: { theme: IViewConfig }) => {
+export const IproovReadySlot = ({
+  theme,
+  isLightTheme = false,
+}: {
+  theme: IViewConfig;
+  isLightTheme?: boolean;
+}) => {
   const {
     background,
     iconColors,
@@ -23,6 +29,9 @@ export const IproovReadySlot = ({ theme }: { theme: IViewConfig }) => {
     stepsColors,
     stepsLabelColor,
   } = theme.specialView;
+
+  const customStepperTrackInactiveBg = isLightTheme ? textColorBtn : undefined;
+  const customStepperIndexInactiveBg = isLightTheme ? backgroundBtn : undefined;
 
   return (
     <Layout background={background} className="step">
@@ -52,6 +61,9 @@ export const IproovReadySlot = ({ theme }: { theme: IViewConfig }) => {
             trackBackground={title}
             labelColor={bodyCopy}
             width={230}
+            trackInactiveBackground={customStepperTrackInactiveBg}
+            indexkInactiveBackground={customStepperIndexInactiveBg}
+            indexkInactiveColor={customStepperTrackInactiveBg}
           />
         </section>
       </Layout.Content>

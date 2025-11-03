@@ -337,9 +337,10 @@ export const CameraErrorIcon: React.FC<
     colors?: [string, string];
   }
 > = ({ size = 60, colors = ["#000", "#000"], ...props }) => {
-  const gradientId1 = "cameraGradient1";
-  const gradientId2 = "cameraGradient2";
-  const gradientId3 = "cameraGradient3";
+  const id = useId();
+  const gradientId1 = `cameraGradient1-${id}`;
+  const gradientId2 = `cameraGradient2-${id}`;
+  const gradientId3 = `cameraGradient3-${id}`;
 
   return (
     <svg
@@ -455,6 +456,8 @@ export const IconApp: React.FC<
     colors?: [string, string];
   }
 > = ({ size = 60, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
   return (
     <svg
       viewBox="0 0 512 512"
@@ -465,13 +468,13 @@ export const IconApp: React.FC<
       {...props}
     >
       <defs>
-        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor={colors[0]} />
           <stop offset="100%" stopColor={colors[1]} />
         </linearGradient>
       </defs>
 
-      <circle cx="256" cy="256" r="256" fill="url(#grad)" />
+      <circle cx="256" cy="256" r="256" fill={`url(#${gradientId})`} />
 
       <g fill="#ffffff" className="bars">
         <rect
@@ -510,6 +513,9 @@ export const LolaLogo: React.FC<
 > = ({ size = 60, colors = ["#000", "#000"], width, height, ...props }) => {
   const finalWidth = width || size;
   const finalHeight = height || size;
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
   return (
     <svg
       width={finalWidth}
@@ -520,7 +526,7 @@ export const LolaLogo: React.FC<
     >
       <defs>
         <linearGradient
-          id="gradGlobal"
+          id={gradientId}
           x1="24"
           y1="0"
           x2="212"
@@ -533,19 +539,19 @@ export const LolaLogo: React.FC<
       </defs>
       <path
         d="M93.9502 86.7979C105.47 86.798 114.833 95.9371 114.833 107.217V107.635C114.833 118.915 105.47 128.054 93.9502 128.054C82.43 128.054 73.0664 118.915 73.0664 107.635V107.217C73.0666 95.937 82.4301 86.7979 93.9502 86.7979Z"
-        fill="url(#gradGlobal)"
+        fill={`url(#${gradientId})`}
       />
       <path
         d="M142.535 14C154.055 14 163.419 23.139 163.419 34.4189V107.634C163.419 118.914 154.055 128.053 142.535 128.053C131.015 128.053 121.651 118.914 121.651 107.634V34.4189C121.651 23.139 131.015 14 142.535 14Z"
-        fill="url(#gradGlobal)"
+        fill={`url(#${gradientId})`}
       />
       <path
         d="M44.8838 32.6436C56.4039 32.6437 65.7666 41.7826 65.7666 53.0625V107.582C65.7666 118.862 56.4039 128.001 44.8838 128.001C33.3635 128.001 24 118.862 24 107.582V53.0625C24 41.7825 33.3145 32.6436 44.8838 32.6436Z"
-        fill="url(#gradGlobal)"
+        fill={`url(#${gradientId})`}
       />
       <path
         d="M191.117 86.0654C202.637 86.0656 212 95.2562 212 106.536V121.42C212 125.075 209.01 127.999 205.284 127.999H191.117C179.597 127.999 170.234 118.861 170.233 107.581V106.484C170.233 95.2044 179.597 86.0654 191.117 86.0654Z"
-        fill="url(#gradGlobal)"
+        fill={`url(#${gradientId})`}
       />
     </svg>
   );

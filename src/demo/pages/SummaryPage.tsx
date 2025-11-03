@@ -9,7 +9,7 @@ export const SummaryPage = ({ theme }: { theme: IViewConfig }) => {
   return (
     <Layout background={background}>
       <Layout.Header>
-        <Navbar color={title} title="Summary" align="center" />
+        <Navbar color={title} title="Confirmation" align="center" />
       </Layout.Header>
       <Layout.Content>
         <SummaryInfo />

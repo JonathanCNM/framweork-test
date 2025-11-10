@@ -1317,7 +1317,7 @@ input[type="number"]::-webkit-outer-spin-button {
         }
 
         &.active {
-          background-color: var(--active-item-bg);
+          background: var(--active-item-bg);
           color: var(--active-item-color);
         }
       }

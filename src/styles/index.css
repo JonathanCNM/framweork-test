@@ -1313,7 +1313,7 @@ input[type="number"]::-webkit-outer-spin-button {
         }
 
         &:hover {
-          background-color: rgba(0, 0, 0, 0.05);
+          background-color: #f7f7f7;
         }
 
         &.active {

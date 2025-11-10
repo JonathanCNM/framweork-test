@@ -6,6 +6,7 @@ export interface SelectItem {
 }
 
 export interface SearchSelectProps {
+  searchable?: boolean;
   items: SelectItem[];
   value: string | null;
   onChange: (value: string) => void;
@@ -20,6 +21,7 @@ export interface SearchSelectProps {
 }
 
 export const SearchSelect: React.FC<SearchSelectProps> = ({
+  searchable = true,
   items,
   value,
   onChange,
@@ -123,13 +125,15 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
           className={`search-select-component-container
             ${openUpwards ? "open-top" : "open-bottom"}`}
         >
-          <input
-            autoFocus
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search..."
-            className=""
-          />
+          {searchable && (
+            <input
+              autoFocus
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              className=""
+            />
+          )}
 
           <ul className="search-select-component-container-list">
             {filteredItems.length > 0 ? (

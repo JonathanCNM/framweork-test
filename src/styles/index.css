@@ -1281,7 +1281,7 @@ input[type="number"]::-webkit-outer-spin-button {
     input {
       width: 100%;
       height: 56px;
-      padding: 0 14px;
+      padding: 0 16px;
       font-size: 16px;
       border: none;
       border-bottom: solid 1px #e4e4e4;
@@ -1297,9 +1297,10 @@ input[type="number"]::-webkit-outer-spin-button {
       overflow: auto;
       padding: 0;
       margin: 0;
+      padding-block: 8px;
 
       .search-select-component-container-list-item {
-        padding-inline: 12px;
+        padding-inline: 16px;
         padding-block: 8px;
         font-size: 14px;
         cursor: pointer;
@@ -1312,7 +1313,7 @@ input[type="number"]::-webkit-outer-spin-button {
         }
 
         &:hover {
-          background-color: rgba(0, 0, 0, 0.2);
+          background-color: rgba(0, 0, 0, 0.05);
         }
 
         &.active {

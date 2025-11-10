@@ -18,6 +18,8 @@ export interface SearchSelectProps {
   activeColor?: string;
   errorColor?: string;
   background?: string;
+  activeBackground?: string;
+  activeBackgroundText?: string;
 }
 
 export const SearchSelect: React.FC<SearchSelectProps> = ({
@@ -33,6 +35,8 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
   errorColor = "#fd2a35",
   emptyMessage = "No results found",
   background = "#fff",
+  activeBackground = "#000",
+  activeBackgroundText = "#fff",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -85,6 +89,8 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
       ? color
       : inactiveColor,
     "--bg": background,
+    "--active-item-bg": activeBackground,
+    "--active-item-color": activeBackgroundText,
   };
 
   return (

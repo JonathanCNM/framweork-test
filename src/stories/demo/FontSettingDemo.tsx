@@ -79,7 +79,7 @@ const formFontInitialState: IFormFont = {
     fontWeight: "600",
     min: "1.15rem",
     max: "1.25rem",
-    lineHeight: "1.25rem",
+    lineHeight: "2rem",
   },
   step: {
     fontWeight: "600",
@@ -191,6 +191,7 @@ export const FontSettingDemo = () => {
     useState("dark");
   const { downloadThemeTxt } = useTheme(formFont);
   const { fontStyle, onChangeFont } = useFonts(inputFont);
+  const [copied, setCopied] = useState(false);
 
   const onChangeIput = (event?: React.ChangeEvent<HTMLInputElement>) => {
     if (!event?.currentTarget) {
@@ -339,6 +340,30 @@ export const FontSettingDemo = () => {
       }
     }, 500);
   };
+
+  const onCopyTheme = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        JSON.stringify({
+          font: {
+            ...formFont,
+            fontfamily: inputFont.name,
+            fontcdn: inputFont.cdn,
+          },
+          colors: {
+            ...formColors,
+            gradient,
+            lightness: themeLightnessPreferences,
+          },
+        })
+      );
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Error al momento de copiar el theme", err);
+    }
+  };
+
   const colors = getSplittedColors(gradient);
   const themeLightnessPreferencesItems: SelectItem[] = [
     { label: "light", code: "light" },
@@ -495,6 +520,15 @@ export const FontSettingDemo = () => {
                 onClick={onDownloadTheme}
               >
                 Descargar
+              </Button>
+              <Button
+                size="small"
+                variant={copied ? "default" : "outline"}
+                color={copied ? "#fff" : gradient}
+                background={gradient}
+                onClick={onCopyTheme}
+              >
+                {copied ? "Tema copiado" : "Copiar tema"}
               </Button>
             </section>
           </Layout.Footer>

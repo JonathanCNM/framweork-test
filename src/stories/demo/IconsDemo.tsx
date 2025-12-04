@@ -19,6 +19,10 @@ import {
   HomeAddressIcon,
   WhatsAppIcon,
   UploadIcon,
+  CreditCardIcon,
+  DebitCardIcon,
+  BankIcon,
+  CashIcon
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -100,6 +104,22 @@ const iconList = [
   {
     label: "UploadIcon",
     Icon: UploadIcon,
+  },
+  {
+    label: "CreditCardIcon",
+    Icon: CreditCardIcon,
+  },
+  {
+    label: "DebitCardIcon",
+    Icon: DebitCardIcon,
+  },
+  {
+    label: "BankIcon",
+    Icon: BankIcon,
+  },
+  {
+    label: "CashIcon",
+    Icon: CashIcon,
   },
 ];
 

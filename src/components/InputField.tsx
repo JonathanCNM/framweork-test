@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LabelInput } from "./LabelInput";
 import { getSplittedColors } from "../utils/utils";
+import { GradientText } from "./GradientText";
 
 export interface InputFieldProps {
   label?: string;
@@ -21,6 +22,7 @@ export interface InputFieldProps {
   labelBackground?: string;
   placeholder?: string;
   icon?: React.ReactNode;
+  currency?: string;
   setIconColors?: (colors?: [string, string]) => void;
 }
 
@@ -44,6 +46,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   placeholder = "",
   setIconColors = () => ["#000", "#000"],
   icon,
+  currency,
 }) => {
   const [focused, setFocused] = useState(false);
   const [inputValue, setInputValue] = useState(value || "");
@@ -54,6 +57,7 @@ export const InputField: React.FC<InputFieldProps> = ({
     "lola-input-field",
     "secondary-cta",
     `lola-input-${icon ? "icon" : "default"}`,
+    currency && "lola-input-currency",
   ]
     .filter(Boolean)
     .join(" ");
@@ -132,6 +136,15 @@ export const InputField: React.FC<InputFieldProps> = ({
           </>
         )}
       </section>
+      {currency && (
+        <GradientText
+          as="span"
+          textColor={labelColors}
+          className="input-currency"
+        >
+          {currency}
+        </GradientText>
+      )}
       {icon && icon}
     </div>
   );

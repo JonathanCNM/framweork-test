@@ -18,4 +18,8 @@ export {
   HomeAddressIcon,
   WhatsAppIcon,
   UploadIcon,
+  CreditCardIcon,
+  DebitCardIcon,
+  BankIcon,
+  CashIcon
 } from "./icons";

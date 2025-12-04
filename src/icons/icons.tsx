@@ -880,3 +880,218 @@ export const UploadIcon: React.FC<
     </svg>
   );
 };
+
+export const CreditCardIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={(size * 13) / 17}
+      viewBox="0 0 17 13"
+      fill="none"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="17"
+          y2="13"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+
+      <path
+        d="M14.625 6.75C14.625 6.43934 14.3732 6.1875 14.0625 6.1875H9.5625C9.25184 6.1875 9 6.43934 9 6.75C9 7.06066 9.25184 7.3125 9.5625 7.3125H14.0625C14.3732 7.3125 14.625 7.06066 14.625 6.75Z"
+        fill={`url(#${gradientId})`}
+      />
+      <path
+        d="M14.0625 8.4375C14.3732 8.4375 14.625 8.68934 14.625 9C14.625 9.31066 14.3732 9.5625 14.0625 9.5625H10.6875C10.3768 9.5625 10.125 9.31066 10.125 9C10.125 8.68934 10.3768 8.4375 10.6875 8.4375H14.0625Z"
+        fill={`url(#${gradientId})`}
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M15.4688 0C16.2454 0 16.875 0.629599 16.875 1.40625V10.9688C16.875 11.7454 16.2454 12.375 15.4688 12.375H1.40625C0.629599 12.375 0 11.7454 0 10.9688V1.40625C0 0.6296 0.629599 0 1.40625 0H15.4688ZM1.125 2.8125V1.40625C1.125 1.25092 1.25092 1.125 1.40625 1.125H15.4688C15.6241 1.125 15.75 1.25092 15.75 1.40625V2.8125H1.125ZM15.75 3.9375H1.125V10.9688C1.125 11.1241 1.25092 11.25 1.40625 11.25H15.4688C15.6241 11.25 15.75 11.1241 15.75 10.9688V3.9375Z"
+        fill={`url(#${gradientId})`}
+      />
+    </svg>
+  );
+};
+
+export const DebitCardIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={(size * 13) / 18}
+      viewBox="0 0 18 13"
+      fill="none"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="18"
+          y2="13"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+
+      <path
+        d="M2.375 6.75C2.375 6.43934 2.64083 6.1875 2.96875 6.1875H7.71875C8.04667 6.1875 8.3125 6.43934 8.3125 6.75C8.3125 7.06066 8.04667 7.3125 7.71875 7.3125H2.96875C2.64083 7.3125 2.375 7.06066 2.375 6.75Z"
+        fill={`url(#${gradientId})`}
+      />
+      <path
+        d="M2.96875 8.4375C2.64083 8.4375 2.375 8.68934 2.375 9C2.375 9.31066 2.64083 9.5625 2.96875 9.5625H6.53125C6.85917 9.5625 7.125 9.31066 7.125 9C7.125 8.68934 6.85917 8.4375 6.53125 8.4375H2.96875Z"
+        fill={`url(#${gradientId})`}
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.48438 0C0.664578 0 0 0.629599 0 1.40625V10.9688C0 11.7454 0.664577 12.375 1.48437 12.375H16.3281C17.1479 12.375 17.8125 11.7454 17.8125 10.9688V1.40625C17.8125 0.6296 17.1479 0 16.3281 0H1.48438ZM16.625 2.8125V1.40625C16.625 1.25092 16.4921 1.125 16.3281 1.125H1.48438C1.32042 1.125 1.1875 1.25092 1.1875 1.40625V2.8125H16.625ZM1.1875 3.9375H16.625V10.9688C16.625 11.1241 16.4921 11.25 16.3281 11.25H1.48437C1.32042 11.25 1.1875 11.1241 1.1875 10.9688V3.9375Z"
+        fill={`url(#${gradientId})`}
+      />
+    </svg>
+  );
+};
+
+export const BankIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={(size * 15) / 17}
+      viewBox="0 0 17 15"
+      fill="none"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="17"
+          y2="0"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+
+      <path
+        d="M16.1299 5H0L5.66699 0H10.4629L16.1299 5ZM3.05176 3.84668H13.0771L10.0264 1.1543H6.10352L3.05176 3.84668Z"
+        fill={`url(#${gradientId})`}
+        stroke={`url(#${gradientId})`}
+      />
+      <path
+        d="M14.0254 15H2.10156V13.8457H14.0254V15Z"
+        fill={`url(#${gradientId})`}
+        stroke={`url(#${gradientId})`}
+      />
+      <path
+        d="M8.64258 6.15625V12.6953H7.48828V6.15625H8.64258Z"
+        fill={`url(#${gradientId})`}
+        stroke={`url(#${gradientId})`}
+      />
+      <path
+        d="M11.7168 12.6953H10.5625V6.15625H11.7168V12.6953Z"
+        fill={`url(#${gradientId})`}
+        stroke={`url(#${gradientId})`}
+      />
+      <path
+        d="M5.56445 6.15625V12.6953H4.41016V6.15625H5.56445Z"
+        fill={`url(#${gradientId})`}
+        stroke={`url(#${gradientId})`}
+      />
+    </svg>
+  );
+};
+
+export const CashIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={(size * 13) / 18} // mantiene proporción original
+      viewBox="0 0 18 13"
+      fill="none"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="18"
+          y2="0"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.48438 0C0.664577 0 0 0.629599 0 1.40625V10.9688C0 11.7454 0.664576 12.375 1.48437 12.375H16.3281C17.1479 12.375 17.8125 11.7454 17.8125 10.9688V1.40625C17.8125 0.6296 17.1479 0 16.3281 0H1.48438ZM16.625 3.9375V1.40625C16.625 1.25092 16.4921 1.125 16.3281 1.125H1.48438C1.32042 1.125 1.1875 1.25092 1.1875 1.40625V3.9375H16.625ZM1.1875 3.9375H16.625V10.9688C16.625 11.1241 16.4921 11.25 16.3281 11.25H1.48437C1.32042 11.25 1.1875 11.1241 1.1875 10.9688V3.9375Z"
+        fill={`url(#${gradientId})`}
+      />
+      <path
+        d="M9 3V10"
+        stroke={`url(#${gradientId})`}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.6667 4H8.16667C7.85725 4 7.5605 4.1317 7.34171 4.36612C7.12292 4.60054 7 4.91848 7 5.25C7 5.58152 7.12292 5.89946 7.34171 6.13388C7.5605 6.3683 7.85725 6.5 8.16667 6.5H9.83333C10.1428 6.5 10.4395 6.6317 10.6583 6.86612C10.8771 7.10054 11 7.41848 11 7.75C11 8.08152 10.8771 8.39946 10.6583 8.63388C10.4395 8.8683 10.1428 9 9.83333 9H7"
+        stroke={`url(#${gradientId})`}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

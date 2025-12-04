@@ -20,3 +20,20 @@ export const generateGradient = (
   if (!secondaryGradientPoint) secondaryGradientPoint = "100%";
   return `linear-gradient(${gradientDeg}, ${colors[0]} ${primaryGradientPoint}, ${colors[1]} ${secondaryGradientPoint})`;
 };
+
+export type amountFormatterProps = (
+  amount: number,
+  numberFormatOptions?: {
+    country?: string;
+    currency?: string;
+    minimumFractionDigits?: number;
+    maximumFractionDigits?: number;
+  }
+) => string;
+
+export const formatNumber = (value: number, currency: string) =>
+  new Intl.NumberFormat("en", {
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);

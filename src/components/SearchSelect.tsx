@@ -127,6 +127,9 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
         >
           {selectedItem ? selectedItem.label : placeholder}
         </LabelInput>
+
+        {selectedItem && <span>{selectedItem.label}</span>}
+
         <svg
           className={`${isOpen ? "active" : ""}`}
           fill="none"

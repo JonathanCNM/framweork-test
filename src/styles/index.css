@@ -1309,7 +1309,6 @@ input[type="number"]::-webkit-outer-spin-button {
       background: #fff;
       z-index: 60;
       background-color: transparent;
-      border-color: transparent;
       box-sizing: border-box;
 
       &.open-top {

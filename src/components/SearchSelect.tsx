@@ -125,7 +125,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
           background={background}
           labelStyle={labelStyle}
         >
-          {selectedItem ? selectedItem.label : placeholder}
+          {placeholder}
         </LabelInput>
 
         {selectedItem && <span>{selectedItem.label}</span>}

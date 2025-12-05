@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { LabelInput } from "./LabelInput";
 
 export interface SelectItem {
   label: string;
@@ -20,6 +21,7 @@ export interface SearchSelectProps {
   background?: string;
   activeBackground?: string;
   activeBackgroundText?: string;
+  labelStyle?: React.CSSProperties;
 }
 
 export const SearchSelect: React.FC<SearchSelectProps> = ({
@@ -37,6 +39,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
   background = "#fff",
   activeBackground = "#000",
   activeBackgroundText = "#fff",
+  labelStyle = {},
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -93,6 +96,14 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
     "--active-item-color": activeBackgroundText,
   };
 
+  const labelColors = !isValid
+    ? errorColor
+    : isOpen
+    ? activeColor
+    : showLabel
+    ? color
+    : inactiveColor;
+
   return (
     <section
       className="search-select-component"
@@ -108,9 +119,14 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
         onClick={() => setIsOpen((prev) => !prev)}
         className="search-select-component-preview"
       >
-        <span className="text-gray-700">
+        <LabelInput
+          isActive={!!showLabel}
+          color={labelColors}
+          background={background}
+          labelStyle={labelStyle}
+        >
           {selectedItem ? selectedItem.label : placeholder}
-        </span>
+        </LabelInput>
         <svg
           className={`${isOpen ? "active" : ""}`}
           fill="none"

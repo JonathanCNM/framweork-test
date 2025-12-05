@@ -1264,9 +1264,13 @@ input[type="number"]::-webkit-outer-spin-button {
       height: 16px;
       color: #979797;
       transition: transform 0.25s ease-in-out;
+      position: absolute;
+      right: 14px;
+      top: calc(50% - 16px);
+      transform: translateY(50%) rotate(0);
 
       &.active {
-        transform: rotate(180deg);
+        transform: rotate(180deg) translateY(-50%);
       }
     }
   }

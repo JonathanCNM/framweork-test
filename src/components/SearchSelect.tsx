@@ -144,7 +144,6 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
 
       {isOpen && (
         <section className="search-select-component-wrapper">
-          <span className="search-select-component-container-border" />
           <section
             className={`search-select-component-container
             ${openUpwards ? "open-top" : "open-bottom"}`}

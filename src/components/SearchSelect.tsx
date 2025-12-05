@@ -143,39 +143,42 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
       </section>
 
       {isOpen && (
-        <section
-          className={`search-select-component-container
+        <section className="search-select-component-wrapper">
+          <span className="search-select-component-container-border" />
+          <section
+            className={`search-select-component-container
             ${openUpwards ? "open-top" : "open-bottom"}`}
-        >
-          {searchable && (
-            <input
-              autoFocus
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search..."
-              className=""
-            />
-          )}
-
-          <ul className="search-select-component-container-list">
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item) => (
-                <li
-                  key={item.code}
-                  onClick={() => handleSelect(item.code)}
-                  className={`search-select-component-container-list-item ${
-                    value === item.code ? "active" : ""
-                  }`}
-                >
-                  {item.label}
-                </li>
-              ))
-            ) : (
-              <li className="search-select-component-container-list-empty-item">
-                {emptyMessage}
-              </li>
+          >
+            {searchable && (
+              <input
+                autoFocus
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search..."
+                className=""
+              />
             )}
-          </ul>
+
+            <ul className="search-select-component-container-list">
+              {filteredItems.length > 0 ? (
+                filteredItems.map((item) => (
+                  <li
+                    key={item.code}
+                    onClick={() => handleSelect(item.code)}
+                    className={`search-select-component-container-list-item ${
+                      value === item.code ? "active" : ""
+                    }`}
+                  >
+                    {item.label}
+                  </li>
+                ))
+              ) : (
+                <li className="search-select-component-container-list-empty-item">
+                  {emptyMessage}
+                </li>
+              )}
+            </ul>
+          </section>
         </section>
       )}
     </section>

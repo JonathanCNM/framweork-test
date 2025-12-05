@@ -1275,24 +1275,15 @@ input[type="number"]::-webkit-outer-spin-button {
     }
   }
 
-  .search-select-component-container {
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    margin-top: 4px;
-    border: solid 1px #e4e4e4;
+  .search-select-component-wrapper {
+    position: relative;
     border-radius: 10px;
-    max-height: 200px;
-    overflow: auto;
-    background: #fff;
-    z-index: 60;
-    background-color: transparent;
-    border-color: transparent;
+    margin-top: 4px;
 
-    &::before {
+    .search-select-component-container-border {
       content: "";
       width: 100%;
-      height: 100%;
+      height: 202px;
       position: absolute;
       inset: 0;
       padding: 1px;
@@ -1302,75 +1293,91 @@ input[type="number"]::-webkit-outer-spin-button {
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      z-index: 1;
+      z-index: 2;
       pointer-events: none;
-      box-sizing: border-box;
     }
 
-    &.open-top {
-      bottom: 100%;
-      margin-top: 0;
-      margin-bottom: 4px;
-    }
-
-    &.open-bottom {
-      top: 100%;
-      margin-bottom: 0;
+    .search-select-component-container {
+      position: absolute;
+      z-index: 10;
+      width: 100%;
       margin-top: 4px;
-    }
-
-    input {
-      width: 100%;
-      height: 56px;
-      padding: 0 16px;
-      font-size: 16px;
-      border: none;
-      border-bottom: solid 1px #e4e4e4;
-      outline: none;
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      border-radius: 10px 10px 0 0;
-    }
-
-    .search-select-component-container-list {
-      width: 100%;
+      border: solid 1px #e4e4e4;
+      border-radius: 10px;
+      max-height: 200px;
       overflow: auto;
-      padding: 0;
-      margin: 0;
-      padding-block: 8px;
+      background: #fff;
+      z-index: 60;
+      background-color: transparent;
+      border-color: transparent;
+      box-sizing: border-box;
 
-      .search-select-component-container-list-item {
-        padding-inline: 16px;
-        padding-block: 8px;
-        font-size: 14px;
-        cursor: pointer;
-        border-bottom: solid 1px #e4e4e4;
-        list-style: none;
-        background: var(--bg);
-
-        &:nth-last-child(1) {
-          border: none;
-        }
-
-        &:hover {
-          background-color: #f7f7f7;
-        }
-
-        &.active {
-          background: var(--active-item-bg);
-          color: var(--active-item-color);
-        }
+      &.open-top {
+        bottom: 100%;
+        margin-top: 0;
+        margin-bottom: 4px;
       }
-      .search-select-component-container-list-empty-item {
-        padding: 0 14px;
-        font-size: 16px;
-        pointer-events: none;
-        color: #000;
+
+      &.open-bottom {
+        top: 100%;
+        margin-bottom: 0;
+        margin-top: 4px;
+      }
+
+      input {
+        box-sizing: border-box;
+        width: 100%;
         height: 56px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 0 16px;
+        font-size: 16px;
+        border: none;
+        border-bottom: solid 1px #e4e4e4;
+        outline: none;
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        border-radius: 10px 10px 0 0;
+      }
+
+      .search-select-component-container-list {
+        width: 100%;
+        overflow: auto;
+        padding: 0;
+        margin: 0;
+        padding-block: 8px;
+
+        .search-select-component-container-list-item {
+          padding-inline: 16px;
+          padding-block: 8px;
+          font-size: 14px;
+          cursor: pointer;
+          border-bottom: solid 1px #e4e4e4;
+          list-style: none;
+          background: var(--bg);
+
+          &:nth-last-child(1) {
+            border: none;
+          }
+
+          &:hover {
+            background-color: #f7f7f7;
+          }
+
+          &.active {
+            background: var(--active-item-bg);
+            color: var(--active-item-color);
+          }
+        }
+        .search-select-component-container-list-empty-item {
+          padding: 0 14px;
+          font-size: 16px;
+          pointer-events: none;
+          color: #000;
+          height: 56px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }

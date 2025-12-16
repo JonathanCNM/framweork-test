@@ -22,7 +22,10 @@ import {
   CreditCardIcon,
   DebitCardIcon,
   BankIcon,
-  CashIcon
+  CashIcon,
+  ErrorUserIcon,
+  RoundedCheckIcon,
+  UserInfokIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -120,6 +123,18 @@ const iconList = [
   {
     label: "CashIcon",
     Icon: CashIcon,
+  },
+  {
+    label: "ErrorUserIcon",
+    Icon: ErrorUserIcon,
+  },
+  {
+    label: "RoundedCheckIcon",
+    Icon: RoundedCheckIcon,
+  },
+  {
+    label: "UserInfokIcon",
+    Icon: UserInfokIcon,
   },
 ];
 

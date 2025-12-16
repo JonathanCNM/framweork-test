@@ -1344,6 +1344,7 @@ input[type="number"]::-webkit-outer-spin-button {
         padding: 0;
         margin: 0;
         padding-block: 8px;
+        background: var(--bg);
 
         .search-select-component-container-list-item {
           padding-inline: 16px;

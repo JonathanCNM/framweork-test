@@ -21,5 +21,8 @@ export {
   CreditCardIcon,
   DebitCardIcon,
   BankIcon,
-  CashIcon
+  CashIcon,
+  ErrorUserIcon,
+  RoundedCheckIcon,
+  UserInfokIcon
 } from "./icons";

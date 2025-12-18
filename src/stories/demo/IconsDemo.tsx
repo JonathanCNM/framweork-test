@@ -25,7 +25,8 @@ import {
   CashIcon,
   ErrorUserIcon,
   RoundedCheckIcon,
-  UserInfokIcon,
+  UserInfoIcon,
+  EditIcon
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -133,8 +134,12 @@ const iconList = [
     Icon: RoundedCheckIcon,
   },
   {
-    label: "UserInfokIcon",
-    Icon: UserInfokIcon,
+    label: "UserInfoIcon",
+    Icon: UserInfoIcon,
+  },
+  {
+    label: "EditIcon",
+    Icon: EditIcon,
   },
 ];
 

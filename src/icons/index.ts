@@ -24,5 +24,6 @@ export {
   CashIcon,
   ErrorUserIcon,
   RoundedCheckIcon,
-  UserInfokIcon
+  UserInfoIcon,
+  EditIcon
 } from "./icons";

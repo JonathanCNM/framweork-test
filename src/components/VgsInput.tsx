@@ -8,6 +8,11 @@ import { LabelInput } from "./LabelInput";
 import { useKeyboardVisible } from "../hooks";
 import { ErrorIcon } from "../icons";
 
+export interface IVGSCardInfo {
+  bin: string;
+  cardType: string;
+  last4: string;
+}
 export interface VgsInputProps {
   type: "card_holder_name" | "card_number" | "card_exp_date" | "card_cvc";
   placeholder: string;
@@ -20,6 +25,7 @@ export interface VgsInputProps {
   inactiveColor?: string;
   activeColor?: string;
   errorColor?: string;
+  onGetCardInfo?: (cardInfo: IVGSCardInfo) => void;
 }
 
 const {
@@ -41,6 +47,7 @@ export const VgsInput: React.FC<VgsInputProps> = ({
   activeColor = "#000",
   errorColor = "#fd2a35",
   setErrorLabel = () => {},
+  onGetCardInfo = () => {},
 }) => {
   const [isFocus, setIsFocus] = useState(autoFocus);
   const [isValid, setIsValid] = useState(true);
@@ -75,7 +82,11 @@ export const VgsInput: React.FC<VgsInputProps> = ({
     : inactiveColor;
 
   const onUpdate = (state: VGSCollectStateParams) => {
-    const { isValid, isFocused, isEmpty } = state;
+    const { isValid, isFocused, isEmpty, name } = state;
+    if (name === "card_number") {
+      const { bin = "", cardType = "", last4 = "" } = state;
+      onGetCardInfo({ bin, cardType, last4 });
+    }
     if (isValid || isFocused) setErrorLabel("");
     setIsFocus(isFocused);
     setIsValid(isValid);

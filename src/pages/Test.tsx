@@ -7,7 +7,7 @@ import {
   VgsFormWrapper,
   VgsInput,
 } from "../components";
-import { useKeyboardVisible } from "../hooks";
+import type { IVGSCardInfo } from "../components/VgsInput";
 
 const vgsVaultId = "tntegvj3mmf";
 const vgsEnvironment = "sandbox";
@@ -31,8 +31,6 @@ const Test = () => {
     card_exp_date: "",
     card_cvc: "",
   });
-
-  const { isKeyboardOpen } = useKeyboardVisible();
 
   const handleFormSubmitSuccess = (status: unknown, data: unknown) => {
     setIsLoading(true);
@@ -59,6 +57,10 @@ const Test = () => {
       messages[errorField as keyof IVGSFields] = message.join(",\n");
     });
     setErrorMessage(messages);
+  };
+
+  const getDataInfo = (dataInfo: IVGSCardInfo) => {
+    console.log("dataInfo", dataInfo);
   };
 
   return (
@@ -96,6 +98,7 @@ const Test = () => {
                 cardNumberFormPlaceholder="XXXX XXXX XXXX XXXX"
                 color={gradient}
                 errorLabel={errorMessage.card_number}
+                onGetCardInfo={getDataInfo}
               />
               <article
                 className="double-input"
@@ -125,7 +128,6 @@ const Test = () => {
                   flexDirection: "column",
                 }}
               >
-                {!isKeyboardOpen && <p>Hellooooooo</p>}
                 <Button type="submit" loading={isLoading}>
                   Submit
                 </Button>

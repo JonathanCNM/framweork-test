@@ -11,7 +11,7 @@ export interface SearchSelectProps {
   searchable?: boolean;
   items: SelectItem[];
   value: string | null;
-  onChange: (value: unknown) => void;
+  onChange: <T>(value: T) => void;
   placeholder?: string;
   emptyMessage?: string;
   color?: string;

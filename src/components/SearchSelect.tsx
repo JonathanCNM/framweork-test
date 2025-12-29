@@ -4,13 +4,14 @@ import { LabelInput } from "./LabelInput";
 export interface SelectItem {
   label: string;
   code: string;
+  [key: string]: unknown;
 }
 
 export interface SearchSelectProps {
   searchable?: boolean;
   items: SelectItem[];
   value: string | null;
-  onChange: (value: string) => void;
+  onChange: (value: unknown) => void;
   placeholder?: string;
   emptyMessage?: string;
   color?: string;
@@ -74,7 +75,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
     }
   }, [isOpen]);
 
-  const handleSelect = (selectedValue: string) => {
+  const handleSelect = (selectedValue: unknown) => {
     onChange(selectedValue);
     setIsOpen(false);
     setSearch("");
@@ -166,7 +167,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
                 filteredItems.map((item) => (
                   <li
                     key={item.code}
-                    onClick={() => handleSelect(item.code)}
+                    onClick={() => handleSelect(item)}
                     className={`search-select-component-container-list-item ${
                       value === item.code ? "active" : ""
                     }`}

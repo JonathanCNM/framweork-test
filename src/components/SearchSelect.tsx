@@ -75,7 +75,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
     }
   }, [isOpen]);
 
-  const handleSelect = (selectedValue: unknown) => {
+  const handleSelect = <T,>(selectedValue: T) => {
     onChange(selectedValue);
     setIsOpen(false);
     setSearch("");

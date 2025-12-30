@@ -26,7 +26,9 @@ import {
   ErrorUserIcon,
   RoundedCheckIcon,
   UserInfoIcon,
-  EditIcon
+  EditIcon,
+  HeartIcon,
+  HeartOutlineIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -140,6 +142,14 @@ const iconList = [
   {
     label: "EditIcon",
     Icon: EditIcon,
+  },
+  {
+    label: "HeartIcon",
+    Icon: HeartIcon,
+  },
+  {
+    label: "HeartOutlineIcon",
+    Icon: HeartOutlineIcon,
   },
 ];
 

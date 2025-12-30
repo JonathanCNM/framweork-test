@@ -25,5 +25,7 @@ export {
   ErrorUserIcon,
   RoundedCheckIcon,
   UserInfoIcon,
-  EditIcon
+  EditIcon,
+  HeartIcon,
+  HeartOutlineIcon,
 } from "./icons";

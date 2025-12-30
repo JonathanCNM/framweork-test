@@ -1291,3 +1291,86 @@ export const EditIcon: React.FC<
     </svg>
   );
 };
+
+export const HeartOutlineIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="24"
+          y2="0"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+
+      <path
+        d="M12 21C12 21 4 16.2727 4 9.81818C4 6.96364 6.18182 5 8.72727 5C10.2909 5 11.6909 5.81818 12 6.90909C12.3091 5.81818 13.7091 5 15.2727 5C17.8182 5 20 6.96364 20 9.81818C20 16.2727 12 21 12 21Z"
+        stroke={`url(#${gradientId})`}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const HeartIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="24"
+          y2="0"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+
+      <path
+        d="M12 21C12 21 4 16.2727 4 9.81818C4 6.96364 6.18182 5 8.72727 5C10.2909 5 11.6909 5.81818 12 6.90909C12.3091 5.81818 13.7091 5 15.2727 5C17.8182 5 20 6.96364 20 9.81818C20 16.2727 12 21 12 21Z"
+        fill={`url(#${gradientId})`}
+      />
+    </svg>
+  );
+};

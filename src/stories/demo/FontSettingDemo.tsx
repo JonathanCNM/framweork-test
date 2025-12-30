@@ -371,9 +371,9 @@ export const FontSettingDemo = () => {
   ];
 
   const onSelectThemeLightnessPreferencesItems = (
-    themeLightnessPreferencesSelected: string
+    themeLightnessPreferencesSelected: unknown
   ) => {
-    setThemeLightnessPreferences(themeLightnessPreferencesSelected);
+    setThemeLightnessPreferences(themeLightnessPreferencesSelected as string);
   };
 
   return (

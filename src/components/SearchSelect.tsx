@@ -11,7 +11,7 @@ export interface SearchSelectProps {
   searchable?: boolean;
   items: SelectItem[];
   value: string | null;
-  onChange: <T>(value: T) => void;
+  onChange: (value: unknown) => void;
   placeholder?: string;
   emptyMessage?: string;
   color?: string;
@@ -75,7 +75,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
     }
   }, [isOpen]);
 
-  const handleSelect = <T,>(selectedValue: T) => {
+  const handleSelect = (selectedValue: unknown) => {
     onChange(selectedValue);
     setIsOpen(false);
     setSearch("");

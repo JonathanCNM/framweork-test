@@ -5,13 +5,13 @@ import { ErrorIcon } from "../icons";
 export interface ISelectItem {
   label: string;
   code: string;
+  [key: string]: unknown;
 }
 export interface SelectProps {
-  items: ISelectItem[] | [];
-  onClick: (code: string, index: number) => void;
+  items: ISelectItem[];
+  onChange: (value: unknown) => void;
   selectedItem: string;
-  top: number;
-  search?: boolean;
+  searchable?: boolean;
   placeholder?: string;
   emptyItemsMessage?: string;
   selectedColor?: string;
@@ -19,11 +19,10 @@ export interface SelectProps {
 }
 
 export const Select: React.FC<SelectProps> = ({
-  top,
   items = [],
   selectedItem,
-  onClick,
-  search = false,
+  onChange,
+  searchable = false,
   placeholder,
   emptyItemsMessage,
   selectedColor = "#fff",
@@ -56,7 +55,7 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <section className="select-component">
-      {search && (
+      {searchable && (
         <InputField
           type="text"
           value={inputValue}
@@ -77,27 +76,20 @@ export const Select: React.FC<SelectProps> = ({
         }
       >
         <section className="select-wrapper">
-          {itemsFiltered.map(({ label, code }, index) => (
+          {itemsFiltered.map((item, index) => (
             <section
-              key={code}
+              key={`${item.code}-${index}`}
               className={`select-item ${
-                code.toLocaleLowerCase() === selectedItem.toLocaleLowerCase()
+                item.code.toLocaleLowerCase() ===
+                selectedItem.toLocaleLowerCase()
                   ? "active"
                   : ""
               }`}
-              onClick={() => onClick(code, index)}
+              onClick={() => onChange(item)}
             >
-              {label}
+              {item.label}
             </section>
           ))}
-          <span
-            style={
-              { "--top": top } as React.CSSProperties & {
-                [key: string]: number;
-              }
-            }
-            className="select-selector"
-          />
           {!itemsFiltered.length && (
             <section className="select-item empty-item">
               <ErrorIcon size={16} />

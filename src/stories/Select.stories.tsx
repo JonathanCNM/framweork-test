@@ -21,8 +21,7 @@ type Story = StoryObj<typeof Select>;
 export const Default: Story = {
   args: {
     items,
-    top: -1,
-    onClick: () => {},
+    onChange: () => {},
     selectedItem: "",
   },
 };
@@ -30,10 +29,9 @@ export const Default: Story = {
 export const SelectGradient: Story = {
   render: (_, context) => (
     <Select
-      search
+      searchable
       items={items}
-      top={-1}
-      onClick={() => {}}
+      onChange={() => {}}
       selectedBackground={context.globals.gradient}
       selectedItem={""}
       emptyItemsMessage={"No hay coincidencias"}

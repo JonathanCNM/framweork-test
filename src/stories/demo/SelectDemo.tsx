@@ -12,22 +12,18 @@ const items = [
 export const SelectDemo = () => {
   const [selectedItem, setSelectedItem] = useState("");
   const [selectedSearchItem, setSelectedSearchItem] = useState("");
-  const [top, setTop] = useState(-1);
-  const [topSearch, setTopSearch] = useState(-1);
 
-  const onSelectItem = (itemSelected: string, index: number) => {
+  const onSelectItem = (itemSelected: unknown) => {
     const item = items.find((item) => item.code === itemSelected);
     if (item) {
       setSelectedItem(item.code);
-      setTop(index);
     }
   };
 
-  const onSelectSearchItem = (itemSelected: string, index: number) => {
+  const onSelectSearchItem = (itemSelected: unknown) => {
     const item = items.find((item) => item.code === itemSelected);
     if (item) {
       setSelectedSearchItem(item.code);
-      setTopSearch(index);
     }
   };
   const emptyItemsMessage = "No se encontraron items...!";
@@ -39,9 +35,8 @@ export const SelectDemo = () => {
         <section>
           <Title title="Select sin search" />
           <Select
-            top={top}
             items={items}
-            onClick={onSelectItem}
+            onChange={onSelectItem}
             selectedItem={selectedItem}
             selectedBackground={gradient}
           />
@@ -49,10 +44,9 @@ export const SelectDemo = () => {
         <section>
           <Title title="Select con search input" />
           <Select
-            search
+            searchable
             items={items}
-            top={topSearch}
-            onClick={onSelectSearchItem}
+            onChange={onSelectSearchItem}
             selectedBackground={gradient}
             selectedItem={selectedSearchItem}
             emptyItemsMessage={emptyItemsMessage}

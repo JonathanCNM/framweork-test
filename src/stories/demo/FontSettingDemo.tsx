@@ -181,7 +181,6 @@ const vercelhost = "https://lola-framweork-ui-demo.vercel.app";
 export const FontSettingDemo = () => {
   const [inputFont, setInputFont] = useState(defaultFont);
   const [selectedFont, setSelectedFont] = useState(registeredFonts[0]);
-  const [fontTop, setFontTop] = useState(0);
   const { gradient, setGradient } = useGradient();
   const [formFont, setFormFont] = useState<IFormFont>(formFontInitialState);
   const [formColors, setFormColors] = useState<IColorForm>(
@@ -218,11 +217,10 @@ export const FontSettingDemo = () => {
     }
   };
 
-  const onSelectFont = (fontSelected: string, index: number) => {
+  const onSelectFont = (fontSelected: unknown) => {
     const font = registeredFonts.find((rFont) => rFont.name === fontSelected);
     if (font) {
       setSelectedFont(font);
-      setFontTop(index);
       onChangeFont(font);
       setInputFont(font);
     }
@@ -404,14 +402,13 @@ export const FontSettingDemo = () => {
               />
 
               <Select
-                top={fontTop}
                 items={registeredFonts.map((font) => ({
                   label: font.name,
                   code: font.name,
                 }))}
                 selectedBackground={gradient}
                 selectedItem={selectedFont.name}
-                onClick={onSelectFont}
+                onChange={onSelectFont}
               />
 
               <section className="font-demo-api">

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { InputField } from "./InputField";
-import { ErrorIcon } from "../icons";
+import { Close, EditIcon, ErrorIcon } from "../icons";
 
 export interface ISelectItem {
   label: string;
@@ -10,23 +10,29 @@ export interface ISelectItem {
 export interface SelectProps {
   items: ISelectItem[];
   onChange: (value: unknown) => void;
+  onUpdate?: (value: unknown) => void;
+  onDelete?: (value: unknown) => void;
   selectedItem: string;
   searchable?: boolean;
   placeholder?: string;
   emptyItemsMessage?: string;
   selectedColor?: string;
   selectedBackground?: string;
+  editable?: boolean;
 }
 
 export const Select: React.FC<SelectProps> = ({
   items = [],
   selectedItem,
   onChange,
+  onUpdate = () => {},
+  onDelete = () => {},
   searchable = false,
   placeholder,
   emptyItemsMessage,
   selectedColor = "#fff",
   selectedBackground = "#000",
+  editable = false,
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [itemsFiltered, setItemsFiltered] = useState<ISelectItem[] | []>(items);
@@ -79,7 +85,7 @@ export const Select: React.FC<SelectProps> = ({
           {itemsFiltered.map((item, index) => (
             <section
               key={`${item.code}-${index}`}
-              className={`select-item ${
+              className={`select-item ${editable ? "edit" : ""} ${
                 item.code.toLocaleLowerCase() ===
                 selectedItem.toLocaleLowerCase()
                   ? "active"
@@ -88,6 +94,20 @@ export const Select: React.FC<SelectProps> = ({
               onClick={() => onChange(item)}
             >
               {item.label}
+              {editable && (
+                <section className="action-btns">
+                  <EditIcon
+                    size={20}
+                    onClick={() => onUpdate(item)}
+                    colors={["#69adff", "#69adff"]}
+                  />
+                  <Close
+                    size={20}
+                    onClick={() => onDelete(item)}
+                    colors={["#fd2a35", "#fd2a35"]}
+                  />
+                </section>
+              )}
             </section>
           ))}
           {!itemsFiltered.length && (

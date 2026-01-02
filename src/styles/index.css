@@ -964,6 +964,7 @@ input[type="number"]::-webkit-outer-spin-button {
     border: solid 1px #979797;
     position: relative;
     border-radius: 20px;
+    margin-top: 32px;
 
     &.long {
       height: 350px;
@@ -1009,6 +1010,19 @@ input[type="number"]::-webkit-outer-spin-button {
 
       &:hover {
         cursor: pointer;
+      }
+
+      &.edit {
+        justify-content: space-between;
+
+        .action-btns {
+          height: 100%;
+          z-index: 2;
+          display: flex;
+          gap: 8px;
+          justify-content: flex-end;
+          align-items: center;
+        }
       }
 
       &.empty-item {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { InputField } from "./InputField";
 import { Close, EditIcon, ErrorIcon } from "../icons";
 
@@ -91,19 +91,28 @@ export const Select: React.FC<SelectProps> = ({
                   ? "active"
                   : ""
               }`}
-              onClick={() => onChange(item)}
+              onClick={(event: MouseEvent<HTMLElement>) => {
+                event.stopPropagation();
+                onChange(item);
+              }}
             >
               {item.label}
               {editable && (
                 <section className="action-btns">
                   <EditIcon
                     size={20}
-                    onClick={() => onUpdate(item)}
+                    onClick={(event: MouseEvent<HTMLOrSVGElement>) => {
+                      event.stopPropagation();
+                      onUpdate(item);
+                    }}
                     colors={["#69adff", "#69adff"]}
                   />
                   <Close
                     size={20}
-                    onClick={() => onDelete(item)}
+                    onClick={(event: MouseEvent<HTMLOrSVGElement>) => {
+                      event.stopPropagation();
+                      onDelete(item);
+                    }}
                     colors={["#fd2a35", "#fd2a35"]}
                   />
                 </section>

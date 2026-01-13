@@ -1,17 +1,28 @@
 import { BodyCopy, Button, Layout, Navbar, VgsInput } from "../../components";
 import { useKeyboardVisible } from "../../hooks";
 import type { IViewConfig } from "../../hooks/useTheme";
-import visaLogo from '../assets/visa_icon.png'
-import mastercardLogo from '../assets/mastercard_icon.png'
+import visaLogo from "../assets/visa_icon.png";
+import mastercardLogo from "../assets/mastercard_icon.png";
 
 export const CardPage = ({ theme }: { theme: IViewConfig }) => {
   const { isKeyboardOpen } = useKeyboardVisible();
 
-  const { background, title, bodyCopy, backgroundBtn, textColorBtn } =
-    theme.whiteView;
+  const {
+    background,
+    title,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+    themeType,
+    dropzoneColors,
+    iconColors,
+  } = theme.whiteView;
+
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
 
   return (
-    <Layout background={background}>
+    <Layout background={background} auraColors={auraColors}>
       <Layout.Header>
         <Navbar color={title} title="Add card" align="center" />
       </Layout.Header>

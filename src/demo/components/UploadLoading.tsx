@@ -31,7 +31,7 @@ export const UploadLoading: React.FC<{
   progressColors,
 }) => {
   return (
-    <Layout.Content className="upload-loading">
+    <Layout.Content className="">
       <div className="upload-loading-container">
         <CircularProgress
           colors={progressColors}

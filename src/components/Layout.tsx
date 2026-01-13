@@ -7,6 +7,7 @@ export interface LayoutProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
   background?: string;
   devMode?: boolean;
+  auraColors?: [string, string];
 }
 
 export interface LayoutContentProps extends React.HTMLProps<HTMLDivElement> {
@@ -70,12 +71,15 @@ const Layout = ({
   className = "",
   background = "#fff",
   devMode = false,
+  auraColors = ["transparent", "transparent"],
   ...props
 }: LayoutProps): ReactElement => {
   const childrenArray = React.Children.toArray(children);
   const { viewportHeight } = useKeyboardVisible();
 
-  const classes = ["lola-layout", className].filter(Boolean).join(" ");
+  const classes = ["lola-layout", "aura-background", className]
+    .filter(Boolean)
+    .join(" ");
 
   const header = childrenArray.find((child) => {
     if (!isValidElement(child)) return false;
@@ -98,6 +102,8 @@ const Layout = ({
           ...props.style,
           height: `${viewportHeight}px`,
           "--bg": background,
+          "--color1": `${auraColors[0]}`,
+          "--color2": `${auraColors[1]}`,
         } as React.CSSProperties & { [key: string]: string }
       }
       className={classes}

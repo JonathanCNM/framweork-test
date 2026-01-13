@@ -50,10 +50,14 @@ export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
     title,
     subtitile,
     footerColor,
+    themeType,
+    dropzoneColors,
   } = theme.specialView;
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
 
   return (
-    <Layout background={background}>
+    <Layout background={background} auraColors={auraColors}>
       <Layout.Content>
         <div className="upload-loading-container">
           <CircularProgress

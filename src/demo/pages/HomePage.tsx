@@ -11,9 +11,13 @@ export const HomePage = ({ theme }: { theme: IViewConfig }) => {
     title,
     subtitile,
     footerColor,
+    dropzoneColors,
+    themeType,
   } = theme.primaryMeshGradientView;
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
   return (
-    <Layout background={background}>
+    <Layout background={background} auraColors={auraColors}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
           <ElevatedCircle background={backgroundIcon}>

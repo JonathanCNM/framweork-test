@@ -4,10 +4,20 @@ import type { IViewConfig } from "../../hooks/useTheme";
 import { SummaryInfo } from "../components/SummaryInfo";
 
 export const SummaryPage = ({ theme }: { theme: IViewConfig }) => {
-  const { background, title, backgroundBtn, textColorBtn } = theme.whiteView;
+  const {
+    background,
+    title,
+    backgroundBtn,
+    textColorBtn,
+    themeType,
+    dropzoneColors,
+    iconColors,
+  } = theme.whiteView;
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
 
   return (
-    <Layout background={background}>
+    <Layout background={background} auraColors={auraColors}>
       <Layout.Header>
         <Navbar color={title} title="Confirmation" align="center" />
       </Layout.Header>

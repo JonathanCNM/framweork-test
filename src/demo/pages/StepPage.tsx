@@ -24,14 +24,17 @@ export const StepPage = ({
     backgroundBtn,
     textColorBtn,
     stepsColors,
+    dropzoneColors,
   } = theme.dataView;
 
   const themeType = isLightTheme ? "light" : "dark";
   const customStepperTrackInactiveBg = isLightTheme ? textColorBtn : undefined;
   const customStepperIndexInactiveBg = isLightTheme ? backgroundBtn : undefined;
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
 
   return (
-    <Layout className="step" background={background}>
+    <Layout className="step" background={background} auraColors={auraColors}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
           <ElevatedCircle background={backgroundIcon}>

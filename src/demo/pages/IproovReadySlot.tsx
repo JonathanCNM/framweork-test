@@ -28,13 +28,18 @@ export const IproovReadySlot = ({
     textColorBtn,
     stepsColors,
     stepsLabelColor,
+    themeType,
+    dropzoneColors,
   } = theme.specialView;
 
   const customStepperTrackInactiveBg = isLightTheme ? textColorBtn : undefined;
   const customStepperIndexInactiveBg = isLightTheme ? backgroundBtn : undefined;
 
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
+
   return (
-    <Layout background={background} className="step">
+    <Layout background={background} className="step" auraColors={auraColors}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
           <ElevatedCircle background={backgroundIcon}>

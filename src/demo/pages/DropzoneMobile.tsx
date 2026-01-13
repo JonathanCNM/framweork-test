@@ -19,11 +19,16 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
     backgroundBtn,
     textColorBtn,
     dropzoneColors,
+    themeType,
   } = theme.dataView;
+
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
 
   return (
     <Layout
       background={background}
+      auraColors={auraColors}
       className={`${isLoading ? "layout-success" : ""}`}
       style={
         {

@@ -250,16 +250,13 @@ button:focus-visible {
   gap: 20px;
   flex-direction: row;
   flex-wrap: nowrap;
+  overflow-x: auto;
 
   .demo-slide {
     width: 500px;
     min-width: 500px;
     border-right: solid 1px #ccc;
-
-    .lola-layout {
-      display: block;
-      position: relative;
-    }
+    overflow: hidden;
   }
 }
 
@@ -301,9 +298,6 @@ button:focus-visible {
   gap: 16px;
 }
 
-
-
-
 .step {
   height: 100%;
 }
@@ -311,21 +305,6 @@ button:focus-visible {
 .stepper-section {
   width: 100%;
   margin-top: 25%;
-}
-
-.layout-success::before {
-  content: "";
-  position: absolute;
-  top: 33%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: var(--bgc);
-  z-index: 0;
-  animation: success 1.5s ease-out forwards;
-  animation-delay: var(--delay);
 }
 
 @keyframes success {
@@ -348,13 +327,12 @@ button:focus-visible {
   gap: 36px;
   max-width: 584px;
   margin: auto;
-  min-height: 100%;
 
   .desktop-dropzone-section {
     font-size: 40px;
     line-height: 40px;
     text-align: center;
-    margin-top: -33%;
+    margin-top: 20%;
     width: 100%;
   }
 
@@ -418,7 +396,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 33%;
+  margin-top: calc(20% + 20px);
 }
 
 .autocomplete-container {

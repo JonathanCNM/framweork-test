@@ -17,11 +17,16 @@ export const AddressPage = ({
     iconColors,
     backgroundBtn,
     textColorBtn,
+    themeType,
+    dropzoneColors,
   } = theme.whiteView;
+
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
 
   const addressTitle = isHomeAddress ? "Home address" : "Billing address";
   return (
-    <Layout background={background}>
+    <Layout background={background} auraColors={auraColors}>
       <Layout.Header>
         <Navbar title={addressTitle} color={title} align="center" />
       </Layout.Header>

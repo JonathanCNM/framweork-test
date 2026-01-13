@@ -17,8 +17,16 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
   theme,
   isLoading = false,
 }) => {
-  const { background, backgroundIcon, title, subtitile, bodyCopy, iconColors } =
-    theme.specialView;
+  const {
+    background,
+    backgroundIcon,
+    title,
+    subtitile,
+    bodyCopy,
+    iconColors,
+    themeType,
+    dropzoneColors,
+  } = theme.specialView;
 
   const variant = isLoading ? "loading" : "full";
   const icon = isLoading ? (
@@ -43,9 +51,13 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
     />
   );
 
+  const isDark = themeType === "dark";
+  const auraColors = isDark ? dropzoneColors : iconColors;
+
   return (
     <Layout
       background={background}
+      auraColors={auraColors}
       className="layout-success"
       style={
         {

@@ -4,6 +4,7 @@ import {
   Layout,
   MotionWrapper,
   Navbar,
+  Page,
   VgsFormWrapper,
   VgsInput,
 } from "../components";
@@ -64,79 +65,83 @@ const Test = () => {
   };
 
   return (
-    <MotionWrapper>
-      <Layout>
-        <Layout.Header>
-          <Navbar title="Hello from VGS Page" />
-        </Layout.Header>
-        <Layout.Content className="vgs">
-          <VgsFormWrapper
-            vaultId={vgsVaultId}
-            environment={vgsEnvironment}
-            routeId={vgsRouteId}
-            action="/post"
-            submitParameters={{}}
-            onSubmitCallback={handleFormSubmitSuccess}
-            onErrorCallback={onHandlerError}
-          >
-            <section
-              style={{
-                display: "flex",
-                gap: "8px",
-                flexDirection: "column",
-              }}
+    <Page>
+      <MotionWrapper>
+        <Layout background="#fff"
+        auraColors={["#4BA84B", "#008433"]}
+        >
+          <Layout.Header>
+            <Navbar title="Hello from VGS Page" />
+          </Layout.Header>
+          <Layout.Content className="vgs">
+            <VgsFormWrapper
+              vaultId={vgsVaultId}
+              environment={vgsEnvironment}
+              routeId={vgsRouteId}
+              action="/post"
+              submitParameters={{}}
+              onSubmitCallback={handleFormSubmitSuccess}
+              onErrorCallback={onHandlerError}
             >
-              <VgsInput
-                type="card_holder_name"
-                placeholder="Propietario"
-                color={gradient}
-                errorLabel={errorMessage.card_holder_name}
-              />
-              <VgsInput
-                type="card_number"
-                placeholder="Número de tarjeta"
-                cardNumberFormPlaceholder="XXXX XXXX XXXX XXXX"
-                color={gradient}
-                errorLabel={errorMessage.card_number}
-                onGetCardInfo={getDataInfo}
-              />
-              <article
-                className="double-input"
-                style={{ display: "flex", gap: "8px", flexBasis: "1 1" }}
-              >
-                <VgsInput
-                  type="card_exp_date"
-                  placeholder="MM / YY"
-                  color={gradient}
-                  errorLabel={errorMessage.card_exp_date}
-                />
-                <VgsInput
-                  type="card_cvc"
-                  placeholder="CVV"
-                  color={gradient}
-                  errorLabel={errorMessage.card_cvc}
-                />
-              </article>
-            </section>
-            <Layout.Footer>
               <section
                 style={{
-                  width: "100%",
                   display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  gap: "8px",
                   flexDirection: "column",
                 }}
               >
-                <Button type="submit" loading={isLoading}>
-                  Submit
-                </Button>
+                <VgsInput
+                  type="card_holder_name"
+                  placeholder="Propietario"
+                  color={gradient}
+                  errorLabel={errorMessage.card_holder_name}
+                />
+                <VgsInput
+                  type="card_number"
+                  placeholder="Número de tarjeta"
+                  cardNumberFormPlaceholder="XXXX XXXX XXXX XXXX"
+                  color={gradient}
+                  errorLabel={errorMessage.card_number}
+                  onGetCardInfo={getDataInfo}
+                />
+                <article
+                  className="double-input"
+                  style={{ display: "flex", gap: "8px", flexBasis: "1 1" }}
+                >
+                  <VgsInput
+                    type="card_exp_date"
+                    placeholder="MM / YY"
+                    color={gradient}
+                    errorLabel={errorMessage.card_exp_date}
+                  />
+                  <VgsInput
+                    type="card_cvc"
+                    placeholder="CVV"
+                    color={gradient}
+                    errorLabel={errorMessage.card_cvc}
+                  />
+                </article>
               </section>
-            </Layout.Footer>
-          </VgsFormWrapper>
-        </Layout.Content>
-      </Layout>
-    </MotionWrapper>
+              <Layout.Footer>
+                <section
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button type="submit" loading={isLoading}>
+                    Submit
+                  </Button>
+                </section>
+              </Layout.Footer>
+            </VgsFormWrapper>
+          </Layout.Content>
+        </Layout>
+      </MotionWrapper>
+    </Page>
   );
 };
 

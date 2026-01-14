@@ -18,12 +18,8 @@ export const useKeyboardVisible = () => {
   );
 
   useEffect(() => {
-    const handleResize = () => {
-      if (!isTextInputFocused()) return;
-
+    const handleResize = () =>
       setViewportHeight(window.visualViewport?.height || window.innerHeight);
-    };
-
     window.visualViewport?.addEventListener("resize", handleResize);
     window.addEventListener("resize", handleResize);
 

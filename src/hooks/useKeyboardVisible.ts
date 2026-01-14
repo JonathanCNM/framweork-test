@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { listenLocalStorage, setLocalStorage } from "./useLocalStorage";
 
+const isTextInputFocused = () => {
+  const el = document.activeElement as HTMLElement | null;
+  if (!el) return false;
+
+  return (
+    el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable
+  );
+};
+
 export const useKeyboardVisible = () => {
   const isKeyboardOpenKey = "isKeyboardOpen";
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
@@ -9,8 +18,12 @@ export const useKeyboardVisible = () => {
   );
 
   useEffect(() => {
-    const handleResize = () =>
+    const handleResize = () => {
+      if (!isTextInputFocused()) return;
+
       setViewportHeight(window.visualViewport?.height || window.innerHeight);
+    };
+
     window.visualViewport?.addEventListener("resize", handleResize);
     window.addEventListener("resize", handleResize);
 
@@ -24,6 +37,7 @@ export const useKeyboardVisible = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     const handleFocus = () => {
+      if (!isTextInputFocused()) return;
       if (isMobile) document.body.style.overflow = "hidden";
       setLocalStorage(isKeyboardOpenKey, JSON.stringify(true));
       setIsKeyboardOpen(true);
@@ -50,8 +64,7 @@ export const useKeyboardVisible = () => {
       setIsKeyboardOpen(localStorage.getItem(isKeyboardOpenKey) === "true")
     );
     return unlisten;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listenLocalStorage]);
+  }, []);
 
   const handlerSetIsKeyboardOpen = (isOpen: boolean) => {
     setLocalStorage(isKeyboardOpenKey, JSON.stringify(isOpen));

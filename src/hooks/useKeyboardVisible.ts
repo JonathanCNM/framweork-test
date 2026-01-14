@@ -4,7 +4,7 @@ import { listenLocalStorage, setLocalStorage } from "./useLocalStorage";
 const isTextInputFocused = () => {
   const el = document.activeElement as HTMLElement | null;
   if (!el) return false;
-  return !(el.tagName === "BUTTON");
+  return el.tagName !== "BUTTON";
 };
 
 export const useKeyboardVisible = () => {

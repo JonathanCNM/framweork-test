@@ -6,7 +6,10 @@ const isTextInputFocused = () => {
   if (!el) return false;
 
   return (
-    el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable
+    el.tagName === "INPUT" ||
+    el.tagName === "TEXTAREA" ||
+    el.tagName === "IFRAME" ||
+    el.isContentEditable
   );
 };
 

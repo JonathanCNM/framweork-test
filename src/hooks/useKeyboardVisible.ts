@@ -1,17 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { listenLocalStorage, setLocalStorage } from "./useLocalStorage";
-
-const isTextInputFocused = () => {
-  const el = document.activeElement as HTMLElement | null;
-  if (!el) return false;
-
-  return (
-    el.tagName === "INPUT" ||
-    el.tagName === "TEXTAREA" ||
-    el.tagName === "IFRAME" ||
-    el.isContentEditable
-  );
-};
 
 export const useKeyboardVisible = () => {
   const isKeyboardOpenKey = "isKeyboardOpen";
@@ -19,6 +7,7 @@ export const useKeyboardVisible = () => {
   const [viewportHeight, setViewportHeight] = useState(
     window.visualViewport?.height || window.innerHeight
   );
+  const keyboardSourceRef = useRef(false);
 
   useEffect(() => {
     const handleResize = () =>
@@ -35,8 +24,19 @@ export const useKeyboardVisible = () => {
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    const handleFocus = () => {
-      if (!isTextInputFocused()) return;
+    const handleFocus = (event: FocusEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+
+      const isKeyboardSource =
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable ||
+        target.tagName === "IFRAME";
+
+      keyboardSourceRef.current = isKeyboardSource;
+      if (!isKeyboardSource) return;
+
       if (isMobile) document.body.style.overflow = "hidden";
       setLocalStorage(isKeyboardOpenKey, JSON.stringify(true));
       setIsKeyboardOpen(true);

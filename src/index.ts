@@ -5,6 +5,7 @@ export * from "./styles";
 export * from "./icons";
 
 // Export components
+export * from "./components/AuraLayout";
 export * from "./components/Button";
 export * from "./components/CircularProgress";
 export * from "./components/CustomStepper";
@@ -25,6 +26,7 @@ export * from "./components/VgsFormWrapper";
 export * from "./components/VgsInput";
 
 // Export types
+export type { AuraLayoutProps } from "./components/AuraLayout";
 export type { ButtonProps } from "./components/Button";
 export type { CircularProgressProps } from "./components/CircularProgress";
 export type { ISteps, CustomStepperProps } from "./components/CustomStepper";

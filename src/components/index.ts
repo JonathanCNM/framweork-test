@@ -1,3 +1,6 @@
+export { AuraLayout } from "./AuraLayout";
+export type { AuraLayoutProps } from "./AuraLayout";
+
 export { BodyCopy } from "./BodyCopy";
 export type { BodyCopyProps } from "./BodyCopy";
 

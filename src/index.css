@@ -180,8 +180,12 @@ button:focus-visible {
 
 .font-demo {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns:  minmax(500px, 1fr) 2fr;
+  gap: 0;
+
+  .lola-layout:nth-child(1) {
+    width: 100% !important;
+  }
 }
 
 .lola-layout.lola-form {
@@ -554,5 +558,15 @@ button:focus-visible {
     gap: 20px;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.scrollable {
+  overflow: auto !important;
+  height: auto !important;
+  margin-top: 0 !important;
+
+  &.preview {
+    max-width: 500px;
   }
 }

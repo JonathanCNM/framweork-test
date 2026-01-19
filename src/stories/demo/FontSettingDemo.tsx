@@ -379,7 +379,7 @@ export const FontSettingDemo = () => {
   return (
     <Page font={fontStyle}>
       <section className="font-demo">
-        <Layout>
+        <Layout className="scrollable preview">
           <Layout.Header>
             <Navbar
               align="center"
@@ -445,7 +445,7 @@ export const FontSettingDemo = () => {
           </Layout.Footer>
         </Layout>
 
-        <Layout className="lola-form">
+        <Layout className="lola-form scrollable">
           <Layout.Header>
             <Navbar
               align="center"

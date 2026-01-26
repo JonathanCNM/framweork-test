@@ -28,4 +28,5 @@ export {
   EditIcon,
   HeartIcon,
   HeartOutlineIcon,
+  CashSpecialIcon,
 } from "./icons";

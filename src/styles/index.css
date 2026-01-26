@@ -1383,6 +1383,10 @@ main.page {
 }
 
 @media (max-width: 500px) {
+  * {
+    box-shadow: none;
+  }
+
   .lola-layout {
     padding: 0;
 
@@ -1394,7 +1398,8 @@ main.page {
   }
 
   .aura-background {
-    &::before {
+    &::before,
+    &::after {
       display: none;
     }
   }

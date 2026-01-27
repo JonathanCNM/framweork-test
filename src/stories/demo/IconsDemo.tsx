@@ -33,6 +33,7 @@ import {
   EditPencilIcon,
   UserCheckIcon,
   UserPlusIcon,
+  WarningIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -170,6 +171,10 @@ const iconList = [
   {
     label: "UserPlusIcon",
     Icon: UserPlusIcon,
+  },
+  {
+    label: "WarningIcon",
+    Icon: WarningIcon,
   },
 ];
 

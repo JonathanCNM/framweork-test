@@ -1521,3 +1521,45 @@ export const UserPlusIcon: React.FC<
     </svg>
   );
 };
+
+export const WarningIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#000", "#000"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 66 66"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M33 22V33M33 44H33.0275M60.5 33C60.5 48.1878 48.1878 60.5 33 60.5C17.8122 60.5 5.5 48.1878 5.5 33C5.5 17.8122 17.8122 5.5 33 5.5C48.1878 5.5 60.5 17.8122 60.5 33Z"
+        stroke={`url(#${gradientId})`}
+        strokeWidth={4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="5.5"
+          y1="33"
+          x2="60.5"
+          y2="33"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};

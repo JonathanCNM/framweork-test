@@ -31,5 +31,6 @@ export {
   CashSpecialIcon,
   EditPencilIcon,
   UserCheckIcon,
-  UserPlusIcon
+  UserPlusIcon,
+  WarningIcon,
 } from "./icons";

@@ -30,6 +30,9 @@ import {
   HeartIcon,
   HeartOutlineIcon,
   CashSpecialIcon,
+  EditPencilIcon,
+  UserCheckIcon,
+  UserPlusIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -155,6 +158,18 @@ const iconList = [
   {
     label: "CashSpecialIcon",
     Icon: CashSpecialIcon,
+  },
+  {
+    label: "EditPencilIcon",
+    Icon: EditPencilIcon,
+  },
+  {
+    label: "UserCheckIcon",
+    Icon: UserCheckIcon,
+  },
+  {
+    label: "UserPlusIcon",
+    Icon: UserPlusIcon,
   },
 ];
 

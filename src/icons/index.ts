@@ -29,4 +29,7 @@ export {
   HeartIcon,
   HeartOutlineIcon,
   CashSpecialIcon,
+  EditPencilIcon,
+  UserCheckIcon,
+  UserPlusIcon
 } from "./icons";

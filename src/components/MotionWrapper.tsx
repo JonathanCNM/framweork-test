@@ -11,16 +11,19 @@ export interface MotionWrapperProps
 }
 
 const pageVariants: Variants = {
-  initial: { opacity: 1, x: 100 },
+  initial: {
+    opacity: 1,
+    transform: "translate3d(100%, 0, 0)",
+  },
   animate: {
     opacity: 1,
-    x: 0,
-    transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] },
+    transform: "translate3d(0%, 0, 0)",
+    transition: { duration: 0.5, ease: "easeOut" },
   },
   exit: {
-    opacity: 0,
-    x: -100,
-    transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] },
+    opacity: 0.9,
+    transform: "translate3d(-100%, 0, 0)",
+    transition: { duration: 0.5, ease: "easeIn" },
   },
 };
 

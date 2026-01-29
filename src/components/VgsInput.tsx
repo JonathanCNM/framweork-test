@@ -145,9 +145,9 @@ export const VgsInput: React.FC<VgsInputProps> = ({
 
   if (type === "card_exp_date")
     return (
-      <section style={{ width: "100%" }}>
+      <section className="exp-cvc">
         <section
-          className="lola-vgs--input secondary-cta exp-cvc"
+          className="lola-vgs--input secondary-cta"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>
@@ -170,9 +170,9 @@ export const VgsInput: React.FC<VgsInputProps> = ({
 
   if (type === "card_cvc")
     return (
-      <section style={{ width: "100%" }}>
+      <section className="exp-cvc">
         <section
-          className="lola-vgs--input secondary-cta exp-cvc"
+          className="lola-vgs--input secondary-cta"
           style={styles as React.CSSProperties & { [key: string]: string }}
         >
           <LabelInput color={labelColors} isActive={showLabel}>

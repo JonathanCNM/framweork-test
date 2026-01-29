@@ -369,8 +369,8 @@ button {
 
 /* Layout Content Styles */
 .lola-layout--container--content {
-  flex: 1 1 0%;
   width: 100%;
+  height: 100%;
 }
 
 .lola-layout--container--content--overflow {
@@ -384,7 +384,7 @@ button {
 }
 
 .lola-layout--container--content--container {
-  height: auto;
+  height: 100%;
   border-radius: 0.5rem;
 }
 
@@ -645,17 +645,16 @@ button {
 
 /* VGS Styles*/
 
+.exp-cvc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .lola-vgs--input {
   position: relative;
   margin-bottom: 8px;
-
-  &.exp-cvc {
-    padding-bottom: 8px;
-
-    .lola--label-input {
-      margin-top: -2px;
-    }
-  }
 }
 
 .zip-code {
@@ -1423,5 +1422,27 @@ main.page {
   .elevated-circle {
     margin-top: 20%;
     margin-bottom: 0;
+  }
+}
+
+.collect {
+  .lola-layout--container--content--container {
+    .lola-layout--container--content--container--wrap {
+      & > div {
+        height: 100%;
+
+        & > div {
+          height: 100%;
+
+          & > form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+      }
+    }
   }
 }

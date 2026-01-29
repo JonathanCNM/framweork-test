@@ -1563,3 +1563,332 @@ export const WarningIcon: React.FC<
     </svg>
   );
 };
+
+export const UsaIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = "24", ...props }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <circle cx="12" cy="12" r="12" fill="#F2F0F2" />
+      <mask
+        id="mask0_3313_7841"
+        style={{ maskType: "alpha" }}
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="24"
+        height="24"
+      >
+        <circle cx="12" cy="12" r="12" fill="#FCFCFC" />
+      </mask>
+      <g mask="url(#mask0_3313_7841)">
+        <rect x="3.89998" y="21.3008" width="16.5" height="3" fill="#D90026" />
+        <rect x="3.89998" y="21.3008" width="16.5" height="3" fill="#D90026" />
+        <rect x="0.299994" y="15.3008" width="23.7" height="3" fill="#D90026" />
+        <rect x="0.299994" y="15.3008" width="23.7" height="3" fill="#D90026" />
+        <rect x="0.299994" y="9" width="23.7" height="3" fill="#D90026" />
+        <rect x="0.299994" y="9" width="23.7" height="3" fill="#D90026" />
+        <rect x="0.299994" y="3" width="23.7" height="3" fill="#D90026" />
+        <rect x="0.299994" y="3" width="23.7" height="3" fill="#D90026" />
+        <rect width="12.3" height="12" fill="#0052B5" />
+        <path
+          d="M9.90001 10.0486L9.00001 10.4986L9.30001 9.59863L8.70001 8.99863H9.60001L9.90001 8.09863L10.35 8.99863H11.1L10.5 9.59863L10.8 10.4986L9.90001 10.0486Z"
+          fill="white"
+        />
+        <path
+          d="M5.7 10.0486L4.8 10.4986L5.1 9.59863L4.5 8.99863H5.4L5.7 8.09863L6.15 8.99863H6.9L6.3 9.59863L6.6 10.4986L5.7 10.0486Z"
+          fill="white"
+        />
+        <path
+          d="M1.49999 10.0486L0.599994 10.4986L0.899994 9.59863L0.299994 8.99863H1.19999L1.49999 8.09863L1.94999 8.99863H2.69999L2.09999 9.59863L2.39999 10.4986L1.49999 10.0486Z"
+          fill="white"
+        />
+        <path
+          d="M9.90001 6.75078L9.00001 7.20078L9.30001 6.30078L8.70001 5.70078H9.60001L9.90001 4.80078L10.35 5.70078H11.1L10.5 6.30078L10.8 7.20078L9.90001 6.75078Z"
+          fill="white"
+        />
+        <path
+          d="M9.90001 3.45L9.00001 3.9L9.30001 3L8.70001 2.4H9.60001L9.90001 1.5L10.35 2.4H11.1L10.5 3L10.8 3.9L9.90001 3.45Z"
+          fill="white"
+        />
+        <path
+          d="M9.90001 0.149219L9.00001 0.599219L9.30001 -0.300781L8.70001 -0.900781H9.60001L9.90001 -1.80078L10.35 -0.900781H11.1L10.5 -0.300781L10.8 0.599219L9.90001 0.149219Z"
+          fill="white"
+        />
+        <path
+          d="M5.7 3.45L4.8 3.9L5.1 3L4.5 2.4H5.4L5.7 1.5L6.15 2.4H6.9L6.3 3L6.6 3.9L5.7 3.45Z"
+          fill="white"
+        />
+        <path
+          d="M5.7 6.75078L4.8 7.20078L5.1 6.30078L4.5 5.70078H5.4L5.7 4.80078L6.15 5.70078H6.9L6.3 6.30078L6.6 7.20078L5.7 6.75078Z"
+          fill="white"
+        />
+        <path
+          d="M1.49999 6.75078L0.599994 7.20078L0.899994 6.30078L0.299994 5.70078H1.19999L1.49999 4.80078L1.94999 5.70078H2.69999L2.09999 6.30078L2.39999 7.20078L1.49999 6.75078Z"
+          fill="white"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const SpainIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = "24", ...props }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M12 24C5.37258 24 -2.89694e-07 18.6274 0 12C2.89694e-07 5.37258 5.37258 -2.89694e-07 12 0C18.6274 2.89694e-07 24 5.37258 24 12C24 18.6274 18.6274 24 12 24Z"
+        fill="#FFDB44"
+      />
+      <path
+        d="M23.2445 7.8C21.542 3.244 17.1498 2.25106e-07 12 0C6.85017 -2.25106e-07 2.45801 3.244 0.755531 7.8L23.2445 7.8Z"
+        fill="#D90026"
+      />
+      <path
+        d="M0.75553 16.2C2.45801 20.756 6.85017 24 12 24C17.1498 24 21.542 20.756 23.2445 16.2L0.75553 16.2Z"
+        fill="#D90026"
+      />
+    </svg>
+  );
+};
+
+export const MexicoIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = "24", ...props }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 31 30"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M30.2735 14.7548C30.2735 22.9036 23.4966 29.5096 15.1368 29.5096C6.77696 29.5096 0 22.9036 0 14.7548C0 6.60594 6.77696 0 15.1368 0C23.4966 0 30.2735 6.60594 30.2735 14.7548Z"
+        fill="#FFFFFF"
+      />
+      <path
+        d="M9.8389 0.928972C4.09197 3.02229 0 8.42273 0 14.7548C0 21.0868 4.09197 26.4873 9.8389 28.5806V0.928972Z"
+        fill="#006847"
+      />
+      <path
+        d="M20.4346 28.5806C26.1816 26.4873 30.2735 21.0868 30.2735 14.7548C30.2735 8.42273 26.1816 3.02229 20.4346 0.928972V28.5806Z"
+        fill="#CE1126"
+      />
+    </svg>
+  );
+};
+
+export const UsersIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#000", "#000"], ...props }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 32 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M22.2979 9.53625C22.9677 9.98383 23.7553 10.2227 24.5609 10.2227C25.6412 10.2227 26.6772 9.79358 27.4411 9.02969C28.205 8.2658 28.6342 7.22975 28.6342 6.14945C28.6342 5.34383 28.3953 4.55631 27.9477 3.88646C27.5001 3.21661 26.864 2.69453 26.1197 2.38623C25.3754 2.07794 24.5564 1.99727 23.7662 2.15444C22.9761 2.31161 22.2503 2.69955 21.6806 3.26921C21.111 3.83887 20.723 4.56465 20.5659 5.35479C20.4087 6.14493 20.4894 6.96393 20.7977 7.70822C21.106 8.45252 21.628 9.08868 22.2979 9.53625Z"
+        fill="url(#usersGradient)"
+      />
+
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M30.9617 18.3693C30.3799 16.2441 29.7668 14.764 28.6755 13.6727C27.2312 13.9447 26.0211 14.8779 24.5609 14.8779C23.1007 14.8779 21.8906 13.9447 21.6829 12.7299C20.8177 13.3013 20.4463 13.6727 19.355 14.764C18.7419 16.2441 18.7419 17.7874 18.7419 17.7874H30.9617Z"
+        fill="url(#usersGradient)"
+      />
+
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M6.81745 10.7757C7.785 11.4222 8.92254 11.7672 10.0862 11.7672C11.6466 11.7672 13.1432 11.1474 14.2466 10.044C15.35 8.94058 15.9698 7.44406 15.9698 5.88362C15.9698 4.71995 15.6248 3.58242 14.9783 2.61486C14.3318 1.6473 13.4129 0.893184 12.3378 0.447867C11.2627 0.00254922 10.0797 -0.113966 8.93837 0.113055C7.79706 0.340076 6.7487 0.900436 5.92586 1.72328C5.10302 2.54611 4.54266 3.59447 4.31564 4.73579C4.08862 5.8771 4.20514 7.0601 4.65045 8.13519C5.09577 9.21028 5.84989 10.1292 6.81745 10.7757Z"
+        fill="url(#usersGradient)"
+      />
+
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19.3319 23.5345C17.6058 18.3269 12.1954 18.4914 10.0862 18.4914C7.97699 18.4914 2.56658 18.3269 0.840517 23.5345H19.3319Z"
+        fill="url(#usersGradient)"
+      />
+
+      <defs>
+        <linearGradient
+          id="usersGradient"
+          x1="0"
+          y1="0"
+          x2="32"
+          y2="0"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const SupportIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = "24", colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 35 35"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <circle cx="17.5" cy="17.5" r="17.5" fill={`url(#${idGradient})`} />
+
+      <path
+        d="M27.0833 22.2917V18.4583C27.0833 13.1656 22.7927 8.875 17.5 8.875C12.2072 8.875 7.91663 13.1656 7.91663 18.4583V22.2917M13.1875 26.125C11.8643 26.125 10.7916 25.0523 10.7916 23.7292V20.8542C10.7916 19.531 11.8643 18.4583 13.1875 18.4583C14.5106 18.4583 15.5833 19.531 15.5833 20.8542V23.7292C15.5833 25.0523 14.5106 26.125 13.1875 26.125ZM21.8125 26.125C20.4893 26.125 19.4166 25.0523 19.4166 23.7292V20.8542C19.4166 19.531 20.4893 18.4583 21.8125 18.4583C23.1356 18.4583 24.2083 19.531 24.2083 20.8542V23.7292C24.2083 25.0523 23.1356 26.125 21.8125 26.125Z"
+        stroke="white"
+        strokeWidth={1.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={idGradient}
+          x1="0"
+          y1="17.5"
+          x2="35"
+          y2="17.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const ExchangeIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = "24", colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 9 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g clipPath={`url(#${idGradient})`}>
+        <path
+          d="M7.48315 2.61919L1.49718 2.61919M1.49718 2.61919L2.99367 1.1227M1.49718 2.61919L2.99367 4.11569"
+          stroke={colors[0]}
+          strokeWidth={0.96832}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M1.4967 6.36023L7.48268 6.36023M7.48268 6.36023L5.98619 7.85672M7.48268 6.36023L5.98619 4.86373"
+          stroke={colors[1]}
+          strokeWidth={0.96832}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id={idGradient}>
+          <rect
+            width="8.97897"
+            height="8.97897"
+            fill="white"
+            transform="translate(8.979 8.97897) rotate(-180)"
+          />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+
+export const WalletIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = "24", colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M13.75 11.6667H13.7583M2.5 4.16667V15.8333C2.5 16.7538 3.24619 17.5 4.16667 17.5H15.8333C16.7538 17.5 17.5 16.7538 17.5 15.8333V7.5C17.5 6.57953 16.7538 5.83333 15.8333 5.83333L4.16667 5.83333C3.24619 5.83333 2.5 5.08714 2.5 4.16667ZM2.5 4.16667C2.5 3.24619 3.24619 2.5 4.16667 2.5H14.1667M14.1667 11.6667C14.1667 11.8968 13.9801 12.0833 13.75 12.0833C13.5199 12.0833 13.3333 11.8968 13.3333 11.6667C13.3333 11.4365 13.5199 11.25 13.75 11.25C13.9801 11.25 14.1667 11.4365 14.1667 11.6667Z"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <defs>
+        <linearGradient
+          id={idGradient}
+          x1="10"
+          y1="2.5"
+          x2="10"
+          y2="17.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};

@@ -67,13 +67,11 @@ const Test = () => {
   return (
     <Page>
       <MotionWrapper>
-        <Layout background="#fff"
-        auraColors={["#4BA84B", "#008433"]}
-        >
+        <Layout background="#fff" auraColors={["#4BA84B", "#008433"]}>
           <Layout.Header>
             <Navbar title="Hello from VGS Page" />
           </Layout.Header>
-          <Layout.Content className="vgs">
+          <Layout.Content className="collect">
             <VgsFormWrapper
               vaultId={vgsVaultId}
               environment={vgsEnvironment}
@@ -88,9 +86,11 @@ const Test = () => {
                   display: "flex",
                   gap: "8px",
                   flexDirection: "column",
+                  height: "100%",
                 }}
               >
                 <VgsInput
+                  autoFocus
                   type="card_holder_name"
                   placeholder="Propietario"
                   color={gradient}
@@ -106,7 +106,7 @@ const Test = () => {
                 />
                 <article
                   className="double-input"
-                  style={{ display: "flex", gap: "8px", flexBasis: "1 1" }}
+                  style={{ display: "flex", gap: "8px" }}
                 >
                   <VgsInput
                     type="card_exp_date"
@@ -123,19 +123,9 @@ const Test = () => {
                 </article>
               </section>
               <Layout.Footer>
-                <section
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button type="submit" loading={isLoading}>
-                    Submit
-                  </Button>
-                </section>
+                <Button type="submit" loading={isLoading}>
+                  Submit
+                </Button>
               </Layout.Footer>
             </VgsFormWrapper>
           </Layout.Content>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GradientText } from "../../components";
 import {
   CameraGradient,
@@ -34,6 +35,13 @@ import {
   UserCheckIcon,
   UserPlusIcon,
   WarningIcon,
+  UsaIcon,
+  SpainIcon,
+  MexicoIcon,
+  UsersIcon,
+  SupportIcon,
+  ExchangeIcon,
+  WalletIcon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -176,11 +184,51 @@ const iconList = [
     label: "WarningIcon",
     Icon: WarningIcon,
   },
+  {
+    label: "UsaIcon",
+    Icon: UsaIcon,
+  },
+  {
+    label: "SpainIcon",
+    Icon: SpainIcon,
+  },
+  {
+    label: "MexicoIcon",
+    Icon: MexicoIcon,
+  },
+  {
+    label: "UsersIcon",
+    Icon: UsersIcon,
+  },
+  {
+    label: "SupportIcon",
+    Icon: SupportIcon,
+  },
+  {
+    label: "ExchangeIcon",
+    Icon: ExchangeIcon,
+  },
+  {
+    label: "WalletIcon",
+    Icon: WalletIcon,
+  },
 ];
 
 export const IconsDemo = () => {
   const { gradient } = useGradient();
+  const [copied, setCopied] = useState("");
   const colors = getSplittedColors(gradient);
+
+  const handleCopy = async (label: string) => {
+    try {
+      await navigator.clipboard.writeText(`<${label} />`);
+      setCopied(label);
+      setTimeout(() => setCopied(""), 2000);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      console.error("No copy");
+    }
+  };
 
   return (
     <section className="icons-storybook-demo">
@@ -189,17 +237,24 @@ export const IconsDemo = () => {
           <section
             key={index}
             className="icons-storybook-demo-slot"
+            onClick={() => handleCopy(label)}
             style={
               { "--bg": gradient } as React.CSSProperties & {
                 [key: string]: string;
               }
             }
           >
-            <Icon size={30} colors={colors} />
-            <GradientText
-              as="p"
-              textColor={gradient}
-            >{`<${label} />`}</GradientText>
+            {copied === label ? (
+              <p>Icon copied</p>
+            ) : (
+              <>
+                <Icon size={30} colors={colors} />
+                <GradientText
+                  as="p"
+                  textColor={gradient}
+                >{`<${label} />`}</GradientText>
+              </>
+            )}
           </section>
         ))}
       </section>

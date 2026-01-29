@@ -33,4 +33,11 @@ export {
   UserCheckIcon,
   UserPlusIcon,
   WarningIcon,
+  UsaIcon,
+  SpainIcon,
+  MexicoIcon,
+  UsersIcon,
+  SupportIcon,
+  ExchangeIcon,
+  WalletIcon,
 } from "./icons";

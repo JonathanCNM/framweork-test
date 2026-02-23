@@ -40,4 +40,6 @@ export {
   SupportIcon,
   ExchangeIcon,
   WalletIcon,
+  KapitalRIcon,
+  KapitalIcon
 } from "./icons";

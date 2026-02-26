@@ -44,6 +44,11 @@ import {
   WalletIcon,
   KapitalRIcon,
   KapitalIcon,
+  AddCardV2Icon,
+  BackArrowV2Icon,
+  BankV2Icon,
+  ExchangeV2Icon,
+  SupportV2Icon,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -221,6 +226,26 @@ const iconList = [
   {
     label: "KapitalIcon",
     Icon: KapitalIcon,
+  },
+  {
+    label: "AddCardV2Icon",
+    Icon: AddCardV2Icon,
+  },
+  {
+    label: "BackArrowV2Icon",
+    Icon: BackArrowV2Icon,
+  },
+  {
+    label: "BankV2Icon",
+    Icon: BankV2Icon,
+  },
+  {
+    label: "ExchangeV2Icon",
+    Icon: ExchangeV2Icon,
+  },
+  {
+    label: "SupportV2Icon",
+    Icon: SupportV2Icon,
   },
 ];
 

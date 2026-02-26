@@ -2010,3 +2010,229 @@ export const KapitalIcon: React.FC<
     </svg>
   );
 };
+
+export const AddCardV2Icon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M16.0001 22.8267C16.0001 26.5081 18.9854 29.4934 22.6667 29.4934C26.3494 29.4934 29.3334 26.5081 29.3334 22.8267C29.3334 19.1454 26.3494 16.1601 22.6667 16.1601C18.9854 16.1601 16.0001 19.1454 16.0001 22.8267ZM16.0001 22.8267H5.33341C3.86008 22.8267 2.66675 21.6334 2.66675 20.1601V8.16007C2.66675 6.68674 3.86008 5.49341 5.33341 5.49341H25.3334C26.8067 5.49341 28.0001 6.68674 28.0001 8.16007V18.8267M2.66675 10.6267H28.0001M22.6667 20.1601V25.4934M25.3334 22.8267H20.0001"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={idGradient}
+          x1="2.66675"
+          y1="16"
+          x2="29.3334"
+          y2="16"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const BackArrowV2Icon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M16 21L8 12L16 3"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={idGradient}
+          x1="8"
+          y1="12"
+          x2="16"
+          y2="12"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const BankV2Icon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M14.9776 9.63158V17.2105M19.1053 17.2105V9.63158M13.4211 20.0526H21V19.1053L20.0526 17.2105H11.5263M9.28295 21H3.44905C3.20105 21 3 20.799 3 20.5509V20.1872C3.0026 19.1502 3.8426 18.3102 4.87958 18.3076H7.85147C8.88846 18.3102 9.72845 19.1502 9.73105 20.1872V20.5509C9.73105 20.7986 9.53058 20.9995 9.28295 21ZM6.366 16.0633C5.37515 16.0614 4.57314 15.2572 4.57405 14.2663C4.57497 13.2755 5.37847 12.4727 6.36932 12.4727C7.36016 12.4727 8.16366 13.2755 8.16458 14.2663C8.16549 15.2572 7.36348 16.0614 6.37263 16.0633H6.366ZM3.94737 9.63158H21V6.72126L12.4737 3L3.94737 6.72126V9.63158Z"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={idGradient}
+          x1="3"
+          y1="12"
+          x2="21"
+          y2="12"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const ExchangeV2Icon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M6.75073 14.25V3.75"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.75148 14.2498L3.00073 10.499"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.5007 3.75V14.25"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.2515 7.50098L11.5007 3.75023"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={idGradient}
+          x1="0"
+          y1="9"
+          x2="18"
+          y2="9"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const SupportV2Icon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+  const idGradient = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M21 12C21 16.9706 16.9706 21 12 21M21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3.00014 13.0542 3.18764 14.1 3.55376 15.0886C3.7212 15.5477 4.19327 15.8212 4.67486 15.738L5.66105 15.5641C6.45812 15.4236 6.99996 14.676 6.8855 13.8748L6.58868 11.7971C6.53121 11.3948 6.31303 11.0331 5.98405 10.7947C5.65507 10.5562 5.24343 10.4614 4.84329 10.532L3.0827 10.8424M21 12C20.9999 13.0542 20.8124 14.1 20.4462 15.0886C20.2788 15.5477 19.8067 15.8212 19.3251 15.738L18.339 15.5641C17.5419 15.4236 17 14.676 17.1145 13.8748L17.4113 11.7971C17.4688 11.3948 17.687 11.0331 18.016 10.7947C18.3449 10.5562 18.7566 10.4614 19.1567 10.532L20.9173 10.8424M13.4916 12.498L13.4926 12.499L13.4936 12.498M10.5065 12.501L10.5075 12.502L10.5085 12.501"
+        stroke={`url(#${idGradient})`}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={idGradient}
+          x1="0"
+          y1="12"
+          x2="24"
+          y2="12"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};

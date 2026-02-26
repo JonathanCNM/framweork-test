@@ -41,5 +41,10 @@ export {
   ExchangeIcon,
   WalletIcon,
   KapitalRIcon,
-  KapitalIcon
+  KapitalIcon,
+  AddCardV2Icon,
+  BackArrowV2Icon,
+  BankV2Icon,
+  ExchangeV2Icon,
+  SupportV2Icon,
 } from "./icons";

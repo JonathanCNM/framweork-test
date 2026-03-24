@@ -2236,3 +2236,111 @@ export const SupportV2Icon: React.FC<
     </svg>
   );
 };
+
+export const ClosedEye: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 31, colors = ["#000", "#000"], ...props }) => {
+  const gradientId = useId();
+  return (
+    <svg
+      width={size}
+      height={(size * 25) / 31}
+      viewBox="0 0 31 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M1.29175 11.6263C1.29175 11.6263 6.45841 1.29297 15.5001 1.29297C24.5417 1.29297 29.7084 11.6263 29.7084 11.6263C29.7084 11.6263 24.5417 21.9596 15.5001 21.9596C6.45841 21.9596 1.29175 11.6263 1.29175 11.6263Z"
+        stroke={`url(#${gradientId})`}
+        strokeWidth={1.9375}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <path
+        d="M15.5 15.5015C17.6402 15.5015 19.375 13.7666 19.375 11.6265C19.375 9.4863 17.6402 7.75146 15.5 7.75146C13.3598 7.75146 11.625 9.4863 11.625 11.6265C11.625 13.7666 13.3598 15.5015 15.5 15.5015Z"
+        stroke={`url(#${gradientId})`}
+        strokeWidth={1.9375}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <path
+        d="M4.521 1.93896L26.4793 22.6056"
+        stroke={`url(#${gradientId})`}
+        strokeWidth={1.9375}
+        strokeLinecap="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="12.5"
+          x2="31"
+          y2="12.5"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const OpenEye: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 31, colors = ["#000", "#000"], ...props }) => {
+  const gradientId = useId();
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 31 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1.29175 11.6263C1.29175 11.6263 6.45841 1.29297 15.5001 1.29297C24.5417 1.29297 29.7084 11.6263 29.7084 11.6263C29.7084 11.6263 24.5417 21.9596 15.5001 21.9596C6.45841 21.9596 1.29175 11.6263 1.29175 11.6263Z"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="1.9375"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M15.5 15.5015C17.6402 15.5015 19.375 13.7666 19.375 11.6265C19.375 9.4863 17.6402 7.75146 15.5 7.75146C13.3598 7.75146 11.625 9.4863 11.625 11.6265C11.625 13.7666 13.3598 15.5015 15.5 15.5015Z"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="1.9375"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="1.28918"
+          y1="2.3853"
+          x2="25.5943"
+          y2="28.9963"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};

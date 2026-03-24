@@ -47,4 +47,6 @@ export {
   BankV2Icon,
   ExchangeV2Icon,
   SupportV2Icon,
+  ClosedEye,
+  OpenEye,
 } from "./icons";

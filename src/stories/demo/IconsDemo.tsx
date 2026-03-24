@@ -49,6 +49,8 @@ import {
   BankV2Icon,
   ExchangeV2Icon,
   SupportV2Icon,
+  ClosedEye,
+  OpenEye
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -246,6 +248,14 @@ const iconList = [
   {
     label: "SupportV2Icon",
     Icon: SupportV2Icon,
+  },
+  {
+    label: "OpenEye",
+    Icon: OpenEye,
+  },
+  {
+    label: "ClosedEye",
+    Icon: ClosedEye,
   },
 ];
 

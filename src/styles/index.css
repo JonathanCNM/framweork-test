@@ -1,18 +1,67 @@
 /* lola framework ui - Style Framework */
 
+html.light {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 /* CSS Variables */
 :root {
   --bg-theme: #fafafb;
-  --box-shadows-strong: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  --box-shadows-soft: 2px 2px 5px rgba(0, 0, 0, 0.15);
   --box-shadows: 2px 2px 5px rgba(0, 0, 0, 0.25);
-
-  --lola-text-color: #252525;
-  --lola-border-color: #333f49;
 
   --lola-border-radius: 20px;
   --lola-font-family: Manrope, sans-serif;
   --lola-transition: all 0.2s ease-in-out;
+
+  color-scheme: light dark;
+  /* Light */
+  --background: #f3f4f6;
+  --foreground: #17171c;
+  --card: #e5e7eb;
+  --card-foreground: #17171c;
+  --primary: #3ee0cf;
+  --primary-foreground: #ffffff;
+  --secondary: #eaeaec;
+  --muted: #e4e4e7;
+  --muted-foreground: #61616b;
+  --destructive: #dc2828;
+  --success: #1cce5e;
+  --warning: #f59f0a;
+  --border: #292932;
+  --ring: #3ee0cf;
+
+  /* Gradientes (CSS Custom Properties) */
+
+  --gradient-card: #eeeef1;
+  --gradient-glass: linear-gradient(135deg, #ffffff1a 0%, #ffffff0d 100%);
+  /* Sombras */
+  --shadow-card: 0 4px 24px -4px #00000080;
+  --shadow-glow: 0 0 40px -8px #3ee0cf66;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #121216;
+    --card-foreground: #fafafa;
+    --primary: #3ee0cf;
+    --primary-foreground: #09090b;
+    --secondary: #202027;
+    --muted: #292932;
+    --muted-foreground: #878792;
+    --destructive: #dc2828;
+    --success: #1cce5e;
+    --warning: #f59f0a;
+    --border: #292932;
+    --ring: #3ee0cf;
+
+    --gradient-card: linear-gradient(135deg, #1c1c22 0%, #121216 100%);
+  }
 }
 
 /* Button Styles */
@@ -158,7 +207,6 @@ button {
   align-items: center;
   gap: 8px;
   z-index: 10000;
-  color: var(--lola-text-color);
   position: relative;
 }
 
@@ -242,7 +290,6 @@ button {
 }
 
 .lola-title {
-  color: var(--lola-text-color);
   font-weight: 400;
 }
 
@@ -262,7 +309,6 @@ button {
 }
 
 .lola-title .lola-title--subtitle {
-  color: var(--lola-text-color);
   font-weight: 400;
 }
 
@@ -297,6 +343,11 @@ button {
   position: relative;
   overflow: hidden;
   background: transparent;
+  color-scheme: light;
+
+  * {
+    color-scheme: light;
+  }
 }
 
 .aura-background {
@@ -1442,6 +1493,44 @@ main.page {
             align-items: center;
           }
         }
+      }
+    }
+  }
+}
+
+.gradient-card {
+  background: var(--gradient-card);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.foreground {
+  color: var(--foreground);
+}
+
+.muted-foreground {
+  color: var(--muted-foreground);
+}
+
+.white-view-background {
+  .lola-layout--container {
+    background: var(--background);
+  }
+
+  .icon-container {
+    box-shadow: none;
+  }
+
+  .lola-navbar--container {
+    .lola-title {
+      h2 {
+        color: var(--foreground) !important;
       }
     }
   }

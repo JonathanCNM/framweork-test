@@ -11,7 +11,7 @@ export interface LabelInputProps {
 export const LabelInput: React.FC<LabelInputProps> = ({
   isActive = false,
   color = "#000",
-  background = "#fff",
+  background = "transparent",
   labelStyle = {},
   children,
 }) => {

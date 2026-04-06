@@ -42,7 +42,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   inactiveColor = "#979797",
   activeColor = "#000",
   errorColor = "#fd2a35",
-  labelBackground = "#fff",
+  labelBackground = "transparent",
   placeholder = "",
   setIconColors = () => ["#000", "#000"],
   icon,

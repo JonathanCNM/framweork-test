@@ -11,16 +11,31 @@ export interface AuraLayoutProps {
 
 export const AuraLayout: React.FC<AuraLayoutProps> = memo(
   ({ children, colorConfig, className = "" }) => {
-    const { themeType, dropzoneColors, iconColors, background } = colorConfig;
+    const {
+      themeType,
+      dropzoneColors,
+      iconColors,
+      background,
+      useSystemTheme,
+      viewConfig,
+    } = colorConfig;
     const isDark = themeType === "dark";
     const auraColors = isDark ? dropzoneColors : iconColors;
+
+    const systemThemeClassName = useSystemTheme
+      ? ["whiteView", "dataView"].includes(viewConfig)
+        ? "white-view-background"
+        : ""
+      : "";
+
+    const classes = [systemThemeClassName, className].filter(Boolean).join(" ");
 
     return (
       <MotionWrapper>
         <Layout
           background={background}
           auraColors={auraColors}
-          className={className}
+          className={classes}
         >
           {children}
         </Layout>

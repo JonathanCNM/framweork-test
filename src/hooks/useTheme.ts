@@ -19,6 +19,8 @@ export interface IViewColorConfig {
   backgroundIcon: string;
   title: string;
   subtitile: string;
+  errorColor?: string;
+  highlight?: string;
   bodyCopy: string;
   footerColor: string;
   backgroundBtn: string;
@@ -27,6 +29,13 @@ export interface IViewColorConfig {
   dropzoneColors: [string, string];
   stepsLabelColor: string;
   themeType?: string;
+  useSystemTheme?: boolean;
+  viewConfig:
+    | "primaryMeshGradientView"
+    | "specialView"
+    | "dataView"
+    | "whiteView"
+    | "errorView";
 }
 
 export interface IViewConfig {
@@ -115,6 +124,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.whiteColor,
           dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "primaryMeshGradientView",
         },
         specialView: {
           background: theme?.primaryMesh,
@@ -130,6 +143,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.whiteColor,
           dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "specialView",
         },
         dataView: {
           background: theme?.whiteColor,
@@ -145,6 +162,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.secondaryColor,
           dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "dataView",
         },
         whiteView: {
           background: theme?.whiteColor,
@@ -160,6 +181,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.secondaryColor,
           dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "whiteView",
         },
         errorView: {
           background: theme?.secondaryColor,
@@ -175,6 +200,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.whiteColor,
           dropzoneColors: [theme?.primaryGradient, theme?.secondaryGradient],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "errorView",
         },
       };
     } else {
@@ -193,6 +222,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.whiteColor,
           dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "primaryMeshGradientView",
         },
         specialView: {
           background: theme?.primaryMesh,
@@ -208,6 +241,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.whiteColor,
           dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "specialView",
         },
         dataView: {
           background: theme?.primaryMesh,
@@ -223,6 +260,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.whiteColor,
           dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "dataView",
         },
         whiteView: {
           background: theme?.whiteColor,
@@ -238,6 +279,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.secondaryColor,
           dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "whiteView",
         },
         errorView: {
           background: theme?.secondaryColor,
@@ -253,6 +298,10 @@ export const useTheme = (theme: IUseTheme) => {
           stepsLabelColor: theme?.secondaryColor,
           dropzoneColors: [theme?.secondaryColor, theme?.secondaryColor],
           themeType: theme?.lightness,
+          errorColor: theme?.errorColor,
+          highlight: theme?.partnerHighlights,
+          useSystemTheme: theme?.useSystemTheme,
+          viewConfig: "errorView",
         },
       };
     }

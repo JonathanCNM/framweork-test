@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import type { IViewColorConfig } from "../hooks";
 import { MotionWrapper } from "./MotionWrapper";
 import { Layout } from "./Layout";
@@ -27,6 +27,10 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
         ? "white-view-background"
         : ""
       : "";
+
+    useEffect(() => {
+      if (!useSystemTheme) document.documentElement.classList.add("light");
+    }, [useSystemTheme]);
 
     const classes = [systemThemeClassName, className].filter(Boolean).join(" ");
 

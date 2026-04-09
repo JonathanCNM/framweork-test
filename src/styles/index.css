@@ -64,6 +64,10 @@ html.dark {
   }
 }
 
+body {
+  width: 100%;
+}
+
 /* Button Styles */
 
 button {

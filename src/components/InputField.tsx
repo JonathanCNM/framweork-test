@@ -42,7 +42,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   inactiveColor = "#979797",
   activeColor = "#000",
   errorColor = "#fd2a35",
-  labelBackground = "transparent",
+  labelBackground = "#fff",
   placeholder = "",
   setIconColors = () => ["#000", "#000"],
   icon,
@@ -123,8 +123,10 @@ export const InputField: React.FC<InputFieldProps> = ({
           style={{ ...inputStyle }}
         />
         {type === "color" && (
-          <>
-            <label className="lola-input-field-color-text">{value}</label>
+          <section className="color-wrapper">
+            <label htmlFor={name} className="lola-input-field-color-text">
+              {value}
+            </label>
             <span
               style={
                 { "--color": value } as React.CSSProperties & {
@@ -133,7 +135,7 @@ export const InputField: React.FC<InputFieldProps> = ({
               }
               className="lola-input-field-color-square"
             />
-          </>
+          </section>
         )}
       </section>
       {currency && (

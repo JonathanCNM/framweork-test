@@ -188,6 +188,7 @@ export const FontSettingDemo = () => {
   );
   const [themeLightnessPreferences, setThemeLightnessPreferences] =
     useState("dark");
+  const [useThemeSystem, setUsethemeSystem] = useState(false);
   const { downloadThemeTxt } = useTheme(formFont);
   const { fontStyle, onChangeFont } = useFonts(inputFont);
   const [copied, setCopied] = useState(false);
@@ -299,6 +300,7 @@ export const FontSettingDemo = () => {
         ...formColors,
         gradient,
         lightness: themeLightnessPreferences,
+        useSystemTheme: useThemeSystem,
       },
     });
   };
@@ -314,6 +316,7 @@ export const FontSettingDemo = () => {
         ...formColors,
         gradient,
         lightness: themeLightnessPreferences,
+        useSystemTheme: useThemeSystem,
       },
     };
     const location = window.location.hostname;
@@ -352,6 +355,7 @@ export const FontSettingDemo = () => {
             ...formColors,
             gradient,
             lightness: themeLightnessPreferences,
+            useSystemTheme: useThemeSystem,
           },
         })
       );
@@ -379,6 +383,7 @@ export const FontSettingDemo = () => {
   return (
     <Page font={fontStyle}>
       <section className="font-demo">
+        {/* <AuraLayout colorConfig={whiteView} className="scrollable preview"> */}
         <Layout className="scrollable preview">
           <Layout.Header>
             <Navbar
@@ -472,7 +477,22 @@ export const FontSettingDemo = () => {
                   items={themeLightnessPreferencesItems}
                   value={themeLightnessPreferences}
                   onChange={onSelectThemeLightnessPreferencesItems}
+                  searchable={false}
                 />
+                <section
+                  className="checkbox-input"
+                  style={{ gridColumn: "span 3" }}
+                >
+                  <input
+                    id="useThemeSystem"
+                    type="checkbox"
+                    checked={useThemeSystem}
+                    onChange={() => setUsethemeSystem((prev) => !prev)}
+                  />
+                  <label htmlFor="useThemeSystem">
+                    Se va a usar el tema del sistema
+                  </label>
+                </section>
               </section>
             </section>
             <section className="font-form">

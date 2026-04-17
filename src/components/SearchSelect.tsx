@@ -129,7 +129,7 @@ export const SearchSelect: React.FC<SearchSelectProps> = ({
           {placeholder}
         </LabelInput>
 
-        {selectedItem && <span>{selectedItem.label}</span>}
+        {selectedItem && <span className="search-select-value-selected">{selectedItem.label}</span>}
 
         <svg
           className={`${isOpen ? "active" : ""}`}

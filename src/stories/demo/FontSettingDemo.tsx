@@ -1,4 +1,5 @@
 import {
+  AuraLayout,
   BodyCopy,
   Button,
   InputField,
@@ -189,7 +190,7 @@ export const FontSettingDemo = () => {
   const [themeLightnessPreferences, setThemeLightnessPreferences] =
     useState("dark");
   const [useThemeSystem, setUsethemeSystem] = useState(false);
-  const { downloadThemeTxt } = useTheme(formFont);
+  const { downloadThemeTxt, generateColorsByView } = useTheme(formFont);
   const { fontStyle, onChangeFont } = useFonts(inputFont);
   const [copied, setCopied] = useState(false);
 
@@ -380,11 +381,15 @@ export const FontSettingDemo = () => {
     setThemeLightnessPreferences(themeLightnessPreferences.code as string);
   };
 
+  const colorConfig = generateColorsByView(formColors);
+
   return (
     <Page font={fontStyle}>
       <section className="font-demo">
-        {/* <AuraLayout colorConfig={whiteView} className="scrollable preview"> */}
-        <Layout className="scrollable preview">
+        <AuraLayout
+          colorConfig={colorConfig.whiteView}
+          className="scrollable preview"
+        >
           <Layout.Header>
             <Navbar
               align="center"
@@ -448,9 +453,12 @@ export const FontSettingDemo = () => {
               </Button>
             </section>
           </Layout.Footer>
-        </Layout>
+        </AuraLayout>
 
-        <Layout className="lola-form scrollable">
+        <AuraLayout
+          colorConfig={colorConfig.whiteView}
+          className="lola-form scrollable"
+        >
           <Layout.Header>
             <Navbar
               align="center"
@@ -551,7 +559,7 @@ export const FontSettingDemo = () => {
               </Button>
             </section>
           </Layout.Footer>
-        </Layout>
+        </AuraLayout>
       </section>
     </Page>
   );

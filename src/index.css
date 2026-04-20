@@ -35,19 +35,6 @@ h1 {
   line-height: 1.1;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 button:focus,
 button:focus-visible {
   outline: none !important;
@@ -459,16 +446,20 @@ button:focus-visible {
         display: flex;
         text-align: left;
         padding-inline: 6px;
-      }
+        font-weight: 300;
 
-      .field-row-description {
-        margin-left: auto;
-        color: #979797;
-        text-align: right;
+        .lola-body-copy {
+          text-align: left;
+          padding: 0;
+        }
 
-        &.semibold {
-          font-weight: 500;
-          color: #000;
+        & .field-row-description {
+          margin-left: auto;
+          text-align: right;
+        }
+
+        .strong {
+          font-weight: 600;
         }
       }
     }
@@ -476,12 +467,12 @@ button:focus-visible {
 }
 
 .summary-text {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 @media (height <= 780px) {
   .summary-text {
-    font-size: 12px;
+    font-size: 12px !important;
   }
 }
 
@@ -492,7 +483,6 @@ button:focus-visible {
   text-align: center;
 
   p {
-    color: #213547;
     margin: auto;
     font-weight: 400;
   }
@@ -532,6 +522,10 @@ button:focus-visible {
     height: 100%;
     width: fit-content;
     background: transparent;
+
+    .lola-body-copy {
+      padding: 0;
+    }
   }
 }
 
@@ -571,4 +565,3 @@ button:focus-visible {
     max-width: 500px;
   }
 }
-

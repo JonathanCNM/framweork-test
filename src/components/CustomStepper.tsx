@@ -53,8 +53,8 @@ export const CustomStepper: React.FC<CustomStepperProps> = ({
             <section
               className={`step-info ${currentStep >= index ? "active" : ""}`}
             >
-              <section className="step-index">{index}</section>
-              <section className="step-label">{label}</section>
+              <p className="step-index">{index}</p>
+              <p className="step-label">{label}</p>
               <span
                 className={`step-progress ${
                   currentStep > index ? "active" : ""

@@ -1,4 +1,10 @@
-import { Button, InputField, Layout, Navbar } from "../../components";
+import {
+  AuraLayout,
+  Button,
+  InputField,
+  Layout,
+  Navbar,
+} from "../../components";
 import type { IViewConfig } from "../../hooks/useTheme";
 import { HomeAddressIcon } from "../../icons";
 import mapDemo from "../assets/map-demo.png";
@@ -10,23 +16,12 @@ export const AddressPage = ({
   theme: IViewConfig;
   isHomeAddress?: boolean;
 }) => {
-  const {
-    background,
-    title,
-    bodyCopy,
-    iconColors,
-    backgroundBtn,
-    textColorBtn,
-    themeType,
-    dropzoneColors,
-  } = theme.whiteView;
-
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
+  const { title, bodyCopy, iconColors, backgroundBtn, textColorBtn } =
+    theme.whiteView;
 
   const addressTitle = isHomeAddress ? "Home address" : "Billing address";
   return (
-    <Layout background={background} auraColors={auraColors}>
+    <AuraLayout colorConfig={theme.whiteView}>
       <Layout.Header>
         <Navbar title={addressTitle} color={title} align="center" />
       </Layout.Header>
@@ -77,6 +72,6 @@ export const AddressPage = ({
           Confirm address
         </Button>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

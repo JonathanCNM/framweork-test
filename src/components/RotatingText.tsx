@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import { BodyCopy } from "./BodyCopy";
 
-const RotatingText = ({
-  messages = [],
-  textColor,
-}: {
+export type RotatingTextProps<T extends React.ElementType> = {
+  as?: T;
   messages: string[];
-  textColor: string;
-}) => {
+  textColor?: string;
+} & React.ComponentPropsWithoutRef<T>;
+
+const RotatingText = <T extends React.ElementType = "p">({
+  as,
+  messages = [],
+  className = "",
+  ...props
+}: RotatingTextProps<T>) => {
+  const Component = as || "p";
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -17,10 +22,15 @@ const RotatingText = ({
 
     return () => clearInterval(interval);
   }, [messages.length]);
+
+  const classes = ["animate-fade", "lola-body-copy", "bodycopy", className]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <BodyCopy textColor={textColor} className="animate-fade">
+    <Component {...props} className={classes}>
       {messages[index]}
-    </BodyCopy>
+    </Component>
   );
 };
 

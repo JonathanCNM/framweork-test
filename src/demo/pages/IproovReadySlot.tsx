@@ -1,4 +1,5 @@
 import {
+  AuraLayout,
   BodyCopy,
   Button,
   CustomStepper,
@@ -18,7 +19,6 @@ export const IproovReadySlot = ({
   isLightTheme?: boolean;
 }) => {
   const {
-    background,
     iconColors,
     backgroundIcon,
     title,
@@ -28,18 +28,13 @@ export const IproovReadySlot = ({
     textColorBtn,
     stepsColors,
     stepsLabelColor,
-    themeType,
-    dropzoneColors,
   } = theme.specialView;
 
   const customStepperTrackInactiveBg = isLightTheme ? textColorBtn : undefined;
   const customStepperIndexInactiveBg = isLightTheme ? backgroundBtn : undefined;
 
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
-
   return (
-    <Layout background={background} className="step" auraColors={auraColors}>
+    <AuraLayout className="step" colorConfig={theme.specialView}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
           <ElevatedCircle background={backgroundIcon}>
@@ -53,24 +48,24 @@ export const IproovReadySlot = ({
             secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={bodyCopy} className="mt-4">
+          <BodyCopy style={{ color: subtitile }}>
             Remove glasses, face coverings, and ensure you have good lighting.
           </BodyCopy>
+          <section className="stepper-section">
+            <CustomStepper
+              currentStep={2}
+              steps={steps}
+              color={stepsLabelColor}
+              background={stepsColors}
+              trackBackground={title}
+              labelColor={bodyCopy}
+              width={230}
+              trackInactiveBackground={customStepperTrackInactiveBg}
+              indexkInactiveBackground={customStepperIndexInactiveBg}
+              indexkInactiveColor={customStepperTrackInactiveBg}
+            />
+          </section>
         </div>
-        <section className="stepper-section">
-          <CustomStepper
-            currentStep={2}
-            steps={steps}
-            color={stepsLabelColor}
-            background={stepsColors}
-            trackBackground={title}
-            labelColor={bodyCopy}
-            width={230}
-            trackInactiveBackground={customStepperTrackInactiveBg}
-            indexkInactiveBackground={customStepperIndexInactiveBg}
-            indexkInactiveColor={customStepperTrackInactiveBg}
-          />
-        </section>
       </Layout.Content>
       <Layout.Footer>
         <Button
@@ -83,6 +78,6 @@ export const IproovReadySlot = ({
           Take selfie
         </Button>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

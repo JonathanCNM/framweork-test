@@ -1,4 +1,5 @@
 import {
+  AuraLayout,
   CircularProgress,
   GradientText,
   Layout,
@@ -43,21 +44,11 @@ const loadingMessages = [
 ];
 
 export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
-  const {
-    background,
-    iconColors,
-    backgroundIcon,
-    title,
-    subtitile,
-    footerColor,
-    themeType,
-    dropzoneColors,
-  } = theme.specialView;
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
+  const { iconColors, backgroundIcon, title, subtitile, footerColor } =
+    theme.specialView;
 
   return (
-    <Layout background={background} auraColors={auraColors}>
+    <AuraLayout colorConfig={theme.specialView}>
       <Layout.Content>
         <div className="upload-loading-container">
           <CircularProgress
@@ -78,7 +69,10 @@ export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
             secudnaryColor={subtitile}
           />
 
-          <RotatingText textColor={footerColor} messages={loadingMessages} />
+          <RotatingText
+            style={{ color: subtitile }}
+            messages={loadingMessages}
+          />
         </div>
       </Layout.Content>
       <Layout.Footer>
@@ -86,6 +80,6 @@ export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
           This may take a moment
         </GradientText>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

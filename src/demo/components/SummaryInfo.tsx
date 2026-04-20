@@ -1,3 +1,4 @@
+import { BodyCopy } from "../../components";
 import { AddCardSlot } from "./AddCardSlot";
 
 const fields = [
@@ -65,20 +66,20 @@ export const SummaryInfo = () => {
           {fields
             .filter((field) => field.value)
             .map((field) => (
-              <div key={field.label} className="field-row-key summary-text">
-                <p
-                  className={
-                    field.isStrong ? "font-semibold" : "!font-semibold"
-                  }
+              <div key={field.label} className="field-row-key">
+                <BodyCopy
+                  className={`summary-text ${field.isStrong ? "strong" : ""}`}
                 >
                   {field.label}:
-                </p>
-                <p
-                  className={`field-row-description
-                    ${field.isStrong ? "semibold" : ""}`}
+                </BodyCopy>
+
+                <BodyCopy
+                  className={`field-row-description summary-text ${
+                    field.isStrong ? "strong" : "muted-foreground"
+                  }`}
                 >
                   {field.value}
-                </p>
+                </BodyCopy>
               </div>
             ))}
         </div>

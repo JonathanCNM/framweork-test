@@ -45,6 +45,7 @@ html.dark {
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* --background: #252525; */
     --background: #09090b;
     --foreground: #fafafa;
     --card: #121216;
@@ -151,6 +152,7 @@ button {
   background-color: transparent;
   text-decoration: none;
   border: 1px solid transparent;
+  box-shadow: none !important;
 }
 
 .lola-button--link::before {
@@ -532,19 +534,9 @@ button {
   margin: 0;
 }
 
-/* .vgs > div > div,
-.vgs > div form {
-  height: 100% !important;
-}
-
-.vgs > div form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-} */
-
 /* LabelInput Styles */
-.lola-gradient-text.lola--label-input {
+.lola--label-input {
+  background: #fff;
   position: absolute;
   left: 12px;
   top: var(--top);
@@ -554,6 +546,7 @@ button {
   transform: translateY(-50%);
   transition: ease-in-out top 0.3s;
   z-index: 50;
+  color: #252525;
 }
 
 /* Inputfield Styles */
@@ -611,6 +604,8 @@ button {
   outline: none;
   border: none;
   background-color: transparent;
+
+  color: #252525;
 }
 
 .lola-input-icon .lola-input-field--container input {
@@ -833,6 +828,7 @@ button {
   padding-inline: 24px;
   text-align: center;
   padding-bottom: 0.2em;
+  color: #252525;
 }
 
 .lola-title-highlight {
@@ -840,11 +836,11 @@ button {
   width: 100%;
   text-align: center;
   padding-bottom: 0.2em;
-  margin: auto;
+  margin-inline: auto;
 }
 
 .lola-title-highlight .lola-title-h1 {
-  margin: auto;
+  margin-inline: auto;
   padding-bottom: 0.2em;
   display: block;
 }
@@ -1129,7 +1125,7 @@ input[type="number"]::-webkit-outer-spin-button {
       }
 
       .step-label {
-        color: var(--label-color);
+        color: #252525;
       }
 
       .step-progress {
@@ -1555,29 +1551,115 @@ input[type="checkbox"] {
   color: #252525;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-text-fill-color: inherit;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: inherit !important;
+  caret-color: inherit;
+
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #0f172a inset;
+  -webkit-text-fill-color: #fff;
+}
+
+.glass {
+  background: rgb(var(--gradient-card) / 0.6);
+  backdrop-filter: blur(10px);
+  border: solid 1px rgb(var(--border) / 0.2);
+}
+
+.gradient-accent {
+  background: var(--gradient-accent);
+}
+
+.gradient-card {
+  background: var(--gradient-card);
+}
+
+.card-foreground {
+  background: var(--card-foreground);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.foreground {
+  color: var(--foreground);
+}
+
+.muted-foreground {
+  color: var(--muted-foreground);
+}
+
+.secondary {
+  color: var(--secondary);
+}
+
 .white-view-background {
-  .lola-layout--container {
-    background: var(--background);
-  }
+  &:not(&.light) {
+    .lola-layout--container {
+      background: var(--background);
+    }
 
-  .icon-container {
-    box-shadow: none;
-  }
+    .icon-container {
+      box-shadow: none;
+    }
 
-  .lola-navbar--container {
-    .lola-title {
-      h2 {
-        color: var(--foreground) !important;
+    .lola-navbar--container {
+      .lola-title {
+        h2 {
+          color: var(--foreground) !important;
+        }
       }
     }
-  }
 
-  .color-wrapper,
-  .select-wrapper,
-  .checkbox-input,
-  .search-select-component-preview,
-  .search-select-component-container-list-item,
-  .search-select-value-selected {
-    color: var(--foreground);
+    .color-wrapper,
+    .select-wrapper,
+    .checkbox-input,
+    .lola-body-copy,
+    .lola-input-field--container,
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill,
+    .search-select-component-preview,
+    .search-select-component-container-list-item,
+    .lola-input-field .lola-input-field--container input,
+    .lola--label-input,
+    .step-label,
+    .search-select-value-selected {
+      color: var(--foreground);
+
+      &.muted-foreground {
+        color: var(--muted-foreground);
+      }
+    }
+
+    .lola--label-input {
+      background: var(--background);
+    }
+
+    .lola-input-field .lola-input-field--container::before,
+    .icons-storybook-demo-slot::before {
+      background: var(--foreground);
+    }
   }
 }

@@ -1,4 +1,10 @@
-import { BodyCopy, Button, Layout, PageTitle } from "../../components";
+import {
+  AuraLayout,
+  BodyCopy,
+  Button,
+  Layout,
+  PageTitle,
+} from "../../components";
 import { FaceIcon } from "../../icons";
 import { CustomStepper } from "../../components/CustomStepper";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
@@ -15,7 +21,6 @@ export const StepPage = ({
   isLightTheme?: boolean;
 }) => {
   const {
-    background,
     iconColors,
     backgroundIcon,
     title,
@@ -24,17 +29,14 @@ export const StepPage = ({
     backgroundBtn,
     textColorBtn,
     stepsColors,
-    dropzoneColors,
   } = theme.dataView;
 
   const themeType = isLightTheme ? "light" : "dark";
   const customStepperTrackInactiveBg = isLightTheme ? textColorBtn : undefined;
   const customStepperIndexInactiveBg = isLightTheme ? backgroundBtn : undefined;
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
 
   return (
-    <Layout className="step" background={background} auraColors={auraColors}>
+    <AuraLayout colorConfig={theme.dataView}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
           <ElevatedCircle background={backgroundIcon}>
@@ -48,11 +50,10 @@ export const StepPage = ({
             secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={bodyCopy} className="mt-4">
+          <BodyCopy className="mt-4">
             Use your Passport, Driver’s License, State ID, Green Card or
             Consular ID.
           </BodyCopy>
-        </div>
         <section className="stepper-section">
           <CustomStepper
             steps={steps}
@@ -65,22 +66,25 @@ export const StepPage = ({
             indexkInactiveColor={customStepperTrackInactiveBg}
           />
         </section>
+        </div>
       </Layout.Content>
       <Layout.Footer>
         <section className="homepage-footer">
           <section
-            className={`footer-text terms-text footer-link ${themeType}`}
+            className={`footer-link ${themeType}`}
             style={
               { "--color": bodyCopy } as React.CSSProperties & {
                 [key: string]: string;
               }
             }
           >
-            <span>By continuing, you agree to our</span>
-            <br />
-            <span className="text-link">Terms & Conditions</span>
-            <span> and </span>
-            <span className="text-link">Privacy Policy</span>
+            <BodyCopy className="terms-text footer-text">
+              <span>By continuing, you agree to our</span>
+              <br />
+              <span className="text-link">Terms & Conditions</span>
+              <span> and </span>
+              <span className="text-link">Privacy Policy</span>
+            </BodyCopy>
           </section>
           <p className="footer-text terms-text"></p>
           <Button
@@ -95,6 +99,6 @@ export const StepPage = ({
           </Button>
         </section>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

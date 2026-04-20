@@ -32,7 +32,9 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
       if (!useSystemTheme) document.documentElement.classList.add("light");
     }, [useSystemTheme]);
 
-    const classes = [systemThemeClassName, className].filter(Boolean).join(" ");
+    const classes = [systemThemeClassName, className, isDark ? "dark" : "light"]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <MotionWrapper>

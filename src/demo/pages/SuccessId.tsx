@@ -1,22 +1,17 @@
-import { ElevatedCircle, Layout, PageTitle } from "../../components";
+import {
+  AuraLayout,
+  ElevatedCircle,
+  Layout,
+  PageTitle,
+} from "../../components";
 import type { IViewConfig } from "../../hooks";
 import { SuccessIcon } from "../../icons";
 
 export const SuccessId = ({ theme }: { theme: IViewConfig }) => {
-  const {
-    background,
-    iconColors,
-    backgroundIcon,
-    title,
-    subtitile,
-    themeType,
-    dropzoneColors,
-  } = theme.specialView;
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
+  const { iconColors, backgroundIcon, title, subtitile } = theme.specialView;
 
   return (
-    <Layout background={background} auraColors={auraColors}>
+    <AuraLayout colorConfig={theme.specialView}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
           <ElevatedCircle background={backgroundIcon}>
@@ -31,6 +26,6 @@ export const SuccessId = ({ theme }: { theme: IViewConfig }) => {
           />
         </div>
       </Layout.Content>
-    </Layout>
+    </AuraLayout>
   );
 };

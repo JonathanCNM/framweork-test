@@ -1,23 +1,14 @@
-import { GradientText, Layout, PageTitle } from "../../components";
+import { AuraLayout, GradientText, Layout, PageTitle } from "../../components";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { LolaLogo, RightIcon } from "../../icons";
 import type { IViewConfig } from "../../hooks/useTheme";
 
 export const HomePage = ({ theme }: { theme: IViewConfig }) => {
-  const {
-    background,
-    iconColors,
-    backgroundIcon,
-    title,
-    subtitile,
-    footerColor,
-    dropzoneColors,
-    themeType,
-  } = theme.primaryMeshGradientView;
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
+  const { iconColors, backgroundIcon, title, subtitile, footerColor } =
+    theme.primaryMeshGradientView;
+
   return (
-    <Layout background={background} auraColors={auraColors}>
+    <AuraLayout colorConfig={theme.primaryMeshGradientView}>
       <Layout.Content>
         <div className="homepage-content elevated-circle-container">
           <ElevatedCircle background={backgroundIcon}>
@@ -48,6 +39,6 @@ export const HomePage = ({ theme }: { theme: IViewConfig }) => {
           </GradientText>
         </section>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

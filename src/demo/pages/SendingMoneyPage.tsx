@@ -1,6 +1,7 @@
 import {
+  AuraLayout,
+  BodyCopy,
   CircularProgress,
-  GradientText,
   Layout,
   PageTitle,
 } from "../../components";
@@ -17,16 +18,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
   theme,
   isLoading = false,
 }) => {
-  const {
-    background,
-    backgroundIcon,
-    title,
-    subtitile,
-    bodyCopy,
-    iconColors,
-    themeType,
-    dropzoneColors,
-  } = theme.specialView;
+  const { backgroundIcon, title, subtitile, iconColors } = theme.specialView;
 
   const variant = isLoading ? "loading" : "full";
   const icon = isLoading ? (
@@ -51,23 +43,8 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
     />
   );
 
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
-
   return (
-    <Layout
-      background={background}
-      auraColors={auraColors}
-      className="layout-success"
-      style={
-        {
-          "--bgc": background,
-          "--delay": "4s",
-        } as React.CSSProperties & {
-          [key: string]: string;
-        }
-      }
-    >
+    <AuraLayout colorConfig={theme.specialView} className="layout-success">
       <Layout.Content>
         <div className="upload-loading-container">
           <CircularProgress
@@ -84,10 +61,10 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
         </div>
       </Layout.Content>
       <Layout.Footer>
-        <GradientText textColor={bodyCopy} as="p" className="footer-text">
+        <BodyCopy style={{ color: subtitile }} className="footer-text">
           This may take a moment
-        </GradientText>
+        </BodyCopy>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

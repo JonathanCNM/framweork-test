@@ -1,4 +1,5 @@
 import {
+  AuraLayout,
   CircularProgress,
   GradientText,
   Layout,
@@ -32,22 +33,11 @@ const loadingMessages = [
 ];
 
 export const IproovSuccessSlot = ({ theme }: { theme: IViewConfig }) => {
-  const {
-    background,
-    iconColors,
-    backgroundIcon,
-    title,
-    subtitile,
-    footerColor,
-    themeType,
-    dropzoneColors,
-  } = theme.specialView;
-
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
+  const { iconColors, backgroundIcon, title, subtitile, footerColor } =
+    theme.specialView;
 
   return (
-    <Layout background={background} auraColors={auraColors}>
+    <AuraLayout colorConfig={theme.specialView}>
       <Layout.Content>
         <div className="upload-loading-container">
           <CircularProgress
@@ -67,7 +57,10 @@ export const IproovSuccessSlot = ({ theme }: { theme: IViewConfig }) => {
             secudnary="your information"
             secudnaryColor={subtitile}
           />
-          <RotatingText textColor={footerColor} messages={loadingMessages} />
+          <RotatingText
+            messages={loadingMessages}
+            style={{ color: subtitile }}
+          />
         </div>
       </Layout.Content>
       <Layout.Footer>
@@ -75,6 +68,6 @@ export const IproovSuccessSlot = ({ theme }: { theme: IViewConfig }) => {
           This may take a moment
         </GradientText>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

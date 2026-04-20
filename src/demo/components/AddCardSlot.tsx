@@ -2,6 +2,7 @@ import visaLogo from "../assets/visa_icon.png";
 import mastercardLogo from "../assets/mastercard_icon.png";
 import discoverLogo from "../assets/discover_icon.png";
 import amexLogo from "../assets/amex_icon.svg";
+import { BodyCopy } from "../../components";
 
 const creditCardTypes = {
   VISA: {
@@ -73,7 +74,9 @@ export const AddCardSlot = () => {
         <p className="summary-text">Ending *1111</p>
       </section>
 
-      <button className="summary-text add-card-slot-btn">Change</button>
+      <button className="add-card-slot-btn">
+        <BodyCopy className="summary-text">Change</BodyCopy>
+      </button>
     </section>
   );
 };

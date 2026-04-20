@@ -1,30 +1,20 @@
-import { Button, Layout, Navbar } from "../../components";
+import { AuraLayout, Button, Layout, Navbar } from "../../components";
 import { IconApp } from "../../icons";
 import type { IViewConfig } from "../../hooks/useTheme";
 import { SummaryInfo } from "../components/SummaryInfo";
 
 export const SummaryPage = ({ theme }: { theme: IViewConfig }) => {
-  const {
-    background,
-    title,
-    backgroundBtn,
-    textColorBtn,
-    themeType,
-    dropzoneColors,
-    iconColors,
-  } = theme.whiteView;
-  const isDark = themeType === "dark";
-  const auraColors = isDark ? dropzoneColors : iconColors;
+  const { title, backgroundBtn, textColorBtn } = theme.whiteView;
 
   return (
-    <Layout background={background} auraColors={auraColors}>
+    <AuraLayout colorConfig={theme.whiteView}>
       <Layout.Header>
         <Navbar color={title} title="Confirmation" align="center" />
       </Layout.Header>
       <Layout.Content>
         <SummaryInfo />
         <section className="summary-partner">
-          <p className="summary-text text-gray mx-auto">Powered by</p>
+          <p className="summary-text muted-foreground mx-auto">Powered by</p>
           <IconApp size={32} />
         </section>
       </Layout.Content>
@@ -44,6 +34,6 @@ export const SummaryPage = ({ theme }: { theme: IViewConfig }) => {
           </Button>
         </section>
       </Layout.Footer>
-    </Layout>
+    </AuraLayout>
   );
 };

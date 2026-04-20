@@ -1,4 +1,10 @@
-import { BodyCopy, Button, Layout, PageTitle } from "../../components";
+import {
+  AuraLayout,
+  BodyCopy,
+  Button,
+  Layout,
+  PageTitle,
+} from "../../components";
 import { ElevatedCircle } from "../../components/ElevatedCircle";
 import { UploadCloud, UploadIcon } from "../../icons";
 import type { IViewConfig } from "../../hooks/useTheme";
@@ -14,7 +20,6 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
   theme,
 }) => {
   const {
-    background,
     iconColors,
     backgroundIcon,
     footerColor,
@@ -27,17 +32,9 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
   } = theme.dataView;
 
   return (
-    <Layout
-      background={background}
+    <AuraLayout
+      colorConfig={theme.dataView}
       className={`dropzone ${isLoading ? "layout-success" : ""}`}
-      style={
-        {
-          "--bgc": background,
-          "--delay": "0s",
-        } as React.CSSProperties & {
-          [key: string]: string;
-        }
-      }
     >
       <Layout.Content>
         <section className="homepage-content">
@@ -110,6 +107,6 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
           </Button>
         </Layout.Footer>
       )}
-    </Layout>
+    </AuraLayout>
   );
 };

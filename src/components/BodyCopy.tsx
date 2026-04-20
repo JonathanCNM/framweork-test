@@ -1,5 +1,4 @@
 import * as React from "react";
-import { GradientText } from "./GradientText";
 
 export type BodyCopyProps<T extends React.ElementType> = {
   as?: T;
@@ -13,7 +12,7 @@ export type BodyCopyProps<T extends React.ElementType> = {
 
 export const BodyCopy = <T extends React.ElementType = "p">({
   as,
-  textColor = "#222",
+  className = "",
   isLeaving = false,
   textAnimated = false,
   textAnimatedDelay = 0,
@@ -21,21 +20,29 @@ export const BodyCopy = <T extends React.ElementType = "p">({
   ...props
 }: BodyCopyProps<T>) => {
   const Component = as || "p";
-  const classes = ["lola-body-copy", "bodycopy", props.className ?? ""]
+  const classes = [
+    "lola-body-copy",
+    "bodycopy",
+    textAnimated ? "typing-text" : "",
+    textAnimated ? "typing-in" : "",
+    isLeaving ? "typing-out" : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <GradientText
+    <Component
       {...props}
-      as={Component}
-      textColor={textColor}
       className={classes}
-      isLeaving={isLeaving}
-      textAnimated={textAnimated}
-      textAnimatedDelay={textAnimatedDelay}
+      style={
+        {
+          ...props.style,
+          "--delay": `${textAnimatedDelay}s`,
+        } as React.CSSProperties & { [key: string]: string }
+      }
     >
       {children}
-    </GradientText>
+    </Component>
   );
 };

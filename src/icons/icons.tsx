@@ -1963,14 +1963,14 @@ export const KapitalIcon: React.FC<
     size?: number;
     colors?: [string, string];
   }
-> = ({ size = 24, colors = ["#000", "#000"], ...props }) => {
+> = ({ size = 24, colors = ["currentColor", "currentColor"], ...props }) => {
   const idGradient = useId();
   const clipId = useId();
   return (
     <svg
       width={size}
       height={(size * 74) / 78}
-      viewBox="0 0 78 74"
+      viewBox="0 0 70 74"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

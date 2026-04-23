@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <span />
       )}
 
-      <section onClick={onIconClick} className="lola-navbar--container">
+      <section className="lola-navbar--container">
         <Title
           color={color}
           title={title}
@@ -76,7 +76,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           textAnimated={textAnimated}
           textAnimatedDelay={textAnimatedDelay}
         />
-        {icon && <section className={iconClasses}>{icon}</section>}
+        {icon && (
+          <section onClick={onIconClick} className={iconClasses}>
+            {icon}
+          </section>
+        )}
       </section>
     </div>
   );

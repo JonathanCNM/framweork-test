@@ -1,5 +1,24 @@
+/**
+ * Legacy Theme Hook
+ * @deprecated This hook is deprecated. Use useLolaTheme instead for a better experience.
+ * 
+ * Migration example:
+ * ```tsx
+ * // Old way
+ * import { useTheme } from './hooks/useTheme';
+ * const theme = useTheme(fontConfig);
+ * 
+ * // New way
+ * import { useLolaTheme } from './hooks/useLolaTheme';
+ * const theme = useLolaTheme(kapitalTheme); // Pass complete config
+ * ```
+ */
+
 import { useEffect } from "react";
 
+/**
+ * @deprecated Use FontStyleConfig from '../types/theme.types' instead
+ */
 export interface ThemeText {
   weight?: string | number;
   min?: string;
@@ -9,10 +28,16 @@ export interface ThemeText {
   [key: string]: any;
 }
 
+/**
+ * @deprecated Use LolaThemeConfig from '../types/theme.types' instead
+ */
 export interface IUseTheme {
   [className: string]: ThemeText;
 }
 
+/**
+ * @deprecated Use ViewColorConfig from '../types/theme.types' instead
+ */
 export interface IViewColorConfig {
   background: string;
   iconColors: [string, string];
@@ -38,6 +63,9 @@ export interface IViewColorConfig {
     | "errorView";
 }
 
+/**
+ * @deprecated Use ViewsConfig from '../types/theme.types' instead
+ */
 export interface IViewConfig {
   primaryMeshGradientView: IViewColorConfig;
   specialView: IViewColorConfig;
@@ -105,9 +133,21 @@ export const useTheme = (theme: IUseTheme) => {
     URL.revokeObjectURL(link.href);
   };
 
+  /**
+   * Generates color configurations for all views
+   * @deprecated Use generateViewConfigs from useViewConfig hook instead
+   * 
+   * NOTE: This is the ORIGINAL implementation preserved for 100% backward compatibility.
+   * For new code, use useLolaTheme or useViewConfig instead.
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const generateColorsByView = (theme: Record<string, any> | null) => {
+  const generateColorsByView = (theme: Record<string, any> | null): IViewConfig | null => {
+    if (!theme) return null;
+    
+    // ORIGINAL IMPLEMENTATION - DO NOT MODIFY
+    // This ensures existing projects work exactly as before
     let newTheme: IViewConfig | null = null;
+    
     if (theme?.lightness === "dark") {
       newTheme = {
         primaryMeshGradientView: {
@@ -305,6 +345,7 @@ export const useTheme = (theme: IUseTheme) => {
         },
       };
     }
+    
     return newTheme;
   };
 

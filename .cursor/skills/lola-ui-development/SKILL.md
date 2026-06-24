@@ -403,6 +403,52 @@ When reviewing code in this project, verify:
 
 ## Common Patterns
 
+### Text Component Selection by View Type
+
+**CRITICAL RULE:** Use the correct text component based on view type.
+
+#### GradientText for Gradient Views
+```tsx
+// ✅ Use GradientText in errorView, primaryMeshGradientView, specialView
+<AuraLayout colorConfig={theme.errorView}>
+  <Layout.Content>
+    <GradientText 
+      as="p" 
+      className="lola-body-copy bodycopy"
+      textColor={theme.errorView.bodyCopy}
+    >
+      Body text for gradient views
+    </GradientText>
+  </Layout.Content>
+</AuraLayout>
+```
+
+#### BodyCopy for Plain Views
+```tsx
+// ✅ Use BodyCopy in whiteView, dataView (no props by default)
+<AuraLayout colorConfig={theme.whiteView}>
+  <Layout.Content>
+    <BodyCopy>
+      Body text for plain views
+    </BodyCopy>
+    
+    {/* Only add color if user explicitly requests it */}
+    <BodyCopy style={{ color: '#DC2626' }}>
+      Error text (only when user asks)
+    </BodyCopy>
+  </Layout.Content>
+</AuraLayout>
+```
+
+**Quick Reference:**
+- **Use GradientText** (`as="p" className="lola-body-copy bodycopy"`) in:
+  - primaryMeshGradientView
+  - specialView
+  - errorView
+- **Use BodyCopy** (without props unless user requests) in:
+  - whiteView
+  - dataView
+
 ### Compound Components
 
 ```typescript

@@ -6,6 +6,7 @@ export * from "./icons";
 
 // Export components
 export * from "./components/AuraLayout";
+export * from "./components/BodyCopy";
 export * from "./components/Button";
 export * from "./components/CircularProgress";
 export * from "./components/CustomStepper";
@@ -27,6 +28,7 @@ export * from "./components/VgsInput";
 
 // Export types
 export type { AuraLayoutProps } from "./components/AuraLayout";
+export type { BodyCopyProps } from "./components/BodyCopy";
 export type { ButtonProps } from "./components/Button";
 export type { CircularProgressProps } from "./components/CircularProgress";
 export type { ISteps, CustomStepperProps } from "./components/CustomStepper";
@@ -58,6 +60,18 @@ export type {
   IViewColorConfig,
   IViewConfig,
 } from "./hooks/useTheme";
+
+// Export new theme system types
+export type {
+  LolaThemeConfig,
+  ColorPalette,
+  FontStyleConfig,
+  ViewsConfig,
+  ViewColorConfig,
+  ViewType,
+  ThemeLightness,
+  FontConfig,
+} from "./types/theme.types";
 
 // Export Hooks
 export * from "./hooks/useBlockScroll";

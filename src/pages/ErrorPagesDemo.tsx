@@ -9,22 +9,29 @@ import "../styles/index.css";
 import "../index.css";
 
 // Default theme for standalone demo
-const defaultTheme = {
-  fontfamily: "Inter",
-  fontcdn: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
+const defaultFontConfig = {
+  h1: { weight: "700", min: "1.75rem", max: "2rem", lineHeight: "1" },
+  h2: { weight: "600", min: "1.25rem", max: "1.35rem", lineHeight: "normal" },
+  bodycopy: { weight: "400", min: "1rem", max: "1rem", lineHeight: "normal" },
+};
+
+const defaultColorConfig = {
   lightness: "light",
-  primaryColor: "#FF6B35",
+  primaryGradient: "#667eea",
+  secondaryGradient: "#764ba2",
   secondaryColor: "#004E89",
-  primaryGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-  specialGradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+  whiteColor: "#FFFFFF",
+  errorColor: "#dc251c",
+  partnerHighlights: "#FF6B35",
+  primaryMesh: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
 };
 
 type ErrorPageType = "generic" | "404" | "network" | "iproov";
 
 export const ErrorPagesDemo = () => {
   const [currentPage, setCurrentPage] = useState<ErrorPageType>("generic");
-  const { generateColorsByView } = useTheme(defaultTheme);
-  const theme: IViewConfig = generateColorsByView(defaultTheme);
+  const { generateColorsByView } = useTheme(defaultFontConfig);
+  const theme: IViewConfig | null = generateColorsByView(defaultColorConfig);
 
   if (!theme) return <CircularProgress />;
 
@@ -65,8 +72,8 @@ export const ErrorPagesDemo = () => {
   return (
     <Page
       font={{
-        name: defaultTheme.fontfamily,
-        cdn: defaultTheme.fontcdn,
+        name: "Inter",
+        cdn: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
       }}
     >
       <div

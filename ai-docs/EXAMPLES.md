@@ -618,4 +618,256 @@ export const MyButton: FC<MyButtonProps> = ({
 
 ---
 
-These examples demonstrate how AI agents should use the MCP server to provide accurate, helpful, and complete assistance with Lola Framework UI components.
+## Example 10: Error Page with Correct Text Components
+
+### User Request
+> "Create an error page with a message and a button to go back home"
+
+### AI Agent Process
+
+1. **Identify view type**
+   - Error page = errorView
+   - errorView requires `GradientText` for body text (NOT `BodyCopy`)
+
+2. **Get component docs**
+   ```
+   MCP Tool: get_component
+   Parameters: { component_name: "GradientText" }
+   
+   MCP Tool: get_component
+   Parameters: { component_name: "PageTitle" }
+   
+   MCP Tool: get_component
+   Parameters: { component_name: "ElevatedCircle" }
+   ```
+
+3. **Generate implementation**
+
+```tsx
+import {
+  AuraLayout,
+  GradientText,
+  Button,
+  Layout,
+  PageTitle,
+  ElevatedCircle,
+  type ViewsConfig
+} from 'lola-framework-ui-test';
+import { useNavigate } from 'react-router-dom';
+
+interface ErrorPageProps {
+  theme: ViewsConfig;
+}
+
+function ErrorPage({ theme }: ErrorPageProps) {
+  const navigate = useNavigate();
+  const {
+    backgroundIcon,
+    title: titleColor,
+    subtitile: subtitleColor,
+    bodyCopy,
+    backgroundBtn,
+    textColorBtn,
+  } = theme.errorView;
+
+  return (
+    <AuraLayout colorConfig={theme.errorView}>
+      <Layout.Content>
+        <div className="homepage-content elevated-circle-container">
+          <ElevatedCircle background={backgroundIcon}>
+            <div style={{ fontSize: '60px' }}>⚠️</div>
+          </ElevatedCircle>
+
+          <PageTitle
+            highlight="Algo salió"
+            highlightColor={titleColor}
+            secudnary="mal"
+            secudnaryColor={subtitleColor}
+          />
+
+          {/* CRITICAL: Use GradientText, NOT BodyCopy for error views */}
+          <GradientText 
+            as="p" 
+            className="lola-body-copy bodycopy mt-4"
+            textColor={bodyCopy}
+          >
+            Lo sentimos, ha ocurrido un error inesperado. Por favor intenta nuevamente.
+          </GradientText>
+        </div>
+      </Layout.Content>
+
+      <Layout.Footer>
+        <Button
+          showIcon
+          size="large"
+          background={backgroundBtn}
+          color={textColorBtn}
+          onClick={() => navigate('/')}
+        >
+          Volver al inicio
+        </Button>
+      </Layout.Footer>
+    </AuraLayout>
+  );
+}
+
+export default ErrorPage;
+```
+
+4. **Explain key points**
+   - "Error pages use the `errorView` theme configuration"
+   - "**IMPORTANT**: Use `GradientText` with `className="lola-body-copy bodycopy"` for body text in error views, NOT `BodyCopy`"
+   - "This applies to all gradient views: primaryMeshGradientView, specialView, and errorView"
+   - "`BodyCopy` is only for white and data views"
+
+---
+
+## Example 11: Form Page with Correct Text Components
+
+### User Request
+> "Create a form page with input fields and helper text"
+
+### AI Agent Process
+
+1. **Identify view type**
+   - Form page = whiteView
+   - whiteView uses `BodyCopy` for body text (NOT `GradientText`)
+
+2. **Generate implementation**
+
+```tsx
+import {
+  AuraLayout,
+  BodyCopy,
+  Layout,
+  Navbar,
+  Button,
+  InputField,
+  type ViewsConfig
+} from 'lola-framework-ui-test';
+import { useState } from 'react';
+
+interface FormPageProps {
+  theme: ViewsConfig;
+}
+
+function FormPage({ theme }: FormPageProps) {
+  const [email, setEmail] = useState('');
+  
+  return (
+    <AuraLayout colorConfig={theme.whiteView}>
+      <Layout.Header>
+        <Navbar
+          color={theme.whiteView.title}
+          title="Formulario"
+          align="center"
+        />
+      </Layout.Header>
+
+      <Layout.Content>
+        <form>
+          <InputField
+            name="email"
+            type="email"
+            label="Correo Electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          {/* CORRECT: Use BodyCopy without props */}
+          <BodyCopy>
+            Ingresa tu correo electrónico para continuar
+          </BodyCopy>
+        </form>
+      </Layout.Content>
+
+      <Layout.Footer>
+        <Button
+          type="submit"
+          showIcon
+          size="large"
+          background={theme.whiteView.backgroundBtn}
+          color={theme.whiteView.textColorBtn}
+        >
+          Continuar
+        </Button>
+      </Layout.Footer>
+    </AuraLayout>
+  );
+}
+
+export default FormPage;
+```
+
+3. **Explain key points**
+   - "Form pages typically use `whiteView` configuration"
+   - "Use `BodyCopy` for body text in white and data views"
+   - "Use `GradientText` only in gradient views (primaryMesh, special, error)"
+
+---
+
+## Text Component Selection Guide
+
+### Quick Reference for AI Agents
+
+When implementing views, always check the view type first:
+
+| View Type | Body Text Component | Example Usage |
+|-----------|---------------------|---------------|
+| **errorView** | `GradientText` | `<GradientText as="p" className="lola-body-copy bodycopy" textColor={...}>` |
+| **primaryMeshGradientView** | `GradientText` | `<GradientText as="p" className="lola-body-copy bodycopy" textColor={...}>` |
+| **specialView** | `GradientText` | `<GradientText as="p" className="lola-body-copy bodycopy" textColor={...}>` |
+| **whiteView** | `BodyCopy` | `<BodyCopy>Text</BodyCopy>` (no props by default) |
+| **dataView** | `BodyCopy` | `<BodyCopy>Text</BodyCopy>` (no props by default) |
+
+### Common Mistakes to Avoid
+
+❌ **WRONG**: Using BodyCopy in error view
+```tsx
+<AuraLayout colorConfig={theme.errorView}>
+  <BodyCopy textColor={theme.errorView.bodyCopy}>
+    Error message
+  </BodyCopy>
+</AuraLayout>
+```
+
+✅ **CORRECT**: Using GradientText in error view
+```tsx
+<AuraLayout colorConfig={theme.errorView}>
+  <GradientText 
+    as="p" 
+    className="lola-body-copy bodycopy"
+    textColor={theme.errorView.bodyCopy}
+  >
+    Error message
+  </GradientText>
+</AuraLayout>
+```
+
+❌ **WRONG**: Adding textColor to BodyCopy without being asked
+```tsx
+<AuraLayout colorConfig={theme.whiteView}>
+  <BodyCopy textColor={theme.whiteView.bodyCopy}>
+    Text
+  </BodyCopy>
+</AuraLayout>
+```
+
+✅ **CORRECT**: Using BodyCopy without props
+```tsx
+<AuraLayout colorConfig={theme.whiteView}>
+  <BodyCopy>
+    Text
+  </BodyCopy>
+  
+  {/* Only add color if user explicitly requests it */}
+  <BodyCopy style={{ color: '#0EA5E9' }}>
+    Blue text (only when user asks)
+  </BodyCopy>
+</AuraLayout>
+```
+
+---
+
+These examples demonstrate how AI agents should use the MCP server to provide accurate, helpful, and complete assistance with Lola Framework UI components, including proper text component selection based on view type.

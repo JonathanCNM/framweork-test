@@ -731,4 +731,126 @@ function isValidRawDataItem(item: unknown): item is RawDataItem {
 
 ---
 
+## Example 7: View Implementation with Correct Text Components
+
+### CRITICAL: Text Component Selection by View Type
+
+Different view types require different text components for body copy.
+
+### ❌ WRONG: Using BodyCopy in Error View
+
+```typescript
+// NEVER DO THIS - BodyCopy in gradient view
+import { AuraLayout, BodyCopy, PageTitle, Layout } from 'lola-framework-ui-test';
+
+function ErrorPage({ theme }) {
+  return (
+    <AuraLayout colorConfig={theme.errorView}>
+      <Layout.Content>
+        <PageTitle 
+          highlight="Error"
+          highlightColor={theme.errorView.title}
+        />
+        
+        {/* ❌ WRONG - Don't use BodyCopy in errorView */}
+        <BodyCopy textColor={theme.errorView.bodyCopy}>
+          Something went wrong
+        </BodyCopy>
+      </Layout.Content>
+    </AuraLayout>
+  );
+}
+```
+
+### ✅ CORRECT: Using GradientText in Error View
+
+```typescript
+// CORRECT - GradientText in gradient view
+import { AuraLayout, GradientText, PageTitle, Layout } from 'lola-framework-ui-test';
+
+function ErrorPage({ theme }) {
+  return (
+    <AuraLayout colorConfig={theme.errorView}>
+      <Layout.Content>
+        <PageTitle 
+          highlight="Error"
+          highlightColor={theme.errorView.title}
+        />
+        
+        {/* ✅ CORRECT - Use GradientText with bodycopy classes */}
+        <GradientText 
+          as="p" 
+          className="lola-body-copy bodycopy"
+          textColor={theme.errorView.bodyCopy}
+        >
+          Something went wrong
+        </GradientText>
+      </Layout.Content>
+    </AuraLayout>
+  );
+}
+```
+
+### ✅ CORRECT: Using BodyCopy in White View
+
+```typescript
+// CORRECT - BodyCopy in plain view
+import { AuraLayout, BodyCopy, Layout, InputField } from 'lola-framework-ui-test';
+
+function FormPage({ theme }) {
+  return (
+    <AuraLayout colorConfig={theme.whiteView}>
+      <Layout.Content>
+        <InputField label="Email" name="email" />
+        
+        {/* ✅ CORRECT - Use BodyCopy without props */}
+        <BodyCopy>
+          Enter your email address
+        </BodyCopy>
+      </Layout.Content>
+    </AuraLayout>
+  );
+}
+```
+
+### Rule Summary
+
+| View Type | Body Text Component | Configuration |
+|-----------|---------------------|---------------|
+| **errorView** | `GradientText` | `as="p" className="lola-body-copy bodycopy"` |
+| **primaryMeshGradientView** | `GradientText` | `as="p" className="lola-body-copy bodycopy"` |
+| **specialView** | `GradientText` | `as="p" className="lola-body-copy bodycopy"` |
+| **whiteView** | `BodyCopy` | Standard usage |
+| **dataView** | `BodyCopy` | Standard usage |
+
+### Why This Pattern?
+
+**Gradient views** (error, primaryMesh, special) require `GradientText` because:
+- They have complex gradient backgrounds
+- Text needs gradient effects to match the aesthetic
+- Ensures proper visibility and visual consistency
+
+**Plain views** (white, data) use `BodyCopy` because:
+- Solid backgrounds don't need gradient text
+- Simpler rendering for better performance
+- Standard text styling is sufficient
+
+### Checklist When Implementing Views
+
+- [ ] Identify the view type first
+- [ ] For gradient views (error, primaryMesh, special):
+  - [ ] Use `GradientText` for body text
+  - [ ] Configure as `as="p"`
+  - [ ] Include `className="lola-body-copy bodycopy"`
+  - [ ] Pass `textColor` from theme
+- [ ] For plain views (white, data):
+  - [ ] Use `BodyCopy` for body text
+  - [ ] Do NOT add props unless user explicitly requests
+  - [ ] Keep simple: `<BodyCopy>Text</BodyCopy>`
+  - [ ] Only add `style={{ color: '...' }}` if user asks
+- [ ] Verify text visibility against background
+- [ ] Ensure gradient effects render correctly
+
+---
+
 These examples demonstrate the project's standards in real implementations. Use them as templates when creating new components or features.

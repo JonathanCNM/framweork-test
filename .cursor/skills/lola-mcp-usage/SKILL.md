@@ -179,7 +179,7 @@ import {
   Layout,
   Navbar,
   PageTitle,
-  BodyCopy,
+  GradientText,
   Button,
   ElevatedCircle,
   Grid
@@ -211,10 +211,14 @@ function MyView({ theme }) {
             secondary="Subtitle"
             secondaryColor={colorConfig.subtitle}
           />
-          
-          <BodyCopy textColor={colorConfig.bodyCopy}>
+
+          <GradientText 
+            as="p" 
+            className="lola-body-copy bodycopy"
+            textColor={colorConfig.bodyCopy}
+          >
             Content text here
-          </BodyCopy>
+          </GradientText>
         </Grid>
       </Layout.Content>
 
@@ -258,9 +262,18 @@ Mention important notes from documentation:
 
 ### Display Components
 - **Title** / **PageTitle** - Title components
-- **GradientText** - Gradient text effect
+- **GradientText** - Gradient text effect (use for body text in gradient views)
 - **RotatingText** - Animated text
-- **BodyCopy** - Body text
+- **BodyCopy** - Body text (use in white/data views only)
+
+**IMPORTANT - Text Component Selection:**
+- Use `GradientText` (as="p" with classes "lola-body-copy bodycopy") for body text in:
+  - primaryMeshGradientView
+  - specialView  
+  - errorView
+- Use `BodyCopy` for body text in:
+  - whiteView
+  - dataView
 
 ### Feedback Components
 - **Loader** - Loading spinner
@@ -268,6 +281,79 @@ Mention important notes from documentation:
 - **CustomStepper** - Multi-step indicator
 
 ## Common Patterns
+
+### Pattern 0: Text Component Selection by View Type
+
+**CRITICAL RULE:** The choice between `GradientText` and `BodyCopy` depends on the view type.
+
+#### Use GradientText for body text in gradient views:
+
+```tsx
+// ✅ CORRECT - Error view uses GradientText
+function ErrorPage({ theme }) {
+  return (
+    <AuraLayout colorConfig={theme.errorView}>
+      <Layout.Content>
+        <GradientText 
+          as="p" 
+          className="lola-body-copy bodycopy"
+          textColor={theme.errorView.bodyCopy}
+        >
+          An error occurred. Please try again.
+        </GradientText>
+      </Layout.Content>
+    </AuraLayout>
+  );
+}
+
+// ✅ CORRECT - PrimaryMesh view uses GradientText
+function HomePage({ theme }) {
+  return (
+    <AuraLayout colorConfig={theme.primaryMeshGradientView}>
+      <Layout.Content>
+        <GradientText 
+          as="p" 
+          className="lola-body-copy bodycopy"
+          textColor={theme.primaryMeshGradientView.bodyCopy}
+        >
+          Welcome to our app
+        </GradientText>
+      </Layout.Content>
+    </AuraLayout>
+  );
+}
+```
+
+#### Use BodyCopy for body text in plain views:
+
+```tsx
+// ✅ CORRECT - White view uses BodyCopy (no props by default)
+function FormPage({ theme }) {
+  return (
+    <AuraLayout colorConfig={theme.whiteView}>
+      <Layout.Content>
+        <BodyCopy>
+          Please fill out the form below
+        </BodyCopy>
+        
+        {/* Only add color if user explicitly requests it */}
+        <BodyCopy style={{ color: '#FF0000' }}>
+          Error message (only if user asks for red color)
+        </BodyCopy>
+      </Layout.Content>
+    </AuraLayout>
+  );
+}
+```
+
+**Quick Reference:**
+| View Type | Body Text Component | Configuration |
+|-----------|---------------------|---------------|
+| primaryMeshGradientView | `GradientText` | `as="p" className="lola-body-copy bodycopy"` |
+| specialView | `GradientText` | `as="p" className="lola-body-copy bodycopy"` |
+| errorView | `GradientText` | `as="p" className="lola-body-copy bodycopy"` |
+| whiteView | `BodyCopy` | `<BodyCopy>Text</BodyCopy>` (no props unless user requests) |
+| dataView | `BodyCopy` | `<BodyCopy>Text</BodyCopy>` (no props unless user requests) |
 
 ### Pattern 1: Gradient Styling
 Many Lola components support CSS gradients:

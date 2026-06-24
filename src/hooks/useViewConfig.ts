@@ -211,37 +211,71 @@ function resolveColor(key: keyof ColorPalette | string, palette: ColorPalette): 
  */
 export function generateViewConfigs(colorPalette: ColorPalette): ViewsConfig {
   const lightness = colorPalette.lightness || 'light';
+  const useSystemTheme = colorPalette.useSystemTheme || false;
   const views: ViewsConfig = {} as ViewsConfig;
 
   // Iterate through each view type and generate its config
   (Object.keys(VIEW_COLOR_MAPPINGS) as ViewType[]).forEach((viewType) => {
     const mapping = VIEW_COLOR_MAPPINGS[viewType][lightness];
     
-    views[viewType] = {
-      background: resolveColor(mapping.background, colorPalette),
-      iconColors: [
-        resolveColor(mapping.iconColors[0], colorPalette),
-        resolveColor(mapping.iconColors[1], colorPalette),
-      ],
-      backgroundIcon: resolveColor(mapping.backgroundIcon, colorPalette),
-      title: resolveColor(mapping.title, colorPalette),
-      subtitile: resolveColor(mapping.subtitile, colorPalette),
-      bodyCopy: resolveColor(mapping.bodyCopy, colorPalette),
-      footerColor: resolveColor(mapping.footerColor, colorPalette),
-      backgroundBtn: resolveColor(mapping.backgroundBtn, colorPalette),
-      textColorBtn: resolveColor(mapping.textColorBtn, colorPalette),
-      stepsColors: resolveColor(mapping.stepsColors, colorPalette),
-      stepsLabelColor: resolveColor(mapping.stepsLabelColor, colorPalette),
-      dropzoneColors: [
-        resolveColor(mapping.dropzoneColors[0], colorPalette),
-        resolveColor(mapping.dropzoneColors[1], colorPalette),
-      ],
-      themeType: lightness,
-      errorColor: colorPalette.errorColor,
-      highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
-      useSystemTheme: colorPalette.useSystemTheme,
-      viewConfig: viewType,
-    };
+    // Special handling for whiteView and dataView when useSystemTheme is active
+    const shouldUseSystemColors = useSystemTheme && (viewType === 'whiteView' || viewType === 'dataView');
+    
+    if (shouldUseSystemColors) {
+      // Use CSS variables for system theme support
+      views[viewType] = {
+        background: 'var(--background)',
+        iconColors: [
+          resolveColor(mapping.iconColors[0], colorPalette),
+          resolveColor(mapping.iconColors[1], colorPalette),
+        ],
+        backgroundIcon: 'var(--card)',
+        title: 'var(--foreground)',
+        subtitile: 'var(--foreground)',
+        bodyCopy: 'var(--foreground)',
+        footerColor: 'var(--muted-foreground)',
+        backgroundBtn: resolveColor(mapping.backgroundBtn, colorPalette),
+        textColorBtn: resolveColor(mapping.textColorBtn, colorPalette),
+        stepsColors: 'var(--primary)',
+        stepsLabelColor: 'var(--muted-foreground)',
+        dropzoneColors: [
+          resolveColor(mapping.dropzoneColors[0], colorPalette),
+          resolveColor(mapping.dropzoneColors[1], colorPalette),
+        ],
+        themeType: lightness,
+        errorColor: colorPalette.errorColor,
+        highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
+        useSystemTheme: true,
+        viewConfig: viewType,
+      };
+    } else {
+      // Standard color resolution for non-system views
+      views[viewType] = {
+        background: resolveColor(mapping.background, colorPalette),
+        iconColors: [
+          resolveColor(mapping.iconColors[0], colorPalette),
+          resolveColor(mapping.iconColors[1], colorPalette),
+        ],
+        backgroundIcon: resolveColor(mapping.backgroundIcon, colorPalette),
+        title: resolveColor(mapping.title, colorPalette),
+        subtitile: resolveColor(mapping.subtitile, colorPalette),
+        bodyCopy: resolveColor(mapping.bodyCopy, colorPalette),
+        footerColor: resolveColor(mapping.footerColor, colorPalette),
+        backgroundBtn: resolveColor(mapping.backgroundBtn, colorPalette),
+        textColorBtn: resolveColor(mapping.textColorBtn, colorPalette),
+        stepsColors: resolveColor(mapping.stepsColors, colorPalette),
+        stepsLabelColor: resolveColor(mapping.stepsLabelColor, colorPalette),
+        dropzoneColors: [
+          resolveColor(mapping.dropzoneColors[0], colorPalette),
+          resolveColor(mapping.dropzoneColors[1], colorPalette),
+        ],
+        themeType: lightness,
+        errorColor: colorPalette.errorColor,
+        highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
+        useSystemTheme: colorPalette.useSystemTheme,
+        viewConfig: viewType,
+      };
+    }
   });
 
   return views;

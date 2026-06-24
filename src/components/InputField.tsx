@@ -71,6 +71,8 @@ export const InputField: React.FC<InputFieldProps> = ({
       : showLabel
       ? color
       : inactiveColor,
+    "--input-color": activeColor,
+    "--input-placeholder-color": inactiveColor,
   };
 
   const labelColors = !isValid

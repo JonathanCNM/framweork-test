@@ -10,7 +10,8 @@ html.dark {
 
 /* CSS Variables */
 :root {
-  --bg-theme: #fafafb;
+  --bg-theme: #fff;
+  /* --bg-theme: #fafafb; */
   --box-shadows: 2px 2px 5px rgba(0, 0, 0, 0.25);
 
   --lola-border-radius: 20px;
@@ -19,7 +20,8 @@ html.dark {
 
   color-scheme: light dark;
   /* Light */
-  --background: #f3f4f6;
+  --background: #fff;
+  /* --background: #f3f4f6; */
   --foreground: #17171c;
   --card: #e5e7eb;
   --card-foreground: #17171c;
@@ -316,6 +318,7 @@ button {
 
 .lola-title .lola-title--subtitle {
   font-weight: 400;
+  color: var(--foreground, #252525);
 }
 
 /* Title Align */
@@ -536,7 +539,6 @@ button {
 
 /* LabelInput Styles */
 .lola--label-input {
-  background: #fff;
   position: absolute;
   left: 12px;
   top: var(--top);
@@ -546,6 +548,7 @@ button {
   transform: translateY(-50%);
   transition: ease-in-out top 0.3s;
   z-index: 50;
+  /* Background and color are set via inline styles from component */
   color: #252525;
 }
 
@@ -604,8 +607,12 @@ button {
   outline: none;
   border: none;
   background-color: transparent;
+  color: var(--input-color, var(--foreground, #252525));
+}
 
-  color: #252525;
+.lola-input-field .lola-input-field--container input::placeholder {
+  color: var(--input-placeholder-color, var(--muted-foreground, #979797));
+  opacity: 0.7;
 }
 
 .lola-input-icon .lola-input-field--container input {
@@ -1125,7 +1132,7 @@ input[type="number"]::-webkit-outer-spin-button {
       }
 
       .step-label {
-        color: #252525;
+        color: var(--foreground, #252525);
       }
 
       .step-progress {
@@ -1279,7 +1286,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 
     .search-select-value-selected {
-      color: #222;
+      color: var(--foreground, #222);
     }
 
     svg {
@@ -1527,11 +1534,11 @@ main.page {
 }
 
 .foreground {
-  color: var(--foreground);
+  color: var(--foreground, #17171c);
 }
 
 .muted-foreground {
-  color: var(--muted-foreground);
+  color: var(--muted-foreground, #61616b);
 }
 
 input[type="checkbox"] {
@@ -1552,8 +1559,8 @@ input[type="checkbox"] {
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  -webkit-text-fill-color: var(--input-color, #252525);
   transition: background-color 9999s ease-in-out 0s;
 }
 
@@ -1562,19 +1569,16 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-text-fill-color: inherit !important;
-  caret-color: inherit;
+  -webkit-text-fill-color: var(--input-color, #252525) !important;
+  caret-color: var(--input-color, #252525);
 
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
-  box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  box-shadow: 0 0 0px 1000px #fff inset !important;
 
   transition: background-color 9999s ease-in-out 0s;
 }
 
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #0f172a inset;
-  -webkit-text-fill-color: #fff;
-}
+/* Autofill styles are defined above with CSS variables */
 
 .glass {
   background: rgb(var(--gradient-card) / 0.6);
@@ -1603,11 +1607,11 @@ input:-webkit-autofill {
 }
 
 .foreground {
-  color: var(--foreground);
+  color: var(--foreground, #17171c);
 }
 
 .muted-foreground {
-  color: var(--muted-foreground);
+  color: var(--muted-foreground, #61616b);
 }
 
 .secondary {
@@ -1615,51 +1619,63 @@ input:-webkit-autofill {
 }
 
 .white-view-background {
-  &:not(&.light) {
-    .lola-layout--container {
-      background: var(--background);
-    }
+  /* Apply system theme styles for both light and dark modes */
+  .lola-layout--container {
+    background: var(--background);
+  }
 
-    .icon-container {
-      box-shadow: none;
-    }
+  .icon-container {
+    box-shadow: none;
+  }
 
-    .lola-navbar--container {
-      .lola-title {
-        h2 {
-          color: var(--foreground) !important;
-        }
+  .lola-navbar--container {
+    .lola-title {
+      h2 {
+        color: var(--foreground) !important;
       }
     }
+  }
 
-    .color-wrapper,
-    .select-wrapper,
-    .checkbox-input,
-    .lola-body-copy,
-    .lola-input-field--container,
-    input:-webkit-autofill,
-    textarea:-webkit-autofill,
-    select:-webkit-autofill,
-    .search-select-component-preview,
-    .search-select-component-container-list-item,
-    .lola-input-field .lola-input-field--container input,
-    .lola--label-input,
-    .step-label,
-    .search-select-value-selected {
-      color: var(--foreground);
+  .color-wrapper,
+  .select-wrapper,
+  .checkbox-input,
+  .lola-body-copy,
+  .lola-input-field--container,
+  .search-select-component-preview,
+  .search-select-component-container-list-item,
+  .step-label,
+  .search-select-value-selected {
+    color: var(--foreground);
 
-      &.muted-foreground {
-        color: var(--muted-foreground);
-      }
+    &.muted-foreground {
+      color: var(--muted-foreground);
     }
+  }
 
-    .lola--label-input {
-      background: var(--background);
-    }
+  /* Override label background and color only when useSystemTheme is active */
+  .lola--label-input {
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+  }
 
-    .lola-input-field .lola-input-field--container::before,
-    .icons-storybook-demo-slot::before {
-      background: var(--foreground);
-    }
+  /* Override input and autofill colors only when useSystemTheme is active */
+  .lola-input-field .lola-input-field--container input {
+    color: var(--foreground) !important;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--background) inset !important;
+    box-shadow: 0 0 0px 1000px var(--background) inset !important;
+    -webkit-text-fill-color: var(--foreground) !important;
+    caret-color: var(--foreground);
+  }
+
+  .lola-input-field .lola-input-field--container::before,
+  .icons-storybook-demo-slot::before {
+    background: var(--foreground);
   }
 }

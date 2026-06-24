@@ -8,6 +8,8 @@ export interface LabelInputProps {
 
 export const LabelInput: React.FC<LabelInputProps> = ({
   isActive = false,
+  color = "#252525",
+  background = "#fff",
   labelStyle = {},
   children,
 }) => {
@@ -21,6 +23,8 @@ export const LabelInput: React.FC<LabelInputProps> = ({
           ...labelStyle,
           "--size": fontSize,
           "--top": topStyle,
+          color,
+          background,
         } as React.CSSProperties & { [key: string]: string }
       }
       className="lola--label-input"

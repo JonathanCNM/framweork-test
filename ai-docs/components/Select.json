@@ -1,0 +1,137 @@
+{
+  "name": "Select",
+  "description": "A customizable select dropdown component with search functionality, editable items, and custom styling options.",
+  "category": "form",
+  "version": "0.3.1",
+  "props": {
+    "items": {
+      "type": "ISelectItem[]",
+      "required": true,
+      "description": "Array of items to display in the select dropdown. Each item must have 'label' and 'code' properties",
+      "examples": [
+        "[{ label: 'Option 1', code: 'opt1' }, { label: 'Option 2', code: 'opt2' }]"
+      ]
+    },
+    "selectedItem": {
+      "type": "string",
+      "required": true,
+      "description": "The code of the currently selected item"
+    },
+    "onChange": {
+      "type": "(value: unknown) => void",
+      "required": true,
+      "description": "Callback function called when an item is selected. Receives the full item object"
+    },
+    "onUpdate": {
+      "type": "(value: unknown) => void",
+      "required": false,
+      "default": "() => {}",
+      "description": "Callback function called when the edit icon is clicked (only when editable is true)"
+    },
+    "onDelete": {
+      "type": "(value: unknown) => void",
+      "required": false,
+      "default": "() => {}",
+      "description": "Callback function called when the delete icon is clicked (only when editable is true)"
+    },
+    "searchable": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "If true, displays a search input to filter items"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text for the search input (defaults to 'Filtrar opciones')"
+    },
+    "emptyItemsMessage": {
+      "type": "string",
+      "required": false,
+      "description": "Message to display when no items match the search filter"
+    },
+    "selectedColor": {
+      "type": "string",
+      "required": false,
+      "default": "#fff",
+      "description": "Text color for the selected item"
+    },
+    "selectedBackground": {
+      "type": "string",
+      "required": false,
+      "default": "#000",
+      "description": "Background color for the selected item (supports gradients)",
+      "examples": ["#000", "linear-gradient(90deg, #667eea 0%, #764ba2 100%)"]
+    },
+    "editable": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "If true, shows edit and delete icons for each item"
+    }
+  },
+  "usage": {
+    "import": "import { Select, type ISelectItem } from 'lola-framework-ui-test';",
+    "basic": "const items: ISelectItem[] = [\n  { label: 'Option 1', code: 'opt1' },\n  { label: 'Option 2', code: 'opt2' },\n  { label: 'Option 3', code: 'opt3' }\n];\n\nconst [selected, setSelected] = useState('opt1');\n\n<Select\n  items={items}\n  selectedItem={selected}\n  onChange={(item) => setSelected(item.code)}\n/>",
+    "advanced": [
+      {
+        "title": "Searchable select with custom styling",
+        "code": "const [selected, setSelected] = useState('opt1');\n\n<Select\n  items={items}\n  selectedItem={selected}\n  onChange={(item) => setSelected(item.code)}\n  searchable={true}\n  placeholder=\"Search options...\"\n  selectedBackground=\"linear-gradient(90deg, #667eea 0%, #764ba2 100%)\"\n  selectedColor=\"#ffffff\"\n  emptyItemsMessage=\"No results found\"\n/>",
+        "description": "Select with search functionality and gradient styling"
+      },
+      {
+        "title": "Editable select with actions",
+        "code": "const handleUpdate = (item) => {\n  console.log('Update item:', item);\n  // Open edit modal\n};\n\nconst handleDelete = (item) => {\n  console.log('Delete item:', item);\n  // Confirm and delete\n};\n\n<Select\n  items={items}\n  selectedItem={selected}\n  onChange={(item) => setSelected(item.code)}\n  editable={true}\n  onUpdate={handleUpdate}\n  onDelete={handleDelete}\n/>",
+        "description": "Select with edit and delete actions for each item"
+      },
+      {
+        "title": "Select with custom item properties",
+        "code": "interface CustomItem extends ISelectItem {\n  icon?: string;\n  disabled?: boolean;\n}\n\nconst customItems: CustomItem[] = [\n  { label: 'Home', code: 'home', icon: '🏠' },\n  { label: 'Settings', code: 'settings', icon: '⚙️' },\n  { label: 'Profile', code: 'profile', icon: '👤', disabled: true }\n];\n\n<Select\n  items={customItems}\n  selectedItem={selected}\n  onChange={(item) => setSelected(item.code)}\n/>",
+        "description": "Select with custom properties on items (ISelectItem supports additional properties)"
+      }
+    ]
+  },
+  "dependencies": [
+    "InputField"
+  ],
+  "styling": {
+    "cssVariables": [
+      {
+        "name": "--sbg",
+        "description": "Background color for selected item",
+        "default": "#000"
+      },
+      {
+        "name": "--scolor",
+        "description": "Text color for selected item",
+        "default": "#fff"
+      }
+    ],
+    "className": "select-component"
+  },
+  "accessibility": {
+    "aria": [
+      "Consider adding role='listbox'",
+      "Consider adding aria-selected for the selected item",
+      "Consider adding aria-activedescendant for keyboard navigation"
+    ],
+    "keyboard": [
+      "Currently only supports mouse interaction",
+      "Consider adding Arrow Up/Down for navigation",
+      "Consider adding Enter/Space for selection"
+    ],
+    "notes": "This component could benefit from ARIA attributes and keyboard navigation for better accessibility. The searchable input does have basic keyboard support."
+  },
+  "notes": [
+    "Items are filtered by both 'label' and 'code' properties when searching",
+    "The ISelectItem interface allows additional properties via index signature",
+    "Selected item comparison is case-insensitive",
+    "When items list has more than ~5 items (350px height), the dropdown becomes scrollable",
+    "Edit and delete icons only appear when editable prop is true",
+    "Empty state is shown when no items match the search filter"
+  ],
+  "related": [
+    "SearchSelect",
+    "InputField"
+  ]
+}

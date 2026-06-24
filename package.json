@@ -24,7 +24,12 @@
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "ai:setup": "cd ai-docs/mcp-server && npm install && npm run build",
+    "ai:build": "cd ai-docs/mcp-server && npm run build",
+    "ai:generate-docs": "node ai-docs/scripts/generate-docs.js",
+    "ai:validate-docs": "node ai-docs/scripts/validate-docs.js",
+    "ai:mcp-dev": "cd ai-docs/mcp-server && npm run dev"
   },
   "keywords": [
     "react",

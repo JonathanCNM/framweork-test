@@ -1,0 +1,52 @@
+# AI Documentation Rules for Cursor
+
+This directory contains AI-readable documentation for Lola Framework UI components.
+
+## When editing documentation:
+
+1. **Follow the Schema**
+   - All component JSON files must validate against `schema/component-schema.json`
+   - Run `npm run ai:validate-docs` before committing
+
+2. **Complete Documentation**
+   - No TODO placeholders in production docs
+   - Include at least 2-3 usage examples
+   - Document all props with descriptions
+   - Add accessibility notes
+
+3. **TypeScript Types**
+   - Use exact TypeScript syntax for types
+   - Include union types as options array
+   - Specify required vs optional props
+
+4. **Code Examples**
+   - All examples must be valid, working code
+   - Include imports and setup
+   - Show realistic use cases
+   - Provide both basic and advanced examples
+
+5. **After Changes**
+   - Rebuild MCP server: `npm run ai:build`
+   - Test with AI assistant
+   - Update version if breaking changes
+
+## File Structure
+
+- `schema/` - JSON Schema definitions
+- `components/` - Component documentation (JSON)
+- `mcp-server/` - MCP server implementation
+- `scripts/` - Automation scripts
+
+## Scripts
+
+- `npm run ai:generate-docs [ComponentName]` - Generate doc template
+- `npm run ai:validate-docs [ComponentName]` - Validate docs
+- `npm run ai:build` - Rebuild MCP server
+
+## MCP Server Development
+
+When modifying the MCP server:
+- TypeScript strict mode is enforced
+- All tools must have proper inputSchema
+- Error messages must be helpful
+- Test with multiple AI assistants

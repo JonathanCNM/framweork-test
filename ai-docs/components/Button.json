@@ -1,0 +1,159 @@
+{
+  "name": "Button",
+  "description": "A versatile button component with multiple variants, loading states, gradient support, and customizable styling. Supports icons and animated text.",
+  "category": "form",
+  "version": "0.3.1",
+  "props": {
+    "children": {
+      "type": "React.ReactNode",
+      "required": true,
+      "description": "Button content (text, icons, or other elements)"
+    },
+    "variant": {
+      "type": "'default' | 'link' | 'outline' | 'cancel'",
+      "required": false,
+      "default": "default",
+      "description": "Button visual style variant",
+      "options": ["default", "link", "outline", "cancel"],
+      "examples": ["default", "link", "outline"]
+    },
+    "size": {
+      "type": "'small' | 'medium' | 'large'",
+      "required": false,
+      "default": "medium",
+      "description": "Button size",
+      "options": ["small", "medium", "large"]
+    },
+    "loading": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Shows a loader and disables the button when true"
+    },
+    "background": {
+      "type": "string",
+      "required": false,
+      "default": "#000",
+      "description": "Background color or CSS gradient string",
+      "examples": ["#000", "linear-gradient(90deg, #667eea 0%, #764ba2 100%)", "#3b82f6"]
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "default": "#fff",
+      "description": "Text color or CSS gradient string",
+      "examples": ["#fff", "linear-gradient(90deg, #667eea 0%, #764ba2 100%)", "#000"]
+    },
+    "showIcon": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to show an icon on the right side of the button"
+    },
+    "icon": {
+      "type": "React.ReactNode",
+      "required": false,
+      "description": "Custom icon element (uses default RightRoundedIcon if not provided)"
+    },
+    "isLeaving": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Animation state for text transition effects"
+    },
+    "textAnimated": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Enable animated text effect"
+    },
+    "textAnimatedDelay": {
+      "type": "number",
+      "required": false,
+      "default": 0,
+      "description": "Delay in milliseconds for text animation"
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Native button disabled state (inherited from ButtonHTMLAttributes)"
+    },
+    "onClick": {
+      "type": "React.MouseEventHandler<HTMLButtonElement>",
+      "required": false,
+      "description": "Click handler (inherited from ButtonHTMLAttributes)"
+    }
+  },
+  "usage": {
+    "import": "import { Button } from 'lola-framework-ui-test';",
+    "basic": "<Button>Click me</Button>",
+    "advanced": [
+      {
+        "title": "Button with gradient background",
+        "code": "<Button \n  background=\"linear-gradient(90deg, #667eea 0%, #764ba2 100%)\"\n  color=\"#fff\"\n>\n  Gradient Button\n</Button>",
+        "description": "Button with a gradient background"
+      },
+      {
+        "title": "Button with loading state",
+        "code": "<Button loading={isLoading}>\n  Submit Form\n</Button>",
+        "description": "Button showing a loader when processing"
+      },
+      {
+        "title": "Outline variant button",
+        "code": "<Button \n  variant=\"outline\"\n  background=\"linear-gradient(90deg, #667eea 0%, #764ba2 100%)\"\n  color=\"linear-gradient(90deg, #667eea 0%, #764ba2 100%)\"\n>\n  Outline Button\n</Button>",
+        "description": "Button with outline style and gradient colors"
+      },
+      {
+        "title": "Button with icon",
+        "code": "<Button \n  showIcon={true}\n  icon={<CustomIcon />}\n>\n  Next Step\n</Button>",
+        "description": "Button with a custom icon on the right"
+      },
+      {
+        "title": "Link style button",
+        "code": "<Button \n  variant=\"link\"\n  color=\"#3b82f6\"\n>\n  Learn More\n</Button>",
+        "description": "Button styled as a text link"
+      }
+    ]
+  },
+  "dependencies": [
+    "GradientText",
+    "Loader"
+  ],
+  "styling": {
+    "cssVariables": [
+      {
+        "name": "--bg",
+        "description": "Button background color or gradient",
+        "default": "#000"
+      },
+      {
+        "name": "--link-bg",
+        "description": "Link variant background color",
+        "default": "color prop value"
+      }
+    ],
+    "className": "lola-button"
+  },
+  "accessibility": {
+    "aria": [
+      "aria-label - Add descriptive label for icon-only buttons",
+      "aria-disabled - Automatically handled via disabled prop"
+    ],
+    "keyboard": [
+      "Enter/Space - Activates the button",
+      "Tab - Focuses the button"
+    ],
+    "notes": "The button is disabled automatically when loading prop is true. All native button HTML attributes are supported."
+  },
+  "notes": [
+    "Extends React.ButtonHTMLAttributes<HTMLButtonElement>, so all native button props are available",
+    "The loading state automatically disables the button",
+    "Gradients are supported for both background and color props",
+    "When showIcon is true without a custom icon, RightRoundedIcon is used by default",
+    "Text color is extracted and split for the loader animation"
+  ],
+  "related": [
+    "GradientText",
+    "Loader"
+  ]
+}

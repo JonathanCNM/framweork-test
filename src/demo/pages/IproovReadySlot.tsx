@@ -33,6 +33,8 @@ export const IproovReadySlot = ({
   const customStepperTrackInactiveBg = isLightTheme ? textColorBtn : undefined;
   const customStepperIndexInactiveBg = isLightTheme ? backgroundBtn : undefined;
 
+  console.log('theme.specialView', theme.specialView)
+
   return (
     <AuraLayout className="step" colorConfig={theme.specialView}>
       <Layout.Content>
@@ -48,7 +50,7 @@ export const IproovReadySlot = ({
             secudnaryColor={subtitile}
           />
 
-          <BodyCopy style={{ color: subtitile }}>
+          <BodyCopy style={{ color: bodyCopy }}>
             Remove glasses, face coverings, and ensure you have good lighting.
           </BodyCopy>
           <section className="stepper-section">

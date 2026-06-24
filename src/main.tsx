@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import Test from "./pages/Test";
 import { Demo } from "./pages/Demo";
+import { ErrorPagesDemo } from "./pages/ErrorPagesDemo";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -11,6 +12,7 @@ createRoot(document.getElementById("root")!).render(
       <Route path="/" Component={App} />
       <Route path="/test" Component={Test} />
       <Route path="/demo" Component={Demo} />
+      <Route path="/errors" Component={ErrorPagesDemo} />
     </Routes>
   </BrowserRouter>
 );

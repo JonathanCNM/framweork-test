@@ -1,0 +1,254 @@
+{
+  "library": {
+    "name": "Lola Framework UI",
+    "packageName": "lola-framework-ui-test",
+    "version": "0.3.1",
+    "description": "React + TypeScript component library with modern CSS, gradients, and animations",
+    "repository": "https://github.com/JonathanCNM/framweork-test",
+    "author": "Jonathan Narvaez",
+    "license": "MIT"
+  },
+  "installation": {
+    "npm": "npm install lola-framework-ui-test",
+    "yarn": "yarn add lola-framework-ui-test",
+    "pnpm": "pnpm add lola-framework-ui-test"
+  },
+  "peerDependencies": {
+    "react": ">=18 <20",
+    "react-dom": ">=18 <20"
+  },
+  "setup": {
+    "import_styles": "import 'lola-framework-ui-test/dist/styles.css';",
+    "note": "Import the CSS file in your main app file (App.tsx, index.tsx, or _app.tsx for Next.js)"
+  },
+  "categories": {
+    "form": {
+      "description": "Form inputs, buttons, and controls",
+      "components": ["Button", "InputField", "Select", "SearchSelect", "InputRadio", "LabelInput"]
+    },
+    "layout": {
+      "description": "Page structure and layout components",
+      "components": ["Layout", "AuraLayout", "Page", "MotionWrapper", "DesignLayout"]
+    },
+    "navigation": {
+      "description": "Navigation and menu components",
+      "components": ["Navbar"]
+    },
+    "display": {
+      "description": "Display and presentation components",
+      "components": ["Title", "PageTitle", "GradientText", "RotatingText", "BodyCopy"]
+    },
+    "feedback": {
+      "description": "Loading states and progress indicators",
+      "components": ["Loader", "CircularProgress", "CustomStepper"]
+    },
+    "decoration": {
+      "description": "Visual effects and decorations",
+      "components": ["ElevatedCircle"]
+    },
+    "integration": {
+      "description": "Third-party integration components",
+      "components": ["VgsFormWrapper", "VgsInput", "IproovButtonSlot"]
+    }
+  },
+  "components": [
+    {
+      "name": "Button",
+      "category": "form",
+      "description": "Versatile button with multiple variants, loading states, and gradient support",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": "Button.json"
+    },
+    {
+      "name": "InputField",
+      "category": "form",
+      "description": "Feature-rich input field with floating labels, validation, and gradient colors",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": "InputField.json"
+    },
+    {
+      "name": "Select",
+      "category": "form",
+      "description": "Customizable select dropdown with search and edit functionality",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": "Select.json"
+    },
+    {
+      "name": "SearchSelect",
+      "category": "form",
+      "description": "Enhanced select with search capabilities",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "InputRadio",
+      "category": "form",
+      "description": "Radio button input component",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "LabelInput",
+      "category": "form",
+      "description": "Floating label for input fields",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "Layout",
+      "category": "layout",
+      "description": "Main layout wrapper with header, content, and footer slots",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "AuraLayout",
+      "category": "layout",
+      "description": "Layout with animated aura/glow effects",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "Page",
+      "category": "layout",
+      "description": "Page container component",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "MotionWrapper",
+      "category": "layout",
+      "description": "Framer Motion animation wrapper",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "DesignLayout",
+      "category": "layout",
+      "description": "Design system layout wrapper",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "Navbar",
+      "category": "navigation",
+      "description": "Navigation bar component",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "Title",
+      "category": "display",
+      "description": "Page title component with styling",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "PageTitle",
+      "category": "display",
+      "description": "Enhanced page title with gradient support",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "GradientText",
+      "category": "display",
+      "description": "Text with gradient color effect",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "RotatingText",
+      "category": "display",
+      "description": "Animated rotating text effect",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "BodyCopy",
+      "category": "display",
+      "description": "Body text component with typography styles",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "Loader",
+      "category": "feedback",
+      "description": "Loading spinner with customizable colors",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "CircularProgress",
+      "category": "feedback",
+      "description": "Circular progress indicator",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "CustomStepper",
+      "category": "feedback",
+      "description": "Multi-step progress indicator",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "ElevatedCircle",
+      "category": "decoration",
+      "description": "Decorative elevated circle element",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "VgsFormWrapper",
+      "category": "integration",
+      "description": "VGS (Very Good Security) form integration wrapper",
+      "complexity": "complex",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "VgsInput",
+      "category": "integration",
+      "description": "VGS secure input field",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    },
+    {
+      "name": "IproovButtonSlot",
+      "category": "integration",
+      "description": "iProov biometric verification button slot",
+      "complexity": "medium",
+      "status": "stable",
+      "docFile": null
+    }
+  ],
+  "metadata": {
+    "totalComponents": 24,
+    "documentedComponents": 3,
+    "lastUpdated": "2026-06-17",
+    "documentationProgress": "12.5%"
+  }
+}

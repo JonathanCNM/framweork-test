@@ -1,0 +1,203 @@
+{
+  "name": "InputField",
+  "description": "A feature-rich input field component with floating labels, gradient colors, validation states, icons, and currency display support.",
+  "category": "form",
+  "version": "0.3.1",
+  "props": {
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "Floating label text that appears above the input when focused or filled"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "Controlled input value"
+    },
+    "onChange": {
+      "type": "(event?: React.ChangeEvent<HTMLInputElement>) => void",
+      "required": false,
+      "default": "() => {}",
+      "description": "Change handler called when input value changes"
+    },
+    "type": {
+      "type": "string",
+      "required": false,
+      "default": "text",
+      "description": "HTML input type (text, password, email, number, color, etc.)",
+      "examples": ["text", "password", "email", "number", "color"]
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "Input name attribute for forms"
+    },
+    "maxLength": {
+      "type": "number",
+      "required": false,
+      "description": "Maximum number of characters allowed"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "Placeholder text (only shown when noLabel is true)"
+    },
+    "noLabel": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "If true, hides the floating label and shows placeholder instead"
+    },
+    "isValid": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Validation state - when false, shows error color"
+    },
+    "borderRadius": {
+      "type": "string",
+      "required": false,
+      "default": "10",
+      "description": "Border radius in pixels (number as string)"
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "default": "#222",
+      "description": "Label and border color when input has value but not focused"
+    },
+    "inactiveColor": {
+      "type": "string",
+      "required": false,
+      "default": "#979797",
+      "description": "Label and border color when input is empty and not focused"
+    },
+    "activeColor": {
+      "type": "string",
+      "required": false,
+      "default": "#000",
+      "description": "Label and border color when input is focused (supports gradients)",
+      "examples": ["#000", "linear-gradient(90deg, #667eea 0%, #764ba2 100%)"]
+    },
+    "errorColor": {
+      "type": "string",
+      "required": false,
+      "default": "#fd2a35",
+      "description": "Label and border color when isValid is false"
+    },
+    "labelBackground": {
+      "type": "string",
+      "required": false,
+      "default": "#fff",
+      "description": "Background color for the floating label"
+    },
+    "inputStyle": {
+      "type": "React.CSSProperties",
+      "required": false,
+      "default": "{}",
+      "description": "Additional styles for the input element"
+    },
+    "labelStyle": {
+      "type": "React.CSSProperties",
+      "required": false,
+      "default": "{}",
+      "description": "Additional styles for the label element"
+    },
+    "icon": {
+      "type": "React.ReactNode",
+      "required": false,
+      "description": "Icon element to display alongside the input"
+    },
+    "currency": {
+      "type": "string",
+      "required": false,
+      "description": "Currency symbol to display (e.g., '$', '€', 'USD')"
+    },
+    "setIconColors": {
+      "type": "(colors?: [string, string]) => void",
+      "required": false,
+      "default": "() => ['#000', '#000']",
+      "description": "Callback to set icon colors based on input state"
+    }
+  },
+  "usage": {
+    "import": "import { InputField } from 'lola-framework-ui-test';",
+    "basic": "<InputField \n  name=\"email\"\n  label=\"Email address\"\n  type=\"email\"\n/>",
+    "advanced": [
+      {
+        "title": "Controlled input with validation",
+        "code": "const [email, setEmail] = useState('');\nconst [isValid, setIsValid] = useState(true);\n\n<InputField\n  name=\"email\"\n  label=\"Email address\"\n  type=\"email\"\n  value={email}\n  onChange={(e) => setEmail(e.target.value)}\n  isValid={isValid}\n  errorColor=\"#ff0000\"\n/>",
+        "description": "Input with validation state management"
+      },
+      {
+        "title": "Input with gradient active state",
+        "code": "<InputField\n  name=\"username\"\n  label=\"Username\"\n  activeColor=\"linear-gradient(90deg, #667eea 0%, #764ba2 100%)\"\n  color=\"#222222\"\n/>",
+        "description": "Input with gradient color when focused"
+      },
+      {
+        "title": "Input without label",
+        "code": "<InputField\n  name=\"search\"\n  placeholder=\"Search...\"\n  noLabel={true}\n  borderRadius=\"20\"\n/>",
+        "description": "Input with placeholder instead of floating label"
+      },
+      {
+        "title": "Input with currency",
+        "code": "<InputField\n  name=\"amount\"\n  label=\"Amount\"\n  type=\"number\"\n  currency=\"USD\"\n/>",
+        "description": "Input displaying a currency symbol"
+      },
+      {
+        "title": "Color picker input",
+        "code": "<InputField\n  name=\"color\"\n  label=\"Choose color\"\n  type=\"color\"\n  value=\"#3b82f6\"\n  onChange={(e) => setColor(e.target.value)}\n/>",
+        "description": "Special color input with visual preview"
+      },
+      {
+        "title": "Input with icon",
+        "code": "const [iconColors, setIconColors] = useState(['#000', '#000']);\n\n<InputField\n  name=\"password\"\n  label=\"Password\"\n  type=\"password\"\n  icon={<LockIcon colors={iconColors} />}\n  setIconColors={setIconColors}\n/>",
+        "description": "Input with icon that changes color based on state"
+      }
+    ]
+  },
+  "dependencies": [
+    "LabelInput",
+    "GradientText"
+  ],
+  "styling": {
+    "cssVariables": [
+      {
+        "name": "--bg",
+        "description": "Border color (changes based on focus/validation state)",
+        "default": "Depends on state (inactive/active/error)"
+      },
+      {
+        "name": "--color",
+        "description": "Color preview for type='color' inputs",
+        "default": "value prop"
+      }
+    ],
+    "className": "lola-input-field"
+  },
+  "accessibility": {
+    "aria": [
+      "aria-invalid - Should be added based on isValid prop",
+      "aria-describedby - Can be added to link error messages"
+    ],
+    "keyboard": [
+      "Tab - Focuses the input",
+      "Standard input keyboard interactions"
+    ],
+    "notes": "Label is properly associated with input via htmlFor attribute. Consider adding aria-invalid when isValid is false."
+  },
+  "notes": [
+    "The component manages its own internal state for focus and input value",
+    "Label automatically floats when input is focused or has a value",
+    "Supports CSS gradients for activeColor prop",
+    "The type='color' input has special UI treatment with color preview",
+    "Currency is displayed using GradientText with dynamic colors",
+    "Icon colors are automatically updated based on input state via setIconColors callback"
+  ],
+  "related": [
+    "LabelInput",
+    "GradientText",
+    "SearchSelect"
+  ]
+}

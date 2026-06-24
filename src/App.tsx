@@ -12,6 +12,9 @@ import { SuccessId } from "./demo/pages/SuccessId";
 import { IproovReadySlot } from "./demo/pages/IproovReadySlot";
 import { IproovError } from "./demo/pages/IproovError";
 import { IproovSuccessSlot } from "./demo/pages/IproovSuccessSlot";
+import { GenericErrorPage } from "./demo/pages/GenericErrorPage";
+import { NotFoundErrorPage } from "./demo/pages/NotFoundErrorPage";
+import { NetworkErrorPage } from "./demo/pages/NetworkErrorPage";
 import { AddressPage } from "./demo/pages/AddressPage";
 import { LastStepsPage } from "./demo/pages/LastStepsPage";
 import { CardPage } from "./demo/pages/CardPage";
@@ -90,6 +93,15 @@ const App = () => {
           </section>
           <section className="demo-slide">
             <IproovError theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <GenericErrorPage theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <NotFoundErrorPage theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <NetworkErrorPage theme={newTheme} />
           </section>
           <section className="demo-slide">
             <IproovSuccessSlot theme={newTheme} />

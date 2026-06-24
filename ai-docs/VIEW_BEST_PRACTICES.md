@@ -215,8 +215,107 @@ When implementing a new view:
 - [ ] Test text visibility against background
 - [ ] Verify gradient effects render correctly
 
+## System Theme Adaptation (useSystemTheme)
+
+Lola Framework UI supports automatic adaptation to system theme (light/dark mode) via the `useSystemTheme` configuration.
+
+### When useSystemTheme: false (Default)
+All colors remain **fixed** as configured in your theme, regardless of system theme:
+
+```tsx
+// Theme configuration
+const myTheme: LolaThemeConfig = {
+  colors: {
+    // ... color config
+    useSystemTheme: false, // Fixed colors
+  }
+};
+
+// Result: Colors stay consistent across light and dark system themes
+// - BodyCopy: Always #252525 (dark text) on white background
+// - InputField: Fixed colors from theme
+// - No adaptation to system preferences
+```
+
+### When useSystemTheme: true (Adaptive)
+**White View and Data View** automatically adapt to system theme:
+
+```tsx
+// Theme configuration
+const myTheme: LolaThemeConfig = {
+  colors: {
+    // ... color config
+    useSystemTheme: true, // Enable adaptation
+  }
+};
+
+// Result in whiteView/dataView:
+// - Light mode: Dark text on light background
+// - Dark mode: Light text on dark background
+// - Automatic adaptation via CSS variables
+```
+
+**Important Notes:**
+- Only `whiteView` and `dataView` adapt when `useSystemTheme: true`
+- Gradient views (`primaryMeshGradientView`, `specialView`, `errorView`) **always use fixed theme colors**
+- This preserves brand identity in key visual areas
+
+### Component Behavior with System Theme
+
+```tsx
+// ✅ CORRECT: BodyCopy adapts automatically
+<AuraLayout colorConfig={theme.whiteView}> {/* useSystemTheme: true */}
+  <BodyCopy>
+    This text adapts: dark in light mode, light in dark mode
+  </BodyCopy>
+</AuraLayout>
+
+// ✅ CORRECT: InputField adapts automatically
+<AuraLayout colorConfig={theme.whiteView}> {/* useSystemTheme: true */}
+  <InputField label="Name" />
+  {/* Input text, label, and autofill all adapt automatically */}
+</AuraLayout>
+
+// ✅ CORRECT: GradientText in error view stays fixed
+<AuraLayout colorConfig={theme.errorView}> {/* Always fixed, even if useSystemTheme: true */}
+  <GradientText as="p" className="lola-body-copy bodycopy" textColor={theme.errorView.bodyCopy}>
+    Error message maintains brand colors
+  </GradientText>
+</AuraLayout>
+```
+
+### Testing Requirements
+
+**Always test all four combinations:**
+1. ✅ `useSystemTheme: false` + System light mode
+2. ✅ `useSystemTheme: false` + System dark mode
+3. ✅ `useSystemTheme: true` + System light mode
+4. ✅ `useSystemTheme: true` + System dark mode
+
+**Browser DevTools for Testing:**
+```
+1. Open DevTools (F12)
+2. Cmd/Ctrl + Shift + P → "Rendering"
+3. Select "Emulate CSS prefers-color-scheme: dark"
+4. Verify text is visible in all scenarios
+```
+
+### Common Issues
+
+❌ **Problem**: Text invisible when system is dark but `useSystemTheme: false`
+✅ **Solution**: This is now fixed - framework uses fixed colors when `useSystemTheme: false`
+
+❌ **Problem**: BodyCopy invisible in dark mode when `useSystemTheme: true`
+✅ **Solution**: Framework automatically handles this with CSS `!important` rules
+
+❌ **Problem**: Input labels showing grey patch or invisible text
+✅ **Solution**: Ensure using v0.3.1+ with proper label color handling
+
+For complete system theme documentation, see [SYSTEM_THEME_GUIDE.md](../SYSTEM_THEME_GUIDE.md).
+
 ## Related Documentation
 
 - [Component Examples](./EXAMPLES.md)
 - [View Implementation Guide](./components/ViewBasedImplementation.json)
-- [Theme System Guide](../THEME_SYSTEM_GUIDE.md)
+- [System Theme Guide](../SYSTEM_THEME_GUIDE.md)
+- [Project Memory](../PROJECT_MEMORY.md)

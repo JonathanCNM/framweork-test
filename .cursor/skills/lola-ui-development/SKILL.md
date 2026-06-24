@@ -214,6 +214,206 @@ export const Card = ({ color, padding }: CardProps) => {
 
 ---
 
+## Theming System
+
+Lola Framework UI uses a **dual-mode theming system** that supports both fixed brand colors and system theme adaptation.
+
+### System Theme Configuration
+
+```typescript
+import type { LolaThemeConfig } from 'lola-framework-ui-test';
+
+export const myTheme: LolaThemeConfig = {
+  font: {
+    // Font configuration
+  },
+  colors: {
+    primaryGradient: '#1DAFA1',
+    secondaryGradient: '#10B981',
+    // ... other color config
+    useSystemTheme: false, // false = fixed colors, true = system adaptive
+    lightness: 'light',
+  }
+};
+```
+
+### When useSystemTheme: false (Fixed Mode)
+
+**Behavior**: All colors remain **exactly as configured**, regardless of system theme.
+
+**Component Defaults**:
+- `BodyCopy`: Uses `#252525` (dark text) on white background
+- `InputField`: Uses fixed colors from theme or component defaults
+- `LabelInput`: Uses `#fff` background with dark text
+- Autofill: Uses `#fff` background with dark text
+
+**Use Case**: Apps requiring consistent brand colors across all devices/themes.
+
+### When useSystemTheme: true (Adaptive Mode)
+
+**Behavior**: White View and Data View **automatically adapt** to system theme (light/dark).
+
+**Adaptive Views**:
+- `whiteView`: Adapts to system theme
+- `dataView`: Adapts to system theme
+
+**Fixed Views** (preserve brand colors):
+- `primaryMeshGradientView`
+- `specialView`
+- `errorView`
+
+**Adaptive Components** (when in white/data views):
+- `BodyCopy`: `var(--foreground)` - dark in light mode, light in dark mode
+- `InputField`: Text color adapts to `var(--foreground)`
+- `LabelInput`: Background and color adapt with CSS `!important` rules
+- Input autofill: Background and text adapt to prevent invisibility
+- Navbar titles: Adapt to `var(--foreground)`
+
+**Technical Implementation**:
+```css
+/* Applied to adaptive views when useSystemTheme: true */
+.white-view-background {
+  /* Components automatically use CSS variables */
+  .lola-body-copy {
+    color: var(--foreground); /* Adapts to system */
+  }
+  
+  .lola--label-input {
+    background: var(--background) !important; /* Overrides inline styles */
+    color: var(--foreground) !important;
+  }
+  
+  /* Input and autofill also adapt */
+  .lola-input-field input {
+    color: var(--foreground) !important;
+  }
+}
+```
+
+### CSS Variables Reference
+
+```css
+/* Light Mode (Default) */
+:root {
+  --background: #f3f4f6;
+  --foreground: #17171c;
+  --card: #e5e7eb;
+  --muted-foreground: #61616b;
+  --primary: #3ee0cf;
+}
+
+/* Dark Mode (Auto-applied via media query) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #121216;
+    --muted-foreground: #878792;
+  }
+}
+```
+
+### Component Usage Guidelines
+
+#### BodyCopy Component
+
+```typescript
+// ✅ DO: Use without props (adapts automatically)
+<BodyCopy>This text will adapt to theme</BodyCopy>
+
+// ❌ DON'T: Pass textColor unless explicitly styling
+<BodyCopy textColor="#000">Don't do this</BodyCopy>
+
+// ✅ EXCEPTION: Only when user explicitly requests color change
+<BodyCopy style={{ color: customColor }}>Explicitly styled</BodyCopy>
+```
+
+#### GradientText Component
+
+**Use GradientText for**:
+- Special views (`specialView`)
+- Primary mesh views (`primaryMeshGradientView`)
+- Error views (`errorView`)
+- Titles and headings in gradient views
+
+```typescript
+// In special/error/primaryMesh views - use GradientText as <p>
+<GradientText as="p" className="lola-body-copy bodycopy">
+  Body text in gradient views
+</GradientText>
+
+// For titles
+<GradientText as="h1" textColor={[color1, color2]}>
+  Gradient Title
+</GradientText>
+```
+
+**NEVER** add `bodycopy` class inside `lola-framework-ui-test` components - only in external implementations.
+
+#### InputField & LabelInput
+
+```typescript
+// ✅ DO: Let defaults handle colors
+<InputField
+  label="Name"
+  value={value}
+  onChange={handleChange}
+/>
+
+// ❌ DON'T: Override colors when useSystemTheme: true
+<InputField
+  label="Name"
+  color="#000" // Avoid when using system theme
+  labelBackground="#fff" // Avoid when using system theme
+/>
+
+// ✅ EXCEPTION: Custom colors when useSystemTheme: false
+const theme = useLolaTheme(myTheme); // useSystemTheme: false
+<InputField
+  label="Name"
+  color={theme.views.whiteView.title}
+  labelBackground={theme.views.whiteView.background}
+/>
+```
+
+### Testing Both Modes
+
+**Always test these scenarios**:
+1. ✅ `useSystemTheme: false` + System light mode
+2. ✅ `useSystemTheme: false` + System dark mode
+3. ✅ `useSystemTheme: true` + System light mode
+4. ✅ `useSystemTheme: true` + System dark mode
+
+**Browser DevTools Testing**:
+```
+1. Open DevTools (F12)
+2. Cmd/Ctrl + Shift + P
+3. Type "Rendering"
+4. Select "Emulate CSS prefers-color-scheme: dark"
+```
+
+### Common Pitfalls
+
+❌ **Problem**: Text invisible when system is dark but `useSystemTheme: false`
+✅ **Solution**: Framework now uses fixed colors when `useSystemTheme: false` - no action needed
+
+❌ **Problem**: Label shows grey patch (`#979797`) on white background
+✅ **Solution**: Ensure using v0.3.1+ with fixed `LabelInput` defaults
+
+❌ **Problem**: Autofill text invisible
+✅ **Solution**: Framework handles autofill colors automatically in both modes
+
+❌ **Problem**: `BodyCopy` invisible in dark mode when `useSystemTheme: true`
+✅ **Solution**: Framework uses `!important` rules to force adaptation - no inline styles needed
+
+### Documentation References
+
+- Full guide: `SYSTEM_THEME_GUIDE.md`
+- Project memory: `PROJECT_MEMORY.md` (Theme System section)
+- View best practices: `ai-docs/VIEW_BEST_PRACTICES.md`
+
+---
+
 ## Testing Standards
 
 ### Test File Structure

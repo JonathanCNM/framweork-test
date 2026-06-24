@@ -133,6 +133,79 @@ src/ → Vite Build → Rollup Bundle → TypeScript Types → dist/
 
 ---
 
+## 🎨 Sistema de Temas
+
+### Dual-Mode Theming System
+
+Lola Framework UI implementa un sistema de temas de doble modo que soporta tanto colores fijos como adaptación al tema del sistema operativo.
+
+#### useSystemTheme: false (Modo Fixed)
+**Comportamiento**: Colores consistentes independientemente del tema del sistema
+- `BodyCopy`: `#252525` (texto oscuro) sobre fondo blanco
+- `InputField`: Colores fijos del tema o defaults
+- `LabelInput`: `#fff` background, texto oscuro
+- Autofill: `#fff` background, texto oscuro
+- **Garantía**: Los colores de marca se respetan exactamente como se configuran
+
+#### useSystemTheme: true (Modo Adaptive)
+**Comportamiento**: Adaptación automática al tema del sistema (light/dark)
+- **Vistas adaptativas**: `whiteView`, `dataView`
+- **Vistas fijas**: `primaryMeshGradientView`, `specialView`, `errorView` (mantienen colores de marca)
+
+**Componentes que se adaptan**:
+- `BodyCopy`: `var(--foreground)` (oscuro en light, claro en dark)
+- `InputField`: Texto se adapta a `var(--foreground)`
+- `LabelInput`: Background y color se adaptan con `!important`
+- Autofill: Background y texto se adaptan para evitar invisibilidad
+- `Navbar` titles: Se adaptan a `var(--foreground)`
+
+**Implementación Técnica**:
+- CSS class `.white-view-background` aplica variables CSS con `!important`
+- Sobrescribe inline styles para garantizar adaptación
+- Funciona en ambos modos: light y dark del sistema
+
+### CSS Variables System
+
+```css
+/* Light Mode (Default) */
+:root {
+  --background: #f3f4f6;
+  --foreground: #17171c;
+  --card: #e5e7eb;
+  --muted-foreground: #61616b;
+  --primary: #3ee0cf;
+}
+
+/* Dark Mode (Media Query) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #121216;
+    --muted-foreground: #878792;
+  }
+}
+```
+
+### Cambios Recientes (Junio 24, 2026)
+
+**Problema Resuelto**: Invisibilidad de texto en diferentes combinaciones de `useSystemTheme` y tema del sistema
+
+**Soluciones Implementadas**:
+1. **Defaults fijos en componentes**: `InputField`, `LabelInput` usan colores fijos por defecto (`#fff`, `#252525`, etc.)
+2. **CSS con `!important`**: Cuando `useSystemTheme: true`, reglas CSS sobrescriben inline styles
+3. **BodyCopy con color fijo**: Usa `#252525` por defecto, se adapta solo cuando `.white-view-background` está activo
+4. **Autofill corregido**: Background blanco por defecto, se adapta a `var(--background)` cuando sistema theme está activo
+5. **LabelInput adaptativo**: Color y background se adaptan correctamente en ambos modos
+
+**Casos de Prueba Validados**:
+- ✅ `useSystemTheme: false` + Sistema light: Texto oscuro sobre fondo blanco
+- ✅ `useSystemTheme: false` + Sistema dark: Texto oscuro sobre fondo blanco (no se adapta)
+- ✅ `useSystemTheme: true` + Sistema light: Texto oscuro sobre fondo claro
+- ✅ `useSystemTheme: true` + Sistema dark: Texto claro sobre fondo oscuro
+- ✅ Autofill visible en todos los casos
+- ✅ Label visible en todos los casos
+
 ## 🎨 Componentes Principales
 
 ### Layout & Structure (4)

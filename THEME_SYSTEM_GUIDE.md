@@ -264,9 +264,46 @@ colors: {
   partnerHighlights: '#EFF1F5',    // Accent/highlight color
   primaryMesh: 'linear-gradient(90deg, #1DAFA1 6.45%, #10B981 96.13%)', // Full gradient
   lightness: 'light' | 'dark',     // Theme mode
-  useSystemTheme: false            // Use system preference
+  useSystemTheme: false,           // Use system preference
+  
+  // Optional: Customize error view background (NEW in v2.x)
+  errorViewBackground: '#1a1a1a',  // Solid color
+  // OR
+  errorViewBackground: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // Gradient
 }
 ```
+
+### Customizing Error View Background
+
+By default, error views use `secondaryColor` as the background. You can now customize this with the `errorViewBackground` field:
+
+```typescript
+// Example 1: Dark solid background for error pages
+const customTheme = {
+  colors: {
+    ...kapitalTheme.colors,
+    errorViewBackground: '#1a1a1a',  // Dark charcoal
+  }
+};
+
+// Example 2: Red gradient for critical errors
+const criticalErrorTheme = {
+  colors: {
+    ...kapitalTheme.colors,
+    errorViewBackground: 'linear-gradient(135deg, #c31432 0%, #240b36 100%)',
+  }
+};
+
+// Example 3: Custom gradient matching your brand
+const brandedErrorTheme = {
+  colors: {
+    ...kapitalTheme.colors,
+    errorViewBackground: 'linear-gradient(to right, #434343 0%, black 100%)',
+  }
+};
+```
+
+**Backward Compatibility:** If `errorViewBackground` is not provided, the system automatically falls back to `secondaryColor`, ensuring existing themes continue to work without modification.
 
 ### View Types
 The system generates configurations for 5 view types:

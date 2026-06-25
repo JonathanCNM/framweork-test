@@ -233,9 +233,79 @@ export const myTheme: LolaThemeConfig = {
     // ... other color config
     useSystemTheme: false, // false = fixed colors, true = system adaptive
     lightness: 'light',
+  },
+  styles: {
+    // Custom styles configuration
+    cardBorderRadius: '20px',
+    buttonBorderRadius: '20px',
+    inputBorderRadius: '10px',
+    cardBorderColor: '#E4E4E4',
+    buttonBorderColor: '#E4E4E4',
+    inputBorderColor: '#E4E4E4',
+    buttonSize: 'medium', // 'small' | 'medium' | 'large'
   }
 };
 ```
+
+### Custom Styles Configuration
+
+The `styles` section in theme configuration controls component styling globally through CSS variables:
+
+```typescript
+interface StylesConfig {
+  cardBorderRadius?: string;      // Default: '20px'
+  buttonBorderRadius?: string;    // Default: '20px'
+  inputBorderRadius?: string;     // Default: '10px'
+  cardBorderColor?: string;       // Default: '#E4E4E4'
+  buttonBorderColor?: string;     // Default: '#E4E4E4'
+  inputBorderColor?: string;      // Default: '#E4E4E4'
+  buttonSize?: 'small' | 'medium' | 'large'; // Default: 'medium'
+}
+```
+
+#### Button Size Behavior
+
+**IMPORTANT**: The `buttonSize` in theme configuration controls the **global padding** for all buttons through CSS variables, **not** through the Button component's `size` prop.
+
+```typescript
+// Button size mapping to padding:
+const BUTTON_SIZE_PADDING = {
+  small: '0.75rem',
+  medium: '1rem',   // Default
+  large: '1.5rem',
+};
+
+// ✅ Theme buttonSize applies globally
+styles: {
+  buttonSize: 'large', // All buttons get 1.5rem padding
+}
+
+// ✅ Button component size prop controls icons and height only
+<Button size="large">  // Large icons, 75px height
+  Click me
+</Button>  // Uses padding from theme.styles.buttonSize
+```
+
+**CSS Variables Generated:**
+```css
+:root {
+  --lola-style-button-padding: 1rem; /* From buttonSize */
+  --lola-style-button-border-radius: 20px;
+  --lola-style-button-border-color: #E4E4E4;
+}
+
+button {
+  padding: var(--lola-style-button-padding, 1rem);
+  border-radius: var(--lola-style-button-border-radius, 20px);
+  border-color: var(--lola-style-button-border-color, #E4E4E4);
+}
+```
+
+**Usage Guidelines:**
+- ✅ Set `buttonSize` in theme config to control padding globally
+- ✅ Use Button `size` prop to control icon size and height
+- ❌ Don't expect Button `size` prop to override theme padding
+- ❌ Don't hardcode padding in Button components
 
 ### When useSystemTheme: false (Fixed Mode)
 

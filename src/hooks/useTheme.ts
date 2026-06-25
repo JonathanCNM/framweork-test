@@ -227,7 +227,7 @@ export const useTheme = (theme: IUseTheme) => {
           viewConfig: "whiteView",
         },
         errorView: {
-          background: theme?.secondaryColor,
+          background: theme?.errorViewBackground ?? theme?.secondaryColor,
           iconColors: [theme?.secondaryColor, theme?.secondaryColor],
           backgroundIcon: theme?.whiteColor,
           title: theme?.whiteColor,
@@ -325,7 +325,7 @@ export const useTheme = (theme: IUseTheme) => {
           viewConfig: "whiteView",
         },
         errorView: {
-          background: theme?.secondaryColor,
+          background: theme?.errorViewBackground ?? theme?.secondaryColor,
           iconColors: [theme?.secondaryColor, theme?.secondaryColor],
           backgroundIcon: theme?.whiteColor,
           title: theme?.whiteColor,

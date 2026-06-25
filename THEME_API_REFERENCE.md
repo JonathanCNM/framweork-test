@@ -251,6 +251,7 @@ interface LolaThemeConfig {
   };
   colors: ColorPalette;
   views?: Partial<ViewsConfig>;  // Optional view overrides
+  styles?: StylesConfig;          // Optional custom styles
 }
 ```
 
@@ -292,6 +293,7 @@ interface ColorPalette {
   gradientDeg?: string;          // Gradient angle
   primaryGradientPoint?: string; // Gradient color stop
   secundaryGradientPoint?: string; // Gradient color stop
+  errorViewBackground?: string;  // Background for error views (solid color or gradient)
 }
 ```
 
@@ -338,6 +340,51 @@ interface ViewsConfig {
   errorView: ViewColorConfig;
 }
 ```
+
+---
+
+### StylesConfig
+
+Custom styles configuration for components.
+
+```typescript
+interface StylesConfig {
+  // Border radius
+  cardBorderRadius?: string;      // Card border radius (default: '16px')
+  buttonBorderRadius?: string;    // Button border radius (default: '8px')
+  inputBorderRadius?: string;     // Input border radius (default: '8px')
+  
+  // Border colors
+  cardBorderColor?: string;       // Card border color (default: '#E4E4E4')
+  buttonBorderColor?: string;     // Button border color (default: '#E4E4E4')
+  inputBorderColor?: string;      // Input border color (default: '#E4E4E4')
+  
+  // Component sizes
+  buttonSize?: ButtonSize;        // Button size: 'small' | 'medium' | 'large' (default: 'medium')
+}
+```
+
+**Example:**
+```typescript
+styles: {
+  cardBorderRadius: '20px',
+  buttonBorderRadius: '12px',
+  inputBorderRadius: '10px',
+  cardBorderColor: '#CCCCCC',
+  buttonBorderColor: '#1DAFA1',
+  inputBorderColor: '#E0E0E0',
+  buttonSize: 'large',
+}
+```
+
+**Generated CSS Variables:**
+- `--lola-style-card-border-radius`
+- `--lola-style-button-border-radius`
+- `--lola-style-input-border-radius`
+- `--lola-style-card-border-color`
+- `--lola-style-button-border-color`
+- `--lola-style-input-border-color`
+- `--lola-style-button-size`
 
 ---
 

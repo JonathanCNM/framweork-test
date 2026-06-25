@@ -20,6 +20,10 @@ export type {
   ViewsConfig,
   ViewType,
   
+  // Styles types
+  StylesConfig,
+  ButtonSize,
+  
   // Legacy types (deprecated)
   LegacyThemeText,
   LegacyUseTheme,

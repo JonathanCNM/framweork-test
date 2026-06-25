@@ -114,6 +114,8 @@ export interface UseLolaThemeReturn {
   fontFamily: string;
   /** Font styles configuration */
   fontStyles: Record<string, FontStyleConfig>;
+  /** Custom styles configuration */
+  styles?: import('../types/theme.types').StylesConfig;
   /** Change font dynamically */
   changeFont: (name: string, cdn: string) => void;
   /** Generate view configs from custom colors */
@@ -142,8 +144,8 @@ export function useLolaTheme(config: LolaThemeConfig): UseLolaThemeReturn {
   // Generate view configurations
   const { views, generateViewConfigs } = useViewConfig(config.colors, config.views);
   
-  // Inject CSS variables
-  useCSSVariables(config.colors, fontFamily);
+  // Inject CSS variables (colors, fonts, and styles)
+  useCSSVariables(config.colors, fontFamily, undefined, config.styles);
   
   // Inject text styles
   useEffect(() => {
@@ -160,6 +162,7 @@ export function useLolaTheme(config: LolaThemeConfig): UseLolaThemeReturn {
     const themeData = {
       font: config.font,
       colors: config.colors,
+      styles: config.styles,
       views,
     };
     
@@ -179,6 +182,7 @@ export function useLolaTheme(config: LolaThemeConfig): UseLolaThemeReturn {
     colors: config.colors,
     fontFamily,
     fontStyles,
+    styles: config.styles,
     changeFont,
     generateViewConfigs,
     downloadThemeConfig,

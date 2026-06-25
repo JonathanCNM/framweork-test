@@ -161,7 +161,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
   },
   errorView: {
     light: {
-      background: 'secondaryColor',
+      background: 'errorViewBackground',
       iconColors: ['secondaryColor', 'secondaryColor'],
       backgroundIcon: 'whiteColor',
       title: 'whiteColor',
@@ -176,7 +176,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       highlight: 'partnerHighlights',
     },
     dark: {
-      background: 'secondaryColor',
+      background: 'errorViewBackground',
       iconColors: ['secondaryColor', 'secondaryColor'],
       backgroundIcon: 'whiteColor',
       title: 'whiteColor',
@@ -195,8 +195,14 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
 
 /**
  * Resolves a color key to its actual value from the palette
+ * Includes backward compatibility fallbacks for new optional fields
  */
 function resolveColor(key: keyof ColorPalette | string, palette: ColorPalette): string {
+  // Special handling for errorViewBackground: fallback to secondaryColor if not provided
+  if (key === 'errorViewBackground' && !palette.errorViewBackground) {
+    return palette.secondaryColor;
+  }
+  
   if (key in palette) {
     const value = palette[key as keyof ColorPalette];
     // Return the value if it's a string, otherwise return the key itself

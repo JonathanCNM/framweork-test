@@ -51,6 +51,8 @@ export interface ColorPalette {
   gradientDeg?: string;
   primaryGradientPoint?: string;
   secundaryGradientPoint?: string;
+  errorViewBackground?: string;
+  cardPanelBackground?: string;
 }
 
 export interface ViewColorConfig {
@@ -82,6 +84,30 @@ export interface ViewsConfig {
 }
 
 /**
+ * Button size options for consistent sizing across the application
+ */
+export type ButtonSize = 'small' | 'medium' | 'large';
+
+/**
+ * Custom styles configuration for components
+ * Allows customization of border radius, colors, and sizes
+ */
+export interface StylesConfig {
+  // Border radius
+  cardBorderRadius?: string;
+  buttonBorderRadius?: string;
+  inputBorderRadius?: string;
+  
+  // Border colors
+  cardBorderColor?: string;
+  buttonBorderColor?: string;
+  inputBorderColor?: string;
+  
+  // Component sizes
+  buttonSize?: ButtonSize;
+}
+
+/**
  * Main theme configuration interface
  * This is the primary structure that should be passed to useLolaTheme
  */
@@ -101,6 +127,7 @@ export interface LolaThemeConfig {
   };
   colors: ColorPalette;
   views?: Partial<ViewsConfig>;
+  styles?: StylesConfig;
 }
 
 /**
@@ -116,9 +143,19 @@ export const CSS_VARIABLES = {
   PARTNER_HIGHLIGHTS: '--lola-color-highlights',
   PRIMARY_MESH: '--lola-color-primary-mesh',
   INACTIVED: '--lola-color-inactived',
+  CARD_PANEL_BACKGROUND: '--lola-color-card-panel-background',
   
   // Font
   FONT_FAMILY: '--lola-font-family',
+  
+  // Styles
+  CARD_BORDER_RADIUS: '--lola-style-card-border-radius',
+  BUTTON_BORDER_RADIUS: '--lola-style-button-border-radius',
+  INPUT_BORDER_RADIUS: '--lola-style-input-border-radius',
+  CARD_BORDER_COLOR: '--lola-style-card-border-color',
+  BUTTON_BORDER_COLOR: '--lola-style-button-border-color',
+  INPUT_BORDER_COLOR: '--lola-style-input-border-color',
+  BUTTON_SIZE: '--lola-style-button-size',
   
   // View specific (dynamically generated)
   VIEW_BACKGROUND: '--lola-view-background',

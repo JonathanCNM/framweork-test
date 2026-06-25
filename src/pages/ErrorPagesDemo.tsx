@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CircularProgress, MotionWrapper, Page } from "../components";
 import { useTheme, type IViewConfig } from "../hooks/useTheme";
+import { injectStyleVariables } from "../hooks/useCSSVariables";
 import { GenericErrorPage } from "../demo/pages/GenericErrorPage";
 import { NotFoundErrorPage } from "../demo/pages/NotFoundErrorPage";
 import { NetworkErrorPage } from "../demo/pages/NetworkErrorPage";
@@ -32,6 +33,11 @@ export const ErrorPagesDemo = () => {
   const [currentPage, setCurrentPage] = useState<ErrorPageType>("generic");
   const { generateColorsByView } = useTheme(defaultFontConfig);
   const theme: IViewConfig | null = generateColorsByView(defaultColorConfig);
+
+  // Inject style CSS variables (this ensures border-radius and other styles work)
+  useEffect(() => {
+    injectStyleVariables(); // Uses default styles
+  }, []);
 
   if (!theme) return <CircularProgress />;
 

@@ -4,8 +4,30 @@
  */
 
 import { useEffect } from 'react';
-import type { ColorPalette, ViewColorConfig } from '../types/theme.types';
+import type { ColorPalette, ViewColorConfig, StylesConfig } from '../types/theme.types';
 import { CSS_VARIABLES } from '../types/theme.types';
+
+/**
+ * Default styles configuration
+ */
+const DEFAULT_STYLES: Required<StylesConfig> = {
+  cardBorderRadius: '20px',
+  buttonBorderRadius: '20px',
+  inputBorderRadius: '10px',
+  cardBorderColor: '#E4E4E4',
+  buttonBorderColor: '#E4E4E4',
+  inputBorderColor: '#E4E4E4',
+  buttonSize: 'medium',
+};
+
+/**
+ * Button size padding mapping
+ */
+const BUTTON_SIZE_PADDING: Record<'small' | 'medium' | 'large', string> = {
+  small: '0.75rem',
+  medium: '1rem',
+  large: '1.5rem',
+};
 
 /**
  * Injects global color CSS variables into the document
@@ -24,6 +46,12 @@ export function injectColorVariables(colors: ColorPalette): void {
   if (colors.inactived) {
     root.style.setProperty(CSS_VARIABLES.INACTIVED, colors.inactived);
   }
+  
+  // Card panel background with transparent default
+  root.style.setProperty(
+    CSS_VARIABLES.CARD_PANEL_BACKGROUND, 
+    colors.cardPanelBackground || 'transparent'
+  );
 }
 
 /**
@@ -47,6 +75,25 @@ export function injectViewVariables(viewConfig: ViewColorConfig): void {
 export function injectFontVariable(fontFamily: string): void {
   const root = document.documentElement;
   root.style.setProperty(CSS_VARIABLES.FONT_FAMILY, fontFamily);
+}
+
+/**
+ * Injects style configuration CSS variables
+ */
+export function injectStyleVariables(styles?: StylesConfig): void {
+  const root = document.documentElement;
+  const appliedStyles = { ...DEFAULT_STYLES, ...styles };
+
+  root.style.setProperty(CSS_VARIABLES.CARD_BORDER_RADIUS, appliedStyles.cardBorderRadius);
+  root.style.setProperty(CSS_VARIABLES.BUTTON_BORDER_RADIUS, appliedStyles.buttonBorderRadius);
+  root.style.setProperty(CSS_VARIABLES.INPUT_BORDER_RADIUS, appliedStyles.inputBorderRadius);
+  root.style.setProperty(CSS_VARIABLES.CARD_BORDER_COLOR, appliedStyles.cardBorderColor);
+  root.style.setProperty(CSS_VARIABLES.BUTTON_BORDER_COLOR, appliedStyles.buttonBorderColor);
+  root.style.setProperty(CSS_VARIABLES.INPUT_BORDER_COLOR, appliedStyles.inputBorderColor);
+  
+  // Inject button padding based on button size
+  const buttonPadding = BUTTON_SIZE_PADDING[appliedStyles.buttonSize];
+  root.style.setProperty('--lola-style-button-padding', buttonPadding);
 }
 
 /**
@@ -85,15 +132,28 @@ export function useFontVariable(fontFamily: string) {
 }
 
 /**
+ * Hook to manage style configuration CSS variables
+ */
+export function useStyleVariables(styles?: StylesConfig) {
+  useEffect(() => {
+    injectStyleVariables(styles);
+  }, [styles]);
+
+  return { injectStyleVariables };
+}
+
+/**
  * Combined hook for all CSS variables
  */
 export function useCSSVariables(
   colors: ColorPalette,
   fontFamily: string,
-  viewConfig?: ViewColorConfig | null
+  viewConfig?: ViewColorConfig | null,
+  styles?: StylesConfig
 ) {
   useColorVariables(colors);
   useFontVariable(fontFamily);
+  useStyleVariables(styles);
   
   useEffect(() => {
     if (viewConfig) {
@@ -105,5 +165,6 @@ export function useCSSVariables(
     injectColorVariables,
     injectViewVariables,
     injectFontVariable,
+    injectStyleVariables,
   };
 }

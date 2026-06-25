@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { useFonts, type UseFontsProps } from "../../hooks";
 import { defaultFont, registeredFonts } from "../../utils/constants";
 import { useTheme } from "../../hooks/useTheme";
+import { injectStyleVariables, injectColorVariables } from "../../hooks/useCSSVariables";
 import "../../index.css";
 
 interface FontInput {
@@ -102,6 +103,18 @@ interface IColorForm {
   primaryGradientPoint: string;
   secundaryGradientPoint: string;
   primaryMesh: string;
+  errorViewBackground?: string;
+  cardPanelBackground?: string;
+}
+
+interface IStylesForm {
+  cardBorderRadius: string;
+  buttonBorderRadius: string;
+  inputBorderRadius: string;
+  cardBorderColor: string;
+  buttonBorderColor: string;
+  inputBorderColor: string;
+  buttonSize: "small" | "medium" | "large";
 }
 
 const formColorList = [
@@ -151,6 +164,16 @@ const formColorList = [
     type: "color",
   },
   {
+    key: "errorViewBackground",
+    value: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+    type: "text",
+  },
+  {
+    key: "cardPanelBackground",
+    value: "transparent",
+    type: "text",
+  },
+  {
     key: "gradientDeg",
     value: "116.74deg",
     type: "text",
@@ -174,6 +197,57 @@ const formColorInitialState: IColorForm = {
   primaryGradientPoint: "23.26%",
   secundaryGradientPoint: "111.43%",
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+  cardPanelBackground: "transparent",
+};
+
+const formStylesList = [
+  {
+    key: "cardBorderRadius",
+    value: "16px",
+    type: "text",
+  },
+  {
+    key: "buttonBorderRadius",
+    value: "8px",
+    type: "text",
+  },
+  {
+    key: "inputBorderRadius",
+    value: "8px",
+    type: "text",
+  },
+  {
+    key: "cardBorderColor",
+    value: "#E4E4E4",
+    type: "color",
+  },
+  {
+    key: "buttonBorderColor",
+    value: "#E4E4E4",
+    type: "color",
+  },
+  {
+    key: "inputBorderColor",
+    value: "#E4E4E4",
+    type: "color",
+  },
+  {
+    key: "buttonSize",
+    value: "medium",
+    type: "select",
+    options: ["small", "medium", "large"],
+  },
+];
+
+const formStylesInitialState: IStylesForm = {
+  cardBorderRadius: "16px",
+  buttonBorderRadius: "8px",
+  inputBorderRadius: "8px",
+  cardBorderColor: "#E4E4E4",
+  buttonBorderColor: "#E4E4E4",
+  inputBorderColor: "#E4E4E4",
+  buttonSize: "medium",
 };
 
 const localhost = "http://localhost:5176";
@@ -186,6 +260,9 @@ export const FontSettingDemo = () => {
   const [formFont, setFormFont] = useState<IFormFont>(formFontInitialState);
   const [formColors, setFormColors] = useState<IColorForm>(
     formColorInitialState
+  );
+  const [formStyles, setFormStyles] = useState<IStylesForm>(
+    formStylesInitialState
   );
   const [themeLightnessPreferences, setThemeLightnessPreferences] =
     useState("dark");
@@ -250,6 +327,15 @@ export const FontSettingDemo = () => {
     });
   };
 
+  const onHandlerFormStyles = (event?: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    if (!event) return false;
+    const { name, value } = event.currentTarget;
+    setFormStyles({
+      ...formStyles,
+      [name]: value,
+    });
+  };
+
   useEffect(() => {
     setFormColors({
       ...formColors,
@@ -290,6 +376,20 @@ export const FontSettingDemo = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formColors.primaryMesh]);
 
+  // Inject style CSS variables
+  useEffect(() => {
+    injectStyleVariables(formStyles);
+  }, [formStyles]);
+
+  // Inject color CSS variables
+  useEffect(() => {
+    injectColorVariables({
+      ...formColors,
+      lightness: themeLightnessPreferences as "light" | "dark",
+      useSystemTheme: useThemeSystem,
+    });
+  }, [formColors, themeLightnessPreferences, useThemeSystem]);
+
   const onDownloadTheme = () => {
     downloadThemeTxt({
       font: {
@@ -303,6 +403,7 @@ export const FontSettingDemo = () => {
         lightness: themeLightnessPreferences,
         useSystemTheme: useThemeSystem,
       },
+      styles: formStyles,
     });
   };
 
@@ -319,6 +420,7 @@ export const FontSettingDemo = () => {
         lightness: themeLightnessPreferences,
         useSystemTheme: useThemeSystem,
       },
+      styles: formStyles,
     };
     const location = window.location.hostname;
     const host = location.includes("localhost") ? localhost : vercelhost;
@@ -358,6 +460,7 @@ export const FontSettingDemo = () => {
             lightness: themeLightnessPreferences,
             useSystemTheme: useThemeSystem,
           },
+          styles: formStyles,
         })
       );
       setCopied(true);
@@ -501,6 +604,48 @@ export const FontSettingDemo = () => {
                     Se va a usar el tema del sistema
                   </label>
                 </section>
+              </section>
+            </section>
+            <section className="styles-form">
+              <Title title="Estilos Personalizados" subTitle="Border radius, colores y tamaños" />
+              <section className="color-form-container">
+                {formStylesList.map(({ key, type, options }) => {
+                  if (type === "select" && options) {
+                    return (
+                      <div key={key} style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <label>{key}</label>
+                        <select
+                          name={key}
+                          value={formStyles[key as keyof IStylesForm]}
+                          onChange={onHandlerFormStyles}
+                          style={{
+                            padding: "0.5rem",
+                            borderRadius: "4px",
+                            border: "1px solid #E4E4E4",
+                            position: "relative",
+                            zIndex: 100,
+                          }}
+                        >
+                          {options.map((opt) => (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    );
+                  }
+                  return (
+                    <InputField
+                      key={key}
+                      type={type}
+                      label={key}
+                      name={key}
+                      value={formStyles[key as keyof IStylesForm]}
+                      onChange={onHandlerFormStyles}
+                    />
+                  );
+                })}
               </section>
             </section>
             <section className="font-form">

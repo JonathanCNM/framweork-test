@@ -2,6 +2,7 @@ import "./styles/index.css";
 import "./index.css";
 import { useEffect, useState } from "react";
 import { useTheme, type IViewConfig } from "./hooks";
+import { injectStyleVariables } from "./hooks/useCSSVariables";
 import { CircularProgress, MotionWrapper, Page } from "./components";
 import { HomePage } from "./demo/pages/HomePage";
 import { StepPage } from "./demo/pages/StepPage";
@@ -50,6 +51,15 @@ const App = () => {
     window.addEventListener("message", handler);
     return () => window.removeEventListener("message", handler);
   }, []);
+
+  // Inject style CSS variables when theme changes
+  useEffect(() => {
+    if (theme?.styles) {
+      injectStyleVariables(theme.styles);
+    } else {
+      injectStyleVariables(); // Use defaults
+    }
+  }, [theme]);
 
   if (isLoading) return <CircularProgress />;
   const newTheme: IViewConfig = generateColorsByView(theme?.colors);

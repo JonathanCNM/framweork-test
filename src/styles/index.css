@@ -22,10 +22,14 @@ html.dark {
   --lola-style-button-border-radius: 20px;
   --lola-style-card-border-radius: 20px;
   --lola-style-input-border-radius: 10px;
-  --lola-style-button-border-color: transparent;
+  --lola-style-active-border-boton: #1DAFA1;
   --lola-style-card-border-color: #E4E4E4;
   --lola-style-input-border-color: #979797;
+  --lola-style-tamaño-borde-card: 1px;
+  --lola-style-tamaño-borde-input: 1px;
   --lola-style-button-padding: 1rem;
+  --lola-style-input-padding: 0.75rem;
+  --lola-style-card-padding: 1.5rem;
   --lola-color-card-panel-background: transparent;
 
   color-scheme: light dark;
@@ -416,13 +420,13 @@ button {
   height: 100%;
   position: relative;
 
-  padding: 32px;
+  padding: var(--lola-style-card-padding, 1.5rem);
   max-width: 100%;
   margin: auto;
   background: var(--bg);
   border-radius: var(--lola-style-card-border-radius, 20px);
   box-shadow: var(--box-shadows);
-  border: solid 1px rgba(255, 255, 255, 0.5);
+  border: solid var(--lola-style-tamaño-borde-card, 1px) var(--lola-style-card-border-color, rgba(255, 255, 255, 0.5));
 }
 
 /* Layout Header Styles */
@@ -607,7 +611,7 @@ button {
 .lola-input-field .lola-input-field--container input {
   width: 100%;
   height: 100%;
-  padding: 0 14px;
+  padding: var(--lola-style-input-padding, 0.75rem);
   font-size: 16px;
   transition: ease-in-out all 0.3s;
   outline: none;
@@ -696,7 +700,7 @@ button {
   width: 100%;
   padding: 20px;
   padding-left: 44px;
-  border: solid 1px var(--lola-style-input-border-color, #979797);
+  border: solid var(--lola-style-tamaño-borde-input, 1px) var(--lola-style-input-border-color, #979797);
   border-radius: var(--lola-style-input-border-radius, 10px);
 }
 
@@ -996,7 +1000,7 @@ input[type="number"]::-webkit-outer-spin-button {
   gap: 16px;
 
   .select-input {
-    border: solid 1px var(--lola-style-input-border-color, #979797);
+    border: solid var(--lola-style-tamaño-borde-input, 1px) var(--lola-style-input-border-color, #979797);
     padding: 20px;
     border-radius: var(--lola-style-input-border-radius, 20px);
   }
@@ -1262,7 +1266,7 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
 
   .search-select-component-preview {
-    border: solid 1px var(--lola-style-input-border-color, #979797);
+    border: solid var(--lola-style-tamaño-borde-input, 1px) var(--lola-style-input-border-color, #979797);
     height: 56px;
     border-radius: var(--lola-style-input-border-radius, 10px);
     padding: 0 14px;
@@ -1339,7 +1343,7 @@ input[type="number"]::-webkit-outer-spin-button {
       z-index: 10;
       width: 100%;
       margin-top: 4px;
-      border: solid 1px var(--lola-style-card-border-color, #e4e4e4);
+      border: solid var(--lola-style-tamaño-borde-card, 1px) var(--lola-style-card-border-color, #e4e4e4);
       border-radius: var(--lola-style-input-border-radius, 10px);
       max-height: 200px;
       overflow: auto;

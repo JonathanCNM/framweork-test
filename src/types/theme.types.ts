@@ -100,11 +100,20 @@ export interface StylesConfig {
   
   // Border colors
   cardBorderColor?: string;
-  buttonBorderColor?: string;
   inputBorderColor?: string;
+  activeBorderBoton?: string;
+  
+  // Border width (tamaño del borde)
+  tamañoBordeCard?: string;
+  tamañoBordeInput?: string;
   
   // Component sizes
   buttonSize?: ButtonSize;
+  
+  // Component padding
+  buttonPadding?: string;
+  inputPadding?: string;
+  cardPadding?: string;
 }
 
 /**
@@ -153,9 +162,14 @@ export const CSS_VARIABLES = {
   BUTTON_BORDER_RADIUS: '--lola-style-button-border-radius',
   INPUT_BORDER_RADIUS: '--lola-style-input-border-radius',
   CARD_BORDER_COLOR: '--lola-style-card-border-color',
-  BUTTON_BORDER_COLOR: '--lola-style-button-border-color',
   INPUT_BORDER_COLOR: '--lola-style-input-border-color',
+  ACTIVE_BORDER_BOTON: '--lola-style-active-border-boton',
+  TAMAÑO_BORDE_CARD: '--lola-style-tamaño-borde-card',
+  TAMAÑO_BORDE_INPUT: '--lola-style-tamaño-borde-input',
   BUTTON_SIZE: '--lola-style-button-size',
+  BUTTON_PADDING: '--lola-style-button-padding',
+  INPUT_PADDING: '--lola-style-input-padding',
+  CARD_PADDING: '--lola-style-card-padding',
   
   // View specific (dynamically generated)
   VIEW_BACKGROUND: '--lola-view-background',

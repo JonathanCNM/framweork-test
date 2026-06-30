@@ -23,6 +23,9 @@ Ambas características mantienen **100% de retrocompatibilidad**.
 - ✅ `button-border-color` - Color de borde para botones
 - ✅ `input-border-color` - Color de borde para inputs
 - ✅ `button-size` - Tamaño de botones (small, medium, large)
+- ✅ `button-padding` - Padding personalizado para botones
+- ✅ `input-padding` - Padding personalizado para inputs
+- ✅ `card-padding` - Padding personalizado para tarjetas
 
 ### 2. Nuevo Color para Card Panels ✅
 
@@ -44,6 +47,9 @@ interface StylesConfig {
   buttonBorderColor?: string;
   inputBorderColor?: string;
   buttonSize?: 'small' | 'medium' | 'large';
+  buttonPadding?: string;
+  inputPadding?: string;
+  cardPadding?: string;
 }
 
 // Actualizada interface LolaThemeConfig
@@ -72,6 +78,9 @@ const DEFAULT_STYLES = {
   buttonBorderColor: '#E4E4E4',
   inputBorderColor: '#E4E4E4',
   buttonSize: 'medium',
+  buttonPadding: '1rem',
+  inputPadding: '0.75rem',
+  cardPadding: '1.5rem',
 };
 
 // cardPanelBackground default: 'transparent'
@@ -88,35 +97,38 @@ const DEFAULT_STYLES = {
   --lola-style-card-border-color: #E4E4E4;
   --lola-style-button-border-color: #E4E4E4;
   --lola-style-input-border-color: #E4E4E4;
-  --lola-style-button-padding: 1rem; /* Derivado de buttonSize: medium */
+  --lola-style-button-padding: 1rem; /* Derivado de buttonSize: medium o explícito */
+  --lola-style-input-padding: 0.75rem;
+  --lola-style-card-padding: 1.5rem;
   
   /* Colores */
   --lola-color-card-panel-background: transparent;
 }
 ```
 
-### 4. Button Size Mapping
+### 4. Button Size vs Button Padding
 
-El `buttonSize` se convierte automáticamente en padding:
+**Importante**: Ahora tienes dos opciones para controlar el padding de los botones:
 
-```typescript
-const BUTTON_SIZE_PADDING = {
-  small: '0.75rem',
-  medium: '1rem',  // Default
-  large: '1.5rem',
-};
-```
-
-**Importante**: El `buttonSize` del tema controla el tamaño de **todos los botones** de la aplicación a través de CSS variables. El componente `Button` tiene un prop `size` que controla el tamaño de íconos y altura, pero el padding ahora es controlado globalmente por el tema.
+1. **`buttonSize`**: Usa valores predefinidos (small: 0.75rem, medium: 1rem, large: 1.5rem)
+2. **`buttonPadding`**: Define un valor personalizado que sobrescribe el derivado de `buttonSize`
 
 ```typescript
-// ✅ El buttonSize del tema aplica a todos los botones
+// Opción 1: Usar buttonSize (valores predefinidos)
 styles: {
-  buttonSize: 'large', // Todos los botones tendrán padding de 1.5rem
+  buttonSize: 'large', // padding automáticamente será 1.5rem
 }
 
-// ✅ El prop size del Button solo controla íconos y altura
-<Button size="large">Click me</Button> // Usa padding del tema, altura 75px
+// Opción 2: Usar buttonPadding (valor personalizado)
+styles: {
+  buttonPadding: '2rem', // Sobrescribe cualquier buttonSize
+}
+
+// Opción 3: Combinar ambos (buttonPadding tiene prioridad)
+styles: {
+  buttonSize: 'small',     // Sugiere 0.75rem pero...
+  buttonPadding: '1.25rem', // ...este valor tiene prioridad
+}
 ```
 
 ---
@@ -164,6 +176,9 @@ const theme = useLolaTheme({
     buttonBorderColor: '#1DAFA1',
     inputBorderColor: '#E0E0E0',
     buttonSize: 'large',
+    buttonPadding: '1.5rem',  // Opcional: sobrescribe el derivado de buttonSize
+    inputPadding: '1rem',
+    cardPadding: '2rem',
   }
 });
 ```
@@ -176,18 +191,21 @@ const theme = useLolaTheme({
   background: var(--lola-color-card-panel-background);
   border-radius: var(--lola-style-card-border-radius);
   border: 1px solid var(--lola-style-card-border-color);
+  padding: var(--lola-style-card-padding);
 }
 
 /* Botón personalizado */
 .my-button {
   border-radius: var(--lola-style-button-border-radius);
   border-color: var(--lola-style-button-border-color);
+  padding: var(--lola-style-button-padding);
 }
 
 /* Input personalizado */
 .my-input {
   border-radius: var(--lola-style-input-border-radius);
   border-color: var(--lola-style-input-border-color);
+  padding: var(--lola-style-input-padding);
 }
 ```
 
@@ -228,8 +246,8 @@ const theme = useLolaTheme({
 
 ## 📊 Estadísticas
 
-- **Nuevos campos agregados**: 8 (7 en styles + 1 en colors)
-- **CSS Variables generadas**: 8
+- **Nuevos campos agregados**: 11 (10 en styles + 1 en colors)
+- **CSS Variables generadas**: 11
 - **Archivos modificados**: 5
 - **Archivos de documentación**: 3
 - **Breaking changes**: 0
@@ -250,6 +268,9 @@ styles: {
   buttonBorderColor: '#1DAFA1',
   inputBorderColor: '#DDDDDD',
   buttonSize: 'large',
+  buttonPadding: '1.25rem',
+  inputPadding: '0.875rem',
+  cardPadding: '2rem',
 }
 ```
 
@@ -268,6 +289,9 @@ styles: {
   buttonBorderColor: 'rgba(29, 175, 161, 0.3)',
   inputBorderColor: 'rgba(255, 255, 255, 0.2)',
   buttonSize: 'medium',
+  buttonPadding: '1rem',
+  inputPadding: '0.75rem',
+  cardPadding: '1.5rem',
 }
 ```
 
@@ -286,6 +310,9 @@ styles: {
   buttonBorderColor: '#000000',
   inputBorderColor: '#000000',
   buttonSize: 'small',
+  buttonPadding: '0.5rem',
+  inputPadding: '0.5rem',
+  cardPadding: '1rem',
 }
 ```
 
@@ -308,13 +335,22 @@ interface StylesConfig {
   // Actual
   cardBorderRadius?: string;
   buttonBorderRadius?: string;
-  // ...
+  inputBorderRadius?: string;
+  cardBorderColor?: string;
+  buttonBorderColor?: string;
+  inputBorderColor?: string;
+  buttonSize?: 'small' | 'medium' | 'large';
+  buttonPadding?: string;
+  inputPadding?: string;
+  cardPadding?: string;
   
   // Futuro
   shadowIntensity?: 'none' | 'low' | 'medium' | 'high';
   transitionSpeed?: 'fast' | 'normal' | 'slow';
   spacing?: 'compact' | 'normal' | 'relaxed';
   iconSize?: 'small' | 'medium' | 'large';
+  modalPadding?: string;
+  containerMaxWidth?: string;
   // ...
 }
 ```

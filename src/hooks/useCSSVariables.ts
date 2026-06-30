@@ -15,9 +15,14 @@ const DEFAULT_STYLES: Required<StylesConfig> = {
   buttonBorderRadius: '20px',
   inputBorderRadius: '10px',
   cardBorderColor: '#E4E4E4',
-  buttonBorderColor: '#E4E4E4',
   inputBorderColor: '#E4E4E4',
+  activeBorderBoton: '#1DAFA1',
+  tamañoBordeCard: '1px',
+  tamañoBordeInput: '1px',
   buttonSize: 'medium',
+  buttonPadding: '1rem',
+  inputPadding: '0.75rem',
+  cardPadding: '1.5rem',
 };
 
 /**
@@ -88,12 +93,18 @@ export function injectStyleVariables(styles?: StylesConfig): void {
   root.style.setProperty(CSS_VARIABLES.BUTTON_BORDER_RADIUS, appliedStyles.buttonBorderRadius);
   root.style.setProperty(CSS_VARIABLES.INPUT_BORDER_RADIUS, appliedStyles.inputBorderRadius);
   root.style.setProperty(CSS_VARIABLES.CARD_BORDER_COLOR, appliedStyles.cardBorderColor);
-  root.style.setProperty(CSS_VARIABLES.BUTTON_BORDER_COLOR, appliedStyles.buttonBorderColor);
   root.style.setProperty(CSS_VARIABLES.INPUT_BORDER_COLOR, appliedStyles.inputBorderColor);
+  root.style.setProperty(CSS_VARIABLES.ACTIVE_BORDER_BOTON, appliedStyles.activeBorderBoton);
+  root.style.setProperty(CSS_VARIABLES.TAMAÑO_BORDE_CARD, appliedStyles.tamañoBordeCard);
+  root.style.setProperty(CSS_VARIABLES.TAMAÑO_BORDE_INPUT, appliedStyles.tamañoBordeInput);
   
-  // Inject button padding based on button size
-  const buttonPadding = BUTTON_SIZE_PADDING[appliedStyles.buttonSize];
-  root.style.setProperty('--lola-style-button-padding', buttonPadding);
+  // Button padding: use explicit buttonPadding if provided, otherwise derive from buttonSize
+  const buttonPadding = styles?.buttonPadding || BUTTON_SIZE_PADDING[appliedStyles.buttonSize];
+  root.style.setProperty(CSS_VARIABLES.BUTTON_PADDING, buttonPadding);
+  
+  // Input and card padding
+  root.style.setProperty(CSS_VARIABLES.INPUT_PADDING, appliedStyles.inputPadding);
+  root.style.setProperty(CSS_VARIABLES.CARD_PADDING, appliedStyles.cardPadding);
 }
 
 /**

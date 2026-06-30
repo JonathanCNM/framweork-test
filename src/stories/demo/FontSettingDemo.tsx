@@ -112,8 +112,13 @@ interface IStylesForm {
   buttonBorderRadius: string;
   inputBorderRadius: string;
   cardBorderColor: string;
-  buttonBorderColor: string;
   inputBorderColor: string;
+  activeBorderBoton: string;
+  tamañoBordeCard: string;
+  tamañoBordeInput: string;
+  buttonPadding: string;
+  inputPadding: string;
+  cardPadding: string;
   buttonSize: "small" | "medium" | "large";
 }
 
@@ -223,14 +228,39 @@ const formStylesList = [
     type: "color",
   },
   {
-    key: "buttonBorderColor",
+    key: "inputBorderColor",
     value: "#E4E4E4",
     type: "color",
   },
   {
-    key: "inputBorderColor",
-    value: "#E4E4E4",
+    key: "activeBorderBoton",
+    value: "#1DAFA1",
     type: "color",
+  },
+  {
+    key: "tamañoBordeCard",
+    value: "1px",
+    type: "text",
+  },
+  {
+    key: "tamañoBordeInput",
+    value: "1px",
+    type: "text",
+  },
+  {
+    key: "buttonPadding",
+    value: "1rem",
+    type: "text",
+  },
+  {
+    key: "inputPadding",
+    value: "0.75rem",
+    type: "text",
+  },
+  {
+    key: "cardPadding",
+    value: "1.5rem",
+    type: "text",
   },
   {
     key: "buttonSize",
@@ -245,8 +275,13 @@ const formStylesInitialState: IStylesForm = {
   buttonBorderRadius: "8px",
   inputBorderRadius: "8px",
   cardBorderColor: "#E4E4E4",
-  buttonBorderColor: "#E4E4E4",
   inputBorderColor: "#E4E4E4",
+  activeBorderBoton: "#1DAFA1",
+  tamañoBordeCard: "1px",
+  tamañoBordeInput: "1px",
+  buttonPadding: "1rem",
+  inputPadding: "0.75rem",
+  cardPadding: "1.5rem",
   buttonSize: "medium",
 };
 
@@ -573,7 +608,15 @@ export const FontSettingDemo = () => {
           <Layout.Content>
             <section className="color-form">
               <Title title="Formulario de colores" subTitle="En Hexadecimal" />
-              <section className="color-form-container">
+              <section 
+                className="color-form-container"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "1rem",
+                  marginTop: "1rem"
+                }}
+              >
                 {formColorList.map(({ key, type }) => (
                   <InputField
                     key={key}
@@ -608,12 +651,20 @@ export const FontSettingDemo = () => {
             </section>
             <section className="styles-form">
               <Title title="Estilos Personalizados" subTitle="Border radius, colores y tamaños" />
-              <section className="color-form-container">
+              <section 
+                className="color-form-container"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "1rem",
+                  marginTop: "1rem"
+                }}
+              >
                 {formStylesList.map(({ key, type, options }) => {
                   if (type === "select" && options) {
                     return (
                       <div key={key} style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                        <label>{key}</label>
+                        <label style={{ fontSize: "0.875rem", fontWeight: "500" }}>{key}</label>
                         <select
                           name={key}
                           value={formStyles[key as keyof IStylesForm]}

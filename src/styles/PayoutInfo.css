@@ -1,0 +1,50 @@
+/* PayoutInfo Component */
+.payout-container-content {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bgc);
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.payout-container-content * {
+  cursor: pointer !important;
+}
+
+.payout-container-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.payout-icon-container {
+  background: #f7f7f7;
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payout-icon-container img {
+  width: 25px;
+  height: fit-content;
+}
+
+.payout-text-info {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.payout-text-info label {
+  font-size: 0.75rem;
+  display: block;
+  font-weight: 300;
+  margin-top: 3px;
+}

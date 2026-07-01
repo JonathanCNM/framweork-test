@@ -250,6 +250,72 @@ import { RotatingText } from 'lola-framework-ui';
 
 ---
 
+### PayoutInfo
+
+**Payout method display card with icon and details**
+
+```typescript
+import { PayoutInfo } from 'lola-framework-ui';
+
+<PayoutInfo
+  title="Credit Card"
+  subtitle="Visa •••• 4242"
+  icon={<CardIcon colors={["#3ee0cf", "#3ee0cf"]} size={24} />}
+  onChange={handleChange}
+  background="#fff"
+  color="#252525"
+  fee="$5.00"
+  className="custom-class"
+/>
+```
+
+**Props**:
+- `title`: Main text (required)
+- `subtitle`: Secondary text (required)
+- `icon`: JSX element for icon (required)
+- `onChange`: Click handler
+- `background`: Background color (default: `#fff`)
+- `color`: Text color (default: `#252525`)
+- `fee`: Fee display (string or JSX element)
+- `className`: Additional CSS classes
+
+**Use Cases**:
+```typescript
+// Basic payout method
+<PayoutInfo
+  title="Bank Account"
+  subtitle="Chase •••• 9876"
+  icon={<BankIcon colors={["#667eea", "#667eea"]} size={24} />}
+  onChange={() => selectPayoutMethod('bank')}
+/>
+
+// With fee display
+<PayoutInfo
+  title="International Transfer"
+  subtitle="SWIFT •••• ABC123"
+  icon={<BankIcon colors={["#3ee0cf", "#3ee0cf"]} size={24} />}
+  fee={<span style={{ color: '#6b7280' }}>Fee: $5.00</span>}
+/>
+
+// Custom background with gradient
+<PayoutInfo
+  title="Premium Card"
+  subtitle="Gold •••• 1234"
+  icon={<CardIcon colors={["#fbbf24", "#f59e0b"]} size={24} />}
+  background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+  color="#ffffff"
+/>
+```
+
+**Características**:
+- ✅ Click handler support
+- ✅ Custom icon support
+- ✅ Gradient backgrounds
+- ✅ Fee display option
+- ✅ Fully customizable styling
+
+---
+
 ## Form Components
 
 ### InputField
@@ -977,7 +1043,7 @@ function RegistrationForm() {
 | Categoría | Cantidad | Estado |
 |-----------|----------|--------|
 | **Layout** | 4 | ✅ Estable |
-| **UI Elements** | 6 | ✅ Estable |
+| **UI Elements** | 7 | ✅ Estable |
 | **Forms** | 7 | ⚠️ VGS components requieren deps |
 | **Navigation** | 1 | ✅ Estable |
 | **Feedback** | 3 | ✅ Estable |
@@ -985,7 +1051,7 @@ function RegistrationForm() {
 | **Hooks** | 8 | ⚠️ useBlockScroll usa beta |
 | **Iconos** | 52 | ⚠️ Sin tree-shaking |
 
-**Total**: 84 exports (24 components + 8 hooks + 52 icons)
+**Total**: 85 exports (25 components + 8 hooks + 52 icons)
 
 ---
 

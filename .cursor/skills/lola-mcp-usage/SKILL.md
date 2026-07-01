@@ -265,6 +265,7 @@ Mention important notes from documentation:
 - **GradientText** - Gradient text effect (use for body text in gradient views)
 - **RotatingText** - Animated text
 - **BodyCopy** - Body text (use in white/data views only)
+- **PayoutInfo** - Payout method display card with icon and details
 
 **IMPORTANT - Text Component Selection:**
 - Use `GradientText` (as="p" with classes "lola-body-copy bodycopy") for body text in:
@@ -417,7 +418,12 @@ import 'lola-framework-ui-test/dist/styles.css';
 
 // 3. Import and use components
 import { Button, InputField } from 'lola-framework-ui-test';
+
+// 4. Import icons (IMPORTANT: Must use /src/icons path)
+import { IconApp, UsaIcon, MexicoIcon } from 'lola-framework-ui-test/src/icons';
 ```
+
+**CRITICAL**: Icons must be imported from `lola-framework-ui-test/src/icons`, not `lola-framework-ui-test/icons`.
 
 ## Peer Dependencies
 

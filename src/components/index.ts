@@ -48,6 +48,9 @@ export type { MotionWrapperProps } from "./MotionWrapper";
 export { Navbar } from "./Navbar";
 export type { NavbarProps } from "./Navbar";
 
+export { PayoutInfo } from "./PayoutInfo";
+export type { PayoutInfoProps } from "./PayoutInfo";
+
 export { Page } from "./Page";
 export type { PageProps } from "./Page";
 

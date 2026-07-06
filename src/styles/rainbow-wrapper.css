@@ -1,0 +1,90 @@
+/**
+ * RainbowWrapper Component Styles
+ */
+
+.span-input {
+  display: block;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.border-special.static::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: var(--rainbow-border);
+  border-radius: inherit;
+  background: var(--bgr);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.border-special.moving::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--rainbow-border);
+  background: var(--rainbow-bg);
+  background-size: 200% 100%;
+  animation: rainbow-border 2s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Glow effect under the element */
+.border-special.moving::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 8px;
+  background: var(--rainbow-bg);
+  background-size: 200% 100%;
+  animation: rainbow-border 2s linear infinite;
+  filter: blur(8px);
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+@keyframes rainbow-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-6px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(6px);
+  }
+}

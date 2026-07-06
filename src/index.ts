@@ -54,6 +54,26 @@ export type { SelectProps, ISelectItem } from "./components/Select";
 export type { TitleProps } from "./components/Title";
 export type { VgsInputProps } from "./components/VgsInput";
 
+export * from "./components/QuoteInfo";
+export * from "./components/ExchangeFeeInfo";
+export * from "./components/QuoteSection";
+export * from "./components/Toast";
+export * from "./components/Popup";
+export * from "./components/RainbowWrapper";
+export * from "./components/TransactionItem";
+export * from "./components/TransferPanel";
+export * from "./components/TransferPanelSection";
+
+export type { QuoteInfoProps } from "./components/QuoteInfo";
+export type { ExchangeFeeInfoProps } from "./components/ExchangeFeeInfo";
+export type { QuoteSectionProps } from "./components/QuoteSection";
+export type { ToastProps } from "./components/Toast";
+export type { PopupProps } from "./components/Popup";
+export type { RainbowWrapperProps } from "./components/RainbowWrapper";
+export type { TransactionItemProps } from "./components/TransactionItem";
+export type { TransferPanelProps } from "./components/TransferPanel";
+export type { TransferPanelSectionProps } from "./components/TransferPanelSection";
+
 export type { UseVgsCollectLoaderProps } from "./hooks/useVgsCollectLoader";
 export type { UseFontsProps } from "./hooks/useFonts";
 export type {

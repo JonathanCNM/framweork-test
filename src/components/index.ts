@@ -48,9 +48,6 @@ export type { MotionWrapperProps } from "./MotionWrapper";
 export { Navbar } from "./Navbar";
 export type { NavbarProps } from "./Navbar";
 
-export { PayoutInfo } from "./PayoutInfo";
-export type { PayoutInfoProps } from "./PayoutInfo";
-
 export { Page } from "./Page";
 export type { PageProps } from "./Page";
 
@@ -67,3 +64,33 @@ export { VgsFormWrapper } from "./VgsFormWrapper";
 
 export { VgsInput } from "./VgsInput";
 export type { VgsInputProps } from "./VgsInput";
+
+export { QuoteInfo } from "./QuoteInfo";
+export type { QuoteInfoProps } from "./QuoteInfo";
+
+export { ExchangeFeeInfo } from "./ExchangeFeeInfo";
+export type { ExchangeFeeInfoProps } from "./ExchangeFeeInfo";
+
+export { QuoteSection } from "./QuoteSection";
+export type { QuoteSectionProps } from "./QuoteSection";
+
+export { Toast } from "./Toast";
+export type { ToastProps } from "./Toast";
+
+export { Popup } from "./Popup";
+export type { PopupProps } from "./Popup";
+
+export { RainbowWrapper } from "./RainbowWrapper";
+export type { RainbowWrapperProps } from "./RainbowWrapper";
+
+export { TransactionItem } from "./TransactionItem";
+export type { TransactionItemProps } from "./TransactionItem";
+
+export { TransferPanel } from "./TransferPanel";
+export type { TransferPanelProps } from "./TransferPanel";
+
+export { TransferPanelSection } from "./TransferPanelSection";
+export type { TransferPanelSectionProps } from "./TransferPanelSection";
+
+export { PayoutInfo } from "./PayoutInfo";
+export type { PayoutInfoProps } from "./PayoutInfo";

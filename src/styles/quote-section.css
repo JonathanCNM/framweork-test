@@ -1,0 +1,15 @@
+.estimated-quote-section {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  .quote-container {
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 16px;
+    gap: 10px;
+  }
+}

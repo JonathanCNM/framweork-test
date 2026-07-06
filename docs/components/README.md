@@ -250,6 +250,352 @@ import { RotatingText } from 'lola-framework-ui';
 
 ---
 
+### QuoteInfo
+
+**Currency amount display and input with exchange rate information**
+
+```typescript
+import { QuoteInfo } from 'lola-framework-ui';
+
+<QuoteInfo
+  label="You send"
+  amount="1,250.50"
+  currency="USD"
+  mode="info" | "input"
+  exchangeRate={18.5}
+  onAmountChange={(amount) => console.log(amount)}
+  initialAmount="100"
+  translations={{
+    rateText: "1 {from} = {rate} {to}",
+    estimatedRate: "Estimated rate"
+  }}
+  WarningIcon={<WarningIcon />}
+  background="var(--gradient-card)"
+  textColor="var(--foreground)"
+  alternativeTextColor="var(--muted-foreground)"
+/>
+```
+
+**Props**:
+- `label`: Label text (required)
+- `amount`: Display amount (for info mode)
+- `currency`: Currency code (required)
+- `mode`: "info" (display) or "input" (editable) - default: "info"
+- `exchangeRate`: Exchange rate value
+- `onAmountChange`: Callback when amount changes (input mode)
+- `initialAmount`: Initial amount value (input mode)
+- `translations`: Text translations object (required)
+- `WarningIcon`: Custom warning icon
+- `background`, `textColor`, `alternativeTextColor`: Custom colors
+
+**Características**:
+- ✅ Two modes: display and input
+- ✅ Dynamic font sizing for large amounts
+- ✅ Currency formatting with grouping (1,234.56)
+- ✅ Decimal support (2 decimal places)
+- ✅ Max value: 99,999 (5 integer digits)
+- ✅ Exchange rate display
+- ✅ Tabular numbers for better alignment
+- ✅ Auto-adjusting input width
+
+---
+
+### ExchangeFeeInfo
+
+**Exchange rate chip display**
+
+```typescript
+import { ExchangeFeeInfo } from 'lola-framework-ui';
+
+<ExchangeFeeInfo
+  fee="18.50"
+  currency="MXN"
+  translations={{ rateText: "1 {from} = {rate} {to}" }}
+  chipBackground="var(--gradient-glass)"
+  textColor="var(--foreground)"
+  ExchangeIcon={<ExchangeIcon />}
+  className="custom-class"
+  style={{ margin: '10px' }}
+/>
+```
+
+**Props**:
+- `fee`: Exchange fee/rate value (required)
+- `currency`: Target currency code (required)
+- `translations`: Translation object with rateText (required)
+- `chipBackground`: Background color for chips - default: `var(--gradient-glass)`
+- `textColor`: Text color - default: `var(--foreground)`
+- `ExchangeIcon`: Custom exchange icon
+- `className`, `style`: Custom styling
+
+**Características**:
+- ✅ Chip-style design
+- ✅ Circular icons (31x31px)
+- ✅ Pill-shaped info text
+- ✅ Dynamic text with placeholders
+- ✅ Fully customizable
+
+---
+
+### QuoteSection
+
+**Container wrapper for quote-related content**
+
+```typescript
+import { QuoteSection } from 'lola-framework-ui';
+
+<QuoteSection className="custom-class" style={{ padding: '20px' }}>
+  <QuoteInfo label="You send" amount="100" currency="USD" />
+  <QuoteInfo label="They receive" amount="1850" currency="MXN" />
+</QuoteSection>
+```
+
+**Props**:
+- `children`: React nodes to display (required)
+- `className`: Additional CSS classes
+- `style`: Custom inline styles
+
+**Características**:
+- ✅ Simple wrapper component
+- ✅ Consistent quote section styling
+- ✅ Flex column layout with gap
+
+---
+
+### Toast
+
+**Notification toast with auto-dismiss**
+
+```typescript
+import { Toast } from 'lola-framework-ui';
+
+<Toast
+  visible={true}
+  message="Transaction completed successfully"
+  title="Success!"
+  buttonText="View"
+  onButtonClick={() => alert('Clicked')}
+  duration={3000}
+  type="success" | "error" | "info"
+  onClose={() => setVisible(false)}
+  showIcon={true}
+  className="custom-class"
+  style={{ zIndex: 10000 }}
+/>
+```
+
+**Props**:
+- `visible`: Controls toast visibility (required)
+- `message`: Main message text (required)
+- `title`: Optional title
+- `buttonText`: Optional action button text
+- `onButtonClick`: Action button callback
+- `duration`: Auto-dismiss duration in ms - default: 2000
+- `type`: Toast type - default: "success"
+- `onClose`: Callback when toast closes
+- `showIcon`: Show status icon - default: true
+- `className`, `style`: Custom styling
+
+**Características**:
+- ✅ Three types: success (green), error (red), info (blue)
+- ✅ Auto-dismiss with configurable duration
+- ✅ Built-in icons (✓, ✕, ℹ)
+- ✅ Optional action button
+- ✅ Slide-up animation
+- ✅ Fixed bottom positioning
+- ✅ Max-width: 376px
+
+---
+
+### Popup
+
+**Modal popup with backdrop**
+
+```typescript
+import { Popup } from 'lola-framework-ui';
+
+<Popup
+  visible={true}
+  onClose={() => setVisible(false)}
+  className="custom-class"
+  showCloseBtn={true}
+  footerColor="#000000"
+  CloseIcon={Close}
+>
+  <div>Your popup content here</div>
+</Popup>
+```
+
+**Props**:
+- `children`: Content to display (required, JSX.Element)
+- `visible`: Controls popup visibility
+- `onClose`: Callback when popup closes (required)
+- `className`: Additional CSS classes
+- `showCloseBtn`: Show close button - default: true
+- `footerColor`: Color for close icon - default: "#000000"
+- `CloseIcon`: Custom close icon component
+
+**Características**:
+- ✅ Click-outside-to-close functionality
+- ✅ Backdrop blur effect
+- ✅ Bottom-sheet style (mobile-friendly)
+- ✅ Glass morphism design
+- ✅ Accessible (role="alert")
+- ✅ Responsive (adapts on mobile)
+
+---
+
+### RainbowWrapper
+
+**Animated border effects wrapper**
+
+```typescript
+import { RainbowWrapper } from 'lola-framework-ui';
+
+<RainbowWrapper
+  error="Error message"
+  isActive={true}
+  backgroundBtn="linear-gradient(90deg, #667eea, #764ba2)"
+  isStatic={true}
+  customRainbowColors={['#667eea 0%', '#764ba2 50%', '#667eea 100%']}
+  borderStroke={2}
+>
+  <InputField label="Email" />
+</RainbowWrapper>
+```
+
+**Props**:
+- `error`: Error message (triggers shake animation)
+- `children`: Content to wrap (required)
+- `isActive`: Show border effect - default: false
+- `backgroundBtn`: Border gradient (static mode) - default: gradient
+- `isStatic`: Static or animated - default: true
+- `customRainbowColors`: Custom colors for moving mode
+- `borderStroke`: Border thickness - default: 1
+
+**Características**:
+- ✅ Two modes: static and moving (animated)
+- ✅ Mask composite technique for clean borders
+- ✅ Rainbow animation (2s loop)
+- ✅ Glow effect (moving mode)
+- ✅ Shake animation on error
+- ✅ Customizable colors and thickness
+
+---
+
+### TransactionItem
+
+**Transaction history item display**
+
+```typescript
+import { TransactionItem } from 'lola-framework-ui';
+
+<TransactionItem
+  operationId="TXN001"
+  statusInfo={{
+    icon: <SuccessIcon />,
+    value: "Completed",
+    color: "#10b981"
+  }}
+  amount="1250.50"
+  currency="USD"
+  date="Jan 15, 2026"
+  onClick={(id) => console.log(id)}
+  footerColor="#000"
+  translations={{
+    avatar: "JD",
+    transfers: "Transfer",
+    statusTranslations: { completed: "Completed" }
+  }}
+  icons={{ SuccessIcon, ErrorIcon, CheckCircleIcon, etc. }}
+  background="var(--gradient-card)"
+  textColor="var(--foreground)"
+  alternativeTextColor="var(--muted-foreground)"
+/>
+```
+
+**Props**:
+- `operationId`: Unique transaction ID (required)
+- `statusInfo`: Status object with icon, value, color (required)
+- `amount`: Transaction amount (required)
+- `currency`: Currency code (required)
+- `date`: Transaction date (required)
+- `onClick`: Click callback with operationId
+- `translations`: Text translations (required)
+- `icons`: Custom icon components
+- `background`, `textColor`, `alternativeTextColor`: Custom colors
+
+**Características**:
+- ✅ Status indicator with icon
+- ✅ Amount formatting with locale support
+- ✅ Hover effect (lift animation)
+- ✅ Clickable with callback
+- ✅ Avatar/icon display
+- ✅ Tabular numbers for amounts
+- ✅ Fully themed
+
+---
+
+### TransferPanel
+
+**Amount display panel**
+
+```typescript
+import { TransferPanel } from 'lola-framework-ui';
+
+<TransferPanel
+  amount="1,250.50"
+  currency="USD"
+  footerText="Total Amount"
+  icon={<CashIcon />}
+  background="var(--gradient-card)"
+  textColor="var(--foreground)"
+  alternativeTextColor="var(--muted-foreground)"
+/>
+```
+
+**Props**:
+- `amount`: Amount to display (required)
+- `currency`: Currency code (required)
+- `footerText`: Footer text (required)
+- `icon`: Optional icon element
+- `background`, `textColor`, `alternativeTextColor`: Custom colors
+
+**Características**:
+- ✅ Square panel design (180x180px)
+- ✅ Large amount display (2rem)
+- ✅ Icon support in footer
+- ✅ Responsive (120x120px on mobile)
+- ✅ Centered layout
+
+---
+
+### TransferPanelSection
+
+**Container for transfer panels**
+
+```typescript
+import { TransferPanelSection, TransferPanel } from 'lola-framework-ui';
+
+<TransferPanelSection className="custom-class" style={{ gap: '20px' }}>
+  <TransferPanel amount="1000" currency="USD" footerText="Send" />
+  <TransferPanel amount="18500" currency="MXN" footerText="Receive" />
+</TransferPanelSection>
+```
+
+**Props**:
+- `children`: TransferPanel components (required)
+- `className`: Additional CSS classes
+- `style`: Custom inline styles
+
+**Características**:
+- ✅ Flex container with gap
+- ✅ Centered alignment
+- ✅ Full width layout
+- ✅ Simple wrapper component
+
+---
+
 ### PayoutInfo
 
 **Payout method display card with icon and details**
@@ -462,6 +808,163 @@ import { InputRadio } from 'lola-framework-ui';
   onChange={handleChange}
   label="Option 1"
 />
+```
+
+---
+
+### QuoteInfo
+
+**Currency amount display and input with exchange information**
+
+```typescript
+import { QuoteInfo } from 'lola-framework-ui';
+import { UsaIcon } from 'lola-framework-ui/src/icons';
+
+const [amount, setAmount] = useState(0);
+
+<QuoteInfo
+  label="You send"
+  amount="1,250.50"
+  currency="USD"
+  textColor="#252525"
+  mode="info" | "input"
+  isActive={false}
+  showSelectorChevron={false}
+  hideCurrencySymbol={false}
+  amountState={amount}
+  setAmountState={setAmount}
+  theme={theme}
+  icon={<UsaIcon size={24} />}
+  bottomSlot={<div>Additional info</div>}
+/>
+```
+
+**Props**:
+- `label`: Label text (required)
+- `amount`: Display amount for info mode
+- `currency`: Currency code (required)
+- `textColor`: Text color (required)
+- `mode`: Display or input mode (default: `info`)
+- `isActive`: Active state styling
+- `showSelectorChevron`: Show dropdown chevron
+- `hideCurrencySymbol`: Hide "$" symbol
+- `amountState`: Current amount value (required)
+- `setAmountState`: Amount change handler (required)
+- `theme`: Theme configuration (required)
+- `icon`: Currency icon
+- `bottomSlot`: Additional content below amount
+
+**Modes**:
+
+1. **Info Mode** (Display)
+```typescript
+<QuoteInfo
+  label="You send"
+  amount="1,250.50"
+  currency="USD"
+  textColor="#252525"
+  mode="info"
+  amountState={1250.5}
+  setAmountState={() => {}}
+  theme={theme}
+  icon={<UsaIcon size={24} />}
+/>
+```
+
+2. **Input Mode** (Editable)
+```typescript
+const [amount, setAmount] = useState(0);
+
+<QuoteInfo
+  label="Enter amount"
+  currency="USD"
+  textColor="#252525"
+  mode="input"
+  amountState={amount}
+  setAmountState={(value) => setAmount(value.amount)}
+  theme={theme}
+  icon={<UsaIcon size={24} />}
+/>
+```
+
+3. **With Selector Chevron**
+```typescript
+<QuoteInfo
+  label="Currency"
+  amount="5,000.00"
+  currency="MXN"
+  textColor="#252525"
+  mode="info"
+  showSelectorChevron={true}
+  isActive={true}
+  amountState={5000}
+  setAmountState={() => {}}
+  theme={theme}
+  icon={<MexicoIcon size={24} />}
+/>
+```
+
+4. **With Bottom Slot**
+```typescript
+<QuoteInfo
+  label="Transfer amount"
+  amount="10,000.00"
+  currency="USD"
+  textColor="#252525"
+  mode="info"
+  amountState={10000}
+  setAmountState={() => {}}
+  theme={theme}
+  icon={<UsaIcon size={24} />}
+  bottomSlot={
+    <div>Transfer fee: $5.00 • Arrives in 1-2 business days</div>
+  }
+/>
+```
+
+**Características**:
+- ✅ Two modes: display and input
+- ✅ Dynamic font sizing for large amounts
+- ✅ Currency formatting with grouping
+- ✅ Decimal support (2 decimal places)
+- ✅ Currency selector chevron option
+- ✅ Custom icon support
+- ✅ Bottom slot for additional information
+- ✅ Active state styling
+- ✅ Max value: 99,999
+- ⚠️ Requires theme configuration
+
+**Exchange Rate Example**:
+```typescript
+const [sendAmount, setSendAmount] = useState(0);
+const exchangeRate = 18.5;
+const receiveAmount = (sendAmount * exchangeRate).toFixed(2);
+
+<>
+  <QuoteInfo
+    label="You send"
+    currency="USD"
+    textColor="#252525"
+    mode="input"
+    amountState={sendAmount}
+    setAmountState={(v) => setSendAmount(parseFloat(v.amount || '0'))}
+    theme={theme}
+    icon={<UsaIcon size={24} />}
+  />
+  
+  <QuoteInfo
+    label="They receive"
+    amount={receiveAmount}
+    currency="MXN"
+    textColor="#10b981"
+    mode="info"
+    isActive={true}
+    amountState={parseFloat(receiveAmount)}
+    setAmountState={() => {}}
+    theme={theme}
+    icon={<MexicoIcon size={24} />}
+  />
+</>
 ```
 
 ---
@@ -1043,15 +1546,26 @@ function RegistrationForm() {
 | Categoría | Cantidad | Estado |
 |-----------|----------|--------|
 | **Layout** | 4 | ✅ Estable |
-| **UI Elements** | 7 | ✅ Estable |
-| **Forms** | 7 | ⚠️ VGS components requieren deps |
+| **UI Elements** | 16 | ✅ Estable |
+| **Forms** | 8 | ⚠️ VGS components requieren deps |
 | **Navigation** | 1 | ✅ Estable |
-| **Feedback** | 3 | ✅ Estable |
+| **Feedback** | 4 | ✅ Estable |
 | **Specialized** | 3 | ✅ Estable |
 | **Hooks** | 8 | ⚠️ useBlockScroll usa beta |
 | **Iconos** | 52 | ⚠️ Sin tree-shaking |
 
-**Total**: 85 exports (25 components + 8 hooks + 52 icons)
+**Total**: 104 exports (34 components + 8 hooks + 52 icons + 10 new utils)
+
+**New Components (v0.4.0)**:
+- QuoteInfo - Currency display/input with exchange rates
+- ExchangeFeeInfo - Exchange rate chip display
+- QuoteSection - Quote container wrapper
+- Toast - Notification toast with auto-dismiss
+- Popup - Modal popup with backdrop
+- RainbowWrapper - Animated border effects
+- TransactionItem - Transaction history display
+- TransferPanel - Amount display panel
+- TransferPanelSection - Transfer panel container
 
 ---
 

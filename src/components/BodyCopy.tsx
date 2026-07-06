@@ -2,9 +2,7 @@ import * as React from "react";
 
 export type BodyCopyProps<T extends React.ElementType> = {
   as?: T;
-  children: React.ReactNode | string;
-  textColor?: string;
-  background?: string;
+  children: React.ReactNode | string
   isLeaving?: boolean;
   textAnimated?: boolean;
   textAnimatedDelay?: number;

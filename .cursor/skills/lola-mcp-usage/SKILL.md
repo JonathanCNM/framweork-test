@@ -253,6 +253,7 @@ Mention important notes from documentation:
 - **SearchSelect** - Enhanced select with search
 - **InputRadio** - Radio button inputs
 - **LabelInput** - Floating labels
+- **QuoteInfo** - Currency amount display and input with exchange information
 
 ### Layout Components
 - **Layout** - Main layout structure

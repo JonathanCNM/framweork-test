@@ -28,7 +28,8 @@ export const WithGradient: Story = {
       title="Credit Card"
       subtitle="Visa •••• 4242"
       icon={<CardIcon colors={context.globals.gradient} size={24} />}
-      color={context.globals.gradient}
+      iconColor={context.globals.gradient}
+      showBackArrow={true}
       onChange={() => console.log("PayoutInfo clicked")}
       {...props}
     />
@@ -41,7 +42,8 @@ export const BankAccount: Story = {
     subtitle: "Chase •••• 9876",
     icon: <BankIcon colors={["#667eea", "#667eea"]} size={24} />,
     background: "#f5f5f5",
-    color: "#252525",
+    iconColor: "#252525",
+    showBackArrow: true,
   },
 };
 
@@ -51,7 +53,8 @@ export const CashPayout: Story = {
     subtitle: "Available at 500+ locations",
     icon: <CashIcon colors={["#10b981", "#10b981"]} size={24} />,
     background: "#ecfdf5",
-    color: "#065f46",
+    iconColor: "#065f46",
+    showBackArrow: true,
   },
 };
 
@@ -61,7 +64,8 @@ export const DigitalWallet: Story = {
     subtitle: "wallet@email.com",
     icon: <WalletIcon colors={["#f59e0b", "#f59e0b"]} size={24} />,
     background: "#fffbeb",
-    color: "#78350f",
+    iconColor: "#78350f",
+    showBackArrow: true,
   },
 };
 
@@ -81,7 +85,8 @@ export const CustomBackground: Story = {
       subtitle="Gold •••• 1234"
       icon={<CardIcon colors={["#fbbf24", "#f59e0b"]} size={24} />}
       background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-      color="#ffffff"
+      iconColor="#ffffff"
+      showBackArrow={true}
       onChange={() => console.log("Premium card selected")}
       {...props}
     />

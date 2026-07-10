@@ -57,6 +57,15 @@ export function injectColorVariables(colors: ColorPalette): void {
     CSS_VARIABLES.CARD_PANEL_BACKGROUND, 
     colors.cardPanelBackground || 'transparent'
   );
+  
+  // Card backgrounds
+  if (colors.cardBackground) {
+    root.style.setProperty(CSS_VARIABLES.CARD_BACKGROUND, colors.cardBackground);
+  }
+  
+  if (colors.cardBackgroundSecundary) {
+    root.style.setProperty(CSS_VARIABLES.CARD_BACKGROUND_SECUNDARY, colors.cardBackgroundSecundary);
+  }
 }
 
 /**

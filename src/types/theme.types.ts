@@ -53,6 +53,8 @@ export interface ColorPalette {
   secundaryGradientPoint?: string;
   errorViewBackground?: string;
   cardPanelBackground?: string;
+  cardBackground?: string;
+  cardBackgroundSecundary?: string;
 }
 
 export interface ViewColorConfig {
@@ -153,6 +155,8 @@ export const CSS_VARIABLES = {
   PRIMARY_MESH: '--lola-color-primary-mesh',
   INACTIVED: '--lola-color-inactived',
   CARD_PANEL_BACKGROUND: '--lola-color-card-panel-background',
+  CARD_BACKGROUND: '--lola-color-card-background',
+  CARD_BACKGROUND_SECUNDARY: '--lola-color-card-background-secundary',
   
   // Font
   FONT_FAMILY: '--lola-font-family',

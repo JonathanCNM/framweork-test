@@ -294,6 +294,9 @@ interface ColorPalette {
   primaryGradientPoint?: string; // Gradient color stop
   secundaryGradientPoint?: string; // Gradient color stop
   errorViewBackground?: string;  // Background for error views (solid color or gradient)
+  cardPanelBackground?: string;  // Card panel background (default: 'transparent')
+  cardBackground?: string;       // Card background (uses --card CSS variable)
+  cardBackgroundSecundary?: string; // Secondary card background (uses --card-foreground CSS variable)
 }
 ```
 
@@ -418,6 +421,9 @@ The theme system automatically injects these CSS custom properties:
 --lola-color-highlights          /* Highlight/accent color */
 --lola-color-primary-mesh        /* Primary gradient */
 --lola-color-inactived           /* Inactive state color */
+--lola-color-card-panel-background /* Card panel background */
+--lola-color-card-background     /* Card background */
+--lola-color-card-background-secundary /* Secondary card background */
 ```
 
 ### Font Variable

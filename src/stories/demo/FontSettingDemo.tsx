@@ -105,6 +105,8 @@ interface IColorForm {
   primaryMesh: string;
   errorViewBackground?: string;
   cardPanelBackground?: string;
+  cardBackground?: string;
+  cardBackgroundSecundary?: string;
 }
 
 interface IStylesForm {
@@ -179,6 +181,16 @@ const formColorList = [
     type: "text",
   },
   {
+    key: "cardBackground",
+    value: "#eeeef1",
+    type: "text",
+  },
+  {
+    key: "cardBackgroundSecundary",
+    value: "#17171c",
+    type: "text",
+  },
+  {
     key: "gradientDeg",
     value: "116.74deg",
     type: "text",
@@ -204,6 +216,8 @@ const formColorInitialState: IColorForm = {
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
   errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
   cardPanelBackground: "transparent",
+  cardBackground: "#eeeef1",
+  cardBackgroundSecundary: "#17171c",
 };
 
 const formStylesList = [
@@ -519,7 +533,11 @@ export const FontSettingDemo = () => {
     setThemeLightnessPreferences(themeLightnessPreferences.code as string);
   };
 
-  const colorConfig = generateColorsByView(formColors);
+  const colorConfig = generateColorsByView({
+    ...formColors,
+    lightness: themeLightnessPreferences as "light" | "dark",
+    useSystemTheme: useThemeSystem,
+  })!;
 
   return (
     <Page font={fontStyle}>

@@ -1034,7 +1034,7 @@ input[type="number"]::-webkit-outer-spin-button {
     align-items: center;
     justify-content: flex-start;
     position: relative;
-    color: #222;
+    color: var(--foreground);
 
     .select-item {
       width: 100%;
@@ -1051,7 +1051,7 @@ input[type="number"]::-webkit-outer-spin-button {
       align-items: center;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.15);
+        background-color: color-mix(in srgb, var(--foreground) 10%, transparent);
       }
 
       &.active {
@@ -1305,7 +1305,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 
     .search-select-value-selected {
-      color: var(--foreground, #222);
+      color: #222;
     }
 
     svg {
@@ -1385,6 +1385,7 @@ input[type="number"]::-webkit-outer-spin-button {
         position: sticky;
         top: 0;
         background: var(--bg);
+        color: #222;
         border-radius: var(--lola-style-input-border-radius, 10px)
           var(--lola-style-input-border-radius, 10px) 0 0;
       }
@@ -1424,12 +1425,12 @@ input[type="number"]::-webkit-outer-spin-button {
           padding: 0 14px;
           font-size: 16px;
           pointer-events: none;
-          color: #000;
+          color: #222;
           height: 56px;
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: #fff;
+          background-color: var(--bg);
         }
       }
     }
@@ -1664,8 +1665,7 @@ select:-webkit-autofill {
   .lola-input-field--container,
   .search-select-component-preview,
   .search-select-component-container-list-item,
-  .step-label,
-  .search-select-value-selected {
+  .step-label {
     color: var(--foreground);
 
     &.muted-foreground {

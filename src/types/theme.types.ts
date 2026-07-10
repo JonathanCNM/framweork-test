@@ -190,6 +190,7 @@ export interface LegacyThemeText {
   min?: string;
   max?: string;
   lineHeight?: string | number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 

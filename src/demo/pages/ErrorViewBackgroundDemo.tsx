@@ -1,7 +1,7 @@
 import {
   AuraLayout,
-  BodyCopy,
   Button,
+  GradientText,
   Layout,
   PageTitle,
 } from '../../components';
@@ -66,9 +66,9 @@ export const ErrorViewBackgroundDemo = ({
             secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={bodyCopy} className="mt-4">
+          <GradientText textColor={bodyCopy} className="mt-4">
             {message}
-          </BodyCopy>
+          </GradientText>
 
           {backgroundInfo && (
             <div

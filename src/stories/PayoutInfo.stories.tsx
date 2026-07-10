@@ -25,13 +25,13 @@ export const Default: Story = {
 export const WithGradient: Story = {
   render: (props, context) => (
     <PayoutInfo
+      {...props}
       title="Credit Card"
       subtitle="Visa •••• 4242"
       icon={<CardIcon colors={context.globals.gradient} size={24} />}
       iconColor={context.globals.gradient}
       showBackArrow={true}
       onChange={() => console.log("PayoutInfo clicked")}
-      {...props}
     />
   ),
 };
@@ -74,13 +74,16 @@ export const WithFee: Story = {
     title: "International Transfer",
     subtitle: "SWIFT •••• ABC123",
     icon: <BankIcon colors={["#3ee0cf", "#3ee0cf"]} size={24} />,
-    fee: <span style={{ fontSize: "0.875rem", color: "#6b7280" }}>Fee: $5.00</span>,
+    fee: (
+      <span style={{ fontSize: "0.875rem", color: "#6b7280" }}>Fee: $5.00</span>
+    ),
   },
 };
 
 export const CustomBackground: Story = {
-  render: (props, context) => (
+  render: (props) => (
     <PayoutInfo
+      {...props}
       title="Premium Card"
       subtitle="Gold •••• 1234"
       icon={<CardIcon colors={["#fbbf24", "#f59e0b"]} size={24} />}
@@ -88,7 +91,6 @@ export const CustomBackground: Story = {
       iconColor="#ffffff"
       showBackArrow={true}
       onChange={() => console.log("Premium card selected")}
-      {...props}
     />
   ),
 };

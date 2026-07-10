@@ -23,6 +23,7 @@ interface ComponentDoc {
   description: string;
   category: string;
   version: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: Record<string, any>;
   usage: {
     import: string;
@@ -34,7 +35,9 @@ interface ComponentDoc {
     }>;
   };
   dependencies?: string[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   styling?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   accessibility?: any;
   notes?: string[];
   related?: string[];
@@ -81,9 +84,7 @@ class LolaFrameworkMCPServer {
       }
     }
 
-    console.error(
-      `Loaded ${this.componentDocs.size} component documentations`
-    );
+    console.error(`Loaded ${this.componentDocs.size} component documentations`);
   }
 
   private setupHandlers(): void {
@@ -99,7 +100,8 @@ class LolaFrameworkMCPServer {
             properties: {
               component_name: {
                 type: "string",
-                description: "Name of the component (e.g., 'Button', 'InputField', 'Select')",
+                description:
+                  "Name of the component (e.g., 'Button', 'InputField', 'Select')",
               },
             },
             required: ["component_name"],
@@ -179,8 +181,16 @@ class LolaFrameworkMCPServer {
             properties: {
               view_type: {
                 type: "string",
-                description: "Optional: Specific view type to get info about (e.g., 'primaryMeshGradientView', 'specialView', 'dataView', 'whiteView', 'errorView')",
-                enum: ["primaryMeshGradientView", "specialView", "dataView", "whiteView", "errorView", "all"],
+                description:
+                  "Optional: Specific view type to get info about (e.g., 'primaryMeshGradientView', 'specialView', 'dataView', 'whiteView', 'errorView')",
+                enum: [
+                  "primaryMeshGradientView",
+                  "specialView",
+                  "dataView",
+                  "whiteView",
+                  "errorView",
+                  "all",
+                ],
               },
             },
           },
@@ -374,7 +384,7 @@ class LolaFrameworkMCPServer {
       };
     }
 
-    let result = {
+    const result = {
       import: doc.usage.import,
       basic: doc.usage.basic,
       advanced: exampleType === "advanced" ? doc.usage.advanced : undefined,
@@ -424,7 +434,7 @@ class LolaFrameworkMCPServer {
   private getViewImplementationGuide(viewType?: string) {
     try {
       const guidePath = join(DOCS_PATH, "ViewBasedImplementation.json");
-      
+
       if (!existsSync(guidePath)) {
         return {
           content: [

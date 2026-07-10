@@ -20,7 +20,6 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
     footerColor,
     title,
     subtitile,
-    bodyCopy,
     backgroundBtn,
     textColorBtn,
     dropzoneColors,
@@ -45,7 +44,7 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
               secudnaryColor={subtitile}
             />
 
-            <BodyCopy textColor={bodyCopy}>
+            <BodyCopy>
               Tap to upload your Passport, State ID, Green Card, Driver’s
               License or Consular ID.
             </BodyCopy>

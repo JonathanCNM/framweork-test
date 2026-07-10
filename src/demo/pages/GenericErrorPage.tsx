@@ -1,6 +1,6 @@
 import {
   AuraLayout,
-  BodyCopy,
+  GradientText,
   Button,
   Layout,
   PageTitle,
@@ -51,9 +51,9 @@ export const GenericErrorPage = ({
             secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={bodyCopy} className="mt-4">
+          <GradientText as="p" className="lola-body-copy bodycopy mt-4" textColor={bodyCopy}>
             {message}
-          </BodyCopy>
+          </GradientText>
         </div>
       </Layout.Content>
       <Layout.Footer>

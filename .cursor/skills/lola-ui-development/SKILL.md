@@ -700,11 +700,40 @@ When reviewing code in this project, verify:
 
 ### Text Component Selection by View Type
 
-**CRITICAL RULE:** Use the correct text component based on view type.
+**CRITICAL RULE:** Use the correct text component based on view type. **BodyCopy NO LONGER accepts `textColor` prop.**
 
-#### GradientText for Gradient Views
+#### Title Component Usage
+
+**IMPORTANT:** The `Title` component uses `GradientText` internally and is **ONLY for gradient views**.
+
 ```tsx
-// ✅ Use GradientText in errorView, primaryMeshGradientView, specialView
+// ✅ CORRECT - Use Title in gradient views
+<AuraLayout colorConfig={theme.errorView}>
+  <Layout.Content>
+    <Title title="Error Title" color={theme.errorView.title} />
+  </Layout.Content>
+</AuraLayout>
+
+// ❌ WRONG - Don't use Title in plain views (white/data)
+<AuraLayout colorConfig={theme.whiteView}>
+  <Layout.Content>
+    <Title title="Form Title" color="#000" />  {/* Wrong! */}
+  </Layout.Content>
+</AuraLayout>
+
+// ✅ CORRECT - Use BodyCopy as heading in plain views
+<AuraLayout colorConfig={theme.whiteView}>
+  <Layout.Content>
+    <BodyCopy as="h2" style={{ fontSize: "1.5rem", fontWeight: "600" }}>
+      Form Title
+    </BodyCopy>
+  </Layout.Content>
+</AuraLayout>
+```
+
+#### GradientText for Gradient Views (with textColor)
+```tsx
+// ✅ Use GradientText in errorView, primaryMeshGradientView, specialView, successView
 <AuraLayout colorConfig={theme.errorView}>
   <Layout.Content>
     <GradientText 
@@ -716,33 +745,61 @@ When reviewing code in this project, verify:
     </GradientText>
   </Layout.Content>
 </AuraLayout>
+
+// ❌ NEVER use BodyCopy with textColor (no longer supported)
+<BodyCopy textColor={theme.errorView.bodyCopy}>
+  This will cause an error
+</BodyCopy>
 ```
 
-#### BodyCopy for Plain Views
+#### BodyCopy for Plain Views (no textColor)
 ```tsx
-// ✅ Use BodyCopy in whiteView, dataView (no props by default)
+// ✅ Use BodyCopy in whiteView, dataView (NO textColor prop)
 <AuraLayout colorConfig={theme.whiteView}>
   <Layout.Content>
     <BodyCopy>
-      Body text for plain views
+      Body text for plain views - color adapts automatically
     </BodyCopy>
     
-    {/* Only add color if user explicitly requests it */}
+    {/* ❌ DON'T use textColor prop with BodyCopy */}
+    <BodyCopy textColor="#000">Wrong - textColor not supported</BodyCopy>
+    
+    {/* ✅ Use inline style only if user explicitly requests custom color */}
     <BodyCopy style={{ color: '#DC2626' }}>
-      Error text (only when user asks)
+      Custom colored text (only when user explicitly asks)
     </BodyCopy>
   </Layout.Content>
 </AuraLayout>
 ```
 
 **Quick Reference:**
-- **Use GradientText** (`as="p" className="lola-body-copy bodycopy"`) in:
+- **Use Title** (`title` and `color` props) in:
   - primaryMeshGradientView
   - specialView
   - errorView
-- **Use BodyCopy** (without props unless user requests) in:
+  - successView
+  
+- **Use GradientText** (`as="p" className="lola-body-copy bodycopy" textColor={...}`) for body text in:
+  - primaryMeshGradientView
+  - specialView
+  - errorView
+  - successView
+  
+- **Use BodyCopy** (NO textColor prop - adapts automatically) in:
   - whiteView
   - dataView
+  
+- **Use BodyCopy as heading** (`as="h1"`, `as="h2"`, etc.) for headings in plain views:
+  - whiteView
+  - dataView
+
+**IMPORTANT Breaking Changes:**
+- ❌ `<BodyCopy textColor={...}>` is **NO LONGER VALID**
+- ❌ `<Title>` should **NOT** be used in plain views (white/data)
+- ✅ Use `<GradientText textColor={...}>` for colored text in gradient views
+- ✅ Use `<BodyCopy>` without textColor in plain views (color adapts automatically)
+- ✅ Use `<BodyCopy as="h2">` for headings in plain views
+- ✅ Use `<Title>` for headings in gradient views only
 
 ### Quote Component Pattern
 

@@ -1,6 +1,6 @@
 import {
   AuraLayout,
-  BodyCopy,
+  GradientText,
   Button,
   Layout,
   PageTitle,
@@ -43,9 +43,9 @@ export const NotFoundErrorPage = ({
             secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={bodyCopy} className="mt-4">
+          <GradientText as="p" className="lola-body-copy bodycopy mt-4" textColor={bodyCopy}>
             The page you are looking for doesn't exist or has been moved.
-          </BodyCopy>
+          </GradientText>
         </div>
       </Layout.Content>
       <Layout.Footer>

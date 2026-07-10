@@ -8,18 +8,13 @@ export interface PopupProps {
   onClose: () => void;
   className?: string;
   showCloseBtn?: boolean;
-  footerColor?: string;
-  CloseIcon?: React.ComponentType<{
-    className?: string;
-    onClick?: () => void;
-    colors?: string[];
-  }>;
+  CloseIcon?: React.ReactNode;
 }
 
 /**
  * Popup Component
  * A modal/popup component with optional close button and click-outside-to-close functionality
- * 
+ *
  * @param visible - Controls popup visibility
  * @param onClose - Callback when popup should close
  * @param children - Content to display inside popup
@@ -34,7 +29,6 @@ export const Popup: React.FC<PopupProps> = ({
   children,
   className = "",
   showCloseBtn = true,
-  footerColor = "#000000",
   CloseIcon,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -52,18 +46,8 @@ export const Popup: React.FC<PopupProps> = ({
   return (
     <>
       <span className="popup-blur" />
-      <main
-        ref={ref}
-        role="alert"
-        className={`popup-component ${className}`}
-      >
-        {showCloseBtn && CloseIcon && (
-          <CloseIcon
-            className="close-popup-icon close-icon"
-            onClick={onClose}
-            colors={[footerColor, footerColor]}
-          />
-        )}
+      <main ref={ref} role="alert" className={`popup-component ${className}`}>
+        {showCloseBtn && CloseIcon && CloseIcon}
         {children}
       </main>
     </>

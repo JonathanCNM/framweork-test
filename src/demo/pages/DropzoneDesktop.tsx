@@ -25,7 +25,6 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
     footerColor,
     title,
     subtitile,
-    bodyCopy,
     backgroundBtn,
     textColorBtn,
     dropzoneColors,
@@ -63,7 +62,7 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
                     </ElevatedCircle>
                   </div>
                   <section className="desktop-dropzone-input-disclaimer">
-                    <BodyCopy textColor={bodyCopy}>
+                    <BodyCopy>
                       Tap to upload your Passport, State ID, Green Card,
                       Driver’s License or Consular ID.
                     </BodyCopy>

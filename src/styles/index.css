@@ -1328,6 +1328,7 @@ input[type="number"]::-webkit-outer-spin-button {
     position: relative;
     border-radius: var(--lola-style-input-border-radius, 10px);
     margin-top: 4px;
+    z-index: 10001;
 
     .search-select-component-container-border {
       content: "";
@@ -1342,13 +1343,12 @@ input[type="number"]::-webkit-outer-spin-button {
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      z-index: 2;
+      z-index: 10002;
       pointer-events: none;
     }
 
     .search-select-component-container {
       position: absolute;
-      z-index: 10;
       width: 100%;
       margin-top: 4px;
       border: solid var(--lola-style-tamaño-borde-card, 1px)
@@ -1357,7 +1357,7 @@ input[type="number"]::-webkit-outer-spin-button {
       max-height: 200px;
       overflow: auto;
       background: #fff;
-      z-index: 60;
+      z-index: 10001;
       background-color: transparent;
       box-sizing: border-box;
 

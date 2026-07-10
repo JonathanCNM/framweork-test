@@ -663,27 +663,25 @@ export const FontSettingDemo = () => {
                 {formStylesList.map(({ key, type, options }) => {
                   if (type === "select" && options) {
                     return (
-                      <div key={key} style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                        <label style={{ fontSize: "0.875rem", fontWeight: "500" }}>{key}</label>
-                        <select
-                          name={key}
-                          value={formStyles[key as keyof IStylesForm]}
-                          onChange={onHandlerFormStyles}
-                          style={{
-                            padding: "0.5rem",
-                            borderRadius: "4px",
-                            border: "1px solid #E4E4E4",
-                            position: "relative",
-                            zIndex: 100,
-                          }}
-                        >
-                          {options.map((opt) => (
-                            <option key={opt} value={opt}>
-                              {opt}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <SearchSelect
+                        key={key}
+                        items={options.map((opt) => ({
+                          label: opt,
+                          code: opt,
+                        }))}
+                        value={formStyles[key as keyof IStylesForm] as string}
+                        onChange={(selected) => {
+                          const item = selected as SelectItem;
+                          onHandlerFormStyles({
+                            currentTarget: {
+                              name: key,
+                              value: item.code,
+                            },
+                          } as React.ChangeEvent<HTMLInputElement>);
+                        }}
+                        placeholder={key}
+                        searchable={false}
+                      />
                     );
                   }
                   return (

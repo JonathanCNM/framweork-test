@@ -1751,3 +1751,706 @@ select:-webkit-autofill {
   font-weight: 300;
   margin-top: 3px;
 }
+/**
+ * QuoteInfo Component Styles
+ */
+
+.estimated-exchange-section {
+  padding-top: 0;
+}
+
+.quote-send {
+  border-radius: var(--lola-style-card-border-radius, 16px);
+  padding-block: 18px;
+  padding-inline: var(--lola-style-card-padding, 21px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.active {
+    .chip {
+      cursor: default !important;
+
+      * {
+        cursor: default !important;
+      }
+    }
+  }
+
+  &.input {
+    position: relative;
+
+    .chip {
+      position: absolute;
+      top: 50%;
+      right: 21px;
+      transform: translateY(-50%);
+    }
+
+    .quote-send-info {
+      .quote-label {
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  .quote-send-info {
+    width: 100%;
+    font-weight: 600;
+    z-index: 2;
+    line-height: 1;
+
+    .quote-label {
+      font-weight: 400;
+    }
+
+    .label-amount {
+      font-size: 1.75rem;
+
+      label {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.quote-send {
+  padding: var(--lola-style-card-padding, 20px);
+  border-radius: var(--lola-style-card-border-radius, 16px);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.quote-send.input {
+  cursor: text;
+}
+
+.quote-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.quote-send-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.label-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.amount-input {
+  max-width: 70%;
+  border: none;
+  font-size: 1.75rem;
+  font-weight: 600;
+  outline: none;
+  background-color: transparent;
+}
+
+.amount-input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.5;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.icon-info {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.quote-send {
+  flex-direction: column;
+}
+
+.quote-send .quote-label {
+  width: 100%;
+  text-align: left;
+}
+
+.quote-send.input {
+  border-radius: var(--lola-style-card-border-radius, 16px) var(--lola-style-card-border-radius, 16px) 0 0 !important;
+}
+
+.quote-send.input .quote-send-content p {
+  line-height: 2;
+}
+
+.quote-send.info {
+  border-radius: 0 0 var(--lola-style-card-border-radius, 16px) var(--lola-style-card-border-radius, 16px) !important;
+}
+
+.quote-send.info .quote-send-content > p.lola-gradient-text {
+  line-height: 1.25;
+}
+
+.quote-send.info .quote-send-content p {
+  line-height: 1.5 !important;
+}
+
+.quote-send.info .quote-send-content > p {
+  margin-bottom: 4px;
+  margin-left: 6px;
+}
+
+.quote-container {
+  gap: 2px !important;
+}
+
+.quote-send-content {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.quote-send-content p {
+  line-height: 1.5 !important;
+}
+
+.quote-send-info {
+  width: auto !important;
+  font-feature-settings: "tnum";
+}
+
+.quote-send-info .amount-input {
+  max-width: 100% !important;
+}
+
+.quote-info {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.estimated-quote-section {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  .quote-container {
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 16px;
+    gap: 10px;
+  }
+}
+/**
+ * TransferPanel Component Styles
+ */
+
+.transfer-panel {
+  height: 180px;
+  width: 180px;
+  min-width: 140px;
+  min-height: 140px;
+  border-radius: var(--lola-style-card-border-radius, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: var(--lola-style-card-padding, 20px);
+}
+
+.transfer-footer {
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  width: 100%;
+}
+
+.amount-text {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+}
+
+.amount-text label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .transfer-panel {
+    min-width: 120px;
+    min-height: 120px;
+  }
+}
+
+
+.transfer-panel-container {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+/**
+ * PayoutInfo Component Styles
+ */
+
+.payout-container-content {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--lola-style-card-padding, 12px);
+  border-radius: var(--lola-style-card-border-radius, 10px);
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.payout-container-content:hover {
+  transform: translateY(-2px);
+}
+
+.payout-container-content * {
+  cursor: pointer !important;
+}
+
+.payout-container-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.payout-icon-container {
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payout-icon-container img {
+  width: 25px;
+  height: fit-content;
+  object-fit: contain;
+}
+
+.payout-text-info {
+  font-weight: 500;
+  font-size: 0.95rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.payout-text-info label {
+  font-size: 0.75rem;
+  display: block;
+  font-weight: 300;
+}
+
+.right-text {
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.payout-container-content {
+  border-radius: var(--lola-style-card-border-radius, 16px);
+}
+
+.right-icon {
+  transform: rotate(180deg);
+  border-radius: 100%;
+}
+
+.payout-icon-container {
+  background: var(--bg);
+}
+/**
+ * TransactionItem Component Styles
+ */
+
+.transactions-history-item {
+  width: 100%;
+  display: flex;
+  max-height: 66px;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  padding: var(--lola-style-card-padding, 12px);
+  border-radius: var(--lola-style-card-border-radius, 16px);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.transactions-history-item:hover {
+  transform: translateY(-2px);
+}
+
+.transactions-avatar {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.transactions-info {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-status-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+
+  * {
+    margin: 0;
+    line-height: normal;
+  }
+}
+
+.transaction-title {
+  font-size: 0.95rem;
+  line-height: normal;
+}
+
+.transactions-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.span-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.amount-date-section {
+  width: 100%;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 4px;
+
+  * {
+    margin: 0;
+    line-height: normal;
+  }
+}
+
+.transactions-date {
+  font-size: 0.8rem;
+}
+/**
+ * ExchangeFeeInfo Component Styles
+ */
+
+.exchange-chips-container {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.exchange-icon,
+.exchange-info {
+  background: var(--bgc);
+  width: 31px;
+  height: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--colorc);
+}
+
+.exchange-info {
+  display: flex;
+  width: auto;
+  border-radius: var(--lola-style-button-border-radius, 8px);
+  padding-inline: var(--lola-style-button-padding, 12px);
+  white-space: nowrap;
+  line-height: normal;
+}
+/**
+ * Popup Component Styles
+ */
+
+.popup-blur {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(15px) brightness(0.5);
+  z-index: 999;
+}
+
+.popup-component {
+  position: fixed;
+  width: 100%;
+  max-width: 500px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 32px;
+  z-index: 999;
+  border-radius: 32px 32px 0 0;
+  min-height: 150px;
+}
+
+.popup-component .close-popup-icon {
+  position: absolute;
+  top: 34px;
+  right: 32px;
+  cursor: pointer;
+  z-index: 12;
+}
+
+.popup-component {
+  background: var(--gradient-card);
+  backdrop-filter: blur(10px);
+  border: solid 1px rgb(var(--border) / 0.2);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .popup-component {
+    border-radius: 24px 24px 0 0;
+    padding: 24px;
+  }
+}
+/**
+ * Toast Component Styles
+ */
+
+.toast {
+  position: fixed;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  animation: slideUp 0.3s ease-in-out;
+  max-width: 376px;
+  min-height: 44px;
+  width: max-content;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.toast-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.toast-action-button {
+  margin-left: auto;
+  border: none;
+  background-color: rgba(15, 23, 42, 0.06);
+  color: #111827;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.toast-action-button:hover {
+  background-color: rgba(15, 23, 42, 0.1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.toast.toast-success {
+  background-color: #f0fdf4;
+  border-left: 4px solid #22c55e;
+}
+
+.toast.toast-error {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+}
+
+.toast.toast-info {
+  background-color: #f0f9ff;
+  border-left: 4px solid #3b82f6;
+}
+
+.toast-icon {
+  font-weight: bold;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.toast.toast-success .toast-icon {
+  color: #22c55e;
+}
+
+.toast.toast-error .toast-icon {
+  color: #ef4444;
+}
+
+.toast.toast-info .toast-icon {
+  color: #3b82f6;
+}
+
+.toast-message {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  line-height: 1.4;
+}
+/**
+ * RainbowWrapper Component Styles
+ */
+
+.span-input {
+  display: block;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.border-special.static::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: var(--rainbow-border);
+  border-radius: inherit;
+  background: var(--bgr);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.border-special.moving::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--rainbow-border);
+  background: var(--rainbow-bg);
+  background-size: 200% 100%;
+  animation: rainbow-border 2s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Glow effect under the element */
+.border-special.moving::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 8px;
+  background: var(--rainbow-bg);
+  background-size: 200% 100%;
+  animation: rainbow-border 2s linear infinite;
+  filter: blur(8px);
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+@keyframes rainbow-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-6px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(6px);
+  }
+}

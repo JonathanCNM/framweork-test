@@ -275,10 +275,19 @@ button:focus-visible {
     margin-bottom: 12px;
 
     .text-link {
-      color: #2587ff;
       font-weight: 600;
+      text-decoration: underline;
     }
   }
+}
+
+/* Theme-aware link styles */
+html.light .terms-text .text-link {
+  color: #000;
+}
+
+html.dark .terms-text .text-link {
+  color: #2587ff;
 }
 
 .elevated-circle-container {

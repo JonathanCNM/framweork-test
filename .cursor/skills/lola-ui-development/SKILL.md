@@ -744,6 +744,136 @@ When reviewing code in this project, verify:
   - whiteView
   - dataView
 
+### Quote Component Pattern
+
+**CRITICAL RULE:** QuoteInfo MUST always be wrapped inside QuoteSection. These components work together as a compound pattern.
+
+#### When User Asks for Quote or QuoteInfo
+```tsx
+// ❌ NEVER use QuoteInfo alone
+<QuoteInfo amount="100.00" currency="USD" />
+
+// ✅ ALWAYS wrap QuoteInfo inside QuoteSection
+<QuoteSection>
+  <QuoteInfo amount="100.00" currency="USD" />
+</QuoteSection>
+```
+
+#### When User Asks for QuoteSection
+```tsx
+// ❌ NEVER create empty QuoteSection
+<QuoteSection>
+  {/* Nothing here */}
+</QuoteSection>
+
+// ✅ ALWAYS add QuoteInfo immediately
+<QuoteSection>
+  <QuoteInfo 
+    amount="100.00" 
+    currency="USD"
+    exchangeRate="1.25"
+    fee="5.00"
+  />
+</QuoteSection>
+```
+
+#### Complete Pattern Example
+```tsx
+// ✅ Proper implementation with all parts
+<Layout.Content>
+  <QuoteSection>
+    <QuoteInfo 
+      amount="100.00"
+      currency="USD"
+      exchangeRate="1.25"
+      fee="5.00"
+      totalAmount="125.00"
+    />
+  </QuoteSection>
+</Layout.Content>
+```
+
+**Implementation Rules:**
+1. **ALWAYS** wrap `QuoteInfo` inside `QuoteSection`
+2. **NEVER** use `QuoteInfo` as a standalone component
+3. When user requests `QuoteSection`, **IMMEDIATELY** add `QuoteInfo` inside
+4. When user requests `Quote` or `QuoteInfo`, **AUTOMATICALLY** create the `QuoteSection` wrapper
+5. The pattern is non-negotiable - enforce it proactively
+
+**Quick Reference:**
+- User says "add a Quote" → Create `<QuoteSection><QuoteInfo /></QuoteSection>`
+- User says "add QuoteInfo" → Create `<QuoteSection><QuoteInfo /></QuoteSection>`
+- User says "add QuoteSection" → Create `<QuoteSection><QuoteInfo /></QuoteSection>`
+- These components are **inseparable** - one cannot exist without the other
+
+### TransferPanel Component Pattern
+
+**CRITICAL RULE:** TransferPanel MUST always be wrapped inside TransferPanelSection. These components work together as a compound pattern.
+
+#### When User Asks for TransferPanel
+```tsx
+// ❌ NEVER use TransferPanel alone
+<TransferPanel 
+  fromAmount="100.00"
+  toAmount="125.00"
+/>
+
+// ✅ ALWAYS wrap TransferPanel inside TransferPanelSection
+<TransferPanelSection>
+  <TransferPanel 
+    fromAmount="100.00"
+    toAmount="125.00"
+  />
+</TransferPanelSection>
+```
+
+#### When User Asks for TransferPanelSection
+```tsx
+// ❌ NEVER create empty TransferPanelSection
+<TransferPanelSection>
+  {/* Nothing here */}
+</TransferPanelSection>
+
+// ✅ ALWAYS add TransferPanel immediately
+<TransferPanelSection>
+  <TransferPanel 
+    fromAmount="100.00"
+    toAmount="125.00"
+    fromCurrency="USD"
+    toCurrency="EUR"
+  />
+</TransferPanelSection>
+```
+
+#### Complete Pattern Example
+```tsx
+// ✅ Proper implementation with all parts
+<Layout.Content>
+  <TransferPanelSection>
+    <TransferPanel 
+      fromAmount="100.00"
+      toAmount="125.00"
+      fromCurrency="USD"
+      toCurrency="EUR"
+      exchangeRate="1.25"
+      onSubmit={handleTransfer}
+    />
+  </TransferPanelSection>
+</Layout.Content>
+```
+
+**Implementation Rules:**
+1. **ALWAYS** wrap `TransferPanel` inside `TransferPanelSection`
+2. **NEVER** use `TransferPanel` as a standalone component
+3. When user requests `TransferPanelSection`, **IMMEDIATELY** add `TransferPanel` inside
+4. When user requests `TransferPanel`, **AUTOMATICALLY** create the `TransferPanelSection` wrapper
+5. The pattern is non-negotiable - enforce it proactively
+
+**Quick Reference:**
+- User says "add a TransferPanel" → Create `<TransferPanelSection><TransferPanel /></TransferPanelSection>`
+- User says "add TransferPanelSection" → Create `<TransferPanelSection><TransferPanel /></TransferPanelSection>`
+- These components are **inseparable** - one cannot exist without the other
+
 ### Compound Components
 
 ```typescript

@@ -7,13 +7,13 @@
   width: 180px;
   min-width: 140px;
   min-height: 140px;
-  border-radius: 16px;
+  border-radius: var(--lola-style-card-border-radius, 16px);
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: var(--lola-style-card-padding, 20px);
 }
 
 .transfer-footer {

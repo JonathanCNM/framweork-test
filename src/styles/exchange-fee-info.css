@@ -27,8 +27,8 @@
 .exchange-info {
   display: flex;
   width: auto;
-  border-radius: 8px;
-  padding-inline: 12px;
+  border-radius: var(--lola-style-button-border-radius, 8px);
+  padding-inline: var(--lola-style-button-padding, 12px);
   white-space: nowrap;
   line-height: normal;
 }

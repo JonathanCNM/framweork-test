@@ -8,8 +8,8 @@
   gap: 10px;
   align-items: center;
   justify-content: space-between;
-  padding: 12px;
-  border-radius: 10px;
+  padding: var(--lola-style-card-padding, 12px);
+  border-radius: var(--lola-style-card-border-radius, 10px);
   cursor: pointer;
   line-height: 1;
   transition: transform 0.2s ease;
@@ -68,7 +68,7 @@
 }
 
 .payout-container-content {
-  border-radius: 16px;
+  border-radius: var(--lola-style-card-border-radius, 16px);
 }
 
 .right-icon {

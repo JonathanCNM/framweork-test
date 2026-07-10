@@ -9,8 +9,8 @@
   gap: 10px;
   justify-content: flex-start;
   align-items: center;
-  padding: 12px;
-  border-radius: 16px;
+  padding: var(--lola-style-card-padding, 12px);
+  border-radius: var(--lola-style-card-border-radius, 16px);
   cursor: pointer;
   transition: transform 0.2s ease;
   box-sizing: border-box;

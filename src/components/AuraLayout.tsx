@@ -22,7 +22,7 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
     const isDark = themeType === "dark";
     const auraColors = isDark ? dropzoneColors : iconColors;
 
-    const systemThemeClassName = useSystemTheme
+    const systemThemeClassName = useSystemTheme && isDark
       ? ["whiteView", "dataView"].includes(viewConfig)
         ? "white-view-background"
         : ""

@@ -479,6 +479,12 @@ html.dark .terms-text .text-link {
   font-size: 14px !important;
 }
 
+.text-left {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
 @media (height <= 780px) {
   .summary-text {
     font-size: 12px !important;

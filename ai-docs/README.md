@@ -2,6 +2,18 @@
 
 This directory contains AI-readable documentation for the Lola Framework UI component library. The documentation is structured to enable AI agents to understand, search, and implement Lola UI components in external React projects.
 
+## ⭐ IMPORTANT: Start Here
+
+**📖 [IMPLEMENTATION_GUIDE_2026.md](./IMPLEMENTATION_GUIDE_2026.md)** - Complete, authoritative implementation guide updated July 2026 with:
+- ✅ Correct import paths (especially for icons)
+- ✅ All component patterns and best practices
+- ✅ Theme system (including legacy support)
+- ✅ Common mistakes and solutions
+- ✅ New components documentation
+- ✅ Real-world examples
+
+**This guide incorporates years of learnings and iterations. Read it first before implementing.**
+
 ## 📁 Directory Structure
 
 ```
@@ -50,7 +62,11 @@ This documentation system enables:
    - Cursor IDE
    - Other MCP-compatible tools
 
-3. **Start Using**
+3. **Read the Complete Implementation Guide** ⭐
+   
+   **START HERE:** [IMPLEMENTATION_GUIDE_2026.md](./IMPLEMENTATION_GUIDE_2026.md) - The authoritative, up-to-date guide with all patterns, best practices, and correct usage examples.
+
+4. **Start Using**
    
    Ask your AI assistant questions like:
    - "Show me how to use the Lola Framework Button component"

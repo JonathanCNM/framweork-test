@@ -2,6 +2,10 @@
 
 Get your AI assistant connected to Lola Framework UI documentation in 5 minutes.
 
+## ⭐ Before You Start
+
+**READ FIRST:** [IMPLEMENTATION_GUIDE_2026.md](./IMPLEMENTATION_GUIDE_2026.md) contains all the patterns, best practices, and correct usage examples you need. This guide has been refined through extensive use and iteration.
+
 ## Prerequisites
 
 - Node.js 18+ installed

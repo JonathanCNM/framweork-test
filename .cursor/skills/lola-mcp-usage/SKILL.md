@@ -253,34 +253,58 @@ Mention important notes from documentation:
 - **SearchSelect** - Enhanced select with search
 - **InputRadio** - Radio button inputs
 - **LabelInput** - Floating labels
-- **QuoteInfo** - Currency amount display and input with exchange information
 
 ### Layout Components
-- **Layout** - Main layout structure
-- **AuraLayout** - Layout with glow effects
-- **Page** - Page container
+- **Layout** - Main layout structure (Header, Content, Footer)
+- **AuraLayout** - Layout with gradient glow effects
+- **Page** - Page container with font loading
 - **MotionWrapper** - Animation wrapper
+- **Navbar** - Navigation bar with back button
 
 ### Display Components
-- **Title** / **PageTitle** - Title components
+- **PageTitle** - Two-line title with gradient (use in gradient views)
+- **Title** - Simple title (⚠️ ONLY for gradient views, NOT for whiteView/dataView)
 - **GradientText** - Gradient text effect (use for body text in gradient views)
-- **RotatingText** - Animated text
-- **BodyCopy** - Body text (use in white/data views only)
-- **PayoutInfo** - Payout method display card with icon and details
+- **BodyCopy** - Body text (⚠️ NO textColor prop, use in white/data views only)
+- **ElevatedCircle** - Circular icon container with shadow
+- **RotatingText** - Animated text rotation
 
-**IMPORTANT - Text Component Selection:**
-- Use `GradientText` (as="p" with classes "lola-body-copy bodycopy") for body text in:
-  - primaryMeshGradientView
-  - specialView  
-  - errorView
-- Use `BodyCopy` for body text in:
-  - whiteView
-  - dataView
+### Financial/Transaction Components (New in v0.3.1+)
+- **PayoutInfo** - Payment method display with icon (credit card, bank, etc.)
+- **QuoteInfo** - Currency exchange rate and quote information
+- **TransferPanel** - Compact transfer information panel
+- **TransactionItem** - Transaction list item with avatar, status, amount
+- **ExchangeFeeInfo** - Exchange rate chips and fee display
 
 ### Feedback Components
 - **Loader** - Loading spinner
-- **CircularProgress** - Progress indicator
-- **CustomStepper** - Multi-step indicator
+- **CircularProgress** - Progress indicator with custom colors
+- **CustomStepper** - Multi-step progress indicator
+- **Toast** - Notification toast (success, error, info variants)
+- **Popup** - Bottom sheet modal with blur backdrop
+
+### Utility Components (New in v0.3.1+)
+- **RainbowWrapper** - Animated rainbow border effect
+
+**⚠️ CRITICAL - Text Component Selection:**
+
+**BREAKING CHANGE**: `BodyCopy` NO LONGER accepts `textColor` prop as of v0.3.1+
+
+| View Type | Body Text | Heading | Configuration |
+|-----------|-----------|---------|---------------|
+| errorView | `GradientText` | `PageTitle` | `as="p" className="lola-body-copy bodycopy"` |
+| specialView | `GradientText` | `PageTitle` | `as="p" className="lola-body-copy bodycopy"` |
+| primaryMeshGradientView | `GradientText` | `PageTitle` | `as="p" className="lola-body-copy bodycopy"` |
+| whiteView | `BodyCopy` | `BodyCopy as="h2"` | `<BodyCopy>Text</BodyCopy>` |
+| dataView | `BodyCopy` | `BodyCopy as="h2"` | `<BodyCopy>Text</BodyCopy>` |
+
+**Common Mistakes to Avoid:**
+- ❌ `<BodyCopy textColor={...}>` - textColor prop removed, will be ignored
+- ❌ `<Title>` in whiteView/dataView - Title is ONLY for gradient views
+- ❌ `import { Icon } from 'lola-framework-ui-test/icons'` - Wrong path, will fail
+- ✅ `<GradientText as="p" className="lola-body-copy bodycopy" textColor={...}>` in gradient views
+- ✅ `<BodyCopy>` without any props in white/data views
+- ✅ `import { Icon } from 'lola-framework-ui-test/src/icons'` - Correct path
 
 ## Common Patterns
 
@@ -414,17 +438,31 @@ Always remind users on first implementation:
 // 1. Install the package
 // npm install lola-framework-ui-test
 
-// 2. Import CSS in your main app file (App.tsx, index.tsx, or _app.tsx)
+// 2. Import CSS in your main app file (App.tsx, index.tsx, or _app.tsx) - REQUIRED
 import 'lola-framework-ui-test/dist/styles.css';
 
 // 3. Import and use components
-import { Button, InputField } from 'lola-framework-ui-test';
+import { Button, InputField, Layout } from 'lola-framework-ui-test';
 
-// 4. Import icons (IMPORTANT: Must use /src/icons path)
-import { IconApp, UsaIcon, MexicoIcon } from 'lola-framework-ui-test/src/icons';
+// 4. Import icons (CRITICAL: Must use /src/icons path)
+import { IconApp, UsaIcon, MexicoIcon, CardIcon } from 'lola-framework-ui-test/src/icons';
+
+// 5. Import hooks (if needed)
+import { useLolaTheme, useFonts } from 'lola-framework-ui-test';
 ```
 
-**CRITICAL**: Icons must be imported from `lola-framework-ui-test/src/icons`, not `lola-framework-ui-test/icons`.
+**⚠️ CRITICAL IMPORT ERRORS TO AVOID:**
+- ❌ `import { Icon } from 'lola-framework-ui-test/icons'` - WRONG, will cause errors
+- ✅ `import { Icon } from 'lola-framework-ui-test/src/icons'` - CORRECT
+
+**📚 Complete Implementation Guide:**
+For ALL implementations, refer to the [IMPLEMENTATION_GUIDE_2026.md](../../../ai-docs/IMPLEMENTATION_GUIDE_2026.md) which contains:
+- All correct import patterns
+- Component usage by view type
+- Theme system (including legacy support)
+- Common mistakes and solutions
+- New components (PayoutInfo, QuoteInfo, TransactionItem, etc.)
+- Real-world examples
 
 ## Peer Dependencies
 

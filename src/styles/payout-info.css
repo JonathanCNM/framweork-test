@@ -1,0 +1,81 @@
+/**
+ * PayoutInfo Component Styles
+ */
+
+.payout-container-content {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--lola-style-card-padding, 12px);
+  border-radius: var(--lola-style-card-border-radius, 10px);
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.payout-container-content:hover {
+  transform: translateY(-2px);
+}
+
+.payout-container-content * {
+  cursor: pointer !important;
+}
+
+.payout-container-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.payout-icon-container {
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payout-icon-container img {
+  width: 25px;
+  height: fit-content;
+  object-fit: contain;
+}
+
+.payout-text-info {
+  font-weight: 500;
+  font-size: 0.95rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.payout-text-info label {
+  font-size: 0.75rem;
+  display: block;
+  font-weight: 300;
+}
+
+.right-text {
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.payout-container-content {
+  border-radius: var(--lola-style-card-border-radius, 16px);
+}
+
+.right-icon {
+  transform: rotate(180deg);
+  border-radius: 100%;
+}
+
+.payout-icon-container {
+  background: var(--bg);
+}

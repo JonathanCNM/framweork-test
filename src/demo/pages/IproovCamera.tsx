@@ -1,6 +1,6 @@
 import {
   AuraLayout,
-  BodyCopy,
+  GradientText,
   Button,
   Layout,
   PageTitle,
@@ -35,9 +35,9 @@ export const IproovCamera = ({ theme }: { theme: IViewConfig }) => {
             secudnaryColor={subtitile}
           />
 
-          <BodyCopy textColor={bodyCopy}>
+          <GradientText as="p" className="lola-body-copy bodycopy" textColor={bodyCopy}>
             Please allow access to your camera to continue.
-          </BodyCopy>
+          </GradientText>
         </div>
       </Layout.Content>
       <Layout.Footer>

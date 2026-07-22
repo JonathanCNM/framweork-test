@@ -37,3 +37,45 @@ export const formatNumber = (value: number, currency: string) =>
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);
+
+/**
+ * Format money value to always have 2 decimal places
+ * @param value - The value to format
+ * @returns Formatted money string (e.g., "123.45")
+ */
+export const formatMoney = (value: string): string => {
+  if (!value || value === ".00") return "";
+  value = value.replace(/[^\d.]/g, "");
+  const [intPart, decPart = ""] = value.split(".");
+  const decimals = (decPart + "00").slice(0, 2);
+  return `${intPart || "0"}.${decimals}`;
+};
+
+export type AmountFormatterOptions = {
+  country?: string;
+  minimumFractionDigits?: number;
+  maximumFractionDigits?: number;
+};
+
+/**
+ * Format amount with locale-specific number formatting
+ * @param amount - The numeric amount to format
+ * @param currency - Currency code (e.g., "USD")
+ * @param options - Formatting options
+ * @returns Formatted amount string
+ */
+export const amountFormatter = (
+  amount: number,
+  currency = "USD",
+  {
+    country = "en-US",
+    minimumFractionDigits = 2,
+    maximumFractionDigits = 2,
+  }: AmountFormatterOptions = {}
+): string =>
+  new Intl.NumberFormat(country, {
+    style: "decimal",
+    currency,
+    minimumFractionDigits,
+    maximumFractionDigits,
+  }).format(amount);

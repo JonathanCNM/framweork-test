@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lola Framework UI Component Schema",
+  "description": "Schema for AI-readable component documentation",
+  "type": "object",
+  "required": ["name", "description", "props", "usage", "version"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Component name as exported from the library"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of what the component does"
+    },
+    "category": {
+      "type": "string",
+      "description": "Component category (e.g., 'form', 'layout', 'display', 'navigation')"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version when component was added or last modified"
+    },
+    "props": {
+      "type": "object",
+      "description": "Component props definition",
+      "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+          "type": "object",
+          "required": ["type", "description"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "TypeScript type definition"
+            },
+            "required": {
+              "type": "boolean",
+              "default": false
+            },
+            "default": {
+              "description": "Default value if any"
+            },
+            "description": {
+              "type": "string",
+              "description": "Prop description and usage notes"
+            },
+            "options": {
+              "type": "array",
+              "description": "Valid values for enum/union types",
+              "items": {
+                "type": "string"
+              }
+            },
+            "examples": {
+              "type": "array",
+              "description": "Example values",
+              "items": {}
+            }
+          }
+        }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "required": ["import", "basic"],
+      "properties": {
+        "import": {
+          "type": "string",
+          "description": "Import statement"
+        },
+        "basic": {
+          "type": "string",
+          "description": "Basic usage example"
+        },
+        "advanced": {
+          "type": "array",
+          "description": "Advanced usage examples",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "code": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Other Lola components this component uses",
+      "items": {
+        "type": "string"
+      }
+    },
+    "styling": {
+      "type": "object",
+      "properties": {
+        "cssVariables": {
+          "type": "array",
+          "description": "CSS custom properties that can be overridden",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "default": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "className": {
+          "type": "string",
+          "description": "Main CSS class name"
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "aria": {
+          "type": "array",
+          "description": "ARIA attributes to consider",
+          "items": {
+            "type": "string"
+          }
+        },
+        "keyboard": {
+          "type": "array",
+          "description": "Keyboard interactions",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional accessibility notes"
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "description": "Additional notes, warnings, or tips",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related": {
+      "type": "array",
+      "description": "Related components",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

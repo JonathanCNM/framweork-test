@@ -19,6 +19,10 @@ import { useEffect, useState } from "react";
 import { useFonts, type UseFontsProps } from "../../hooks";
 import { defaultFont, registeredFonts } from "../../utils/constants";
 import { useTheme } from "../../hooks/useTheme";
+import {
+  injectStyleVariables,
+  injectColorVariables,
+} from "../../hooks/useCSSVariables";
 import "../../index.css";
 
 interface FontInput {
@@ -102,6 +106,27 @@ interface IColorForm {
   primaryGradientPoint: string;
   secundaryGradientPoint: string;
   primaryMesh: string;
+  errorViewBackground?: string;
+  specialViewBackground?: string;
+  cardPanelBackground?: string;
+  cardBackground?: string;
+  cardBackgroundSecundary?: string;
+}
+
+interface IStylesForm {
+  cardBorderRadius: string;
+  buttonBorderRadius: string;
+  inputBorderRadius: string;
+  cardBorderColor: string;
+  inputBorderColor: string;
+  activeBorderBoton: string;
+  tamañoBordeCard: string;
+  tamañoBordeInput: string;
+  buttonPadding: string;
+  inputPadding: string;
+  cardPadding: string;
+  buttonSize: "small" | "medium" | "large";
+  buttonShowIcon: boolean;
 }
 
 const formColorList = [
@@ -151,6 +176,31 @@ const formColorList = [
     type: "color",
   },
   {
+    key: "errorViewBackground",
+    value: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+    type: "text",
+  },
+  {
+    key: "specialViewBackground",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+  },
+  {
+    key: "cardPanelBackground",
+    value: "transparent",
+    type: "text",
+  },
+  {
+    key: "cardBackground",
+    value: "#eeeef1",
+    type: "text",
+  },
+  {
+    key: "cardBackgroundSecundary",
+    value: "#17171c",
+    type: "text",
+  },
+  {
     key: "gradientDeg",
     value: "116.74deg",
     type: "text",
@@ -174,6 +224,98 @@ const formColorInitialState: IColorForm = {
   primaryGradientPoint: "23.26%",
   secundaryGradientPoint: "111.43%",
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+  specialViewBackground:
+    "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  cardPanelBackground: "transparent",
+  cardBackground: "#eeeef1",
+  cardBackgroundSecundary: "#17171c",
+};
+
+const formStylesList = [
+  {
+    key: "cardBorderRadius",
+    value: "16px",
+    type: "text",
+  },
+  {
+    key: "buttonBorderRadius",
+    value: "8px",
+    type: "text",
+  },
+  {
+    key: "inputBorderRadius",
+    value: "8px",
+    type: "text",
+  },
+  {
+    key: "cardBorderColor",
+    value: "#E4E4E4",
+    type: "color",
+  },
+  {
+    key: "inputBorderColor",
+    value: "#E4E4E4",
+    type: "color",
+  },
+  {
+    key: "activeBorderBoton",
+    value: "#1DAFA1",
+    type: "color",
+  },
+  {
+    key: "tamañoBordeCard",
+    value: "1px",
+    type: "text",
+  },
+  {
+    key: "tamañoBordeInput",
+    value: "1px",
+    type: "text",
+  },
+  {
+    key: "buttonPadding",
+    value: "1rem",
+    type: "text",
+  },
+  {
+    key: "inputPadding",
+    value: "0.75rem",
+    type: "text",
+  },
+  {
+    key: "cardPadding",
+    value: "1.5rem",
+    type: "text",
+  },
+  {
+    key: "buttonSize",
+    value: "medium",
+    type: "select",
+    options: ["small", "medium", "large"],
+  },
+  {
+    key: "buttonShowIcon",
+    value: "true",
+    type: "checkbox",
+    label: "Se va a mostrar el icono de continuar en los botones?",
+  },
+];
+
+const formStylesInitialState: IStylesForm = {
+  cardBorderRadius: "16px",
+  buttonBorderRadius: "8px",
+  inputBorderRadius: "8px",
+  cardBorderColor: "#E4E4E4",
+  inputBorderColor: "#E4E4E4",
+  activeBorderBoton: "#1DAFA1",
+  tamañoBordeCard: "1px",
+  tamañoBordeInput: "1px",
+  buttonPadding: "1rem",
+  inputPadding: "0.75rem",
+  cardPadding: "1.5rem",
+  buttonSize: "medium",
+  buttonShowIcon: true,
 };
 
 const localhost = "http://localhost:5176";
@@ -187,12 +329,17 @@ export const FontSettingDemo = () => {
   const [formColors, setFormColors] = useState<IColorForm>(
     formColorInitialState
   );
+  const [formStyles, setFormStyles] = useState<IStylesForm>(
+    formStylesInitialState
+  );
   const [themeLightnessPreferences, setThemeLightnessPreferences] =
     useState("dark");
   const [useThemeSystem, setUsethemeSystem] = useState(false);
   const { downloadThemeTxt, generateColorsByView } = useTheme(formFont);
   const { fontStyle, onChangeFont } = useFonts(inputFont);
   const [copied, setCopied] = useState(false);
+  const [jsonInput, setJsonInput] = useState("");
+  const [jsonError, setJsonError] = useState("");
 
   const onChangeIput = (event?: React.ChangeEvent<HTMLInputElement>) => {
     if (!event?.currentTarget) {
@@ -250,6 +397,17 @@ export const FontSettingDemo = () => {
     });
   };
 
+  const onHandlerFormStyles = (
+    event?: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    if (!event) return false;
+    const { name, value } = event.currentTarget;
+    setFormStyles({
+      ...formStyles,
+      [name]: value,
+    });
+  };
+
   useEffect(() => {
     setFormColors({
       ...formColors,
@@ -290,6 +448,20 @@ export const FontSettingDemo = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formColors.primaryMesh]);
 
+  // Inject style CSS variables
+  useEffect(() => {
+    injectStyleVariables(formStyles);
+  }, [formStyles]);
+
+  // Inject color CSS variables
+  useEffect(() => {
+    injectColorVariables({
+      ...formColors,
+      lightness: themeLightnessPreferences as "light" | "dark",
+      useSystemTheme: useThemeSystem,
+    });
+  }, [formColors, themeLightnessPreferences, useThemeSystem]);
+
   const onDownloadTheme = () => {
     downloadThemeTxt({
       font: {
@@ -303,6 +475,7 @@ export const FontSettingDemo = () => {
         lightness: themeLightnessPreferences,
         useSystemTheme: useThemeSystem,
       },
+      styles: formStyles,
     });
   };
 
@@ -319,6 +492,7 @@ export const FontSettingDemo = () => {
         lightness: themeLightnessPreferences,
         useSystemTheme: useThemeSystem,
       },
+      styles: formStyles,
     };
     const location = window.location.hostname;
     const host = location.includes("localhost") ? localhost : vercelhost;
@@ -358,12 +532,93 @@ export const FontSettingDemo = () => {
             lightness: themeLightnessPreferences,
             useSystemTheme: useThemeSystem,
           },
+          styles: formStyles,
         })
       );
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("Error al momento de copiar el theme", err);
+    }
+  };
+
+  const onApplyJsonTheme = () => {
+    try {
+      setJsonError("");
+      const parsedTheme = JSON.parse(jsonInput);
+
+      // Validate that at least one main property exists (legacy support)
+      if (!parsedTheme.font && !parsedTheme.colors && !parsedTheme.styles) {
+        setJsonError(
+          "El JSON debe contener al menos una de las propiedades: font, colors o styles"
+        );
+        return;
+      }
+
+      // Apply font configuration (if exists)
+      if (parsedTheme.font) {
+        const { fontfamily, fontcdn, ...fontConfig } = parsedTheme.font;
+
+        // Update font family and CDN if provided
+        if (fontfamily && fontcdn) {
+          setInputFont({ name: fontfamily, cdn: fontcdn });
+          onChangeFont({ name: fontfamily, cdn: fontcdn });
+        }
+
+        // Merge with existing font config (legacy support - only update provided properties)
+        setFormFont((prev) => {
+          const updates: Record<string, FontInput> = {};
+          Object.keys(fontConfig).forEach((key) => {
+            const value = fontConfig[key];
+            if (value && typeof value === "object") {
+              updates[key] = value as FontInput;
+            }
+          });
+          return { ...prev, ...updates };
+        });
+      }
+
+      // Apply colors configuration (if exists)
+      if (parsedTheme.colors) {
+        const {
+          lightness,
+          useSystemTheme: systemTheme,
+          gradient: themeGradient,
+          ...colors
+        } = parsedTheme.colors;
+
+        // Merge with existing colors (legacy support)
+        setFormColors((prev) => ({
+          ...prev,
+          ...colors,
+        }));
+
+        if (lightness) setThemeLightnessPreferences(lightness);
+        if (typeof systemTheme === "boolean") setUsethemeSystem(systemTheme);
+        if (themeGradient) setGradient(themeGradient);
+      }
+
+      // Apply styles configuration (if exists - legacy themes might not have this)
+      if (parsedTheme.styles) {
+        setFormStyles((prev) => ({
+          ...prev,
+          ...parsedTheme.styles,
+        }));
+      }
+
+      setJsonInput("");
+      const appliedSections = [
+        parsedTheme.font && "font",
+        parsedTheme.colors && "colors",
+        parsedTheme.styles && "styles",
+      ]
+        .filter(Boolean)
+        .join(", ");
+
+      alert(`Tema aplicado correctamente (${appliedSections})`);
+    } catch (err) {
+      setJsonError("JSON inválido. Por favor verifica el formato.");
+      console.error("Error al parsear el JSON:", err);
     }
   };
 
@@ -381,7 +636,11 @@ export const FontSettingDemo = () => {
     setThemeLightnessPreferences(themeLightnessPreferences.code as string);
   };
 
-  const colorConfig = generateColorsByView(formColors);
+  const colorConfig = generateColorsByView({
+    ...formColors,
+    lightness: themeLightnessPreferences as "light" | "dark",
+    useSystemTheme: useThemeSystem,
+  })!;
 
   return (
     <Page font={fontStyle}>
@@ -470,7 +729,15 @@ export const FontSettingDemo = () => {
           <Layout.Content>
             <section className="color-form">
               <Title title="Formulario de colores" subTitle="En Hexadecimal" />
-              <section className="color-form-container">
+              <section
+                className="color-form-container"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "1rem",
+                  marginTop: "1rem",
+                }}
+              >
                 {formColorList.map(({ key, type }) => (
                   <InputField
                     key={key}
@@ -501,6 +768,130 @@ export const FontSettingDemo = () => {
                     Se va a usar el tema del sistema
                   </label>
                 </section>
+              </section>
+            </section>
+            <section className="json-import-section">
+              <Title
+                title="Importar tema desde JSON"
+                subTitle="Compatible con temas legacy (solo actualiza las propiedades que vengan)"
+              />
+              <section
+                className="json-import-container"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  marginTop: "1rem",
+                }}
+              >
+                <textarea
+                  placeholder='Pega aquí tu JSON del tema... Compatible con temas legacy. Ejemplo: {"font": {...}, "colors": {...}} o completo con "styles"'
+                  value={jsonInput}
+                  onChange={(e) => setJsonInput(e.target.value)}
+                  style={{
+                    width: "100%",
+                    minHeight: "150px",
+                    padding: "1rem",
+                    borderRadius: "8px",
+                    border: `1px solid ${jsonError ? "#E81C1C" : "#E4E4E4"}`,
+                    fontFamily: "monospace",
+                    fontSize: "0.875rem",
+                    resize: "vertical",
+                    backgroundColor: "var(--background)",
+                    color: "var(--foreground)",
+                  }}
+                />
+                {jsonError && (
+                  <p
+                    style={{
+                      color: "#E81C1C",
+                      fontSize: "0.875rem",
+                      margin: 0,
+                    }}
+                  >
+                    {jsonError}
+                  </p>
+                )}
+                <Button
+                  size="small"
+                  color="#fff"
+                  background={gradient}
+                  onClick={onApplyJsonTheme}
+                  disabled={!jsonInput.trim()}
+                >
+                  Aplicar tema desde JSON
+                </Button>
+              </section>
+            </section>
+            <section className="styles-form">
+              <Title
+                title="Estilos Personalizados"
+                subTitle="Border radius, colores y tamaños"
+              />
+              <section
+                className="color-form-container"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "1rem",
+                  marginTop: "1rem",
+                }}
+              >
+                {formStylesList.map(({ key, type, options, label }) => {
+                  if (type === "select" && options) {
+                    return (
+                      <SearchSelect
+                        key={key}
+                        items={options.map((opt) => ({
+                          label: opt,
+                          code: opt,
+                        }))}
+                        value={formStyles[key as keyof IStylesForm] as string}
+                        onChange={(selected) => {
+                          const item = selected as SelectItem;
+                          onHandlerFormStyles({
+                            currentTarget: {
+                              name: key,
+                              value: item.code,
+                            },
+                          } as React.ChangeEvent<HTMLInputElement>);
+                        }}
+                        placeholder={key}
+                        searchable={false}
+                      />
+                    );
+                  }
+                  if (type === "checkbox") {
+                    return (
+                      <section key={key} className="checkbox-input">
+                        <input
+                          id={key}
+                          type="checkbox"
+                          checked={Boolean(
+                            formStyles[key as keyof IStylesForm]
+                          )}
+                          onChange={(e) => {
+                            setFormStyles({
+                              ...formStyles,
+                              [key]: e.target.checked,
+                            });
+                          }}
+                        />
+                        <label htmlFor={key}>{label ?? key}</label>
+                      </section>
+                    );
+                  }
+                  return (
+                    <InputField
+                      key={key}
+                      type={type}
+                      label={key}
+                      name={key}
+                      value={String(formStyles[key as keyof IStylesForm])}
+                      onChange={onHandlerFormStyles}
+                    />
+                  );
+                })}
               </section>
             </section>
             <section className="font-form">

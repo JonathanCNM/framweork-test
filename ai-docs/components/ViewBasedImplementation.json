@@ -1,0 +1,196 @@
+{
+  "name": "ViewBasedImplementation",
+  "description": "Complete guide for implementing Lola Framework UI using the view-based pattern with themes and layouts",
+  "version": "0.3.1",
+  "sections": {
+    "rules": {
+      "title": "Framework Rules",
+      "restrictions": [
+        "NO create manual CSS",
+        "NO use styled-components",
+        "NO use inline styles",
+        "NO use Tailwind",
+        "ONLY use framework components"
+      ]
+    },
+    "installation": {
+      "requirements": {
+        "react": "18.3.1",
+        "reactDom": "18.3.1"
+      },
+      "install": "npm install lola-framework-ui-test@latest",
+      "cssImport": "import 'lola-framework-ui-test/dist/styles.css'",
+      "note": "Import CSS in main.tsx or index.tsx"
+    },
+    "colorConfig": {
+      "description": "Color configuration object that the framework understands. Always use a variable named 'colorConfig'",
+      "properties": {
+        "background": "Background of the component",
+        "iconColors": "Color of main icons",
+        "backgroundIcon": "Background of main icons",
+        "title": "Title color",
+        "subtitle": "Subtitle color",
+        "bodyCopy": "Normal text color (content)",
+        "footerColor": "Footer text color",
+        "backgroundBtn": "Button background",
+        "textColorBtn": "Button text color (always required when using Button)",
+        "dropzoneColors": "Alternative icon colors",
+        "themeType": "Theme type: 'light' or 'dark'"
+      }
+    },
+    "layoutSetup": {
+      "description": "Configure Page component in App.tsx",
+      "example": "<Page font={{ cdn: theme.font.fontcdn, name: theme.font.fontfamily }}>"
+    },
+    "viewTypes": {
+      "primaryMeshGradientView": "Primary view with mesh gradient",
+      "specialView": "Special themed view",
+      "dataView": "View for displaying information/data",
+      "whiteView": "Default white background view",
+      "errorView": "Error state view"
+    },
+    "layoutStructure": {
+      "description": "Standard layout structure using AuraLayout",
+      "pattern": {
+        "wrapper": "AuraLayout",
+        "sections": ["Layout.Header", "Layout.Content", "Layout.Footer"],
+        "contentContainer": "Use div or section with flexbox, NOT Grid (Grid doesn't exist)",
+        "overflowHandling": "Use isOverflowauto={true} on Layout.Content when content is large"
+      },
+      "example": "```tsx\n<AuraLayout colorConfig={colorConfig}>\n  <Layout.Header>\n    <Navbar color={colorConfig.title} title=\"Title\" />\n  </Layout.Header>\n  <Layout.Content isOverflowauto={true}>\n    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', maxWidth: '800px', margin: '0 auto', padding: '20px' }}>\n      {/* content based on view type */}\n    </div>\n  </Layout.Content>\n  <Layout.Footer>\n    <Button background={colorConfig.backgroundBtn} color={colorConfig.textColorBtn}>\n      Action\n    </Button>\n  </Layout.Footer>\n</AuraLayout>\n```",
+      "importantNote": "Always use isOverflowauto={true} on Layout.Content when content might be tall or dynamically sized"
+    },
+    "contentPatterns": {
+      "primaryMeshGradientView": {
+        "colorConfig": "theme.primaryMeshGradientView",
+        "structure": [
+          "ElevatedCircle with icon (e.g., <RightIcon size={66} />)",
+          "PageTitle",
+          "BodyCopy",
+          "Additional sections"
+        ],
+        "example": "```tsx\nconst colorConfig = theme.primaryMeshGradientView;\n\n<AuraLayout colorConfig={colorConfig}>\n  <Layout.Content>\n    <ElevatedCircle>\n      <RightIcon size={66} />\n    </ElevatedCircle>\n    <PageTitle\n      highlight=\"Main Title\"\n      highlightColor={colorConfig.title}\n      secondary=\"Subtitle\"\n      secondaryColor={colorConfig.subtitle}\n    />\n    <BodyCopy textColor={colorConfig.bodyCopy}>\n      Content text\n    </BodyCopy>\n  </Layout.Content>\n</AuraLayout>\n```"
+      },
+      "specialView": {
+        "colorConfig": "theme.specialView",
+        "structure": "Same as primaryMeshGradientView"
+      },
+      "errorView": {
+        "colorConfig": "theme.errorView",
+        "structure": [
+          "ElevatedCircle with <WarningIcon size={66} />",
+          "PageTitle",
+          "BodyCopy"
+        ],
+        "example": "```tsx\nconst colorConfig = theme.errorView;\n\n<AuraLayout colorConfig={colorConfig}>\n  <Layout.Content>\n    <ElevatedCircle>\n      <WarningIcon size={66} />\n    </ElevatedCircle>\n    <PageTitle\n      highlight=\"Error Title\"\n      highlightColor={colorConfig.title}\n    />\n    <BodyCopy textColor={colorConfig.bodyCopy}>\n      Error description\n    </BodyCopy>\n  </Layout.Content>\n</AuraLayout>\n```"
+      },
+      "dataView": {
+        "colorConfig": "theme.dataView",
+        "structure": [
+          "section with className='content'",
+          "Data components"
+        ],
+        "example": "```tsx\nconst colorConfig = theme.dataView;\n\n<AuraLayout colorConfig={colorConfig}>\n  <Layout.Content>\n    <section className=\"content\">\n      {/* Data display components */}\n    </section>\n  </Layout.Content>\n</AuraLayout>\n```"
+      },
+      "whiteView": {
+        "colorConfig": "theme.whiteView",
+        "structure": "Same as dataView"
+      }
+    },
+    "componentExamples": {
+      "Button": {
+        "description": "Button component with icon support",
+        "required": ["background (from colorConfig.backgroundBtn)", "color (from colorConfig.textColorBtn)"],
+        "example": "```tsx\n<Button\n  showIcon\n  size=\"large\"\n  background={colorConfig.backgroundBtn}\n  color={colorConfig.textColorBtn}\n>\n  Button Text\n</Button>\n```"
+      },
+      "InputField": {
+        "description": "Input field with floating label",
+        "required": ["name", "onChange", "value", "label"],
+        "example": "```tsx\n<InputField\n  name=\"email\"\n  onChange={handleInputChange}\n  value={email}\n  label=\"Email Address\"\n/>\n```"
+      },
+      "Navbar": {
+        "description": "Navigation bar component",
+        "required": ["color (from colorConfig.title)", "title"],
+        "example": "```tsx\n<Navbar\n  color={colorConfig.title}\n  title=\"Page Title\"\n/>\n```"
+      },
+      "PageTitle": {
+        "description": "Page title with highlight support",
+        "required": ["highlight", "highlightColor"],
+        "optional": ["secondary", "secondaryColor"],
+        "example": "```tsx\n<PageTitle\n  highlight=\"Main Title\"\n  highlightColor={colorConfig.title}\n  secondary=\"Subtitle Text\"\n  secondaryColor={colorConfig.subtitle}\n/>\n```"
+      },
+      "BodyCopy": {
+        "description": "Body text component",
+        "required": ["style with color property"],
+        "deprecated": ["textColor prop - use style instead"],
+        "example": "```tsx\n<BodyCopy style={{ color: colorConfig.bodyCopy }}>\n  Your content text here\n</BodyCopy>\n```",
+        "note": "Do NOT use textColor prop - it causes React warnings. Use style={{ color: '...' }} instead."
+      },
+      "SearchSelect": {
+        "description": "Searchable dropdown component",
+        "required": ["items (array with code and label)", "value", "onChange"],
+        "itemStructure": "{ code: string, label: string }",
+        "example": "```tsx\nconst items = [\n  { code: 'apple', label: '🍎 Apple' },\n  { code: 'banana', label: '🍌 Banana' }\n];\n\n<SearchSelect\n  items={items}\n  value={selected}\n  onChange={(selected: any) => {\n    // IMPORTANT: SearchSelect passes entire object, extract code\n    const code = typeof selected === 'object' && selected?.code \n      ? selected.code \n      : selected\n    setSelected(code)\n  }}\n  placeholder=\"Search...\"\n  searchable={true}\n/>\n```",
+        "note": "CRITICAL: SearchSelect onChange passes the entire item object {code, label}, not just the code. You MUST extract the code property or you'll get 'Objects are not valid as a React child' error."
+      }
+    },
+    "completeExample": {
+      "description": "Complete view implementation example",
+      "code": "```tsx\nimport {\n  AuraLayout,\n  Layout,\n  Navbar,\n  PageTitle,\n  BodyCopy,\n  Button,\n  ElevatedCircle,\n  Grid\n} from 'lola-framework-ui-test';\nimport { RightIcon } from 'lola-framework-ui-test/icons';\n\nfunction MyView({ theme }) {\n  const colorConfig = theme.primaryMeshGradientView;\n\n  return (\n    <AuraLayout colorConfig={colorConfig}>\n      <Layout.Header>\n        <Navbar\n          color={colorConfig.title}\n          title=\"Welcome\"\n        />\n      </Layout.Header>\n\n      <Layout.Content>\n        <Grid>\n          <ElevatedCircle>\n            <RightIcon size={66} />\n          </ElevatedCircle>\n          \n          <PageTitle\n            highlight=\"Get Started\"\n            highlightColor={colorConfig.title}\n            secondary=\"Begin your journey\"\n            secondaryColor={colorConfig.subtitle}\n          />\n          \n          <BodyCopy textColor={colorConfig.bodyCopy}>\n            Welcome to the application. Follow the steps to continue.\n          </BodyCopy>\n        </Grid>\n      </Layout.Content>\n\n      <Layout.Footer>\n        <Button\n          showIcon\n          size=\"large\"\n          background={colorConfig.backgroundBtn}\n          color={colorConfig.textColorBtn}\n        >\n          Continue\n        </Button>\n      </Layout.Footer>\n    </AuraLayout>\n  );\n}\n```"
+    },
+    "bestPractices": {
+      "colorConfig": [
+        "Always define colorConfig at the component level",
+        "Get colorConfig from theme object based on view type",
+        "Pass colorConfig to AuraLayout",
+        "Use colorConfig properties for all color values"
+      ],
+      "structure": [
+        "Always wrap content in AuraLayout",
+        "Use Layout.Header, Layout.Content, Layout.Footer structure",
+        "Use Grid for organizing content",
+        "Match content structure to view type"
+      ],
+      "components": [
+        "Always provide required color props from colorConfig",
+        "Use Button's showIcon and size props appropriately",
+        "Use PageTitle for main headings",
+        "Use BodyCopy for text content",
+        "Use Navbar in Layout.Header"
+      ]
+    },
+    "commonMistakes": {
+      "errors": [
+        {
+          "mistake": "Not providing colorConfig to AuraLayout",
+          "error": "Cannot destructure property 'themeType' of 'e' as it is undefined",
+          "solution": "Always pass colorConfig prop to AuraLayout"
+        },
+        {
+          "mistake": "Using inline styles or custom CSS",
+          "solution": "Use framework components and colorConfig"
+        },
+        {
+          "mistake": "Not using Layout.Header/Content/Footer structure",
+          "solution": "Follow the standard layout structure pattern"
+        },
+        {
+          "mistake": "Hardcoding colors instead of using colorConfig",
+          "solution": "Always use colors from colorConfig object"
+        }
+      ]
+    }
+  },
+  "relatedComponents": [
+    "AuraLayout",
+    "Layout",
+    "Navbar",
+    "PageTitle",
+    "BodyCopy",
+    "Button",
+    "InputField",
+    "ElevatedCircle",
+    "Grid",
+    "Page"
+  ]
+}

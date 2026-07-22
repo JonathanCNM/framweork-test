@@ -71,7 +71,7 @@ export const AddCardSlot = () => {
     <section className="add-card-slot">
       <section className="add-card-slot-info">
         {creditCardTypes.VISA.icon}
-        <p className="summary-text">Ending *1111</p>
+        <BodyCopy className="summary-text text-left">Ending *1111</BodyCopy>
       </section>
 
       <button className="add-card-slot-btn">

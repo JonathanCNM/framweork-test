@@ -1,0 +1,21 @@
+
+Inventario de componentes
+- Layout
+- MotionWrapper
+- AuraLayout
+- Page
+- Navbar
+- Button
+- CircularProgress
+- CustomStepper
+- ElevatedCircle
+- GradientText
+- InputField
+- InputRadio
+- LabelInput
+- Loader
+- PageTitle
+- RotatingText
+- SearchSelect
+- Select
+- Title

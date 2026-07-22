@@ -1,5 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import { getSplittedColors } from "../utils/utils";
+import {
+  getResolvedStyles,
+  subscribeResolvedStyles,
+} from "../hooks/useCSSVariables";
 import { GradientText } from "./GradientText";
 import { Loader } from "./Loader";
 import { RightRoundedIcon } from "../icons";
@@ -26,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   background = "#000",
   color = "#fff",
-  showIcon = false,
+  showIcon,
   icon,
   isLeaving = false,
   textAnimated = false,
@@ -34,8 +38,15 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
+  const themeStyles = useSyncExternalStore(
+    subscribeResolvedStyles,
+    getResolvedStyles,
+    getResolvedStyles
+  );
+  // Prop wins; otherwise theme styles.buttonShowIcon; otherwise legacy true
+  const shouldShowIcon = showIcon ?? themeStyles.buttonShowIcon;
   const isDisabled = loading || props?.disabled;
-  const btnAlign = showIcon ? "icon" : "centered";
+  const btnAlign = shouldShowIcon ? "icon" : "centered";
   const classes = [
     `lola-button`,
     `lola-button--${btnAlign}`,
@@ -73,7 +84,7 @@ export const Button: React.FC<ButtonProps> = ({
           {children}
         </GradientText>
       </span>
-      {showIcon && (
+      {shouldShowIcon && (
         <>{icon ? icon : <RightRoundedIcon colors={loaderColors} />}</>
       )}
     </button>

@@ -1,0 +1,182 @@
+/**
+ * QuoteInfo Component Styles
+ */
+
+.estimated-exchange-section {
+  padding-top: 0;
+}
+
+.quote-send {
+  border-radius: var(--lola-style-card-border-radius, 16px);
+  padding-block: 18px;
+  padding-inline: var(--lola-style-card-padding, 21px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.active {
+    .chip {
+      cursor: default !important;
+
+      * {
+        cursor: default !important;
+      }
+    }
+  }
+
+  &.input {
+    position: relative;
+
+    .chip {
+      position: absolute;
+      top: 50%;
+      right: 21px;
+      transform: translateY(-50%);
+    }
+
+    .quote-send-info {
+      .quote-label {
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  .quote-send-info {
+    width: 100%;
+    font-weight: 600;
+    z-index: 2;
+    line-height: 1;
+
+    .quote-label {
+      font-weight: 400;
+    }
+
+    .label-amount {
+      font-size: 1.75rem;
+
+      label {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.quote-send {
+  padding: var(--lola-style-card-padding, 20px);
+  border-radius: var(--lola-style-card-border-radius, 16px);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.quote-send.input {
+  cursor: text;
+}
+
+.quote-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.quote-send-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.label-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.amount-input {
+  max-width: 70%;
+  border: none;
+  font-size: 1.75rem;
+  font-weight: 600;
+  outline: none;
+  background-color: transparent;
+}
+
+.amount-input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.5;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.icon-info {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.quote-send {
+  flex-direction: column;
+}
+
+.quote-send .quote-label {
+  width: 100%;
+  text-align: left;
+}
+
+.quote-send.input {
+  border-radius: var(--lola-style-card-border-radius, 16px) var(--lola-style-card-border-radius, 16px) 0 0 !important;
+}
+
+.quote-send.input .quote-send-content p {
+  line-height: 2;
+}
+
+.quote-send.info {
+  border-radius: 0 0 var(--lola-style-card-border-radius, 16px) var(--lola-style-card-border-radius, 16px) !important;
+}
+
+.quote-send.info .quote-send-content > p.lola-gradient-text {
+  line-height: 1.25;
+}
+
+.quote-send.info .quote-send-content p {
+  line-height: 1.5 !important;
+}
+
+.quote-send.info .quote-send-content > p {
+  margin-bottom: 4px;
+  margin-left: 6px;
+}
+
+.quote-container {
+  gap: 2px !important;
+}
+
+.quote-send-content {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.quote-send-content p {
+  line-height: 1.5 !important;
+}
+
+.quote-send-info {
+  width: auto !important;
+  font-feature-settings: "tnum";
+}
+
+.quote-send-info .amount-input {
+  max-width: 100% !important;
+}
+
+.quote-info {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

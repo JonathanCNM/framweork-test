@@ -71,3 +71,75 @@ export const mapOptions = {
   scrollwheel: false,
   disableDoubleClickZoom: true,
 };
+
+
+export const kapitalTheme = {
+  "font": {
+    "h1": {
+      "fontWeight": "400",
+      "min": "1.75rem",
+      "max": "2rem",
+      "lineHeight": "1"
+    },
+    "highlight": {
+      "fontWeight": "700",
+      "min": "1.75rem",
+      "max": "2rem",
+      "lineHeight": "0.95"
+    },
+    "h2": {
+      "fontWeight": "600",
+      "min": "1.25rem",
+      "max": "1.35rem",
+      "lineHeight": "normal"
+    },
+    "bodycopy": {
+      "fontWeight": "400",
+      "min": "1rem",
+      "max": "1rem",
+      "lineHeight": "normal"
+    },
+    "secondaryCta": {
+      "fontWeight": "500",
+      "min": "0.74rem",
+      "max": "1rem",
+      "lineHeight": "1"
+    },
+    "footerText": {
+      "fontWeight": "500",
+      "min": "0.75rem",
+      "max": "0.75rem",
+      "lineHeight": "1"
+    },
+    "mainButtonText": {
+      "fontWeight": "600",
+      "min": "1rem",
+      "max": "1rem",
+      "lineHeight": "2rem"
+    },
+    "step": {
+      "fontWeight": "600",
+      "min": "0.5rem",
+      "max": "0.875rem",
+      "lineHeight": "1"
+    },
+    "fontfamily": "Inter",
+    "fontcdn": "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+  },
+  "colors": {
+    "primaryGradient": "#1DAFA1",
+    "secondaryGradient": "#10B981",
+    "secondaryColor": "#252525",
+    "whiteColor": "#FFFFFF",
+    "inactived": "#979797",
+    "errorColor": "#dc251c",
+    "partnerHighlights": "#EFF1F5",
+    "gradientDeg": "90deg",
+    "primaryGradientPoint": "6.45%",
+    "secundaryGradientPoint": "96.13%",
+    "primaryMesh": "linear-gradient(90deg, #1DAFA1 6.45%, #10B981 96.13%)",
+    "gradient": "linear-gradient(90deg, #1DAFA1 6.45%, #10B981 96.13%)",
+    "lightness": "light",
+    "useSystemTheme": false
+  }
+}

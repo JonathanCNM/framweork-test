@@ -1,0 +1,30 @@
+{
+  "name": "@lola-framework/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Lola Framework UI component documentation",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "lola-mcp-server": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "lola-framework",
+    "ui-components",
+    "documentation"
+  ],
+  "author": "Jonathan Narvaez",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
+  }
+}

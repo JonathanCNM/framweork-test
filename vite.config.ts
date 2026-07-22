@@ -18,9 +18,6 @@ export default defineConfig({
         "body-scroll-lock",
         "@types/body-scroll-lock",
         "framer-motion",
-        "@vgs/collect-js",
-        "@vgs/collect-js-react",
-        "@react-google-maps/api",
       ],
       output: {
         globals: {
@@ -29,9 +26,6 @@ export default defineConfig({
           "body-scroll-lock": "body-scroll-lock",
           "@types/body-scroll-lock": "@types/body-scroll-lock",
           "framer-motion": "framer-motion",
-          "@vgs/collect-js": "@vgs/collect-js",
-          "@vgs/collect-js-react": "@vgs/collect-js-react",
-          "@react-google-maps/api": "@react-google-maps/api",
         },
       },
     },

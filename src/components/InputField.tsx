@@ -63,7 +63,7 @@ export const InputField: React.FC<InputFieldProps> = ({
     .join(" ");
 
   const styles = {
-    borderRadius: `${borderRadius}px`,
+    ...(borderRadius !== "10" && { borderRadius: `${borderRadius}px` }), // Solo aplica si se especifica un valor diferente al default
     "--bg": !isValid
       ? errorColor
       : focused
@@ -71,6 +71,8 @@ export const InputField: React.FC<InputFieldProps> = ({
       : showLabel
       ? color
       : inactiveColor,
+    "--input-color": activeColor,
+    "--input-placeholder-color": inactiveColor,
   };
 
   const labelColors = !isValid

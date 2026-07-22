@@ -2,6 +2,7 @@ import "./styles/index.css";
 import "./index.css";
 import { useEffect, useState } from "react";
 import { useTheme, type IViewConfig } from "./hooks";
+import { injectStyleVariables } from "./hooks/useCSSVariables";
 import { CircularProgress, MotionWrapper, Page } from "./components";
 import { HomePage } from "./demo/pages/HomePage";
 import { StepPage } from "./demo/pages/StepPage";
@@ -12,6 +13,9 @@ import { SuccessId } from "./demo/pages/SuccessId";
 import { IproovReadySlot } from "./demo/pages/IproovReadySlot";
 import { IproovError } from "./demo/pages/IproovError";
 import { IproovSuccessSlot } from "./demo/pages/IproovSuccessSlot";
+import { GenericErrorPage } from "./demo/pages/GenericErrorPage";
+import { NotFoundErrorPage } from "./demo/pages/NotFoundErrorPage";
+import { NetworkErrorPage } from "./demo/pages/NetworkErrorPage";
 import { AddressPage } from "./demo/pages/AddressPage";
 import { LastStepsPage } from "./demo/pages/LastStepsPage";
 import { CardPage } from "./demo/pages/CardPage";
@@ -47,6 +51,15 @@ const App = () => {
     window.addEventListener("message", handler);
     return () => window.removeEventListener("message", handler);
   }, []);
+
+  // Inject style CSS variables when theme changes
+  useEffect(() => {
+    if (theme?.styles) {
+      injectStyleVariables(theme.styles);
+    } else {
+      injectStyleVariables(); // Use defaults
+    }
+  }, [theme]);
 
   if (isLoading) return <CircularProgress />;
   const newTheme: IViewConfig = generateColorsByView(theme?.colors);
@@ -90,6 +103,15 @@ const App = () => {
           </section>
           <section className="demo-slide">
             <IproovError theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <GenericErrorPage theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <NotFoundErrorPage theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <NetworkErrorPage theme={newTheme} />
           </section>
           <section className="demo-slide">
             <IproovSuccessSlot theme={newTheme} />

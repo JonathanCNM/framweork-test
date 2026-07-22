@@ -49,11 +49,11 @@ yarn add lola-framework-ui
 import "lola-framework-ui/src/styles";
 
 // Para implementar los iconos:
-import  { IconApp } "lola-framework-ui-test/src/icons";
+import { IconApp } from "lola-framework-ui-test/src/icons";
 <IconApp />
 
 // Para implementar los hooks:
-import  { useKeyboardVisible } "lola-framework-ui-test/src/hooks";
+import { useKeyboardVisible } from "lola-framework-ui-test/src/hooks";
 useKeyboardVisible()
 
 // Para implementar los componentes:

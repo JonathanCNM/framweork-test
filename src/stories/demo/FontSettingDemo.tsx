@@ -566,15 +566,16 @@ export const FontSettingDemo = () => {
         }
 
         // Merge with existing font config (legacy support - only update provided properties)
-        setFormFont((prev) => ({
-          ...prev,
-          ...Object.keys(fontConfig).reduce((acc, key) => {
-            if (fontConfig[key]) {
-              acc[key] = fontConfig[key];
+        setFormFont((prev) => {
+          const updates: Record<string, FontInput> = {};
+          Object.keys(fontConfig).forEach((key) => {
+            const value = fontConfig[key];
+            if (value && typeof value === "object") {
+              updates[key] = value as FontInput;
             }
-            return acc;
-          }, {} as Partial<IFormFont>),
-        }));
+          });
+          return { ...prev, ...updates };
+        });
       }
 
       // Apply colors configuration (if exists)

@@ -170,7 +170,7 @@ export const useTheme = (theme: IUseTheme) => {
           viewConfig: "primaryMeshGradientView",
         },
         specialView: {
-          background: theme?.primaryMesh,
+          background: theme?.specialViewBackground ?? theme?.primaryMesh,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.whiteColor,
           title: theme?.partnerHighlights,
@@ -268,7 +268,7 @@ export const useTheme = (theme: IUseTheme) => {
           viewConfig: "primaryMeshGradientView",
         },
         specialView: {
-          background: theme?.primaryMesh,
+          background: theme?.specialViewBackground ?? theme?.primaryMesh,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.secondaryColor,
           title: theme?.secondaryColor,

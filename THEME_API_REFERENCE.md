@@ -293,7 +293,8 @@ interface ColorPalette {
   gradientDeg?: string;          // Gradient angle
   primaryGradientPoint?: string; // Gradient color stop
   secundaryGradientPoint?: string; // Gradient color stop
-  errorViewBackground?: string;  // Background for error views (solid color or gradient)
+  errorViewBackground?: string;  // Background for error views (solid color or gradient). Falls back to secondaryColor if unset.
+  specialViewBackground?: string; // Background for special views (solid color or gradient). Falls back to primaryMesh if unset.
   cardPanelBackground?: string;  // Card panel background (default: 'transparent')
   cardBackground?: string;       // Card background (uses --card CSS variable)
   cardBackgroundSecundary?: string; // Secondary card background (uses --card-foreground CSS variable)

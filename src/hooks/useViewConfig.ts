@@ -65,7 +65,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
   },
   specialView: {
     light: {
-      background: 'primaryMesh',
+      background: 'specialViewBackground',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'secondaryColor',
       title: 'secondaryColor',
@@ -80,7 +80,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       highlight: 'partnerHighlights',
     },
     dark: {
-      background: 'primaryMesh',
+      background: 'specialViewBackground',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'whiteColor',
       title: 'partnerHighlights',
@@ -201,6 +201,11 @@ function resolveColor(key: keyof ColorPalette | string, palette: ColorPalette): 
   // Special handling for errorViewBackground: fallback to secondaryColor if not provided
   if (key === 'errorViewBackground' && !palette.errorViewBackground) {
     return palette.secondaryColor;
+  }
+
+  // Special handling for specialViewBackground: fallback to primaryMesh if not provided
+  if (key === 'specialViewBackground' && !palette.specialViewBackground) {
+    return palette.primaryMesh;
   }
   
   if (key in palette) {

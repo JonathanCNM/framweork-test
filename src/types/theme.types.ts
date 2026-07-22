@@ -52,6 +52,8 @@ export interface ColorPalette {
   primaryGradientPoint?: string;
   secundaryGradientPoint?: string;
   errorViewBackground?: string;
+  /** Background for special views (solid color or gradient). Falls back to primaryMesh if unset. */
+  specialViewBackground?: string;
   cardPanelBackground?: string;
   cardBackground?: string;
   cardBackgroundSecundary?: string;

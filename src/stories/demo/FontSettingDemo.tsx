@@ -104,6 +104,7 @@ interface IColorForm {
   secundaryGradientPoint: string;
   primaryMesh: string;
   errorViewBackground?: string;
+  specialViewBackground?: string;
   cardPanelBackground?: string;
   cardBackground?: string;
   cardBackgroundSecundary?: string;
@@ -176,6 +177,11 @@ const formColorList = [
     type: "text",
   },
   {
+    key: "specialViewBackground",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+  },
+  {
     key: "cardPanelBackground",
     value: "transparent",
     type: "text",
@@ -215,6 +221,7 @@ const formColorInitialState: IColorForm = {
   secundaryGradientPoint: "111.43%",
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
   errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+  specialViewBackground: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
   cardPanelBackground: "transparent",
   cardBackground: "#eeeef1",
   cardBackgroundSecundary: "#17171c",

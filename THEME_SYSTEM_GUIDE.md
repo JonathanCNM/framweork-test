@@ -270,6 +270,11 @@ colors: {
   errorViewBackground: '#1a1a1a',  // Solid color
   // OR
   errorViewBackground: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // Gradient
+
+  // Optional: Customize special view background (NEW in v2.x)
+  specialViewBackground: '#0f766e',  // Solid color
+  // OR
+  specialViewBackground: 'linear-gradient(135deg, #1DAFA1 0%, #10B981 100%)', // Gradient
 }
 ```
 
@@ -304,6 +309,30 @@ const brandedErrorTheme = {
 ```
 
 **Backward Compatibility:** If `errorViewBackground` is not provided, the system automatically falls back to `secondaryColor`, ensuring existing themes continue to work without modification.
+
+### Customizing Special View Background
+
+By default, special views use `primaryMesh` as the background. You can now customize this with the `specialViewBackground` field:
+
+```typescript
+// Example 1: Solid background for special pages
+const customSpecialTheme = {
+  colors: {
+    ...kapitalTheme.colors,
+    specialViewBackground: '#0f766e',
+  }
+};
+
+// Example 2: Custom gradient for success/special flows
+const brandedSpecialTheme = {
+  colors: {
+    ...kapitalTheme.colors,
+    specialViewBackground: 'linear-gradient(135deg, #1DAFA1 0%, #10B981 100%)',
+  }
+};
+```
+
+**Backward Compatibility:** If `specialViewBackground` is not provided, the system automatically falls back to `primaryMesh`, ensuring existing themes continue to work without modification.
 
 ### View Types
 The system generates configurations for 5 view types:

@@ -19,7 +19,10 @@ import { useEffect, useState } from "react";
 import { useFonts, type UseFontsProps } from "../../hooks";
 import { defaultFont, registeredFonts } from "../../utils/constants";
 import { useTheme } from "../../hooks/useTheme";
-import { injectStyleVariables, injectColorVariables } from "../../hooks/useCSSVariables";
+import {
+  injectStyleVariables,
+  injectColorVariables,
+} from "../../hooks/useCSSVariables";
 import "../../index.css";
 
 interface FontInput {
@@ -123,6 +126,7 @@ interface IStylesForm {
   inputPadding: string;
   cardPadding: string;
   buttonSize: "small" | "medium" | "large";
+  buttonShowIcon: boolean;
 }
 
 const formColorList = [
@@ -221,7 +225,8 @@ const formColorInitialState: IColorForm = {
   secundaryGradientPoint: "111.43%",
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
   errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
-  specialViewBackground: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  specialViewBackground:
+    "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
   cardPanelBackground: "transparent",
   cardBackground: "#eeeef1",
   cardBackgroundSecundary: "#17171c",
@@ -289,6 +294,12 @@ const formStylesList = [
     type: "select",
     options: ["small", "medium", "large"],
   },
+  {
+    key: "buttonShowIcon",
+    value: "true",
+    type: "checkbox",
+    label: "Se va a mostrar el icono de continuar en los botones?",
+  },
 ];
 
 const formStylesInitialState: IStylesForm = {
@@ -304,6 +315,7 @@ const formStylesInitialState: IStylesForm = {
   inputPadding: "0.75rem",
   cardPadding: "1.5rem",
   buttonSize: "medium",
+  buttonShowIcon: true,
 };
 
 const localhost = "http://localhost:5176";
@@ -385,7 +397,9 @@ export const FontSettingDemo = () => {
     });
   };
 
-  const onHandlerFormStyles = (event?: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const onHandlerFormStyles = (
+    event?: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     if (!event) return false;
     const { name, value } = event.currentTarget;
     setFormStyles({
@@ -532,23 +546,25 @@ export const FontSettingDemo = () => {
     try {
       setJsonError("");
       const parsedTheme = JSON.parse(jsonInput);
-      
+
       // Validate that at least one main property exists (legacy support)
       if (!parsedTheme.font && !parsedTheme.colors && !parsedTheme.styles) {
-        setJsonError("El JSON debe contener al menos una de las propiedades: font, colors o styles");
+        setJsonError(
+          "El JSON debe contener al menos una de las propiedades: font, colors o styles"
+        );
         return;
       }
 
       // Apply font configuration (if exists)
       if (parsedTheme.font) {
         const { fontfamily, fontcdn, ...fontConfig } = parsedTheme.font;
-        
+
         // Update font family and CDN if provided
         if (fontfamily && fontcdn) {
           setInputFont({ name: fontfamily, cdn: fontcdn });
           onChangeFont({ name: fontfamily, cdn: fontcdn });
         }
-        
+
         // Merge with existing font config (legacy support - only update provided properties)
         setFormFont((prev) => ({
           ...prev,
@@ -557,20 +573,25 @@ export const FontSettingDemo = () => {
               acc[key] = fontConfig[key];
             }
             return acc;
-          }, {} as Partial<IFormFont>)
+          }, {} as Partial<IFormFont>),
         }));
       }
 
       // Apply colors configuration (if exists)
       if (parsedTheme.colors) {
-        const { lightness, useSystemTheme: systemTheme, gradient: themeGradient, ...colors } = parsedTheme.colors;
-        
+        const {
+          lightness,
+          useSystemTheme: systemTheme,
+          gradient: themeGradient,
+          ...colors
+        } = parsedTheme.colors;
+
         // Merge with existing colors (legacy support)
         setFormColors((prev) => ({
           ...prev,
-          ...colors
+          ...colors,
         }));
-        
+
         if (lightness) setThemeLightnessPreferences(lightness);
         if (typeof systemTheme === "boolean") setUsethemeSystem(systemTheme);
         if (themeGradient) setGradient(themeGradient);
@@ -580,17 +601,19 @@ export const FontSettingDemo = () => {
       if (parsedTheme.styles) {
         setFormStyles((prev) => ({
           ...prev,
-          ...parsedTheme.styles
+          ...parsedTheme.styles,
         }));
       }
 
       setJsonInput("");
       const appliedSections = [
         parsedTheme.font && "font",
-        parsedTheme.colors && "colors", 
-        parsedTheme.styles && "styles"
-      ].filter(Boolean).join(", ");
-      
+        parsedTheme.colors && "colors",
+        parsedTheme.styles && "styles",
+      ]
+        .filter(Boolean)
+        .join(", ");
+
       alert(`Tema aplicado correctamente (${appliedSections})`);
     } catch (err) {
       setJsonError("JSON inválido. Por favor verifica el formato.");
@@ -705,13 +728,13 @@ export const FontSettingDemo = () => {
           <Layout.Content>
             <section className="color-form">
               <Title title="Formulario de colores" subTitle="En Hexadecimal" />
-              <section 
+              <section
                 className="color-form-container"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
                   gap: "1rem",
-                  marginTop: "1rem"
+                  marginTop: "1rem",
                 }}
               >
                 {formColorList.map(({ key, type }) => (
@@ -747,14 +770,17 @@ export const FontSettingDemo = () => {
               </section>
             </section>
             <section className="json-import-section">
-              <Title title="Importar tema desde JSON" subTitle="Compatible con temas legacy (solo actualiza las propiedades que vengan)" />
-              <section 
+              <Title
+                title="Importar tema desde JSON"
+                subTitle="Compatible con temas legacy (solo actualiza las propiedades que vengan)"
+              />
+              <section
                 className="json-import-container"
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   gap: "1rem",
-                  marginTop: "1rem"
+                  marginTop: "1rem",
                 }}
               >
                 <textarea
@@ -771,11 +797,17 @@ export const FontSettingDemo = () => {
                     fontSize: "0.875rem",
                     resize: "vertical",
                     backgroundColor: "var(--background)",
-                    color: "var(--foreground)"
+                    color: "var(--foreground)",
                   }}
                 />
                 {jsonError && (
-                  <p style={{ color: "#E81C1C", fontSize: "0.875rem", margin: 0 }}>
+                  <p
+                    style={{
+                      color: "#E81C1C",
+                      fontSize: "0.875rem",
+                      margin: 0,
+                    }}
+                  >
                     {jsonError}
                   </p>
                 )}
@@ -791,17 +823,20 @@ export const FontSettingDemo = () => {
               </section>
             </section>
             <section className="styles-form">
-              <Title title="Estilos Personalizados" subTitle="Border radius, colores y tamaños" />
-              <section 
+              <Title
+                title="Estilos Personalizados"
+                subTitle="Border radius, colores y tamaños"
+              />
+              <section
                 className="color-form-container"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
                   gap: "1rem",
-                  marginTop: "1rem"
+                  marginTop: "1rem",
                 }}
               >
-                {formStylesList.map(({ key, type, options }) => {
+                {formStylesList.map(({ key, type, options, label }) => {
                   if (type === "select" && options) {
                     return (
                       <SearchSelect
@@ -825,13 +860,33 @@ export const FontSettingDemo = () => {
                       />
                     );
                   }
+                  if (type === "checkbox") {
+                    return (
+                      <section key={key} className="checkbox-input">
+                        <input
+                          id={key}
+                          type="checkbox"
+                          checked={Boolean(
+                            formStyles[key as keyof IStylesForm]
+                          )}
+                          onChange={(e) => {
+                            setFormStyles({
+                              ...formStyles,
+                              [key]: e.target.checked,
+                            });
+                          }}
+                        />
+                        <label htmlFor={key}>{label ?? key}</label>
+                      </section>
+                    );
+                  }
                   return (
                     <InputField
                       key={key}
                       type={type}
                       label={key}
                       name={key}
-                      value={formStyles[key as keyof IStylesForm]}
+                      value={String(formStyles[key as keyof IStylesForm])}
                       onChange={onHandlerFormStyles}
                     />
                   );

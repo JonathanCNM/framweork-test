@@ -20,10 +20,40 @@ const DEFAULT_STYLES: Required<StylesConfig> = {
   tamañoBordeCard: '1px',
   tamañoBordeInput: '1px',
   buttonSize: 'medium',
+  buttonShowIcon: true,
   buttonPadding: '1rem',
   inputPadding: '0.75rem',
   cardPadding: '1.5rem',
 };
+
+/**
+ * Resolved styles store (behavioral + CSS-driven).
+ * Updated whenever injectStyleVariables runs (via useLolaTheme / demos).
+ */
+let resolvedStyles: Required<StylesConfig> = { ...DEFAULT_STYLES };
+const resolvedStylesListeners = new Set<() => void>();
+
+function notifyResolvedStylesListeners(): void {
+  resolvedStylesListeners.forEach((listener) => listener());
+}
+
+/**
+ * Returns the currently applied theme styles (with defaults).
+ * Used by components that need non-CSS style flags (e.g. Button showIcon).
+ */
+export function getResolvedStyles(): Required<StylesConfig> {
+  return resolvedStyles;
+}
+
+/**
+ * Subscribe to resolved styles changes (for useSyncExternalStore).
+ */
+export function subscribeResolvedStyles(listener: () => void): () => void {
+  resolvedStylesListeners.add(listener);
+  return () => {
+    resolvedStylesListeners.delete(listener);
+  };
+}
 
 /**
  * Button size padding mapping
@@ -97,6 +127,8 @@ export function injectFontVariable(fontFamily: string): void {
 export function injectStyleVariables(styles?: StylesConfig): void {
   const root = document.documentElement;
   const appliedStyles = { ...DEFAULT_STYLES, ...styles };
+  resolvedStyles = appliedStyles;
+  notifyResolvedStylesListeners();
 
   root.style.setProperty(CSS_VARIABLES.CARD_BORDER_RADIUS, appliedStyles.cardBorderRadius);
   root.style.setProperty(CSS_VARIABLES.BUTTON_BORDER_RADIUS, appliedStyles.buttonBorderRadius);
@@ -155,6 +187,9 @@ export function useFontVariable(fontFamily: string) {
  * Hook to manage style configuration CSS variables
  */
 export function useStyleVariables(styles?: StylesConfig) {
+  // Sync behavioral flags before children render (first paint correctness)
+  resolvedStyles = { ...DEFAULT_STYLES, ...styles };
+
   useEffect(() => {
     injectStyleVariables(styles);
   }, [styles]);

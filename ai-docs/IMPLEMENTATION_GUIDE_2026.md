@@ -107,7 +107,8 @@ const myTheme: LolaThemeConfig = {
     buttonPadding: "1rem",
     inputPadding: "0.75rem",
     cardPadding: "1.5rem",
-    buttonSize: "medium" // "small" | "medium" | "large"
+    buttonSize: "medium", // "small" | "medium" | "large"
+    buttonShowIcon: true // Global Button showIcon default (legacy true); prop on Button always wins
   }
 };
 

@@ -113,6 +113,13 @@ export interface StylesConfig {
   
   // Component sizes
   buttonSize?: ButtonSize;
+
+  /**
+   * Global default for Button `showIcon`.
+   * If unset, falls back to `true` (legacy behavior).
+   * Explicit `showIcon` on a Button always overrides this.
+   */
+  buttonShowIcon?: boolean;
   
   // Component padding
   buttonPadding?: string;

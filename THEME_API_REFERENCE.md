@@ -365,6 +365,9 @@ interface StylesConfig {
   
   // Component sizes
   buttonSize?: ButtonSize;        // Button size: 'small' | 'medium' | 'large' (default: 'medium')
+
+  // Button behavior
+  buttonShowIcon?: boolean;       // Global default for Button showIcon (default: true, legacy). Explicit Button showIcon prop always wins.
 }
 ```
 
@@ -378,6 +381,7 @@ styles: {
   buttonBorderColor: '#1DAFA1',
   inputBorderColor: '#E0E0E0',
   buttonSize: 'large',
+  buttonShowIcon: true, // All Buttons show icon unless showIcon={false} is passed
 }
 ```
 

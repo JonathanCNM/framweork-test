@@ -25,6 +25,9 @@ export {
   injectColorVariables,
   injectViewVariables,
   injectFontVariable,
+  injectStyleVariables,
+  getResolvedStyles,
+  subscribeResolvedStyles,
 } from './useCSSVariables';
 
 // Legacy theme hooks (deprecated but maintained for backward compatibility)

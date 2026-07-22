@@ -118,8 +118,11 @@ export interface UseLolaThemeReturn {
   styles?: import('../types/theme.types').StylesConfig;
   /** Change font dynamically */
   changeFont: (name: string, cdn: string) => void;
-  /** Generate view configs from custom colors */
-  generateViewConfigs: (colors: ColorPalette) => ViewsConfig;
+  /** Generate view configs from custom colors (and optional styles for buttonShowIcon, etc.) */
+  generateViewConfigs: (
+    colors: ColorPalette,
+    styles?: import('../types/theme.types').StylesConfig
+  ) => ViewsConfig;
   /** Download theme configuration as JSON */
   downloadThemeConfig: (filename?: string) => void;
 }
@@ -141,8 +144,12 @@ export function useLolaTheme(config: LolaThemeConfig): UseLolaThemeReturn {
   // Initialize font loading
   const { onChangeFont } = useFonts({ name: fontFamily, cdn: fontCdn });
   
-  // Generate view configurations
-  const { views, generateViewConfigs } = useViewConfig(config.colors, config.views);
+  // Generate view configurations (includes styles.buttonShowIcon on each view)
+  const { views, generateViewConfigs } = useViewConfig(
+    config.colors,
+    config.views,
+    config.styles
+  );
   
   // Inject CSS variables (colors, fonts, and styles)
   useCSSVariables(config.colors, fontFamily, undefined, config.styles);

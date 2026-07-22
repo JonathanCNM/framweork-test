@@ -263,7 +263,7 @@ interface StylesConfig {
   buttonBorderColor?: string;     // Default: '#E4E4E4'
   inputBorderColor?: string;      // Default: '#E4E4E4'
   buttonSize?: 'small' | 'medium' | 'large'; // Default: 'medium'
-  buttonShowIcon?: boolean;       // Default: true (legacy). Global Button showIcon; prop always wins
+  buttonShowIcon?: boolean;       // Default: true (legacy). Exposed on views; pass manually to Button showIcon
   buttonPadding?: string;         // Default: '1rem' (or derived from buttonSize)
   inputPadding?: string;          // Default: '0.75rem'
   cardPadding?: string;           // Default: '1.5rem'

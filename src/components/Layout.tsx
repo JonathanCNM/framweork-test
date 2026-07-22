@@ -1,5 +1,5 @@
 import * as React from "react";
-import { isValidElement, type ReactElement, type ReactNode } from "react";
+import { isValidElement, type ReactNode } from "react";
 import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
 import DesignLayout from "./DesignLayout";
 
@@ -23,7 +23,13 @@ export interface LayoutFooterProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
 }
 
-const Header = ({ children, ...props }: LayoutHeaderProps): ReactElement => (
+type LayoutComponent = React.FC<LayoutProps> & {
+  Header: React.FC<LayoutHeaderProps>;
+  Content: React.FC<LayoutContentProps>;
+  Footer: React.FC<LayoutFooterProps>;
+};
+
+const Header: React.FC<LayoutHeaderProps> = ({ children, ...props }) => (
   <section
     {...props}
     className={`lola-layout--container--header ${props.className ?? ""}`}
@@ -32,11 +38,11 @@ const Header = ({ children, ...props }: LayoutHeaderProps): ReactElement => (
   </section>
 );
 
-const Content = ({
+const Content: React.FC<LayoutContentProps> = ({
   isOverflowauto = false,
   children,
   ...props
-}: LayoutContentProps): ReactElement => {
+}) => {
   const overflowClassName = isOverflowauto ? "overflow" : "auto";
   const classes = [
     `${props.className ?? ""}`,
@@ -57,7 +63,7 @@ const Content = ({
   );
 };
 
-const Footer = ({ children, ...props }: LayoutFooterProps): ReactElement => (
+const Footer: React.FC<LayoutFooterProps> = ({ children, ...props }) => (
   <footer
     {...props}
     className={`lola-layout--container--footer ${props.className ?? ""}`}
@@ -66,14 +72,14 @@ const Footer = ({ children, ...props }: LayoutFooterProps): ReactElement => (
   </footer>
 );
 
-const Layout = ({
+const LayoutBase: React.FC<LayoutProps> = ({
   children,
   className = "",
   background = "#fff",
   devMode = false,
   auraColors = ["transparent", "transparent"],
   ...props
-}: LayoutProps): ReactElement => {
+}) => {
   const childrenArray = React.Children.toArray(children);
   const { viewportHeight } = useKeyboardVisible();
 
@@ -119,6 +125,7 @@ const Layout = ({
   );
 };
 
+const Layout = LayoutBase as LayoutComponent;
 Layout.Header = Header;
 Layout.Content = Content;
 Layout.Footer = Footer;

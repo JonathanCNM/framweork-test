@@ -4,7 +4,12 @@
  * Replaces the 200+ lines of repetitive code in generateColorsByView
  */
 
-import type { ColorPalette, ViewsConfig, ViewType } from '../types/theme.types';
+import type {
+  ColorPalette,
+  StylesConfig,
+  ViewsConfig,
+  ViewType,
+} from '../types/theme.types';
 
 /**
  * Color mapping definition for a single view
@@ -220,9 +225,15 @@ function resolveColor(key: keyof ColorPalette | string, palette: ColorPalette): 
  * Generates view configurations from color palette using declarative mappings
  * Replaces the old 200+ line generateColorsByView function
  */
-export function generateViewConfigs(colorPalette: ColorPalette): ViewsConfig {
+export function generateViewConfigs(
+  colorPalette: ColorPalette,
+  styles?: StylesConfig
+): ViewsConfig {
   const lightness = colorPalette.lightness || 'light';
   const useSystemTheme = colorPalette.useSystemTheme || false;
+  // Legacy defaults for button props exposed on each view
+  const buttonShowIcon = styles?.buttonShowIcon ?? true;
+  const buttonSize = styles?.buttonSize ?? 'large';
   const views: ViewsConfig = {} as ViewsConfig;
 
   // Iterate through each view type and generate its config
@@ -253,6 +264,8 @@ export function generateViewConfigs(colorPalette: ColorPalette): ViewsConfig {
           resolveColor(mapping.dropzoneColors[0], colorPalette),
           resolveColor(mapping.dropzoneColors[1], colorPalette),
         ],
+        buttonShowIcon,
+        buttonSize,
         themeType: lightness,
         errorColor: colorPalette.errorColor,
         highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
@@ -280,6 +293,8 @@ export function generateViewConfigs(colorPalette: ColorPalette): ViewsConfig {
           resolveColor(mapping.dropzoneColors[0], colorPalette),
           resolveColor(mapping.dropzoneColors[1], colorPalette),
         ],
+        buttonShowIcon,
+        buttonSize,
         themeType: lightness,
         errorColor: colorPalette.errorColor,
         highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
@@ -295,8 +310,12 @@ export function generateViewConfigs(colorPalette: ColorPalette): ViewsConfig {
 /**
  * Hook to generate and manage view configurations
  */
-export function useViewConfig(colorPalette: ColorPalette, customViews?: Partial<ViewsConfig>) {
-  const generatedViews = generateViewConfigs(colorPalette);
+export function useViewConfig(
+  colorPalette: ColorPalette,
+  customViews?: Partial<ViewsConfig>,
+  styles?: StylesConfig
+) {
+  const generatedViews = generateViewConfigs(colorPalette, styles);
   
   // Merge custom view overrides if provided
   const views: ViewsConfig = customViews

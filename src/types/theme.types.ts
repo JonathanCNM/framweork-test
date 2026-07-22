@@ -74,6 +74,18 @@ export interface ViewColorConfig {
   stepsColors: string;
   dropzoneColors: [string, string];
   stepsLabelColor: string;
+  /**
+   * Whether continue buttons should show the icon in this view.
+   * Comes from styles.buttonShowIcon (default: true for legacy).
+   * Pass manually to Button: `showIcon={theme.specialView.buttonShowIcon}`.
+   */
+  buttonShowIcon?: boolean;
+  /**
+   * Button size for this view.
+   * Comes from styles.buttonSize (default: 'large' for legacy).
+   * Pass manually to Button: `size={theme.specialView.buttonSize}`.
+   */
+  buttonSize?: ButtonSize;
   themeType?: ThemeLightness;
   useSystemTheme?: boolean;
   viewConfig: ViewType;
@@ -111,13 +123,17 @@ export interface StylesConfig {
   tamañoBordeCard?: string;
   tamañoBordeInput?: string;
   
-  // Component sizes
+  /**
+   * Exposed on each view as `buttonSize` for consumers to pass to Button
+   * via `size={view.buttonSize}` when desired.
+   * If unset, falls back to `'large'` (legacy). Button itself does not read this.
+   */
   buttonSize?: ButtonSize;
 
   /**
-   * Global default for Button `showIcon`.
-   * If unset, falls back to `true` (legacy behavior).
-   * Explicit `showIcon` on a Button always overrides this.
+   * Exposed on each view as `buttonShowIcon` for consumers to pass to Button
+   * via `showIcon={view.buttonShowIcon}` when desired.
+   * If unset, falls back to `true` (legacy). Button itself does not read this.
    */
   buttonShowIcon?: boolean;
   

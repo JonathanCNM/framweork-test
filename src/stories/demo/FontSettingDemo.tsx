@@ -290,7 +290,7 @@ const formStylesList = [
   },
   {
     key: "buttonSize",
-    value: "medium",
+    value: "large",
     type: "select",
     options: ["small", "medium", "large"],
   },
@@ -314,7 +314,7 @@ const formStylesInitialState: IStylesForm = {
   buttonPadding: "1rem",
   inputPadding: "0.75rem",
   cardPadding: "1.5rem",
-  buttonSize: "medium",
+  buttonSize: "large",
   buttonShowIcon: true,
 };
 
@@ -636,11 +636,17 @@ export const FontSettingDemo = () => {
     setThemeLightnessPreferences(themeLightnessPreferences.code as string);
   };
 
-  const colorConfig = generateColorsByView({
-    ...formColors,
-    lightness: themeLightnessPreferences as "light" | "dark",
-    useSystemTheme: useThemeSystem,
-  })!;
+  const colorConfig = generateColorsByView(
+    {
+      ...formColors,
+      lightness: themeLightnessPreferences as "light" | "dark",
+      useSystemTheme: useThemeSystem,
+    },
+    {
+      buttonShowIcon: formStyles.buttonShowIcon,
+      buttonSize: formStyles.buttonSize,
+    }
+  )!;
 
   return (
     <Page font={fontStyle}>

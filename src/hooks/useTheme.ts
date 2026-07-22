@@ -15,6 +15,8 @@
  */
 
 import { useEffect } from "react";
+import { injectStyleVariables } from "./useCSSVariables";
+import type { StylesConfig } from "../types/theme.types";
 
 /**
  * @deprecated Use FontStyleConfig from '../types/theme.types' instead
@@ -53,6 +55,10 @@ export interface IViewColorConfig {
   stepsColors: string;
   dropzoneColors: [string, string];
   stepsLabelColor: string;
+  /** Whether continue buttons should show the icon (default: true, legacy). */
+  buttonShowIcon?: boolean;
+  /** Button size for this view (default: 'large', legacy). */
+  buttonSize?: "small" | "medium" | "large";
   themeType?: string;
   useSystemTheme?: boolean;
   viewConfig:
@@ -140,13 +146,33 @@ export const useTheme = (theme: IUseTheme) => {
    * NOTE: This is the ORIGINAL implementation preserved for 100% backward compatibility.
    * For new code, use useLolaTheme or useViewConfig instead.
    */
+  /**
+   * @param theme - Color palette (legacy flat colors object)
+   * @param styles - Optional styles config. When provided:
+   *   - injects CSS variables (border radius, paddings, etc.)
+   *   - exposes buttonShowIcon / buttonSize on each view
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const generateColorsByView = (theme: Record<string, any> | null): IViewConfig | null => {
+  const generateColorsByView = (
+    theme: Record<string, any> | null,
+    styles?: StylesConfig | null
+  ): IViewConfig | null => {
     if (!theme) return null;
+
+    // Apply theme.styles CSS variables for legacy consumers (useLolaTheme does this automatically)
+    if (styles) {
+      injectStyleVariables(styles);
+    }
     
-    // ORIGINAL IMPLEMENTATION - DO NOT MODIFY
+    // ORIGINAL IMPLEMENTATION - DO NOT MODIFY (except additive optional fields)
     // This ensures existing projects work exactly as before
     let newTheme: IViewConfig | null = null;
+    // Prefer value on colors object, then styles, then legacy defaults
+    // Use nullish coalescing so explicit `false` / custom sizes are preserved
+    const buttonShowIcon =
+      theme?.buttonShowIcon ?? styles?.buttonShowIcon ?? true;
+    const buttonSize =
+      theme?.buttonSize ?? styles?.buttonSize ?? "large";
     
     if (theme?.lightness === "dark") {
       newTheme = {
@@ -344,6 +370,17 @@ export const useTheme = (theme: IUseTheme) => {
           viewConfig: "errorView",
         },
       };
+    }
+
+    // Additive: expose button flags/size on every view (legacy defaults)
+    if (newTheme) {
+      (Object.keys(newTheme) as (keyof IViewConfig)[]).forEach((viewKey) => {
+        newTheme![viewKey] = {
+          ...newTheme![viewKey],
+          buttonShowIcon,
+          buttonSize,
+        };
+      });
     }
     
     return newTheme;

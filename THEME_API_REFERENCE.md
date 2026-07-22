@@ -323,6 +323,8 @@ interface ViewColorConfig {
   dropzoneColors: [string, string];  // Dropzone gradient colors
   errorColor?: string;               // Error state color
   highlight?: string;                // Highlight color
+  buttonShowIcon?: boolean;          // From styles.buttonShowIcon (default: true). Pass manually to Button showIcon if desired.
+  buttonSize?: ButtonSize;           // From styles.buttonSize (default: 'large'). Pass manually to Button size if desired.
   themeType?: 'light' | 'dark';      // Theme mode
   useSystemTheme?: boolean;          // Use system preference
   viewConfig: ViewType;              // View type identifier
@@ -367,7 +369,7 @@ interface StylesConfig {
   buttonSize?: ButtonSize;        // Button size: 'small' | 'medium' | 'large' (default: 'medium')
 
   // Button behavior
-  buttonShowIcon?: boolean;       // Global default for Button showIcon (default: true, legacy). Explicit Button showIcon prop always wins.
+  buttonShowIcon?: boolean;       // Exposed on each view as buttonShowIcon (default: true). Button does not auto-apply it.
 }
 ```
 
@@ -381,7 +383,7 @@ styles: {
   buttonBorderColor: '#1DAFA1',
   inputBorderColor: '#E0E0E0',
   buttonSize: 'large',
-  buttonShowIcon: true, // All Buttons show icon unless showIcon={false} is passed
+  buttonShowIcon: true, // Available on views; pass to Button as showIcon={view.buttonShowIcon}
 }
 ```
 

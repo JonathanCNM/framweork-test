@@ -26,8 +26,6 @@ export {
   injectViewVariables,
   injectFontVariable,
   injectStyleVariables,
-  getResolvedStyles,
-  subscribeResolvedStyles,
 } from './useCSSVariables';
 
 // Legacy theme hooks (deprecated but maintained for backward compatibility)
@@ -72,6 +70,8 @@ export type {
   ViewsConfig,
   ViewType,
   ThemeLightness,
+  StylesConfig,
+  ButtonSize,
 } from '../types/theme.types';
 
 export { CSS_VARIABLES } from '../types/theme.types';

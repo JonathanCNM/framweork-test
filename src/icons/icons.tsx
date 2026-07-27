@@ -768,8 +768,10 @@ export const HomeAddressIcon: React.FC<
 export const WhatsAppIcon: React.FC<
   SVGProps<SVGSVGElement> & {
     size?: number;
+    /** Accepted for API parity with other icons; WhatsApp keeps brand greens. */
+    colors?: [string, string];
   }
-> = ({ size = 36, ...props }) => {
+> = ({ size = 36, colors: _colors, ...props }) => {
   return (
     <svg
       width={size}

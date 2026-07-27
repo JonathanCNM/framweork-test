@@ -325,6 +325,7 @@ interface ViewColorConfig {
   highlight?: string;                // Highlight color
   buttonShowIcon?: boolean;          // From styles.buttonShowIcon (default: true). Pass manually to Button showIcon if desired.
   buttonSize?: ButtonSize;           // From styles.buttonSize (default: 'large'). Pass manually to Button size if desired.
+  iconContainerBackground?: string;  // Mapped per view (default: 'transparent'). Global override via styles.iconContainerBackground. For icon containers (e.g. ElevatedCircle), NOT icons. Pass manually if desired.
   themeType?: 'light' | 'dark';      // Theme mode
   useSystemTheme?: boolean;          // Use system preference
   viewConfig: ViewType;              // View type identifier
@@ -370,6 +371,9 @@ interface StylesConfig {
 
   // Button behavior
   buttonShowIcon?: boolean;       // Exposed on each view as buttonShowIcon (default: true). Button does not auto-apply it.
+
+  // Icon containers (NOT icons)
+  iconContainerBackground?: string; // Global override for all views. Per-view default in VIEW_COLOR_MAPPINGS is 'transparent'. Pass manually to containers like ElevatedCircle.
 }
 ```
 
@@ -384,6 +388,7 @@ styles: {
   inputBorderColor: '#E0E0E0',
   buttonSize: 'large',
   buttonShowIcon: true, // Available on views; pass to Button as showIcon={view.buttonShowIcon}
+  iconContainerBackground: 'transparent', // or '#fff' / brand color — pass to ElevatedCircle when desired
 }
 ```
 
@@ -395,6 +400,7 @@ styles: {
 - `--lola-style-button-border-color`
 - `--lola-style-input-border-color`
 - `--lola-style-button-size`
+- `--lola-style-icon-container-background`
 
 ---
 

@@ -108,7 +108,10 @@ const myTheme: LolaThemeConfig = {
     inputPadding: "0.75rem",
     cardPadding: "1.5rem",
     buttonSize: "medium", // "small" | "medium" | "large"
-    buttonShowIcon: true // Exposed on each view; pass manually: showIcon={view.buttonShowIcon}
+    buttonShowIcon: true, // Exposed on each view; pass manually: showIcon={view.buttonShowIcon}
+    // Optional global override for icon containers (ElevatedCircle, etc.) — NOT icon SVG colors.
+    // Per-view default in VIEW_COLOR_MAPPINGS is "transparent" (legacy) for all 5 views.
+    iconContainerBackground: "transparent", // Opt-in: pass background={view.iconContainerBackground}
   }
 };
 
@@ -481,6 +484,7 @@ import { SuccessIcon } from 'lola-framework-ui-test/src/icons';
 - `size`: number → px (default `128` for legacy)
 - `shadowVariant`: `"normal"` = `inset 0 0 5px rgba(0,0,0,0.5)` (legacy); `"inset"` = `inset 2px 2px 6px rgba(0,0,0,0.25)`; `"none"` = no shadow
 - Existing projects that omit the new props keep the same look
+- Theme opt-in: `styles.iconContainerBackground` (default `transparent`) is exposed as `view.iconContainerBackground` for containers — does **not** change icon SVG colors. Pass manually when desired: `background={view.iconContainerBackground}`
 
 ### Feedback Components
 

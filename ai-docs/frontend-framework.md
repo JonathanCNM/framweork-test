@@ -24,7 +24,8 @@ Hay una configuración de colores las cuales siempre se van a relacionar en una 
 
 background: background del componente
 iconColors: Color de los iconos principales
-backgroundIcon: Background de los iconos principales
+backgroundIcon: Background de los iconos principales (mapping legacy por vista)
+iconContainerBackground: Background de *contenedores* de iconos (ElevatedCircle, etc.). Mapeado por tipo de vista (white/data/special/primaryMesh/error), default `transparent` (legacy). Override global opcional vía `styles.iconContainerBackground`. NO afecta el color del SVG del icono. El agente/dev decide si lo pasa: `background={view.iconContainerBackground}`
 title: Color del titulos
 subtitile: Colore de subtitulos
 bodyCopy: Color del texto normal (contenido)

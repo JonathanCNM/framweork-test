@@ -144,7 +144,7 @@ export function useLolaTheme(config: LolaThemeConfig): UseLolaThemeReturn {
   // Initialize font loading
   const { onChangeFont } = useFonts({ name: fontFamily, cdn: fontCdn });
   
-  // Generate view configurations (includes styles.buttonShowIcon on each view)
+  // Generate view configurations (includes buttonShowIcon / buttonSize / iconContainerBackground on each view)
   const { views, generateViewConfigs } = useViewConfig(
     config.colors,
     config.views,

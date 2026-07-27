@@ -86,6 +86,13 @@ export interface ViewColorConfig {
    * Pass manually to Button: `size={theme.specialView.buttonSize}`.
    */
   buttonSize?: ButtonSize;
+  /**
+   * Background for icon containers in this view (not icon SVG colors).
+   * Mapped per view type (default: `'transparent'` for legacy).
+   * Global override via `styles.iconContainerBackground` when set.
+   * Pass manually e.g. to ElevatedCircle: `background={theme.specialView.iconContainerBackground}`.
+   */
+  iconContainerBackground?: string;
   themeType?: ThemeLightness;
   useSystemTheme?: boolean;
   viewConfig: ViewType;
@@ -136,6 +143,14 @@ export interface StylesConfig {
    * If unset, falls back to `true` (legacy). Button itself does not read this.
    */
   buttonShowIcon?: boolean;
+
+  /**
+   * Global override for icon *container* backgrounds (e.g. ElevatedCircle), not icons.
+   * When set, applied to every view's `iconContainerBackground`.
+   * When unset, each view uses its mapping default (`'transparent'` — legacy).
+   * Pass manually: `background={view.iconContainerBackground}`. Does not auto-apply.
+   */
+  iconContainerBackground?: string;
   
   // Component padding
   buttonPadding?: string;
@@ -199,6 +214,7 @@ export const CSS_VARIABLES = {
   BUTTON_PADDING: '--lola-style-button-padding',
   INPUT_PADDING: '--lola-style-input-padding',
   CARD_PADDING: '--lola-style-card-padding',
+  ICON_CONTAINER_BACKGROUND: '--lola-style-icon-container-background',
   
   // View specific (dynamically generated)
   VIEW_BACKGROUND: '--lola-view-background',

@@ -21,6 +21,7 @@ const DEFAULT_STYLES: Required<StylesConfig> = {
   tamañoBordeInput: '1px',
   buttonSize: 'medium',
   buttonShowIcon: true,
+  iconContainerBackground: 'transparent',
   buttonPadding: '1rem',
   inputPadding: '0.75rem',
   cardPadding: '1.5rem',
@@ -115,6 +116,12 @@ export function injectStyleVariables(styles?: StylesConfig): void {
   // Input and card padding
   root.style.setProperty(CSS_VARIABLES.INPUT_PADDING, appliedStyles.inputPadding);
   root.style.setProperty(CSS_VARIABLES.CARD_PADDING, appliedStyles.cardPadding);
+
+  // Icon container background (opt-in for consumers; default transparent / legacy)
+  root.style.setProperty(
+    CSS_VARIABLES.ICON_CONTAINER_BACKGROUND,
+    appliedStyles.iconContainerBackground
+  );
 }
 
 /**

@@ -73,7 +73,8 @@
     "Shape uses clip-path: circle(50%) instead of border-radius for a true circle.",
     "Defaults (size=128, shadowVariant='normal') preserve legacy visual behavior.",
     "Shadow variants: `normal` (legacy glow), `inset` (softer directional inset), `none` (no shadow).",
-    "ALWAYS wrap usage that expects page spacing with elevated-circle-container when following error/success page patterns."
+    "ALWAYS wrap usage that expects page spacing with elevated-circle-container when following error/success page patterns.",
+    "Theme opt-in: styles.iconContainerBackground (default transparent) is exposed as view.iconContainerBackground for the container background — does not change icon SVG colors. Pass manually when desired."
   ],
   "related": ["PageTitle", "AuraLayout", "Layout"]
 }

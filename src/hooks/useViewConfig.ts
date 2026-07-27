@@ -19,6 +19,11 @@ type ColorMapping = {
   background: keyof ColorPalette | string;
   iconColors: [keyof ColorPalette | string, keyof ColorPalette | string];
   backgroundIcon: keyof ColorPalette | string;
+  /**
+   * Icon *container* background (not icon SVG colors).
+   * Use `'transparent'` (legacy) or a ColorPalette key / CSS color string.
+   */
+  iconContainerBackground: keyof ColorPalette | string;
   title: keyof ColorPalette | string;
   subtitile: keyof ColorPalette | string;
   bodyCopy: keyof ColorPalette | string;
@@ -41,6 +46,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'primaryMesh',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'secondaryColor',
+      iconContainerBackground: 'transparent',
       title: 'secondaryColor',
       subtitile: 'secondaryColor',
       bodyCopy: 'secondaryColor',
@@ -56,6 +62,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'primaryMesh',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'whiteColor',
+      iconContainerBackground: 'transparent',
       title: 'partnerHighlights',
       subtitile: 'whiteColor',
       bodyCopy: 'whiteColor',
@@ -73,6 +80,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'specialViewBackground',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'secondaryColor',
+      iconContainerBackground: 'transparent',
       title: 'secondaryColor',
       subtitile: 'secondaryColor',
       bodyCopy: 'secondaryColor',
@@ -88,6 +96,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'specialViewBackground',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'whiteColor',
+      iconContainerBackground: 'transparent',
       title: 'partnerHighlights',
       subtitile: 'whiteColor',
       bodyCopy: 'whiteColor',
@@ -105,6 +114,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'primaryMesh',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'secondaryColor',
+      iconContainerBackground: 'transparent',
       title: 'secondaryColor',
       subtitile: 'secondaryColor',
       bodyCopy: 'secondaryColor',
@@ -120,6 +130,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'whiteColor',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'whiteColor',
+      iconContainerBackground: 'transparent',
       title: 'primaryGradient',
       subtitile: 'primaryGradient',
       bodyCopy: 'secondaryColor',
@@ -137,6 +148,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'whiteColor',
       iconColors: ['primaryGradient', 'secondaryGradient'],
       backgroundIcon: 'whiteColor',
+      iconContainerBackground: 'transparent',
       title: 'secondaryColor',
       subtitile: 'secondaryColor',
       bodyCopy: 'secondaryColor',
@@ -152,6 +164,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'whiteColor',
       iconColors: ['secondaryColor', 'secondaryColor'],
       backgroundIcon: 'whiteColor',
+      iconContainerBackground: 'transparent',
       title: 'primaryMesh',
       subtitile: 'primaryMesh',
       bodyCopy: 'secondaryColor',
@@ -169,6 +182,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'errorViewBackground',
       iconColors: ['secondaryColor', 'secondaryColor'],
       backgroundIcon: 'whiteColor',
+      iconContainerBackground: 'transparent',
       title: 'whiteColor',
       subtitile: 'whiteColor',
       bodyCopy: 'whiteColor',
@@ -184,6 +198,7 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       background: 'errorViewBackground',
       iconColors: ['secondaryColor', 'secondaryColor'],
       backgroundIcon: 'whiteColor',
+      iconContainerBackground: 'transparent',
       title: 'whiteColor',
       subtitile: 'whiteColor',
       bodyCopy: 'whiteColor',
@@ -203,6 +218,11 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
  * Includes backward compatibility fallbacks for new optional fields
  */
 function resolveColor(key: keyof ColorPalette | string, palette: ColorPalette): string {
+  // Literal CSS values (e.g. legacy iconContainerBackground default)
+  if (key === 'transparent') {
+    return 'transparent';
+  }
+
   // Special handling for errorViewBackground: fallback to secondaryColor if not provided
   if (key === 'errorViewBackground' && !palette.errorViewBackground) {
     return palette.secondaryColor;
@@ -222,6 +242,22 @@ function resolveColor(key: keyof ColorPalette | string, palette: ColorPalette): 
 }
 
 /**
+ * Resolves icon container background for a view.
+ * `styles.iconContainerBackground` is a global override when set;
+ * otherwise uses the per-view mapping (default `'transparent'` for legacy).
+ */
+function resolveIconContainerBackground(
+  mappingValue: keyof ColorPalette | string,
+  colorPalette: ColorPalette,
+  styles?: StylesConfig
+): string {
+  if (styles?.iconContainerBackground !== undefined) {
+    return styles.iconContainerBackground;
+  }
+  return resolveColor(mappingValue, colorPalette);
+}
+
+/**
  * Generates view configurations from color palette using declarative mappings
  * Replaces the old 200+ line generateColorsByView function
  */
@@ -231,7 +267,7 @@ export function generateViewConfigs(
 ): ViewsConfig {
   const lightness = colorPalette.lightness || 'light';
   const useSystemTheme = colorPalette.useSystemTheme || false;
-  // Legacy defaults for button props exposed on each view
+  // Legacy defaults for props exposed on each view (opt-in for consumers)
   const buttonShowIcon = styles?.buttonShowIcon ?? true;
   const buttonSize = styles?.buttonSize ?? 'large';
   const views: ViewsConfig = {} as ViewsConfig;
@@ -239,6 +275,11 @@ export function generateViewConfigs(
   // Iterate through each view type and generate its config
   (Object.keys(VIEW_COLOR_MAPPINGS) as ViewType[]).forEach((viewType) => {
     const mapping = VIEW_COLOR_MAPPINGS[viewType][lightness];
+    const iconContainerBackground = resolveIconContainerBackground(
+      mapping.iconContainerBackground,
+      colorPalette,
+      styles
+    );
     
     // Special handling for whiteView and dataView when useSystemTheme is active
     const shouldUseSystemColors = useSystemTheme && (viewType === 'whiteView' || viewType === 'dataView');
@@ -266,6 +307,7 @@ export function generateViewConfigs(
         ],
         buttonShowIcon,
         buttonSize,
+        iconContainerBackground,
         themeType: lightness,
         errorColor: colorPalette.errorColor,
         highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
@@ -295,6 +337,7 @@ export function generateViewConfigs(
         ],
         buttonShowIcon,
         buttonSize,
+        iconContainerBackground,
         themeType: lightness,
         errorColor: colorPalette.errorColor,
         highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,

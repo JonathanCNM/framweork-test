@@ -215,10 +215,10 @@
     {
       "name": "ElevatedCircle",
       "category": "decoration",
-      "description": "Decorative elevated circle element",
+      "description": "Perfect circle (clip-path) icon container with size and inset shadow variants; legacy defaults preserved",
       "complexity": "simple",
       "status": "stable",
-      "docFile": null
+      "docFile": "ElevatedCircle.json"
     },
     {
       "name": "VgsFormWrapper",

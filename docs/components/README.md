@@ -1154,18 +1154,41 @@ const steps: ISteps[] = [
 
 ### ElevatedCircle
 
-**Círculo con elevación y sombra**
+**Círculo perfecto (clip-path) con sombra inset configurable**
+
+Contenedor circular para iconos / estados. La forma se logra con `clip-path: circle(50%)` (ya no `border-radius`). Las props nuevas son opcionales y mantienen el comportamiento legacy por defecto.
+
+| Prop | Tipo | Default (legacy) | Descripción |
+|------|------|------------------|-------------|
+| `background` | `string` | `"#fff"` | Color de fondo |
+| `size` | `number \| string` | `128` | Diámetro (número = px) |
+| `shadowVariant` | `'normal' \| 'inset' \| 'none'` | `'normal'` | Estilo de box-shadow |
+| `children` | `ReactNode` | — | Contenido (icono) |
+
+**Sombras:**
+- `normal` (legacy): `inset 0 0 5px rgba(0, 0, 0, 0.5)`
+- `inset`: `inset 2px 2px 6px rgba(0, 0, 0, 0.25)`
+- `none`: sin box-shadow
 
 ```typescript
-import { ElevatedCircle } from 'lola-framework-ui';
+import { ElevatedCircle } from 'lola-framework-ui-test';
 
+// Legacy — sin cambios en consumidores existentes
+<ElevatedCircle background={backgroundIcon}>
+  <Icon />
+</ElevatedCircle>
+
+// Nuevo — tamaño y sombra inset
 <ElevatedCircle
-  size={128}
-  shadow="0 4px 24px rgba(0,0,0,0.1)"
+  background={backgroundIcon}
+  size={96}
+  shadowVariant="inset"
 >
   <Icon />
 </ElevatedCircle>
 ```
+
+**Retrocompatibilidad:** omitir `size` y `shadowVariant` produce el mismo resultado visual que antes (128×128 + sombra `normal`).
 
 ---
 

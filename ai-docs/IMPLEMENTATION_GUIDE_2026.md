@@ -461,10 +461,26 @@ import { PageTitle } from 'lola-framework-ui-test';
 import { ElevatedCircle } from 'lola-framework-ui-test';
 import { SuccessIcon } from 'lola-framework-ui-test/src/icons';
 
+// Legacy — defaults: size={128}, shadowVariant="normal"
 <ElevatedCircle background={theme.specialView.backgroundIcon}>
   <SuccessIcon colors={theme.specialView.iconColors} />
 </ElevatedCircle>
+
+// Optional: custom diameter + inset shadow
+<ElevatedCircle
+  background={theme.specialView.backgroundIcon}
+  size={96}
+  shadowVariant="inset"
+>
+  <SuccessIcon colors={theme.specialView.iconColors} />
+</ElevatedCircle>
 ```
+
+**Notes:**
+- Shape uses `clip-path: circle(50%)` (not `border-radius`) for a true circle
+- `size`: number → px (default `128` for legacy)
+- `shadowVariant`: `"normal"` = `inset 0 0 5px rgba(0,0,0,0.5)` (legacy); `"inset"` = `inset 2px 2px 6px rgba(0,0,0,0.25)`; `"none"` = no shadow
+- Existing projects that omit the new props keep the same look
 
 ### Feedback Components
 

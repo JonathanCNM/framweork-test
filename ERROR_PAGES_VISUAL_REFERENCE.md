@@ -177,8 +177,12 @@ interface AuraLayoutProps {
 
 // ElevatedCircle
 interface ElevatedCircleProps {
-  background: string;
+  background?: string;
   children: ReactNode;
+  /** Diameter; numbers = px. Default 128 (legacy). */
+  size?: number | string;
+  /** "normal" (legacy) | "inset" | "none". Default "normal". */
+  shadowVariant?: "normal" | "inset" | "none";
 }
 
 // Icon (generic)

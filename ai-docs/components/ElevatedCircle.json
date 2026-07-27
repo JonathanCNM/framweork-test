@@ -1,0 +1,79 @@
+{
+  "name": "ElevatedCircle",
+  "description": "Circular container for icons and status glyphs. Uses clip-path for a perfect circle, configurable diameter, and inset box-shadow variants. Optional props default to legacy behavior so existing usages keep working without changes.",
+  "category": "decoration",
+  "version": "1.0.2",
+  "props": {
+    "children": {
+      "type": "React.ReactNode",
+      "required": true,
+      "description": "Content rendered inside the circle (typically an icon)"
+    },
+    "background": {
+      "type": "string",
+      "required": false,
+      "default": "#fff",
+      "description": "Background color of the circle",
+      "examples": ["#fff", "#eeeef1", "theme.errorView.backgroundIcon"]
+    },
+    "size": {
+      "type": "number | string",
+      "required": false,
+      "default": 128,
+      "description": "Circle diameter. Numbers are treated as pixels (e.g. 128 → 128px). Strings may include units (e.g. '10rem'). Legacy default is 128.",
+      "examples": [128, 96, 160, "10rem"]
+    },
+    "shadowVariant": {
+      "type": "'normal' | 'inset' | 'none'",
+      "required": false,
+      "default": "normal",
+      "description": "Box-shadow style. `normal` is the legacy soft inset glow (`inset 0 0 5px rgba(0, 0, 0, 0.5)`). `inset` is a softer directional inset (`inset 2px 2px 6px rgba(0, 0, 0, 0.25)`). `none` removes the box-shadow entirely.",
+      "options": ["normal", "inset", "none"],
+      "examples": ["normal", "inset", "none"]
+    }
+  },
+  "usage": {
+    "import": "import { ElevatedCircle } from 'lola-framework-ui-test';",
+    "basic": "<ElevatedCircle background=\"#fff\">\\n  <SuccessIcon />\\n</ElevatedCircle>",
+    "advanced": [
+      {
+        "title": "Legacy usage (unchanged)",
+        "code": "<ElevatedCircle background={theme.specialView.backgroundIcon}>\\n  <SuccessIcon colors={theme.specialView.iconColors} />\\n</ElevatedCircle>",
+        "description": "Omitting size and shadowVariant keeps the previous 128px diameter and normal shadow."
+      },
+      {
+        "title": "Custom size with inset shadow",
+        "code": "<ElevatedCircle\\n  background={theme.errorView.backgroundIcon}\\n  size={96}\\n  shadowVariant=\"inset\"\\n>\\n  <WarningIcon size={48} />\\n</ElevatedCircle>",
+        "description": "Smaller circle with the new inset shadow variant."
+      },
+      {
+        "title": "No box-shadow",
+        "code": "<ElevatedCircle\\n  background={theme.specialView.backgroundIcon}\\n  shadowVariant=\"none\"\\n>\\n  <SuccessIcon />\\n</ElevatedCircle>",
+        "description": "Circle without any box-shadow."
+      }
+    ]
+  },
+  "dependencies": [],
+  "styling": {
+    "cssVariables": [
+      {
+        "name": "--elevated-circle-size",
+        "description": "Diameter applied to width and height",
+        "default": "128px"
+      }
+    ],
+    "className": "elevated-circle"
+  },
+  "accessibility": {
+    "aria": [],
+    "keyboard": [],
+    "notes": "Decorative container; ensure child icons have appropriate aria labels when they convey meaning."
+  },
+  "notes": [
+    "Shape uses clip-path: circle(50%) instead of border-radius for a true circle.",
+    "Defaults (size=128, shadowVariant='normal') preserve legacy visual behavior.",
+    "Shadow variants: `normal` (legacy glow), `inset` (softer directional inset), `none` (no shadow).",
+    "ALWAYS wrap usage that expects page spacing with elevated-circle-container when following error/success page patterns."
+  ],
+  "related": ["PageTitle", "AuraLayout", "Layout"]
+}

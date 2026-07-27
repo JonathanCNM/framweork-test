@@ -417,30 +417,40 @@ import { Select, SearchSelect } from 'lola-framework-ui-test';
 ```tsx
 import { AuraLayout, Layout, Navbar } from 'lola-framework-ui-test';
 
-function MyPage({ theme }) {
+function MyPage({ theme, showHeader, showExtra }) {
   const colorConfig = theme.whiteView;
   
   return (
     <AuraLayout colorConfig={colorConfig}>
-      <Layout.Header>
-        <Navbar
-          title="Page Title"
-          color={colorConfig.title}
-          onBackClick={() => history.back()}
-        />
-      </Layout.Header>
+      {/* Conditionals at Layout level are valid */}
+      {showHeader && (
+        <Layout.Header>
+          <Navbar
+            title="Page Title"
+            color={colorConfig.title}
+            onBackClick={() => history.back()}
+          />
+          {/* Multiple siblings inside a slot are valid — no single wrapper required */}
+          {showExtra && <span>Badge</span>}
+        </Layout.Header>
+      )}
       
       <Layout.Content>
-        {/* Your content here */}
+        <div>Block A</div>
+        {showExtra && <div>Block B</div>}
+        <p>Block C</p>
       </Layout.Content>
       
       <Layout.Footer>
-        {/* Footer content (usually buttons) */}
+        <Button variant="cancel">Back</Button>
+        <Button>Continue</Button>
       </Layout.Footer>
     </AuraLayout>
   );
 }
 ```
+
+**Notes:** `Layout`, `Layout.Header`, `Layout.Content`, and `Layout.Footer` accept **1..n children**, fragments, and JSX conditionals (`{cond && <...>}`). Legacy single-child usage still works.
 
 ### Display Components
 

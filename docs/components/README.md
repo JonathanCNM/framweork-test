@@ -19,25 +19,35 @@
 
 **Compound component para estructurar páginas**
 
+`Layout`, `Layout.Header`, `Layout.Content` y `Layout.Footer` aceptan **1..n hijos**, fragments y **condicionales JSX** (`{cond && <Node />}`). No hace falta envolver todo en un único tag.
+
 ```typescript
-import { Layout } from 'lola-framework-ui';
+import { Layout } from 'lola-framework-ui-test';
 
 <Layout 
   background="#ffffff"
   auraColors={["#3ee0cf", "#ff6b6b"]}
   devMode={false}
 >
-  <Layout.Header>
-    <Navbar />
-  </Layout.Header>
+  {showHeader && (
+    <Layout.Header>
+      <Navbar />
+      <span>Optional badge</span>
+    </Layout.Header>
+  )}
   
   <Layout.Content isOverflowauto={true}>
-    {/* Contenido principal */}
+    <PageTitle ... />
+    {showDetails && <BodyCopy>...</BodyCopy>}
+    <section>...</section>
   </Layout.Content>
   
-  <Layout.Footer>
-    <Button>Continue</Button>
-  </Layout.Footer>
+  {showFooter && (
+    <Layout.Footer>
+      <Button variant="cancel">Back</Button>
+      <Button>Continue</Button>
+    </Layout.Footer>
+  )}
 </Layout>
 ```
 
@@ -46,12 +56,14 @@ import { Layout } from 'lola-framework-ui';
 - `auraColors`: Array de 2 colores para efectos de aura
 - `devMode`: Mostrar grid de diseño
 - `className`: Clases CSS adicionales
+- `children`: `ReactNode` (1..n nodos, fragments, conditionals)
 
 **Características**:
 - ✅ Responsive por defecto
 - ✅ Manejo automático de teclado móvil
 - ✅ Efectos de aura opcionales
-- ⚠️ Sin scroll interno por defecto
+- ✅ Múltiples hijos y condicionales JSX en Layout y en cada slot
+- ⚠️ Sin scroll interno por defecto (usar `isOverflowauto` en Content)
 
 ---
 

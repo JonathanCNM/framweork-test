@@ -103,10 +103,10 @@
     {
       "name": "Layout",
       "category": "layout",
-      "description": "Main layout wrapper with header, content, and footer slots",
+      "description": "Compound layout (Header/Content/Footer); supports 1..n children and JSX conditionals in Layout and each slot",
       "complexity": "medium",
       "status": "stable",
-      "docFile": null
+      "docFile": "Layout.json"
     },
     {
       "name": "AuraLayout",

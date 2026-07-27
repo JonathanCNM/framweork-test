@@ -1,0 +1,58 @@
+{
+  "name": "Layout",
+  "description": "Compound page layout with Header, Content, and Footer slots. Accepts 1..n children, fragments, and JSX conditionals at the Layout level and inside each slot.",
+  "category": "layout",
+  "version": "1.0.2",
+  "props": {
+    "children": {
+      "type": "React.ReactNode",
+      "required": false,
+      "description": "Layout.Header / Layout.Content / Layout.Footer slots and/or other nodes. Supports multiple siblings, fragments, and conditionals like `{show && <Layout.Header />}`.",
+      "examples": ["<Layout.Content>...</Layout.Content>", "{cond && <Layout.Header />}<Layout.Content />"]
+    },
+    "background": {
+      "type": "string",
+      "required": false,
+      "default": "#fff",
+      "description": "Layout background color"
+    },
+    "auraColors": {
+      "type": "[string, string]",
+      "required": false,
+      "description": "Aura gradient color pair"
+    },
+    "devMode": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Shows DesignLayout grid overlay"
+    },
+    "className": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class names"
+    }
+  },
+  "usage": {
+    "import": "import { Layout } from 'lola-framework-ui-test';",
+    "basic": "<Layout>\\n  <Layout.Header><Navbar /></Layout.Header>\\n  <Layout.Content><BodyCopy>Hi</BodyCopy></Layout.Content>\\n  <Layout.Footer><Button>Go</Button></Layout.Footer>\\n</Layout>",
+    "advanced": [
+      {
+        "title": "Multiple children + JSX conditionals",
+        "code": "<Layout background={view.background}>\\n  {showHeader && (\\n    <Layout.Header>\\n      <Navbar />\\n      <span>Badge</span>\\n    </Layout.Header>\\n  )}\\n  <Layout.Content isOverflowauto>\\n    <PageTitle ... />\\n    {showBody && <BodyCopy>...</BodyCopy>}\\n    <section>...</section>\\n  </Layout.Content>\\n  {showFooter && (\\n    <Layout.Footer>\\n      <Button variant=\\\"cancel\\\">Back</Button>\\n      <Button>Continue</Button>\\n    </Layout.Footer>\\n  )}\\n</Layout>",
+        "description": "No single-wrapper tag required. Conditionals at Layout and slot level are valid."
+      }
+    ]
+  },
+  "dependencies": ["DesignLayout"],
+  "styling": {
+    "className": "lola-layout"
+  },
+  "notes": [
+    "Slots: Layout.Header, Layout.Content, Layout.Footer",
+    "Children.toArray strips false/null/undefined from JSX conditionals",
+    "Slot detection uses component reference + displayName for consumer HMR safety",
+    "Legacy single-child usage remains fully supported"
+  ],
+  "related": ["AuraLayout", "Navbar", "Page", "Button"]
+}

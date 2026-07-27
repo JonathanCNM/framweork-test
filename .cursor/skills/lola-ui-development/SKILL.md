@@ -937,16 +937,18 @@ When reviewing code in this project, verify:
 
 ```typescript
 // Pattern used in Layout component
+// - Children.toArray: supports 1..n nodes, fragments, JSX conditionals
+// - Slot detection: type reference + displayName (HMR-safe)
 const Layout = ({ children }: LayoutProps) => {
-  // Find specific child components
-  const header = Children.toArray(children).find(child => 
-    isValidElement(child) && child.type === Header
+  const childrenArray = Children.toArray(children);
+  const header = childrenArray.find(
+    (child) => isValidElement(child) && child.type === Header
   );
-  
+
   return (
     <div className="lola-layout">
       {header}
-      {/* ... */}
+      {/* Content / Footer similarly */}
     </div>
   );
 };
@@ -957,6 +959,12 @@ Layout.Footer = Footer;
 
 export { Layout };
 ```
+
+**Layout children rules:**
+- `Layout`, `Layout.Header`, `Layout.Content`, `Layout.Footer` accept **1..n** children
+- JSX conditionals are valid: `{show && <Layout.Header>...</Layout.Header>}`
+- Multiple siblings inside a slot are valid (no single-wrapper required)
+- Legacy single-child usage still works
 
 ### Forwarding Refs
 

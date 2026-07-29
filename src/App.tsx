@@ -1,7 +1,7 @@
 import "./styles/index.css";
 import "./index.css";
 import { useEffect, useState } from "react";
-import { useTheme, type IViewConfig } from "./hooks";
+import { useTheme } from "./hooks";
 import { injectStyleVariables } from "./hooks/useCSSVariables";
 import { CircularProgress, MotionWrapper, Page } from "./components";
 import { HomePage } from "./demo/pages/HomePage";
@@ -62,7 +62,10 @@ const App = () => {
   }, [theme]);
 
   if (isLoading) return <CircularProgress />;
-  const newTheme: IViewConfig = generateColorsByView(theme?.colors);
+
+  const newTheme = generateColorsByView(theme?.colors, theme?.styles);
+  if (!newTheme) return <CircularProgress />;
+
   const isLightTheme = themeFormatted.lightness === "light";
 
   return (

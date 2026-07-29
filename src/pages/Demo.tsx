@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CircularProgress, MotionWrapper, Page } from "../components";
-import { useTheme, type IViewConfig } from "../hooks/useTheme";
+import { useTheme } from "../hooks/useTheme";
+import { injectStyleVariables } from "../hooks/useCSSVariables";
 import { HomePage } from "../demo/pages/HomePage";
 import { StepPage } from "../demo/pages/StepPage";
 import { DropzoneDesktop } from "../demo/pages/DropzoneDesktop";
@@ -47,9 +48,21 @@ export const Demo = () => {
     return () => window.removeEventListener("message", handler);
   }, []);
 
+  useEffect(() => {
+    if (theme?.styles) {
+      injectStyleVariables(theme.styles);
+    } else {
+      injectStyleVariables();
+    }
+  }, [theme]);
+
   if (isLoading) return <CircularProgress />;
 
-  const newTheme: IViewConfig = generateColorsByView(theme?.colors);
+  const newTheme = generateColorsByView(theme?.colors, theme?.styles);
+  if (!newTheme) return <CircularProgress />;
+
+  const isLightTheme = themeFormatted.lightness === "light";
+
   return (
     <Page
       font={{
@@ -63,7 +76,7 @@ export const Demo = () => {
             <HomePage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <StepPage theme={newTheme} />
+            <StepPage theme={newTheme} isLightTheme={isLightTheme} />
           </section>
           <section className="demo-slide">
             <IproovCamera theme={newTheme} />
@@ -81,7 +94,7 @@ export const Demo = () => {
             <SuccessId theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <IproovReadySlot theme={newTheme} />
+            <IproovReadySlot theme={newTheme} isLightTheme={isLightTheme} />
           </section>
           <section className="demo-slide">
             <IproovCamera theme={newTheme} />

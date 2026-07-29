@@ -32,6 +32,8 @@ export const ElevatedCircle: React.FC<ElevatedCircleProps> = ({
   const style = {
     background,
     "--elevated-circle-size": resolveSize(size),
+    minHeight: resolveSize(size),
+    minWidth: resolveSize(size),
   } as CSSProperties;
 
   const className = [

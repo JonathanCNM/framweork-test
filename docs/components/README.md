@@ -120,8 +120,10 @@ import { Button } from 'lola-framework-ui';
   variant="default" | "outline" | "link" | "cancel"
   size="small" | "medium" | "large"
   loading={false}
+  disabled={false}
   background="#000"
   color="#fff"
+  inactiveColor="#979797"
   showIcon={true}
   icon={<CustomIcon />}
   textAnimated={true}
@@ -161,12 +163,17 @@ import { Button } from 'lola-framework-ui';
 </Button>
 ```
 
+**Disabled**:
+- Con `disabled`, el fondo (default) / borde (outline) usa `colors.inactiveColor` o `colors.inactived` del tema (`--lola-color-inactived`).
+- Override opcional por botón con prop `inactiveColor`.
+- El estado `loading` no aplica ese fondo (mantiene el color del botón con opacidad).
+
 **Características**:
 - ✅ Loading state con spinner
 - ✅ Texto con gradiente animado
 - ✅ Iconos opcionales
 - ✅ Totalmente accesible
-- ✅ Estados disabled
+- ✅ Estados disabled (fondo desde tema `inactiveColor` / `inactived`)
 
 ---
 

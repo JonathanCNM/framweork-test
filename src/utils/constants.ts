@@ -132,6 +132,7 @@ export const kapitalTheme = {
     "secondaryColor": "#252525",
     "whiteColor": "#FFFFFF",
     "inactived": "#979797",
+    "inactiveColor": "#979797",
     "errorColor": "#dc251c",
     "partnerHighlights": "#EFF1F5",
     "gradientDeg": "90deg",

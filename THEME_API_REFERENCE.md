@@ -288,7 +288,8 @@ interface ColorPalette {
   primaryMesh: string;           // Full gradient definition
   lightness: 'light' | 'dark';   // Theme mode
   useSystemTheme?: boolean;      // Use system preference
-  inactived?: string;            // Inactive state color
+  inactived?: string;            // Legacy alias of inactiveColor
+  inactiveColor?: string;        // Inactive/disabled UI color (disabled button bg)
   gradient?: string;             // Alternative gradient
   gradientDeg?: string;          // Gradient angle
   primaryGradientPoint?: string; // Gradient color stop
@@ -433,7 +434,7 @@ The theme system automatically injects these CSS custom properties:
 --lola-color-error               /* Error state color */
 --lola-color-highlights          /* Highlight/accent color */
 --lola-color-primary-mesh        /* Primary gradient */
---lola-color-inactived           /* Inactive state color */
+--lola-color-inactived           /* Inactive/disabled UI (from inactiveColor | inactived) */
 --lola-color-card-panel-background /* Card panel background */
 --lola-color-card-background     /* Card background */
 --lola-color-card-background-secundary /* Secondary card background */

@@ -135,6 +135,28 @@ button {
   cursor: not-allowed !important;
 }
 
+/* Disabled (not loading): theme inactive color as background */
+.lola-button--default.lola-button--inactive {
+  background: var(
+    --lola-button-inactive-bg,
+    var(--lola-color-inactived, #979797)
+  );
+  opacity: 1;
+}
+
+.lola-button--outline.lola-button--inactive::before {
+  background: var(
+    --lola-button-inactive-bg,
+    var(--lola-color-inactived, #979797)
+  );
+}
+
+.lola-button--outline.lola-button--inactive,
+.lola-button--link.lola-button--inactive,
+.lola-button--cancel.lola-button--inactive {
+  opacity: 1;
+}
+
 /* Button Default */
 .lola-button--default {
   background: var(--bg);

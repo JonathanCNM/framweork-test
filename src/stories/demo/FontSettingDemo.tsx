@@ -99,7 +99,8 @@ interface IColorForm {
   secondaryGradient: string;
   secondaryColor: string;
   whiteColor: string;
-  inactived: string;
+  /** Preferred name; also exported as `inactived` for legacy theme consumers. */
+  inactiveColor: string;
   errorColor: string;
   partnerHighlights: string;
   gradientDeg: string;
@@ -163,7 +164,7 @@ const formColorList = [
     type: "color",
   },
   {
-    key: "inactived",
+    key: "inactiveColor",
     value: "#979797",
     type: "color",
   },
@@ -219,7 +220,7 @@ const formColorInitialState: IColorForm = {
   secondaryGradient: "#008433",
   secondaryColor: "#252525",
   whiteColor: "#FFFFFF",
-  inactived: "#979797",
+  inactiveColor: "#979797",
   errorColor: "#E81C1C",
   partnerHighlights: "#AAFF74",
   gradientDeg: "116.74deg",
@@ -469,10 +470,19 @@ export const FontSettingDemo = () => {
   useEffect(() => {
     injectColorVariables({
       ...formColors,
+      inactived: formColors.inactiveColor, // legacy alias
       lightness: themeLightnessPreferences as "light" | "dark",
       useSystemTheme: useThemeSystem,
     });
   }, [formColors, themeLightnessPreferences, useThemeSystem]);
+
+  const buildThemeColors = () => ({
+    ...formColors,
+    inactived: formColors.inactiveColor, // legacy alias
+    gradient,
+    lightness: themeLightnessPreferences,
+    useSystemTheme: useThemeSystem,
+  });
 
   const onDownloadTheme = () => {
     downloadThemeTxt({
@@ -481,12 +491,7 @@ export const FontSettingDemo = () => {
         fontfamily: inputFont.name,
         fontcdn: inputFont.cdn,
       },
-      colors: {
-        ...formColors,
-        gradient,
-        lightness: themeLightnessPreferences,
-        useSystemTheme: useThemeSystem,
-      },
+      colors: buildThemeColors(),
       styles: formStyles,
     });
   };
@@ -498,12 +503,7 @@ export const FontSettingDemo = () => {
         fontfamily: inputFont.name,
         fontcdn: inputFont.cdn,
       },
-      colors: {
-        ...formColors,
-        gradient,
-        lightness: themeLightnessPreferences,
-        useSystemTheme: useThemeSystem,
-      },
+      colors: buildThemeColors(),
       styles: formStyles,
     };
     const location = window.location.hostname;
@@ -538,12 +538,7 @@ export const FontSettingDemo = () => {
             fontfamily: inputFont.name,
             fontcdn: inputFont.cdn,
           },
-          colors: {
-            ...formColors,
-            gradient,
-            lightness: themeLightnessPreferences,
-            useSystemTheme: useThemeSystem,
-          },
+          colors: buildThemeColors(),
           styles: formStyles,
         })
       );
@@ -600,9 +595,19 @@ export const FontSettingDemo = () => {
         } = parsedTheme.colors;
 
         // Merge with existing colors (legacy support)
+        // Prefer inactiveColor; fall back to legacy `inactived`
+        const {
+          inactived: legacyInactived,
+          inactiveColor: importedInactive,
+          ...restColors
+        } = colors as Record<string, unknown>;
         setFormColors((prev) => ({
           ...prev,
-          ...colors,
+          ...(restColors as Partial<IColorForm>),
+          inactiveColor:
+            (typeof importedInactive === "string" && importedInactive) ||
+            (typeof legacyInactived === "string" && legacyInactived) ||
+            prev.inactiveColor,
         }));
 
         if (lightness) setThemeLightnessPreferences(lightness);

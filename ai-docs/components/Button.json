@@ -44,6 +44,12 @@
       "description": "Text color or CSS gradient string",
       "examples": ["#fff", "linear-gradient(90deg, #667eea 0%, #764ba2 100%)", "#000"]
     },
+    "inactiveColor": {
+      "type": "string",
+      "required": false,
+      "description": "Override disabled background. Defaults to theme colors.inactiveColor / colors.inactived (--lola-color-inactived, fallback #979797)",
+      "examples": ["#979797", "#cccccc"]
+    },
     "showIcon": {
       "type": "boolean",
       "required": false,
@@ -130,6 +136,16 @@
         "name": "--link-bg",
         "description": "Link variant background color",
         "default": "color prop value"
+      },
+      {
+        "name": "--lola-button-inactive-bg",
+        "description": "Optional per-button override for disabled background (from inactiveColor prop)",
+        "default": "unset (uses --lola-color-inactived)"
+      },
+      {
+        "name": "--lola-color-inactived",
+        "description": "Theme inactive/disabled color used as disabled button background",
+        "default": "#979797"
       }
     ],
     "className": "lola-button"
@@ -148,6 +164,7 @@
   "notes": [
     "Extends React.ButtonHTMLAttributes<HTMLButtonElement>, so all native button props are available",
     "The loading state automatically disables the button",
+    "When disabled (not loading), default variant background uses theme inactiveColor/inactived",
     "Gradients are supported for both background and color props",
     "When showIcon is true without a custom icon, RightRoundedIcon is used by default",
     "Text color is extracted and split for the loader animation"

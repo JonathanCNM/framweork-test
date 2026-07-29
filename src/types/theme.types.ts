@@ -46,7 +46,10 @@ export interface ColorPalette {
   primaryMesh: string;
   lightness: ThemeLightness;
   useSystemTheme?: boolean;
+  /** @deprecated Prefer `inactiveColor`. Kept for legacy theme configs. */
   inactived?: string;
+  /** Color for inactive/disabled UI (e.g. disabled button background). Falls back to `inactived`. */
+  inactiveColor?: string;
   gradient?: string;
   gradientDeg?: string;
   primaryGradientPoint?: string;

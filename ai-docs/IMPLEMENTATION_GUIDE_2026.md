@@ -78,7 +78,8 @@ const myTheme: LolaThemeConfig = {
     secondaryGradient: "#10B981",
     secondaryColor: "#252525",
     whiteColor: "#FFFFFF",
-    inactived: "#979797",
+    inactived: "#979797", // legacy; prefer inactiveColor
+    inactiveColor: "#979797", // disabled button background, etc.
     errorColor: "#E81C1C",
     partnerHighlights: "#AAFF74",
     gradientDeg: "116.74deg",

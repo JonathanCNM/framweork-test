@@ -50,9 +50,11 @@ export function injectColorVariables(colors: ColorPalette): void {
   root.style.setProperty(CSS_VARIABLES.PARTNER_HIGHLIGHTS, colors.partnerHighlights);
   root.style.setProperty(CSS_VARIABLES.PRIMARY_MESH, colors.primaryMesh);
   
-  if (colors.inactived) {
-    root.style.setProperty(CSS_VARIABLES.INACTIVED, colors.inactived);
-  }
+  // Inactive / disabled UI color (buttons, inputs). Alias: inactiveColor
+  root.style.setProperty(
+    CSS_VARIABLES.INACTIVED,
+    colors.inactiveColor || colors.inactived || "#979797"
+  );
   
   // Card panel background with transparent default
   root.style.setProperty(

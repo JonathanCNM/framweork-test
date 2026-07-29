@@ -33,7 +33,10 @@ export type { BodyCopyProps } from "./components/BodyCopy";
 export type { ButtonProps } from "./components/Button";
 export type { CircularProgressProps } from "./components/CircularProgress";
 export type { ISteps, CustomStepperProps } from "./components/CustomStepper";
-export type { ElevatedCircleProps } from "./components/ElevatedCircle";
+export type {
+  ElevatedCircleProps,
+  ElevatedCircleShadowVariant,
+} from "./components/ElevatedCircle";
 export type { TextProps } from "./components/GradientText";
 export type { SearchSelectProps, SelectItem } from "./components/SearchSelect";
 export type { InputFieldProps } from "./components/InputField";

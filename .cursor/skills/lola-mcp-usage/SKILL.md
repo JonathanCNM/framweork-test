@@ -266,7 +266,7 @@ Mention important notes from documentation:
 - **Title** - Simple title (⚠️ ONLY for gradient views, NOT for whiteView/dataView)
 - **GradientText** - Gradient text effect (use for body text in gradient views)
 - **BodyCopy** - Body text (⚠️ NO textColor prop, use in white/data views only)
-- **ElevatedCircle** - Circular icon container with shadow
+- **ElevatedCircle** - Perfect circle (clip-path) icon container; optional `size` (default 128) and `shadowVariant` (`normal` | `inset` | `none`, default `normal` for legacy)
 - **RotatingText** - Animated text rotation
 
 ### Financial/Transaction Components (New in v0.3.1+)

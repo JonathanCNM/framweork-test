@@ -768,8 +768,10 @@ export const HomeAddressIcon: React.FC<
 export const WhatsAppIcon: React.FC<
   SVGProps<SVGSVGElement> & {
     size?: number;
+    /** Accepted for API parity with other icons; WhatsApp keeps brand greens. */
+    colors?: [string, string];
   }
-> = ({ size = 36, ...props }) => {
+> = ({ size = 36, colors: _colors, ...props }) => {
   return (
     <svg
       width={size}
@@ -1771,6 +1773,10 @@ export const SupportIcon: React.FC<
   }
 > = ({ size = "24", colors = ["#000", "#000"], ...props }) => {
   const idGradient = useId();
+  const idMask = useId();
+  const headphonesPath =
+    "M27.0833 22.2917V18.4583C27.0833 13.1656 22.7927 8.875 17.5 8.875C12.2072 8.875 7.91663 13.1656 7.91663 18.4583V22.2917M13.1875 26.125C11.8643 26.125 10.7916 25.0523 10.7916 23.7292V20.8542C10.7916 19.531 11.8643 18.4583 13.1875 18.4583C14.5106 18.4583 15.5833 19.531 15.5833 20.8542V23.7292C15.5833 25.0523 14.5106 26.125 13.1875 26.125ZM21.8125 26.125C20.4893 26.125 19.4166 25.0523 19.4166 23.7292V20.8542C19.4166 19.531 20.4893 18.4583 21.8125 18.4583C23.1356 18.4583 24.2083 19.531 24.2083 20.8542V23.7292C24.2083 25.0523 23.1356 26.125 21.8125 26.125Z";
+
   return (
     <svg
       width={size}
@@ -1780,17 +1786,26 @@ export const SupportIcon: React.FC<
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <circle cx="17.5" cy="17.5" r="17.5" fill={`url(#${idGradient})`} />
-
-      <path
-        d="M27.0833 22.2917V18.4583C27.0833 13.1656 22.7927 8.875 17.5 8.875C12.2072 8.875 7.91663 13.1656 7.91663 18.4583V22.2917M13.1875 26.125C11.8643 26.125 10.7916 25.0523 10.7916 23.7292V20.8542C10.7916 19.531 11.8643 18.4583 13.1875 18.4583C14.5106 18.4583 15.5833 19.531 15.5833 20.8542V23.7292C15.5833 25.0523 14.5106 26.125 13.1875 26.125ZM21.8125 26.125C20.4893 26.125 19.4166 25.0523 19.4166 23.7292V20.8542C19.4166 19.531 20.4893 18.4583 21.8125 18.4583C23.1356 18.4583 24.2083 19.531 24.2083 20.8542V23.7292C24.2083 25.0523 23.1356 26.125 21.8125 26.125Z"
-        stroke="white"
-        strokeWidth={1.25}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      {/* Headphones cut out of the circle so they read as transparent */}
+      <circle
+        cx="17.5"
+        cy="17.5"
+        r="17.5"
+        fill={`url(#${idGradient})`}
+        mask={`url(#${idMask})`}
       />
 
       <defs>
+        <mask id={idMask}>
+          <rect width="35" height="35" fill="white" />
+          <path
+            d={headphonesPath}
+            stroke="black"
+            strokeWidth={1.25}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </mask>
         <linearGradient
           id={idGradient}
           x1="0"
@@ -2337,6 +2352,309 @@ export const OpenEye: React.FC<
           y2="28.9963"
           gradientUnits="userSpaceOnUse"
         >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const CheckCircleIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    /** [bg, check]. Prefer bgColor/checkColor when set. */
+    colors?: [string, string];
+    bgColor?: string;
+    checkColor?: string;
+  }
+> = ({
+  size = 12,
+  colors = ["#31C859", "#FFFFFF"],
+  bgColor,
+  checkColor,
+  className,
+  ...props
+}) => {
+  const scale = size / 9;
+  const resolvedBg = bgColor ?? colors[0];
+  const resolvedCheck = checkColor ?? colors[1];
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 9 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      <circle cx={4.125} cy={4.125} r={4.125} fill={resolvedBg} />
+      <path
+        d="M5.95793 2.75L3.43709 5.5L2.29126 4.25"
+        stroke={resolvedCheck}
+        strokeWidth={0.458333 * scale}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const ErrorCircleIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    /** [bg, icon]. Prefer bgColor/iconColor when set. */
+    colors?: [string, string];
+    bgColor?: string;
+    iconColor?: string;
+  }
+> = ({
+  size = 12,
+  colors = ["#FF3B30", "#FFFFFF"],
+  bgColor,
+  iconColor,
+  className,
+  ...props
+}) => {
+  const scale = size / 9;
+  const resolvedBg = bgColor ?? colors[0];
+  const resolvedIcon = iconColor ?? colors[1];
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 9 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      <circle cx={4.125} cy={4.125} r={4.125} fill={resolvedBg} />
+      <path
+        d="M5.25 2.875L2.75 5.375M2.75 2.875L5.25 5.375"
+        stroke={resolvedIcon}
+        strokeWidth={0.5 * scale}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const WarningCircleIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    /** [bg, icon]. Prefer bgColor/iconColor when set. */
+    colors?: [string, string];
+    bgColor?: string;
+    iconColor?: string;
+  }
+> = ({
+  size = 12,
+  colors = ["#F28D19", "#FFFFFF"],
+  bgColor,
+  iconColor,
+  className,
+  ...props
+}) => {
+  const scale = size / 9;
+  const resolvedBg = bgColor ?? colors[0];
+  const resolvedIcon = iconColor ?? colors[1];
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 9 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      <circle cx={4.125} cy={4.125} r={4.125} fill={resolvedBg} />
+      <path
+        d="M2.25 4.125H6.25"
+        stroke={resolvedIcon}
+        strokeWidth={0.5 * scale}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
+
+export const MoreCircleIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    /** [bg, icon]. Prefer bgColor/iconColor when set. */
+    colors?: [string, string];
+    bgColor?: string;
+    iconColor?: string;
+  }
+> = ({
+  size = 12,
+  colors = ["#A3A3A3", "#FFFFFF"],
+  bgColor,
+  iconColor,
+  className,
+  ...props
+}) => {
+  const scale = size / 9;
+  const resolvedBg = bgColor ?? colors[0];
+  const resolvedIcon = iconColor ?? colors[1];
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 9 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      <circle cx={4.125} cy={4.125} r={4.125} fill={resolvedBg} />
+
+      {/* Dot 1 */}
+      <path
+        d="M2.25 4.375C2.38807 4.375 2.5 4.26307 2.5 4.125C2.5 3.98693 2.38807 3.875 2.25 3.875C2.11193 3.875 2 3.98693 2 4.125C2 4.26307 2.11193 4.375 2.25 4.375Z"
+        stroke={resolvedIcon}
+        strokeWidth={0.5 * scale}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Dot 2 */}
+      <path
+        d="M4 4.375C4.13807 4.375 4.25 4.26307 4.25 4.125C4.25 3.98693 4.13807 3.875 4 3.875C3.86193 3.875 3.75 3.98693 3.75 4.125C3.75 4.26307 3.86193 4.375 4 4.375Z"
+        stroke={resolvedIcon}
+        strokeWidth={0.5 * scale}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Dot 3 */}
+      <path
+        d="M5.75 4.375C5.88807 4.375 6 4.26307 6 4.125C6 3.98693 5.88807 3.875 5.75 3.875C5.61193 3.875 5.5 3.98693 5.5 4.125C5.5 4.26307 5.61193 4.375 5.75 4.375Z"
+        stroke={resolvedIcon}
+        strokeWidth={0.5 * scale}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const WhatsAppStrokeIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#2A2D32", "#2A2D32"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 23 23"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M15.972 11.8564C15.4102 11.2952 14.5059 11.2952 13.9441 11.8564L13.102 12.7293C11.4178 11.9818 10.544 10.454 10.232 9.83067L11.0741 8.98945C11.6359 8.42822 11.6359 7.52491 11.0741 6.96368L9.51416 5.4054C9.23386 5.1254 8.89018 5 8.51605 5C8.14192 5 7.76778 5.15583 7.51794 5.4054L6.89397 6.02871C6.39429 6.55828 6.05186 7.21326 6.02016 7.93031C5.92632 9.14527 6.08231 11.5461 8.20406 13.8518L8.64035 14.3193C10.7926 16.5629 13.0702 17 14.506 17C14.6937 17 14.8801 17 15.0361 16.9683C15.7539 16.9063 16.4401 16.5946 16.9702 16.0955L17.5942 15.4721C17.8745 15.1921 18 14.8488 18 14.4751C18 14.1014 17.844 13.7276 17.5942 13.4781L15.972 11.8564ZM16.6581 14.5676L16.0342 15.1909C15.7222 15.5026 15.3164 15.69 14.9105 15.7205C13.7869 15.8142 11.5726 15.6267 9.51285 13.4451L9.07657 13.0093C7.29849 11.0456 7.1425 9.05159 7.23635 8.0546C7.26803 7.6492 7.45449 7.2438 7.76647 6.93214L8.39045 6.30883C8.42213 6.27718 8.48428 6.24674 8.51475 6.24674C8.54644 6.24674 8.60859 6.24674 8.63906 6.30883L10.199 7.86711C10.2611 7.9292 10.2611 8.05459 10.199 8.11668L9.35688 8.9579C8.98275 9.33164 8.8889 9.92453 9.10705 10.392C9.57503 11.327 10.6048 13.0094 12.601 13.8822C13.069 14.1002 13.6308 13.976 14.0049 13.6327L14.8787 12.7598C14.9409 12.6977 15.0664 12.6977 15.1286 12.7598L16.6885 14.3181C16.7202 14.3497 16.7507 14.4118 16.7507 14.4423C16.7519 14.4739 16.7215 14.5055 16.6581 14.5676Z"
+        fill={`url(#${gradientId})`}
+      />
+      <path
+        d="M11.6087 0.000369685C8.55279 0.000369685 5.71141 1.17063 3.55034 3.32597C-0.154362 7.02074 -0.864738 12.6556 1.79085 17.1499L0 23L5.55705 20.9987C10.0336 23.801 15.9308 23.1539 19.6655 19.3978C21.8265 17.2426 23 14.4102 23 11.3611C23 8.31342 21.8266 5.47965 19.6655 3.32437C17.5056 1.16909 14.6644 0 11.6084 0L11.6087 0.000369685ZM18.8023 18.5355C15.3748 21.9538 10.0036 22.4769 5.99019 19.7984L5.74297 19.6131L1.9154 20.9987L3.1503 16.9646L2.99593 16.718C0.464637 12.684 1.05072 7.5424 4.41656 4.18693C6.33041 2.27821 8.89307 1.23062 11.6102 1.23062C14.3272 1.23062 16.89 2.27698 18.8038 4.18693C20.7176 6.09565 21.768 8.65144 21.768 11.3612C21.7656 14.071 20.7161 16.6268 18.8023 18.5355Z"
+        fill={`url(#${gradientId})`}
+      />
+
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="23"
+          y2="23"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const MailStrokeIcon: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#2A2D32", "#2A2D32"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 20 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M1.90476 0C0.847976 0 0 0.888884 0 1.95686V11.8452C0 12.9132 0.847976 13.8095 1.90476 13.8095H18.0952C19.1521 13.8095 20 12.9132 20 11.8452V1.95686C20 0.888884 19.1521 0 18.0952 0H1.90476ZM1.90476 0.952381H18.0952C18.2349 0.952381 18.3701 0.986476 18.4896 1.04167L10.6176 8.32591C10.2539 8.66236 9.76914 8.66241 9.40476 8.32591L1.51786 1.04167C1.63583 0.988214 1.7674 0.952381 1.90476 0.952381ZM0.967286 1.83036L6.55507 6.99405L1.07143 12.3289C0.999071 12.1859 0.952381 12.0239 0.952381 11.8452V1.95686C0.952381 1.9131 0.962524 1.87229 0.967286 1.83036ZM19.0328 1.83774C19.037 1.87731 19.0475 1.91557 19.0475 1.95679V11.8452C19.0475 12.0201 19.0055 12.1805 18.9359 12.3214L13.4672 6.98655L19.0328 1.83774ZM12.7753 7.62642L18.125 12.8571C18.115 12.8571 18.1052 12.8571 18.0952 12.8571H1.90476C1.89714 12.8571 1.89 12.8573 1.88238 12.8571L7.2544 7.63386L8.75738 9.02522C9.46393 9.6778 10.5584 9.6787 11.2648 9.02522L12.7753 7.62642Z"
+        fill={`url(#${gradientId})`}
+      />
+
+      <defs>
+        <linearGradient
+          id={gradientId}
+          x1="0"
+          y1="0"
+          x2="20"
+          y2="14"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor={colors[0]} />
+          <stop offset="1" stopColor={colors[1]} />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
+export const LeftChevron: React.FC<
+  SVGProps<SVGSVGElement> & {
+    size?: number;
+    colors?: [string, string];
+  }
+> = ({ size = 36, colors = ["#2A2D32", "#2A2D32"], ...props }) => {
+  const id = useId();
+  const gradientId = `gradient-${id}`;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fill={`url(#${gradientId})`}
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+      />
+
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop stopColor={colors[0]} />
           <stop offset="1" stopColor={colors[1]} />
         </linearGradient>

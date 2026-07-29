@@ -21,6 +21,7 @@ const DEFAULT_STYLES: Required<StylesConfig> = {
   tamañoBordeInput: '1px',
   buttonSize: 'medium',
   buttonShowIcon: true,
+  iconContainerBackground: 'transparent',
   buttonPadding: '1rem',
   inputPadding: '0.75rem',
   cardPadding: '1.5rem',
@@ -49,9 +50,11 @@ export function injectColorVariables(colors: ColorPalette): void {
   root.style.setProperty(CSS_VARIABLES.PARTNER_HIGHLIGHTS, colors.partnerHighlights);
   root.style.setProperty(CSS_VARIABLES.PRIMARY_MESH, colors.primaryMesh);
   
-  if (colors.inactived) {
-    root.style.setProperty(CSS_VARIABLES.INACTIVED, colors.inactived);
-  }
+  // Inactive / disabled UI color (buttons, inputs). Alias: inactiveColor
+  root.style.setProperty(
+    CSS_VARIABLES.INACTIVED,
+    colors.inactiveColor || colors.inactived || "#979797"
+  );
   
   // Card panel background with transparent default
   root.style.setProperty(
@@ -115,6 +118,12 @@ export function injectStyleVariables(styles?: StylesConfig): void {
   // Input and card padding
   root.style.setProperty(CSS_VARIABLES.INPUT_PADDING, appliedStyles.inputPadding);
   root.style.setProperty(CSS_VARIABLES.CARD_PADDING, appliedStyles.cardPadding);
+
+  // Icon container background (opt-in for consumers; default transparent / legacy)
+  root.style.setProperty(
+    CSS_VARIABLES.ICON_CONTAINER_BACKGROUND,
+    appliedStyles.iconContainerBackground
+  );
 }
 
 /**

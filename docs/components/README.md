@@ -19,25 +19,35 @@
 
 **Compound component para estructurar páginas**
 
+`Layout`, `Layout.Header`, `Layout.Content` y `Layout.Footer` aceptan **1..n hijos**, fragments y **condicionales JSX** (`{cond && <Node />}`). No hace falta envolver todo en un único tag.
+
 ```typescript
-import { Layout } from 'lola-framework-ui';
+import { Layout } from 'lola-framework-ui-test';
 
 <Layout 
   background="#ffffff"
   auraColors={["#3ee0cf", "#ff6b6b"]}
   devMode={false}
 >
-  <Layout.Header>
-    <Navbar />
-  </Layout.Header>
+  {showHeader && (
+    <Layout.Header>
+      <Navbar />
+      <span>Optional badge</span>
+    </Layout.Header>
+  )}
   
   <Layout.Content isOverflowauto={true}>
-    {/* Contenido principal */}
+    <PageTitle ... />
+    {showDetails && <BodyCopy>...</BodyCopy>}
+    <section>...</section>
   </Layout.Content>
   
-  <Layout.Footer>
-    <Button>Continue</Button>
-  </Layout.Footer>
+  {showFooter && (
+    <Layout.Footer>
+      <Button variant="cancel">Back</Button>
+      <Button>Continue</Button>
+    </Layout.Footer>
+  )}
 </Layout>
 ```
 
@@ -46,12 +56,14 @@ import { Layout } from 'lola-framework-ui';
 - `auraColors`: Array de 2 colores para efectos de aura
 - `devMode`: Mostrar grid de diseño
 - `className`: Clases CSS adicionales
+- `children`: `ReactNode` (1..n nodos, fragments, conditionals)
 
 **Características**:
 - ✅ Responsive por defecto
 - ✅ Manejo automático de teclado móvil
 - ✅ Efectos de aura opcionales
-- ⚠️ Sin scroll interno por defecto
+- ✅ Múltiples hijos y condicionales JSX en Layout y en cada slot
+- ⚠️ Sin scroll interno por defecto (usar `isOverflowauto` en Content)
 
 ---
 
@@ -108,8 +120,10 @@ import { Button } from 'lola-framework-ui';
   variant="default" | "outline" | "link" | "cancel"
   size="small" | "medium" | "large"
   loading={false}
+  disabled={false}
   background="#000"
   color="#fff"
+  inactiveColor="#979797"
   showIcon={true}
   icon={<CustomIcon />}
   textAnimated={true}
@@ -149,12 +163,17 @@ import { Button } from 'lola-framework-ui';
 </Button>
 ```
 
+**Disabled**:
+- Con `disabled`, el fondo (default) / borde (outline) usa `colors.inactiveColor` o `colors.inactived` del tema (`--lola-color-inactived`).
+- Override opcional por botón con prop `inactiveColor`.
+- El estado `loading` no aplica ese fondo (mantiene el color del botón con opacidad).
+
 **Características**:
 - ✅ Loading state con spinner
 - ✅ Texto con gradiente animado
 - ✅ Iconos opcionales
 - ✅ Totalmente accesible
-- ✅ Estados disabled
+- ✅ Estados disabled (fondo desde tema `inactiveColor` / `inactived`)
 
 ---
 
@@ -1154,18 +1173,41 @@ const steps: ISteps[] = [
 
 ### ElevatedCircle
 
-**Círculo con elevación y sombra**
+**Círculo perfecto (clip-path) con sombra inset configurable**
+
+Contenedor circular para iconos / estados. La forma se logra con `clip-path: circle(50%)` (ya no `border-radius`). Las props nuevas son opcionales y mantienen el comportamiento legacy por defecto.
+
+| Prop | Tipo | Default (legacy) | Descripción |
+|------|------|------------------|-------------|
+| `background` | `string` | `"#fff"` | Color de fondo |
+| `size` | `number \| string` | `128` | Diámetro (número = px) |
+| `shadowVariant` | `'normal' \| 'inset' \| 'none'` | `'normal'` | Estilo de box-shadow |
+| `children` | `ReactNode` | — | Contenido (icono) |
+
+**Sombras:**
+- `normal` (legacy): `inset 0 0 5px rgba(0, 0, 0, 0.5)`
+- `inset`: `inset 2px 2px 6px rgba(0, 0, 0, 0.25)`
+- `none`: sin box-shadow
 
 ```typescript
-import { ElevatedCircle } from 'lola-framework-ui';
+import { ElevatedCircle } from 'lola-framework-ui-test';
 
+// Legacy — sin cambios en consumidores existentes
+<ElevatedCircle background={backgroundIcon}>
+  <Icon />
+</ElevatedCircle>
+
+// Nuevo — tamaño y sombra inset
 <ElevatedCircle
-  size={128}
-  shadow="0 4px 24px rgba(0,0,0,0.1)"
+  background={backgroundIcon}
+  size={96}
+  shadowVariant="inset"
 >
   <Icon />
 </ElevatedCircle>
 ```
+
+**Retrocompatibilidad:** omitir `size` y `shadowVariant` produce el mismo resultado visual que antes (128×128 + sombra `normal`).
 
 ---
 

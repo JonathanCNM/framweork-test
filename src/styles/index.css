@@ -135,6 +135,28 @@ button {
   cursor: not-allowed !important;
 }
 
+/* Disabled (not loading): theme inactive color as background */
+.lola-button--default.lola-button--inactive {
+  background: var(
+    --lola-button-inactive-bg,
+    var(--lola-color-inactived, #979797)
+  );
+  opacity: 1;
+}
+
+.lola-button--outline.lola-button--inactive::before {
+  background: var(
+    --lola-button-inactive-bg,
+    var(--lola-color-inactived, #979797)
+  );
+}
+
+.lola-button--outline.lola-button--inactive,
+.lola-button--link.lola-button--inactive,
+.lola-button--cancel.lola-button--inactive {
+  opacity: 1;
+}
+
 /* Button Default */
 .lola-button--default {
   background: var(--bg);
@@ -1197,16 +1219,20 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .elevated-circle {
+  --elevated-circle-size: 128px;
   position: relative;
-  width: 128px;
-  height: 128px;
+  width: var(--elevated-circle-size);
+  height: var(--elevated-circle-size);
   margin-inline: auto;
   padding: 20px;
   margin-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Perfect circle via clip-path (replaces border-radius) */
+  clip-path: circle(50% at 50% 50%);
   border-radius: 100%;
+  /* Legacy default shadow ("normal") */
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
   scale: 0.9;
 
@@ -1217,9 +1243,22 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
+/* Legacy / default — same as previous hardcoded shadow */
+.elevated-circle--shadow-normal {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.elevated-circle--shadow-inset {
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.elevated-circle--shadow-none {
+  box-shadow: none;
+}
+
 @media (height <= 732px) {
-  .elevated-circle {
-    margin-top: 20%;
+  .elevated-circle, .upload-loading-container {
+    margin-top: 30%;
   }
   .elevated-homepage {
     margin-top: 50%;
@@ -1230,25 +1269,25 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 @media (height <= 688px) {
-  .elevated-circle {
-    margin-top: 15%;
+  .elevated-circle, .upload-loading-container {
+    margin-top: 30%;
   }
 }
 
 @media (height <= 670px) {
-  .elevated-circle {
-    margin-top: 40px;
+  .elevated-circle, .upload-loading-container {
+    margin-top: 60px;
   }
 }
 
 @media (height <= 660px) {
-  .elevated-circle {
-    margin-top: 20px;
+  .elevated-circle, .upload-loading-container {
+    margin-top: 40px;
   }
 }
 
 @media (height <= 639px) {
-  .elevated-circle {
+  .elevated-circle, .upload-loading-container {
     margin-top: 0px;
   }
 }
@@ -1268,7 +1307,7 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: calc(20% - 10px);
+  margin-top: 30%;
 }
 
 .upload-circular-progress {
@@ -1513,9 +1552,22 @@ main.page {
   }
 }
 
-.lola-button,
-.elevated-circle {
+.lola-button {
   box-shadow: var(--box-shadows);
+}
+
+/* ElevatedCircle manages its own inset shadows via --shadow-* modifiers.
+   Kept out of --box-shadows so clip-path + inset variants are not overridden. */
+.elevated-circle.elevated-circle--shadow-normal {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.elevated-circle.elevated-circle--shadow-inset {
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.elevated-circle.elevated-circle--shadow-none {
+  box-shadow: none;
 }
 
 .elevated-circle-container {
@@ -1529,7 +1581,7 @@ main.page {
 
 @media (height > 670px) {
   .elevated-circle {
-    margin-top: 20%;
+    margin-top: 30%;
     margin-bottom: 0;
   }
 }

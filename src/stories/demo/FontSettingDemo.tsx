@@ -99,7 +99,8 @@ interface IColorForm {
   secondaryGradient: string;
   secondaryColor: string;
   whiteColor: string;
-  inactived: string;
+  /** Preferred name; also exported as `inactived` for legacy theme consumers. */
+  inactiveColor: string;
   errorColor: string;
   partnerHighlights: string;
   gradientDeg: string;
@@ -127,6 +128,8 @@ interface IStylesForm {
   cardPadding: string;
   buttonSize: "small" | "medium" | "large";
   buttonShowIcon: boolean;
+  /** Background for icon containers (not icons). Default transparent (legacy). */
+  iconContainerBackground: string;
 }
 
 const formColorList = [
@@ -161,7 +164,7 @@ const formColorList = [
     type: "color",
   },
   {
-    key: "inactived",
+    key: "inactiveColor",
     value: "#979797",
     type: "color",
   },
@@ -217,7 +220,7 @@ const formColorInitialState: IColorForm = {
   secondaryGradient: "#008433",
   secondaryColor: "#252525",
   whiteColor: "#FFFFFF",
-  inactived: "#979797",
+  inactiveColor: "#979797",
   errorColor: "#E81C1C",
   partnerHighlights: "#AAFF74",
   gradientDeg: "116.74deg",
@@ -298,7 +301,16 @@ const formStylesList = [
     key: "buttonShowIcon",
     value: "true",
     type: "checkbox",
-    label: "Se va a mostrar el icono de continuar en los botones?",
+    label: "buttonShowIcon",
+    description: "¿Mostrar icono de continuar en los botones? (default: true)",
+  },
+  {
+    key: "iconContainerBackground",
+    value: "transparent",
+    type: "text",
+    label: "iconContainerBackground",
+    description:
+      "Background de contenedores de iconos (ElevatedCircle, etc.). No afecta el color del icono. Default: transparent (legacy).",
   },
 ];
 
@@ -316,6 +328,7 @@ const formStylesInitialState: IStylesForm = {
   cardPadding: "1.5rem",
   buttonSize: "large",
   buttonShowIcon: true,
+  iconContainerBackground: "transparent",
 };
 
 const localhost = "http://localhost:5176";
@@ -391,10 +404,10 @@ export const FontSettingDemo = () => {
   const onHandlerFormColors = (event?: React.ChangeEvent<HTMLInputElement>) => {
     if (!event) return false;
     const { name, value } = event.currentTarget;
-    setFormColors({
-      ...formColors,
+    setFormColors((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const onHandlerFormStyles = (
@@ -402,10 +415,10 @@ export const FontSettingDemo = () => {
   ) => {
     if (!event) return false;
     const { name, value } = event.currentTarget;
-    setFormStyles({
-      ...formStyles,
+    setFormStyles((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   useEffect(() => {
@@ -457,10 +470,19 @@ export const FontSettingDemo = () => {
   useEffect(() => {
     injectColorVariables({
       ...formColors,
+      inactived: formColors.inactiveColor, // legacy alias
       lightness: themeLightnessPreferences as "light" | "dark",
       useSystemTheme: useThemeSystem,
     });
   }, [formColors, themeLightnessPreferences, useThemeSystem]);
+
+  const buildThemeColors = () => ({
+    ...formColors,
+    inactived: formColors.inactiveColor, // legacy alias
+    gradient,
+    lightness: themeLightnessPreferences,
+    useSystemTheme: useThemeSystem,
+  });
 
   const onDownloadTheme = () => {
     downloadThemeTxt({
@@ -469,12 +491,7 @@ export const FontSettingDemo = () => {
         fontfamily: inputFont.name,
         fontcdn: inputFont.cdn,
       },
-      colors: {
-        ...formColors,
-        gradient,
-        lightness: themeLightnessPreferences,
-        useSystemTheme: useThemeSystem,
-      },
+      colors: buildThemeColors(),
       styles: formStyles,
     });
   };
@@ -486,12 +503,7 @@ export const FontSettingDemo = () => {
         fontfamily: inputFont.name,
         fontcdn: inputFont.cdn,
       },
-      colors: {
-        ...formColors,
-        gradient,
-        lightness: themeLightnessPreferences,
-        useSystemTheme: useThemeSystem,
-      },
+      colors: buildThemeColors(),
       styles: formStyles,
     };
     const location = window.location.hostname;
@@ -526,12 +538,7 @@ export const FontSettingDemo = () => {
             fontfamily: inputFont.name,
             fontcdn: inputFont.cdn,
           },
-          colors: {
-            ...formColors,
-            gradient,
-            lightness: themeLightnessPreferences,
-            useSystemTheme: useThemeSystem,
-          },
+          colors: buildThemeColors(),
           styles: formStyles,
         })
       );
@@ -588,9 +595,19 @@ export const FontSettingDemo = () => {
         } = parsedTheme.colors;
 
         // Merge with existing colors (legacy support)
+        // Prefer inactiveColor; fall back to legacy `inactived`
+        const {
+          inactived: legacyInactived,
+          inactiveColor: importedInactive,
+          ...restColors
+        } = colors as Record<string, unknown>;
         setFormColors((prev) => ({
           ...prev,
-          ...colors,
+          ...(restColors as Partial<IColorForm>),
+          inactiveColor:
+            (typeof importedInactive === "string" && importedInactive) ||
+            (typeof legacyInactived === "string" && legacyInactived) ||
+            prev.inactiveColor,
         }));
 
         if (lightness) setThemeLightnessPreferences(lightness);
@@ -645,6 +662,7 @@ export const FontSettingDemo = () => {
     {
       buttonShowIcon: formStyles.buttonShowIcon,
       buttonSize: formStyles.buttonSize,
+      iconContainerBackground: formStyles.iconContainerBackground,
     }
   )!;
 
@@ -843,7 +861,8 @@ export const FontSettingDemo = () => {
                   marginTop: "1rem",
                 }}
               >
-                {formStylesList.map(({ key, type, options, label }) => {
+                {formStylesList.map(
+                  ({ key, type, options, label, description }) => {
                   if (type === "select" && options) {
                     return (
                       <SearchSelect
@@ -855,12 +874,10 @@ export const FontSettingDemo = () => {
                         value={formStyles[key as keyof IStylesForm] as string}
                         onChange={(selected) => {
                           const item = selected as SelectItem;
-                          onHandlerFormStyles({
-                            currentTarget: {
-                              name: key,
-                              value: item.code,
-                            },
-                          } as React.ChangeEvent<HTMLInputElement>);
+                          setFormStyles((prev) => ({
+                            ...prev,
+                            [key]: item.code,
+                          }));
                         }}
                         placeholder={key}
                         searchable={false}
@@ -869,33 +886,69 @@ export const FontSettingDemo = () => {
                   }
                   if (type === "checkbox") {
                     return (
-                      <section key={key} className="checkbox-input">
-                        <input
-                          id={key}
-                          type="checkbox"
-                          checked={Boolean(
-                            formStyles[key as keyof IStylesForm]
-                          )}
-                          onChange={(e) => {
-                            setFormStyles({
-                              ...formStyles,
-                              [key]: e.target.checked,
-                            });
-                          }}
-                        />
-                        <label htmlFor={key}>{label ?? key}</label>
+                      <section
+                        key={key}
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          gap: "0.25rem",
+                          alignSelf: "center",
+                        }}
+                      >
+                        <div className="checkbox-input">
+                          <input
+                            id={key}
+                            type="checkbox"
+                            checked={Boolean(
+                              formStyles[key as keyof IStylesForm]
+                            )}
+                            onChange={(e) => {
+                              const checked = e.target.checked;
+                              setFormStyles((prev) => ({
+                                ...prev,
+                                [key]: checked,
+                              }));
+                            }}
+                          />
+                          <label htmlFor={key}>{label ?? key}</label>
+                        </div>
+                        {description ? (
+                          <p
+                            style={{
+                              margin: 0,
+                              fontSize: "0.75rem",
+                              opacity: 0.75,
+                              lineHeight: 1.3,
+                            }}
+                          >
+                            {description}
+                          </p>
+                        ) : null}
                       </section>
                     );
                   }
                   return (
-                    <InputField
-                      key={key}
-                      type={type}
-                      label={key}
-                      name={key}
-                      value={String(formStyles[key as keyof IStylesForm])}
-                      onChange={onHandlerFormStyles}
-                    />
+                    <section key={key}>
+                      <InputField
+                        type={type}
+                        label={label ?? key}
+                        name={key}
+                        value={String(formStyles[key as keyof IStylesForm])}
+                        onChange={onHandlerFormStyles}
+                      />
+                      {description ? (
+                        <p
+                          style={{
+                            margin: "0.25rem 0 0",
+                            fontSize: "0.75rem",
+                            opacity: 0.75,
+                          }}
+                        >
+                          {description}
+                        </p>
+                      ) : null}
+                    </section>
                   );
                 })}
               </section>

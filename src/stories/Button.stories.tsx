@@ -83,3 +83,12 @@ export const Cancel: Story = {
     color: "#000",
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    children: "Disabled Button",
+    disabled: true,
+    background: "#3ee0cf",
+    color: "#fff",
+  },
+};

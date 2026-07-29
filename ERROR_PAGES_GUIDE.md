@@ -185,7 +185,7 @@ All error pages use the standard layout structure:
 ### 3. Key Components
 
 - **AuraLayout**: Provides the themed layout with gradient background
-- **ElevatedCircle**: Container for the error icon with elevation effect
+- **ElevatedCircle**: Circular icon container (`clip-path`); optional `size` (default `128`) and `shadowVariant` (`normal` | `inset` | `none`, default `normal` for legacy)
 - **PageTitle**: Displays the error title with color customization
 - **BodyCopy**: Shows the error message
 - **Button**: Action button for error recovery

@@ -59,6 +59,11 @@ export interface IViewColorConfig {
   buttonShowIcon?: boolean;
   /** Button size for this view (default: 'large', legacy). */
   buttonSize?: "small" | "medium" | "large";
+  /**
+   * Background for icon containers (not icons). Default: 'transparent' (legacy).
+   * Pass manually e.g. `background={view.iconContainerBackground}`.
+   */
+  iconContainerBackground?: string;
   themeType?: string;
   useSystemTheme?: boolean;
   viewConfig:
@@ -150,7 +155,7 @@ export const useTheme = (theme: IUseTheme) => {
    * @param theme - Color palette (legacy flat colors object)
    * @param styles - Optional styles config. When provided:
    *   - injects CSS variables (border radius, paddings, etc.)
-   *   - exposes buttonShowIcon / buttonSize on each view
+   *   - exposes buttonShowIcon / buttonSize / iconContainerBackground on each view
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const generateColorsByView = (
@@ -173,6 +178,9 @@ export const useTheme = (theme: IUseTheme) => {
       theme?.buttonShowIcon ?? styles?.buttonShowIcon ?? true;
     const buttonSize =
       theme?.buttonSize ?? styles?.buttonSize ?? "large";
+    // Global override from styles/theme; per-view mapping default is transparent (legacy)
+    const iconContainerBackgroundOverride =
+      theme?.iconContainerBackground ?? styles?.iconContainerBackground;
     
     if (theme?.lightness === "dark") {
       newTheme = {
@@ -180,6 +188,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.primaryMesh,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.whiteColor,
+          iconContainerBackground: "transparent",
           title: theme?.partnerHighlights,
           subtitile: theme?.whiteColor,
           bodyCopy: theme?.whiteColor,
@@ -199,6 +208,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.specialViewBackground ?? theme?.primaryMesh,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.whiteColor,
+          iconContainerBackground: "transparent",
           title: theme?.partnerHighlights,
           subtitile: theme?.whiteColor,
           bodyCopy: theme?.whiteColor,
@@ -218,6 +228,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.whiteColor,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.whiteColor,
+          iconContainerBackground: "transparent",
           title: theme?.primaryGradient,
           subtitile: theme?.primaryGradient,
           bodyCopy: theme?.secondaryColor,
@@ -237,6 +248,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.whiteColor,
           iconColors: [theme?.secondaryColor, theme?.secondaryColor],
           backgroundIcon: theme?.whiteColor,
+          iconContainerBackground: "transparent",
           title: theme?.primaryMesh,
           subtitile: theme?.primaryMesh,
           bodyCopy: theme?.secondaryColor,
@@ -256,6 +268,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.errorViewBackground ?? theme?.secondaryColor,
           iconColors: [theme?.secondaryColor, theme?.secondaryColor],
           backgroundIcon: theme?.whiteColor,
+          iconContainerBackground: "transparent",
           title: theme?.whiteColor,
           subtitile: theme?.whiteColor,
           bodyCopy: theme?.whiteColor,
@@ -278,6 +291,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.primaryMesh,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.secondaryColor,
+          iconContainerBackground: "transparent",
           title: theme?.secondaryColor,
           subtitile: theme?.secondaryColor,
           bodyCopy: theme?.secondaryColor,
@@ -297,6 +311,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.specialViewBackground ?? theme?.primaryMesh,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.secondaryColor,
+          iconContainerBackground: "transparent",
           title: theme?.secondaryColor,
           subtitile: theme?.secondaryColor,
           bodyCopy: theme?.secondaryColor,
@@ -316,6 +331,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.primaryMesh,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.secondaryColor,
+          iconContainerBackground: "transparent",
           title: theme?.secondaryColor,
           subtitile: theme?.secondaryColor,
           bodyCopy: theme?.secondaryColor,
@@ -335,6 +351,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.whiteColor,
           iconColors: [theme?.primaryGradient, theme?.secondaryGradient],
           backgroundIcon: theme?.whiteColor,
+          iconContainerBackground: "transparent",
           title: theme?.secondaryColor,
           subtitile: theme?.secondaryColor,
           bodyCopy: theme?.secondaryColor,
@@ -354,6 +371,7 @@ export const useTheme = (theme: IUseTheme) => {
           background: theme?.errorViewBackground ?? theme?.secondaryColor,
           iconColors: [theme?.secondaryColor, theme?.secondaryColor],
           backgroundIcon: theme?.whiteColor,
+          iconContainerBackground: "transparent",
           title: theme?.whiteColor,
           subtitile: theme?.whiteColor,
           bodyCopy: theme?.whiteColor,
@@ -372,13 +390,16 @@ export const useTheme = (theme: IUseTheme) => {
       };
     }
 
-    // Additive: expose button flags/size on every view (legacy defaults)
+    // Additive: expose button flags/size on every view; optional global iconContainerBackground override
     if (newTheme) {
       (Object.keys(newTheme) as (keyof IViewConfig)[]).forEach((viewKey) => {
         newTheme![viewKey] = {
           ...newTheme![viewKey],
           buttonShowIcon,
           buttonSize,
+          ...(iconContainerBackgroundOverride !== undefined
+            ? { iconContainerBackground: iconContainerBackgroundOverride }
+            : {}),
         };
       });
     }

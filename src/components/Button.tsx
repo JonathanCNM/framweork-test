@@ -12,6 +12,8 @@ export interface ButtonProps
   loading?: boolean;
   background?: string;
   color?: string;
+  /** Override for disabled background. Defaults to theme `--lola-color-inactived` / `inactiveColor`. */
+  inactiveColor?: string;
   showIcon?: boolean;
   icon?: React.ReactNode;
   isLeaving?: boolean;
@@ -26,6 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   background = "#000",
   color = "#fff",
+  inactiveColor,
   showIcon = false,
   icon,
   isLeaving = false,
@@ -35,12 +38,16 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const isDisabled = loading || props?.disabled;
+  // Inactive theme bg only when explicitly disabled (not while loading)
+  const isInactive = Boolean(props?.disabled) && !loading;
   const btnAlign = showIcon ? "icon" : "centered";
   const classes = [
     `lola-button`,
     `lola-button--${btnAlign}`,
     `lola-button--${variant}`,
     `lola-button--${size}`,
+    isInactive && "lola-button--inactive",
+    loading && "lola-button--loading",
     "main-button-text",
     className,
   ]
@@ -59,6 +66,9 @@ export const Button: React.FC<ButtonProps> = ({
           ...props.style,
           "--bg": background,
           "--link-bg": color,
+          ...(inactiveColor
+            ? { "--lola-button-inactive-bg": inactiveColor }
+            : {}),
         } as React.CSSProperties & { [key: string]: string }
       }
     >

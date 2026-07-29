@@ -50,7 +50,14 @@ import {
   ExchangeV2Icon,
   SupportV2Icon,
   ClosedEye,
-  OpenEye
+  OpenEye,
+  CheckCircleIcon,
+  ErrorCircleIcon,
+  WarningCircleIcon,
+  MoreCircleIcon,
+  WhatsAppStrokeIcon,
+  MailStrokeIcon,
+  LeftChevron,
 } from "../../icons";
 import "../../index.css";
 import { useGradient } from "../../store/useGradient";
@@ -256,6 +263,34 @@ const iconList = [
   {
     label: "ClosedEye",
     Icon: ClosedEye,
+  },
+  {
+    label: "CheckCircleIcon",
+    Icon: CheckCircleIcon,
+  },
+  {
+    label: "ErrorCircleIcon",
+    Icon: ErrorCircleIcon,
+  },
+  {
+    label: "WarningCircleIcon",
+    Icon: WarningCircleIcon,
+  },
+  {
+    label: "MoreCircleIcon",
+    Icon: MoreCircleIcon,
+  },
+  {
+    label: "WhatsAppStrokeIcon",
+    Icon: WhatsAppStrokeIcon,
+  },
+  {
+    label: "MailStrokeIcon",
+    Icon: MailStrokeIcon,
+  },
+  {
+    label: "LeftChevron",
+    Icon: LeftChevron,
   },
 ];
 

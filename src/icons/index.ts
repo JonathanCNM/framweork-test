@@ -49,4 +49,11 @@ export {
   SupportV2Icon,
   ClosedEye,
   OpenEye,
+  CheckCircleIcon,
+  ErrorCircleIcon,
+  WarningCircleIcon,
+  MoreCircleIcon,
+  WhatsAppStrokeIcon,
+  MailStrokeIcon,
+  LeftChevron,
 } from "./icons";

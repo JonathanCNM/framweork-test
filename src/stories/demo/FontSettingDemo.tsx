@@ -278,7 +278,7 @@ const formStylesList = [
   },
   {
     key: "buttonPadding",
-    value: "1rem",
+    value: "20px",
     type: "text",
   },
   {
@@ -323,7 +323,7 @@ const formStylesInitialState: IStylesForm = {
   activeBorderBoton: "#1DAFA1",
   tamañoBordeCard: "1px",
   tamañoBordeInput: "1px",
-  buttonPadding: "1rem",
+  buttonPadding: "20px",
   inputPadding: "0.75rem",
   cardPadding: "1.5rem",
   buttonSize: "large",

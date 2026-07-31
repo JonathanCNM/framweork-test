@@ -43,11 +43,14 @@ Esto se inyecta como:
 ### 3. Aplicación en CSS
 
 ```css
-/* Todos los botones usan la variable CSS */
-button {
-  padding: var(--lola-style-button-padding, 1rem);
+/* Lola buttons use the theme CSS variable (higher specificity than bare `button`) */
+button.lola-button,
+.lola-button {
+  padding: var(--lola-style-button-padding, 20px); /* legacy fallback */
 }
 ```
+
+Si el tema no envía `buttonPadding` ni `buttonSize`, el padding queda en **20px** (legacy).
 
 ---
 
@@ -197,15 +200,16 @@ const theme = useLolaTheme({
 ### ✅ Ahora (CSS Variables)
 
 ```css
-/* Padding controlado por variable CSS */
-button {
-  padding: var(--lola-style-button-padding, 1rem);
+/* Padding controlado por variable CSS en `.lola-button` */
+button.lola-button,
+.lola-button {
+  padding: var(--lola-style-button-padding, 20px); /* legacy fallback */
 }
 
 /* Las clases de tamaño solo controlan íconos y altura */
 .lola-button--small svg { width: 21px; height: 21px; }
 .lola-button--medium svg { width: 24px; height: 24px; }
-.lola-button--large { height: 75px; }
+.lola-button--large { min-height: 75px; }
 .lola-button--large svg { width: 28px; height: 28px; }
 ```
 

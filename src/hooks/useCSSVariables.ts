@@ -22,19 +22,24 @@ const DEFAULT_STYLES: Required<StylesConfig> = {
   buttonSize: 'medium',
   buttonShowIcon: true,
   iconContainerBackground: 'transparent',
-  buttonPadding: '1rem',
+  /** Legacy default when theme styles omit padding/size */
+  buttonPadding: '20px',
   inputPadding: '0.75rem',
   cardPadding: '1.5rem',
 };
 
 /**
- * Button size padding mapping
+ * Button size padding mapping (used only when theme sets `buttonSize`
+ * without an explicit `buttonPadding`)
  */
 const BUTTON_SIZE_PADDING: Record<'small' | 'medium' | 'large', string> = {
   small: '0.75rem',
   medium: '1rem',
   large: '1.5rem',
 };
+
+/** Legacy padding when neither `buttonPadding` nor `buttonSize` is provided */
+const LEGACY_BUTTON_PADDING = '20px';
 
 /**
  * Injects global color CSS variables into the document
@@ -111,8 +116,15 @@ export function injectStyleVariables(styles?: StylesConfig): void {
   root.style.setProperty(CSS_VARIABLES.TAMAÑO_BORDE_CARD, appliedStyles.tamañoBordeCard);
   root.style.setProperty(CSS_VARIABLES.TAMAÑO_BORDE_INPUT, appliedStyles.tamañoBordeInput);
   
-  // Button padding: use explicit buttonPadding if provided, otherwise derive from buttonSize
-  const buttonPadding = styles?.buttonPadding || BUTTON_SIZE_PADDING[appliedStyles.buttonSize];
+  // Button padding priority:
+  // 1) explicit styles.buttonPadding
+  // 2) derived from styles.buttonSize (when theme opts into size mapping)
+  // 3) legacy 20px when neither arrives (keeps old consumers unchanged)
+  const buttonPadding =
+    styles?.buttonPadding ??
+    (styles?.buttonSize
+      ? BUTTON_SIZE_PADDING[styles.buttonSize]
+      : LEGACY_BUTTON_PADDING);
   root.style.setProperty(CSS_VARIABLES.BUTTON_PADDING, buttonPadding);
   
   // Input and card padding

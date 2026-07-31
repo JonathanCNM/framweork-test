@@ -27,7 +27,7 @@ html.dark {
   --lola-style-input-border-color: #979797;
   --lola-style-tamaño-borde-card: 1px;
   --lola-style-tamaño-borde-input: 1px;
-  --lola-style-button-padding: 1rem;
+  --lola-style-button-padding: 20px;
   --lola-style-input-padding: 0.75rem;
   --lola-style-card-padding: 1.5rem;
   --lola-color-card-panel-background: transparent;
@@ -87,6 +87,7 @@ body {
 
 /* Button Styles */
 
+/* Legacy bare `button` rule kept for non-Lola buttons that rely on library CSS */
 button {
   position: relative;
   border-radius: var(--lola-style-button-border-radius, 20px);
@@ -94,14 +95,37 @@ button {
   cursor: pointer;
   display: flex;
   gap: 8px;
-  padding: var(--lola-style-button-padding, 1rem);
+  padding: var(--lola-style-button-padding, 20px);
   background-color: #1a1a1a;
-  cursor: pointer;
   transition: var(--lola-transition);
   align-items: center;
   justify-content: center;
   width: 100%;
   font-family: inherit;
+  box-sizing: border-box;
+}
+
+/*
+ * Theme padding MUST live on `.lola-button` (not only bare `button`).
+ * Consumer resets / `* { padding: 0 }` often override the element selector;
+ * with `showIcon` + space-between that looks like zero horizontal padding.
+ * Fallback 20px = legacy when theme padding is unset.
+ */
+button.lola-button,
+.lola-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--lola-transition);
+  border-radius: var(--lola-style-button-border-radius, 20px);
+  padding: var(--lola-style-button-padding, 20px);
+  box-shadow: var(--box-shadows);
 }
 
 .lola-button p {
@@ -115,14 +139,11 @@ button {
 }
 
 .lola-button--icon {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
+.lola-button--centered,
 .lola-button--centerd {
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -1550,10 +1571,6 @@ main.page {
       display: none;
     }
   }
-}
-
-.lola-button {
-  box-shadow: var(--box-shadows);
 }
 
 /* ElevatedCircle manages its own inset shadows via --shadow-* modifiers.

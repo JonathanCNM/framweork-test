@@ -5,19 +5,12 @@ import { useTheme } from "./hooks";
 import { injectStyleVariables } from "./hooks/useCSSVariables";
 import { CircularProgress, MotionWrapper, Page } from "./components";
 import { HomePage } from "./demo/pages/HomePage";
-import { StepPage } from "./demo/pages/StepPage";
 import { IproovCamera } from "./demo/pages/IproovCamera";
-import { DropzoneDesktop } from "./demo/pages/DropzoneDesktop";
 import { DropzoneMobile } from "./demo/pages/DropzoneMobile";
 import { SuccessId } from "./demo/pages/SuccessId";
-import { IproovReadySlot } from "./demo/pages/IproovReadySlot";
 import { IproovError } from "./demo/pages/IproovError";
 import { IproovSuccessSlot } from "./demo/pages/IproovSuccessSlot";
-import { GenericErrorPage } from "./demo/pages/GenericErrorPage";
-import { NotFoundErrorPage } from "./demo/pages/NotFoundErrorPage";
-import { NetworkErrorPage } from "./demo/pages/NetworkErrorPage";
 import { AddressPage } from "./demo/pages/AddressPage";
-import { LastStepsPage } from "./demo/pages/LastStepsPage";
 import { CardPage } from "./demo/pages/CardPage";
 import { ValidatingPage } from "./demo/pages/ValidatingPage";
 import AddedCardPage from "./demo/pages/AddedCardPage";
@@ -66,8 +59,6 @@ const App = () => {
   const newTheme = generateColorsByView(theme?.colors, theme?.styles);
   if (!newTheme) return <CircularProgress />;
 
-  const isLightTheme = themeFormatted.lightness === "light";
-
   return (
     <Page
       font={{
@@ -81,15 +72,6 @@ const App = () => {
             <HomePage theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <StepPage theme={newTheme} isLightTheme={isLightTheme} />
-          </section>
-          <section className="demo-slide">
-            <IproovCamera theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <DropzoneDesktop theme={newTheme} />
-          </section>
-          <section className="demo-slide">
             <DropzoneMobile theme={newTheme} />
           </section>
           <section className="demo-slide">
@@ -99,31 +81,13 @@ const App = () => {
             <SuccessId theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <IproovReadySlot theme={newTheme} isLightTheme={isLightTheme} />
-          </section>
-          <section className="demo-slide">
             <IproovCamera theme={newTheme} />
           </section>
           <section className="demo-slide">
             <IproovError theme={newTheme} />
           </section>
           <section className="demo-slide">
-            <GenericErrorPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <NotFoundErrorPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <NetworkErrorPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
             <IproovSuccessSlot theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <AddressPage theme={newTheme} isHomeAddress />
-          </section>
-          <section className="demo-slide">
-            <LastStepsPage theme={newTheme} />
           </section>
           <section className="demo-slide">
             <CardPage theme={newTheme} />

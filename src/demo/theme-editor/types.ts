@@ -17,6 +17,19 @@ export interface IFormFont {
   [key: string]: FontInput;
 }
 
+export interface ExportedFont {
+  fontfamily: string;
+  fontcdn: string;
+  h1: FontInput;
+  highlight: FontInput;
+  h2: FontInput;
+  bodycopy: FontInput;
+  secondaryCta: FontInput;
+  footerText: FontInput;
+  mainButtonText: FontInput;
+  step: FontInput;
+}
+
 export interface IColorForm {
   primaryGradient: string;
   secondaryGradient: string;
@@ -96,10 +109,7 @@ export interface ImportedTheme {
 }
 
 export interface ExportedTheme {
-  font: IFormFont & {
-    fontfamily: string;
-    fontcdn: string;
-  };
+  font: ExportedFont;
   colors: Omit<
     IColorForm,
     | "specialViewPrimaryGradient"

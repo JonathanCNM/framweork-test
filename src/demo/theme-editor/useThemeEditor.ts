@@ -189,7 +189,7 @@ export const useThemeEditor = () => {
   const importThemeFromUnknown = useCallback(
     (value: unknown) => {
       const result = validateImportedTheme(value);
-      if (!result.ok) {
+      if (result.ok === false) {
         showFeedback({ type: "error", message: result.error });
         return result;
       }
@@ -202,7 +202,7 @@ export const useThemeEditor = () => {
   const importThemeFromJson = useCallback(
     (raw: string) => {
       const result = parseThemeJson(raw);
-      if (!result.ok) {
+      if (result.ok === false) {
         showFeedback({ type: "error", message: result.error });
         return result;
       }

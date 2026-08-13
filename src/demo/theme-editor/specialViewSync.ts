@@ -62,12 +62,12 @@ export const EDITOR_ONLY_COLOR_KEYS = [
 
 export type EditorOnlyColorKey = (typeof EDITOR_ONLY_COLOR_KEYS)[number];
 
-export const omitEditorOnlyColorFields = <T extends Record<string, unknown>>(
+export const omitEditorOnlyColorFields = <T extends object>(
   colors: T
 ): Omit<T, EditorOnlyColorKey> => {
-  const next = { ...colors };
+  const next = { ...colors } as T & Record<string, unknown>;
   for (const key of EDITOR_ONLY_COLOR_KEYS) {
     delete next[key];
   }
-  return next;
+  return next as Omit<T, EditorOnlyColorKey>;
 };

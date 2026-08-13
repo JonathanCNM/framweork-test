@@ -235,6 +235,14 @@ button:focus-visible {
   padding-top: 12px;
 }
 
+.theme-editor-form--wide .theme-sidebar__fields {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.theme-editor-form--wide .theme-sidebar__section {
+  margin-bottom: 12px;
+}
+
 .app-playground {
   --theme-sidebar-width: 400px;
   display: flex;

@@ -253,5 +253,6 @@ export const defaultThemeEditorState: ThemeEditorState = {
 
 export const STORYBOOK_ORIGINS = [
   "http://localhost:6006",
+  "http://localhost:5173",
   "https://lola-framweork-ui.vercel.app",
 ] as const;

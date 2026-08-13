@@ -31,7 +31,17 @@ export interface IColorForm {
   secundaryGradientPoint: string;
   primaryMesh: string;
   errorViewBackground?: string;
+  errorViewPrimaryGradient?: string;
+  errorViewSecondaryGradient?: string;
+  errorViewGradientDeg?: string;
+  errorViewPrimaryGradientPoint?: string;
+  errorViewSecundaryGradientPoint?: string;
   specialViewBackground?: string;
+  specialViewPrimaryGradient?: string;
+  specialViewSecondaryGradient?: string;
+  specialViewGradientDeg?: string;
+  specialViewPrimaryGradientPoint?: string;
+  specialViewSecundaryGradientPoint?: string;
   cardPanelBackground?: string;
   cardBackground?: string;
   cardBackgroundSecundary?: string;
@@ -75,6 +85,8 @@ export interface ThemeEditorState {
   formStyles: IStylesForm;
   lightness: "light" | "dark";
   useSystemTheme: boolean;
+  /** Special view follows primaryMesh until the user edits special view fields. */
+  specialViewLinked: boolean;
 }
 
 export interface ImportedTheme {
@@ -88,7 +100,19 @@ export interface ExportedTheme {
     fontfamily: string;
     fontcdn: string;
   };
-  colors: IColorForm & {
+  colors: Omit<
+    IColorForm,
+    | "specialViewPrimaryGradient"
+    | "specialViewSecondaryGradient"
+    | "specialViewGradientDeg"
+    | "specialViewPrimaryGradientPoint"
+    | "specialViewSecundaryGradientPoint"
+    | "errorViewPrimaryGradient"
+    | "errorViewSecondaryGradient"
+    | "errorViewGradientDeg"
+    | "errorViewPrimaryGradientPoint"
+    | "errorViewSecundaryGradientPoint"
+  > & {
     inactived: string;
     gradient: string;
     lightness: "light" | "dark";

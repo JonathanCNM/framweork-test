@@ -122,16 +122,6 @@ export const formColorList: ThemeFieldConfig[] = [
   { key: "inactiveColor", value: "#979797", type: "color" },
   { key: "errorColor", value: "#E81C1C", type: "color" },
   { key: "partnerHighlights", value: "#AAFF74", type: "color" },
-  {
-    key: "errorViewBackground",
-    value: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
-    type: "text",
-  },
-  {
-    key: "specialViewBackground",
-    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
-    type: "text",
-  },
   { key: "cardPanelBackground", value: "transparent", type: "text" },
   { key: "cardBackground", value: "#eeeef1", type: "text" },
   { key: "cardBackgroundSecundary", value: "#17171c", type: "text" },
@@ -155,13 +145,49 @@ export const formColorInitialState: IColorForm = {
   primaryGradientPoint: "23.26%",
   secundaryGradientPoint: "111.43%",
   primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
-  errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+  specialViewPrimaryGradient: "#4BA84B",
+  specialViewSecondaryGradient: "#008433",
+  specialViewGradientDeg: "116.74deg",
+  specialViewPrimaryGradientPoint: "23.26%",
+  specialViewSecundaryGradientPoint: "111.43%",
   specialViewBackground:
     "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  errorViewPrimaryGradient: "#1a1a1a",
+  errorViewSecondaryGradient: "#2d2d2d",
+  errorViewGradientDeg: "135deg",
+  errorViewPrimaryGradientPoint: "0%",
+  errorViewSecundaryGradientPoint: "100%",
+  errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
   cardPanelBackground: "transparent",
   cardBackground: "#eeeef1",
   cardBackgroundSecundary: "#17171c",
 };
+
+export const specialViewGradientList: ThemeFieldConfig[] = [
+  { key: "specialViewPrimaryGradient", value: "#4BA84B", type: "color" },
+  { key: "specialViewPrimaryGradientPoint", value: "23.26%", type: "text" },
+  { key: "specialViewSecondaryGradient", value: "#008433", type: "color" },
+  { key: "specialViewSecundaryGradientPoint", value: "111.43%", type: "text" },
+  { key: "specialViewGradientDeg", value: "116.74deg", type: "text" },
+  {
+    key: "specialViewBackground",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+  },
+];
+
+export const errorViewGradientList: ThemeFieldConfig[] = [
+  { key: "errorViewPrimaryGradient", value: "#1a1a1a", type: "color" },
+  { key: "errorViewPrimaryGradientPoint", value: "0%", type: "text" },
+  { key: "errorViewSecondaryGradient", value: "#2d2d2d", type: "color" },
+  { key: "errorViewSecundaryGradientPoint", value: "100%", type: "text" },
+  { key: "errorViewGradientDeg", value: "135deg", type: "text" },
+  {
+    key: "errorViewBackground",
+    value: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+    type: "text",
+  },
+];
 
 export const formStylesList: ThemeFieldConfig[] = [
   { key: "cardBorderRadius", value: "16px", type: "text" },
@@ -222,6 +248,7 @@ export const defaultThemeEditorState: ThemeEditorState = {
   formStyles: formStylesInitialState,
   lightness: "dark",
   useSystemTheme: false,
+  specialViewLinked: true,
 };
 
 export const STORYBOOK_ORIGINS = [

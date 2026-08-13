@@ -8,6 +8,12 @@ import { generateGradient } from "../../utils/utils";
 import { registeredFonts } from "../../utils/constants";
 import { applyImportedTheme, getAppliedSections } from "./applyImportedTheme";
 import { defaultThemeEditorState } from "./constants";
+import {
+  copyPrimaryToSpecialView,
+  isPrimaryGradientField,
+  isSpecialViewField,
+  omitEditorOnlyColorFields,
+} from "./specialViewSync";
 import type {
   ButtonSizeOption,
   ExportedTheme,
@@ -38,7 +44,7 @@ const buildExportedTheme = (state: ThemeEditorState): ExportedTheme => ({
     fontcdn: state.inputFont.cdn,
   },
   colors: {
-    ...state.formColors,
+    ...omitEditorOnlyColorFields(state.formColors),
     inactived: state.formColors.inactiveColor,
     gradient: state.formColors.primaryMesh,
     lightness: state.lightness,
@@ -65,14 +71,26 @@ export const useThemeEditor = () => {
       state.formColors.primaryGradientPoint,
       state.formColors.secundaryGradientPoint
     );
-    setState((prev) =>
-      prev.formColors.primaryMesh === nextMesh
-        ? prev
-        : {
-            ...prev,
-            formColors: { ...prev.formColors, primaryMesh: nextMesh },
-          }
-    );
+    setState((prev) => {
+      const withMesh = { ...prev.formColors, primaryMesh: nextMesh };
+      const formColors = prev.specialViewLinked
+        ? copyPrimaryToSpecialView(withMesh)
+        : withMesh;
+      const unchanged =
+        prev.formColors.primaryMesh === formColors.primaryMesh &&
+        prev.formColors.specialViewBackground === formColors.specialViewBackground &&
+        prev.formColors.specialViewPrimaryGradient ===
+          formColors.specialViewPrimaryGradient &&
+        prev.formColors.specialViewSecondaryGradient ===
+          formColors.specialViewSecondaryGradient &&
+        prev.formColors.specialViewGradientDeg ===
+          formColors.specialViewGradientDeg &&
+        prev.formColors.specialViewPrimaryGradientPoint ===
+          formColors.specialViewPrimaryGradientPoint &&
+        prev.formColors.specialViewSecundaryGradientPoint ===
+          formColors.specialViewSecundaryGradientPoint;
+      return unchanged ? prev : { ...prev, formColors };
+    });
     // primaryMesh is omitted on purpose so a manual edit is not overwritten
     // until a gradient source field changes.
   }, [
@@ -81,6 +99,58 @@ export const useThemeEditor = () => {
     state.formColors.gradientDeg,
     state.formColors.primaryGradientPoint,
     state.formColors.secundaryGradientPoint,
+  ]);
+
+  useEffect(() => {
+    const nextMesh = generateGradient(
+      [
+        state.formColors.specialViewPrimaryGradient ?? "#4BA84B",
+        state.formColors.specialViewSecondaryGradient ?? "#008433",
+      ],
+      state.formColors.specialViewGradientDeg ?? "116.74deg",
+      state.formColors.specialViewPrimaryGradientPoint ?? "23.26%",
+      state.formColors.specialViewSecundaryGradientPoint ?? "111.43%"
+    );
+    setState((prev) =>
+      prev.formColors.specialViewBackground === nextMesh
+        ? prev
+        : {
+            ...prev,
+            formColors: { ...prev.formColors, specialViewBackground: nextMesh },
+          }
+    );
+  }, [
+    state.formColors.specialViewPrimaryGradient,
+    state.formColors.specialViewSecondaryGradient,
+    state.formColors.specialViewGradientDeg,
+    state.formColors.specialViewPrimaryGradientPoint,
+    state.formColors.specialViewSecundaryGradientPoint,
+  ]);
+
+  useEffect(() => {
+    const nextMesh = generateGradient(
+      [
+        state.formColors.errorViewPrimaryGradient ?? "#1a1a1a",
+        state.formColors.errorViewSecondaryGradient ?? "#2d2d2d",
+      ],
+      state.formColors.errorViewGradientDeg ?? "135deg",
+      state.formColors.errorViewPrimaryGradientPoint ?? "0%",
+      state.formColors.errorViewSecundaryGradientPoint ?? "100%"
+    );
+    setState((prev) =>
+      prev.formColors.errorViewBackground === nextMesh
+        ? prev
+        : {
+            ...prev,
+            formColors: { ...prev.formColors, errorViewBackground: nextMesh },
+          }
+    );
+  }, [
+    state.formColors.errorViewPrimaryGradient,
+    state.formColors.errorViewSecondaryGradient,
+    state.formColors.errorViewGradientDeg,
+    state.formColors.errorViewPrimaryGradientPoint,
+    state.formColors.errorViewSecundaryGradientPoint,
   ]);
 
   useEffect(() => {
@@ -183,10 +253,24 @@ export const useThemeEditor = () => {
   const onChangeColorField = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.currentTarget;
-      setState((prev) => ({
-        ...prev,
-        formColors: { ...prev.formColors, [name]: value },
-      }));
+      setState((prev) => {
+        if (isSpecialViewField(name)) {
+          return {
+            ...prev,
+            specialViewLinked: false,
+            formColors: { ...prev.formColors, [name]: value },
+          };
+        }
+
+        const formColors = { ...prev.formColors, [name]: value };
+        return {
+          ...prev,
+          formColors:
+            prev.specialViewLinked && isPrimaryGradientField(name)
+              ? copyPrimaryToSpecialView(formColors)
+              : formColors,
+        };
+      });
     },
     []
   );

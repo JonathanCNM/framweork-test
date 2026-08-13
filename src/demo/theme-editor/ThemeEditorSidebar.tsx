@@ -3,11 +3,18 @@ import { registeredFonts } from "../../utils/constants";
 import {
   FONT_INPUT_KEYS,
   FONT_STYLE_KEYS,
+  errorViewGradientList,
   formColorList,
   formFontInitialState,
   formStylesList,
+  specialViewGradientList,
 } from "./constants";
-import type { ButtonSizeOption, IColorForm, IStylesForm } from "./types";
+import type {
+  ButtonSizeOption,
+  IColorForm,
+  IStylesForm,
+  ThemeFieldConfig,
+} from "./types";
 import type { UseThemeEditorReturn } from "./useThemeEditor";
 
 interface ThemeEditorSidebarProps {
@@ -15,6 +22,46 @@ interface ThemeEditorSidebarProps {
 }
 
 const isHexColor = (value: string) => /^#[0-9A-Fa-f]{6}$/i.test(value);
+
+const ColorFields = ({
+  fields,
+  values,
+  onChange,
+}: {
+  fields: ThemeFieldConfig[];
+  values: IColorForm;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) => (
+  <div className="theme-sidebar__fields">
+    {fields.map(({ key, type }) => {
+      const value = String(values[key as keyof IColorForm] ?? "");
+      return (
+        <label
+          key={key}
+          className={
+            key.endsWith("Background") || key === "primaryMesh"
+              ? "theme-sidebar__field theme-sidebar__field--wide"
+              : "theme-sidebar__field"
+          }
+        >
+          <span>{key}</span>
+          <span className="theme-sidebar__control">
+            {type === "color" && isHexColor(value) ? (
+              <input
+                name={key}
+                type="color"
+                value={value}
+                onChange={onChange}
+                aria-label={`${key} color`}
+              />
+            ) : null}
+            <input name={key} type="text" value={value} onChange={onChange} />
+          </span>
+        </label>
+      );
+    })}
+  </div>
+);
 
 export const ThemeEditorSidebar = ({ editor }: ThemeEditorSidebarProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -90,32 +137,12 @@ export const ThemeEditorSidebar = ({ editor }: ThemeEditorSidebarProps) => {
 
         <details className="theme-sidebar__section" open>
           <summary>Colores</summary>
+          <ColorFields
+            fields={formColorList}
+            values={state.formColors}
+            onChange={editor.onChangeColorField}
+          />
           <div className="theme-sidebar__fields">
-            {formColorList.map(({ key, type }) => {
-              const value = String(state.formColors[key as keyof IColorForm] ?? "");
-              return (
-                <label key={key} className="theme-sidebar__field">
-                  <span>{key}</span>
-                  <span className="theme-sidebar__control">
-                    {type === "color" && isHexColor(value) ? (
-                      <input
-                        name={key}
-                        type="color"
-                        value={value}
-                        onChange={editor.onChangeColorField}
-                        aria-label={`${key} color`}
-                      />
-                    ) : null}
-                    <input
-                      name={key}
-                      type="text"
-                      value={value}
-                      onChange={editor.onChangeColorField}
-                    />
-                  </span>
-                </label>
-              );
-            })}
             <label className="theme-sidebar__field">
               <span>lightness</span>
               <select
@@ -139,6 +166,39 @@ export const ThemeEditorSidebar = ({ editor }: ThemeEditorSidebarProps) => {
               <span>Usar tema del sistema</span>
             </label>
           </div>
+        </details>
+
+        <details className="theme-sidebar__section" open>
+          <summary>Special view</summary>
+          <p className="theme-sidebar__hint theme-sidebar__section-hint">
+            Sigue al primaryMesh hasta que lo edites. Después queda
+            independiente y no afecta el gradiente principal.
+          </p>
+          <div
+            className="theme-sidebar__gradient-preview"
+            style={{ background: state.formColors.specialViewBackground }}
+          />
+          <ColorFields
+            fields={specialViewGradientList}
+            values={state.formColors}
+            onChange={editor.onChangeColorField}
+          />
+        </details>
+
+        <details className="theme-sidebar__section" open>
+          <summary>Error view</summary>
+          <p className="theme-sidebar__hint theme-sidebar__section-hint">
+            Gradiente actual de error. Independiente del resto de colores.
+          </p>
+          <div
+            className="theme-sidebar__gradient-preview"
+            style={{ background: state.formColors.errorViewBackground }}
+          />
+          <ColorFields
+            fields={errorViewGradientList}
+            values={state.formColors}
+            onChange={editor.onChangeColorField}
+          />
         </details>
 
         <details className="theme-sidebar__section">

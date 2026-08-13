@@ -1,4 +1,10 @@
 import { FONT_STYLE_KEYS } from "./constants";
+import { parseLinearGradient } from "./parseGradient";
+import {
+  copyPrimaryToSpecialView,
+  importedThemeHasSpecialView,
+  isSpecialViewInSyncWithPrimary,
+} from "./specialViewSync";
 import type {
   ButtonSizeOption,
   FontInput,
@@ -8,6 +14,55 @@ import type {
   ImportedTheme,
   ThemeEditorState,
 } from "./types";
+
+const SPECIAL_VIEW_BUILDER_KEYS = [
+  "specialViewPrimaryGradient",
+  "specialViewSecondaryGradient",
+  "specialViewGradientDeg",
+  "specialViewPrimaryGradientPoint",
+  "specialViewSecundaryGradientPoint",
+] as const;
+
+const ERROR_VIEW_BUILDER_KEYS = [
+  "errorViewPrimaryGradient",
+  "errorViewSecondaryGradient",
+  "errorViewGradientDeg",
+  "errorViewPrimaryGradientPoint",
+  "errorViewSecundaryGradientPoint",
+] as const;
+
+const hasAnyStringKey = (
+  source: Record<string, unknown>,
+  keys: readonly string[]
+) => keys.some((key) => typeof source[key] === "string");
+
+const hydrateViewGradient = (
+  colors: IColorForm,
+  imported: Record<string, unknown>,
+  backgroundKey: "specialViewBackground" | "errorViewBackground",
+  builderKeys: readonly string[],
+  mapped: {
+    primary: keyof IColorForm;
+    secondary: keyof IColorForm;
+    deg: keyof IColorForm;
+    primaryPoint: keyof IColorForm;
+    secondaryPoint: keyof IColorForm;
+  }
+): IColorForm => {
+  if (hasAnyStringKey(imported, builderKeys)) return colors;
+  const background = imported[backgroundKey];
+  if (typeof background !== "string") return colors;
+  const parsed = parseLinearGradient(background);
+  if (!parsed) return colors;
+  return {
+    ...colors,
+    [mapped.primary]: parsed.primary,
+    [mapped.secondary]: parsed.secondary,
+    [mapped.deg]: parsed.deg,
+    [mapped.primaryPoint]: parsed.primaryPoint,
+    [mapped.secondaryPoint]: parsed.secondaryPoint,
+  };
+};
 
 const toFontInput = (value: Record<string, unknown>): FontInput => ({
   fontWeight: String(value.fontWeight ?? ""),
@@ -60,11 +115,31 @@ const applyColors = (
     (typeof legacyInactived === "string" && legacyInactived) ||
     current.inactiveColor;
 
-  return {
+  const merged: IColorForm = {
     ...current,
     ...colorUpdates,
     inactiveColor,
   };
+
+  return hydrateViewGradient(
+    hydrateViewGradient(merged, imported, "specialViewBackground", SPECIAL_VIEW_BUILDER_KEYS, {
+      primary: "specialViewPrimaryGradient",
+      secondary: "specialViewSecondaryGradient",
+      deg: "specialViewGradientDeg",
+      primaryPoint: "specialViewPrimaryGradientPoint",
+      secondaryPoint: "specialViewSecundaryGradientPoint",
+    }),
+    imported,
+    "errorViewBackground",
+    ERROR_VIEW_BUILDER_KEYS,
+    {
+      primary: "errorViewPrimaryGradient",
+      secondary: "errorViewSecondaryGradient",
+      deg: "errorViewGradientDeg",
+      primaryPoint: "errorViewPrimaryGradientPoint",
+      secondaryPoint: "errorViewSecundaryGradientPoint",
+    }
+  );
 };
 
 const applyStyles = (
@@ -127,6 +202,12 @@ export const applyImportedTheme = (
     }
     if (typeof imported.colors.useSystemTheme === "boolean") {
       next.useSystemTheme = imported.colors.useSystemTheme;
+    }
+    if (importedThemeHasSpecialView(imported.colors)) {
+      next.specialViewLinked = isSpecialViewInSyncWithPrimary(next.formColors);
+    } else {
+      next.formColors = copyPrimaryToSpecialView(next.formColors);
+      next.specialViewLinked = true;
     }
   }
 

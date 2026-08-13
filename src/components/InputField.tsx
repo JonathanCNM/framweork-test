@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { LabelInput } from "./LabelInput";
+import { getInputThemeBorder } from "../utils/inputThemeBorder";
 import { getSplittedColors } from "../utils/utils";
 import { GradientText } from "./GradientText";
 
@@ -64,13 +65,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 
   const styles = {
     ...(borderRadius !== "10" && { borderRadius: `${borderRadius}px` }), // Solo aplica si se especifica un valor diferente al default
-    "--bg": !isValid
-      ? errorColor
-      : focused
-      ? activeColor
-      : showLabel
-      ? color
-      : inactiveColor,
+    "--bg": getInputThemeBorder(focused, isValid, errorColor),
     "--input-color": activeColor,
     "--input-placeholder-color": inactiveColor,
   };

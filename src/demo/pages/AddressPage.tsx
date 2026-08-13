@@ -16,7 +16,7 @@ export const AddressPage = ({
   theme: IViewConfig;
   isHomeAddress?: boolean;
 }) => {
-  const { title, bodyCopy, iconColors, backgroundBtn, textColorBtn } =
+  const { title, bodyCopy, iconColors, backgroundBtn, textColorBtn, buttonShowIcon, buttonSize } =
     theme.whiteView;
 
   const addressTitle = isHomeAddress ? "Home address" : "Billing address";
@@ -63,9 +63,9 @@ export const AddressPage = ({
       </Layout.Content>
       <Layout.Footer>
         <Button
-          showIcon
+          showIcon={buttonShowIcon}
           type="submit"
-          size="large"
+          size={buttonSize}
           color={textColorBtn}
           background={backgroundBtn}
         >

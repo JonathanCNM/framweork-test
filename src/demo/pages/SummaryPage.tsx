@@ -4,7 +4,7 @@ import type { IViewConfig } from "../../hooks/useTheme";
 import { SummaryInfo } from "../components/SummaryInfo";
 
 export const SummaryPage = ({ theme }: { theme: IViewConfig }) => {
-  const { title, backgroundBtn, textColorBtn } = theme.whiteView;
+  const { title, backgroundBtn, textColorBtn, buttonShowIcon, buttonSize } = theme.whiteView;
 
   return (
     <AuraLayout colorConfig={theme.whiteView}>
@@ -24,9 +24,9 @@ export const SummaryPage = ({ theme }: { theme: IViewConfig }) => {
             Cancel
           </Button>
           <Button
-            showIcon
+            showIcon={buttonShowIcon}
             type="submit"
-            size="large"
+            size={buttonSize}
             background={backgroundBtn}
             color={textColorBtn}
           >

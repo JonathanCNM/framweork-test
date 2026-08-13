@@ -1,8 +1,6 @@
 import "./styles/index.css";
 import "./index.css";
-import { useEffect, useState } from "react";
-import { useTheme } from "./hooks";
-import { injectStyleVariables } from "./hooks/useCSSVariables";
+import { useEffect } from "react";
 import { CircularProgress, MotionWrapper, Page } from "./components";
 import { HomePage } from "./demo/pages/HomePage";
 import { IproovCamera } from "./demo/pages/IproovCamera";
@@ -16,103 +14,85 @@ import { ValidatingPage } from "./demo/pages/ValidatingPage";
 import AddedCardPage from "./demo/pages/AddedCardPage";
 import { SummaryPage } from "./demo/pages/SummaryPage";
 import { SendingMoneyPage } from "./demo/pages/SendingMoneyPage";
+import {
+  STORYBOOK_ORIGINS,
+  ThemeEditorSidebar,
+  useThemeEditor,
+} from "./demo/theme-editor";
 
 const App = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [theme, setTheme] = useState<Record<string, any> | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const themeFormatted = {
-    ...theme?.font,
-    ...theme?.colors,
-  };
-  const { generateColorsByView } = useTheme(themeFormatted || {});
+  const editor = useThemeEditor();
+  const { generatedViews, state, importThemeFromUnknown } = editor;
 
   useEffect(() => {
     const handler = (event: MessageEvent) => {
-      if (
-        ![
-          "http://localhost:6006",
-          "https://lola-framweork-ui.vercel.app",
-        ].includes(event.origin)
-      )
+      if (!(STORYBOOK_ORIGINS as readonly string[]).includes(event.origin)) {
         return;
+      }
       if (event.data?.type === "storybook-config") {
-        setTheme(event.data.payload);
-        setIsLoading(false);
+        importThemeFromUnknown(event.data.payload);
       }
     };
     window.addEventListener("message", handler);
     return () => window.removeEventListener("message", handler);
-  }, []);
+  }, [importThemeFromUnknown]);
 
-  // Inject style CSS variables when theme changes
-  useEffect(() => {
-    if (theme?.styles) {
-      injectStyleVariables(theme.styles);
-    } else {
-      injectStyleVariables(); // Use defaults
-    }
-  }, [theme]);
-
-  if (isLoading) return <CircularProgress />;
-
-  const newTheme = generateColorsByView(theme?.colors, theme?.styles);
-  if (!newTheme) return <CircularProgress />;
+  if (!generatedViews) return <CircularProgress />;
 
   return (
-    <Page
-      font={{
-        name: themeFormatted?.fontfamily ?? "",
-        cdn: themeFormatted?.fontcdn ?? "",
-      }}
-    >
-      <MotionWrapper>
-        <section className="demo-sliders">
-          <section className="demo-slide">
-            <HomePage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <DropzoneMobile theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <DropzoneMobile theme={newTheme} isLoading />
-          </section>
-          <section className="demo-slide">
-            <SuccessId theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <IproovCamera theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <IproovError theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <IproovSuccessSlot theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <CardPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <AddressPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <ValidatingPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <AddedCardPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <SummaryPage theme={newTheme} />
-          </section>
-          <section className="demo-slide">
-            <SendingMoneyPage theme={newTheme} isLoading />
-          </section>
-          <section className="demo-slide">
-            <SendingMoneyPage theme={newTheme} />
-          </section>
-        </section>
-      </MotionWrapper>
-    </Page>
+    <div className="app-playground">
+      <div className="app-playground__preview">
+        <Page font={state.inputFont}>
+          <MotionWrapper className="app-playground__motion">
+            <section className="demo-sliders">
+              <section className="demo-slide">
+                <HomePage theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <DropzoneMobile theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <DropzoneMobile theme={generatedViews} isLoading />
+              </section>
+              <section className="demo-slide">
+                <SuccessId theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <IproovCamera theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <IproovError theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <IproovSuccessSlot theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <CardPage theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <AddressPage theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <ValidatingPage theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <AddedCardPage theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <SummaryPage theme={generatedViews} />
+              </section>
+              <section className="demo-slide">
+                <SendingMoneyPage theme={generatedViews} isLoading />
+              </section>
+              <section className="demo-slide">
+                <SendingMoneyPage theme={generatedViews} />
+              </section>
+            </section>
+          </MotionWrapper>
+        </Page>
+      </div>
+      <ThemeEditorSidebar editor={editor} />
+    </div>
   );
 };
 

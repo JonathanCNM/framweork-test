@@ -1,0 +1,230 @@
+import { defaultFont } from "../../utils/constants";
+import type {
+  IColorForm,
+  IFormFont,
+  IStylesForm,
+  ThemeEditorState,
+  ThemeFieldConfig,
+} from "./types";
+
+export const FONT_STYLE_KEYS = [
+  "h1",
+  "highlight",
+  "h2",
+  "bodycopy",
+  "secondaryCta",
+  "footerText",
+  "mainButtonText",
+  "step",
+] as const;
+
+export const FONT_INPUT_KEYS = [
+  "fontWeight",
+  "min",
+  "max",
+  "lineHeight",
+] as const;
+
+export const COLOR_STRING_KEYS = [
+  "primaryGradient",
+  "secondaryGradient",
+  "secondaryColor",
+  "whiteColor",
+  "inactiveColor",
+  "inactived",
+  "errorColor",
+  "partnerHighlights",
+  "gradientDeg",
+  "primaryGradientPoint",
+  "secundaryGradientPoint",
+  "primaryMesh",
+  "gradient",
+  "errorViewBackground",
+  "specialViewBackground",
+  "cardPanelBackground",
+  "cardBackground",
+  "cardBackgroundSecundary",
+] as const;
+
+export const STYLE_STRING_KEYS = [
+  "cardBorderRadius",
+  "buttonBorderRadius",
+  "inputBorderRadius",
+  "cardBorderColor",
+  "inputBorderColor",
+  "activeBorderBoton",
+  "tamañoBordeCard",
+  "tamañoBordeInput",
+  "buttonPadding",
+  "inputPadding",
+  "cardPadding",
+  "iconContainerBackground",
+] as const;
+
+export const formFontInitialState: IFormFont = {
+  h1: {
+    fontWeight: "400",
+    min: "1.75rem",
+    max: "2rem",
+    lineHeight: "1",
+  },
+  highlight: {
+    fontWeight: "700",
+    min: "1.75rem",
+    max: "2rem",
+    lineHeight: "0.95",
+  },
+  h2: {
+    fontWeight: "600",
+    min: "1.25rem",
+    max: "1.5rem",
+    lineHeight: "1",
+  },
+  bodycopy: {
+    fontWeight: "500",
+    min: "1rem",
+    max: "1.25rem",
+    lineHeight: "1.25rem",
+  },
+  secondaryCta: {
+    fontWeight: "500",
+    min: "0.74rem",
+    max: "1rem",
+    lineHeight: "1",
+  },
+  footerText: {
+    fontWeight: "500",
+    min: "0.85rem",
+    max: "0.85rem",
+    lineHeight: "1",
+  },
+  mainButtonText: {
+    fontWeight: "600",
+    min: "1.15rem",
+    max: "1.25rem",
+    lineHeight: "2rem",
+  },
+  step: {
+    fontWeight: "600",
+    min: "0.5rem",
+    max: "0.875rem",
+    lineHeight: "1",
+  },
+};
+
+export const formColorList: ThemeFieldConfig[] = [
+  { key: "primaryGradient", value: "#4BA84B", type: "color" },
+  { key: "primaryGradientPoint", value: "23.26%", type: "text" },
+  { key: "secondaryGradient", value: "#008433", type: "color" },
+  { key: "secundaryGradientPoint", value: "111.43%", type: "text" },
+  { key: "secondaryColor", value: "#252525", type: "color" },
+  { key: "whiteColor", value: "#FFFFFF", type: "color" },
+  { key: "inactiveColor", value: "#979797", type: "color" },
+  { key: "errorColor", value: "#E81C1C", type: "color" },
+  { key: "partnerHighlights", value: "#AAFF74", type: "color" },
+  {
+    key: "errorViewBackground",
+    value: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+    type: "text",
+  },
+  {
+    key: "specialViewBackground",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+  },
+  { key: "cardPanelBackground", value: "transparent", type: "text" },
+  { key: "cardBackground", value: "#eeeef1", type: "text" },
+  { key: "cardBackgroundSecundary", value: "#17171c", type: "text" },
+  { key: "gradientDeg", value: "116.74deg", type: "text" },
+  {
+    key: "primaryMesh",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+  },
+];
+
+export const formColorInitialState: IColorForm = {
+  primaryGradient: "#4BA84B",
+  secondaryGradient: "#008433",
+  secondaryColor: "#252525",
+  whiteColor: "#FFFFFF",
+  inactiveColor: "#979797",
+  errorColor: "#E81C1C",
+  partnerHighlights: "#AAFF74",
+  gradientDeg: "116.74deg",
+  primaryGradientPoint: "23.26%",
+  secundaryGradientPoint: "111.43%",
+  primaryMesh: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  errorViewBackground: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+  specialViewBackground:
+    "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  cardPanelBackground: "transparent",
+  cardBackground: "#eeeef1",
+  cardBackgroundSecundary: "#17171c",
+};
+
+export const formStylesList: ThemeFieldConfig[] = [
+  { key: "cardBorderRadius", value: "16px", type: "text" },
+  { key: "buttonBorderRadius", value: "8px", type: "text" },
+  { key: "inputBorderRadius", value: "8px", type: "text" },
+  { key: "cardBorderColor", value: "#E4E4E4", type: "color" },
+  { key: "inputBorderColor", value: "#E4E4E4", type: "color" },
+  { key: "activeBorderBoton", value: "#1DAFA1", type: "color" },
+  { key: "tamañoBordeCard", value: "1px", type: "text" },
+  { key: "tamañoBordeInput", value: "1px", type: "text" },
+  { key: "buttonPadding", value: "20px", type: "text" },
+  { key: "inputPadding", value: "0.75rem", type: "text" },
+  { key: "cardPadding", value: "1.5rem", type: "text" },
+  {
+    key: "buttonSize",
+    value: "large",
+    type: "select",
+    options: ["small", "medium", "large"],
+  },
+  {
+    key: "buttonShowIcon",
+    value: "true",
+    type: "checkbox",
+    label: "buttonShowIcon",
+    description: "¿Mostrar icono de continuar en los botones? (default: true)",
+  },
+  {
+    key: "iconContainerBackground",
+    value: "transparent",
+    type: "text",
+    label: "iconContainerBackground",
+    description:
+      "Background de contenedores de iconos (ElevatedCircle, etc.). No afecta el color del icono. Default: transparent (legacy).",
+  },
+];
+
+export const formStylesInitialState: IStylesForm = {
+  cardBorderRadius: "16px",
+  buttonBorderRadius: "8px",
+  inputBorderRadius: "8px",
+  cardBorderColor: "#E4E4E4",
+  inputBorderColor: "#E4E4E4",
+  activeBorderBoton: "#1DAFA1",
+  tamañoBordeCard: "1px",
+  tamañoBordeInput: "1px",
+  buttonPadding: "20px",
+  inputPadding: "0.75rem",
+  cardPadding: "1.5rem",
+  buttonSize: "large",
+  buttonShowIcon: true,
+  iconContainerBackground: "transparent",
+};
+
+export const defaultThemeEditorState: ThemeEditorState = {
+  inputFont: { ...defaultFont },
+  formFont: formFontInitialState,
+  formColors: formColorInitialState,
+  formStyles: formStylesInitialState,
+  lightness: "dark",
+  useSystemTheme: false,
+};
+
+export const STORYBOOK_ORIGINS = [
+  "http://localhost:6006",
+  "https://lola-framweork-ui.vercel.app",
+] as const;

@@ -18,6 +18,8 @@ export const IproovCamera = ({ theme }: { theme: IViewConfig }) => {
     bodyCopy,
     backgroundBtn,
     textColorBtn,
+    buttonShowIcon,
+    buttonSize,
   } = theme.errorView;
 
   return (
@@ -42,9 +44,9 @@ export const IproovCamera = ({ theme }: { theme: IViewConfig }) => {
       </Layout.Content>
       <Layout.Footer>
         <Button
-          showIcon
+          showIcon={buttonShowIcon}
           type="submit"
-          size="large"
+          size={buttonSize}
           background={backgroundBtn}
           color={textColorBtn}
         >

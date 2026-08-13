@@ -6,6 +6,7 @@ import {
 } from "@vgs/collect-js-react";
 import { LabelInput } from "./LabelInput";
 import { useKeyboardVisible } from "../hooks";
+import { getInputThemeBorder } from "../utils/inputThemeBorder";
 import { ErrorIcon } from "../icons";
 
 export interface IVGSCardInfo {
@@ -64,13 +65,11 @@ export const VgsInput: React.FC<VgsInputProps> = ({
 
   const styles = {
     "--radius": `${borderRadius}px`,
-    "--bg": isFocus
-      ? activeColor
-      : !isValid && errorLabel
-      ? errorColor
-      : showLabel
-      ? color
-      : inactiveColor,
+    "--bg": getInputThemeBorder(
+      isFocus,
+      isValid || !errorLabel,
+      errorColor
+    ),
   };
 
   const labelColors = isFocus

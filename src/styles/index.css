@@ -652,9 +652,9 @@ button.lola-button,
   height: 100%;
   position: absolute;
   inset: 0;
-  padding: 1px;
+  padding: var(--lola-style-tamaño-borde-input, 1px);
   border-radius: inherit;
-  background: var(--bg);
+  background: var(--bg, var(--lola-style-input-border-color, #979797));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -826,9 +826,9 @@ button.lola-button,
   height: 100%;
   position: absolute;
   inset: 0;
-  padding: 1px;
+  padding: var(--lola-style-tamaño-borde-input, 1px);
   border-radius: inherit;
-  background: var(--bg) !important;
+  background: var(--bg, var(--lola-style-input-border-color, #979797)) !important;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -1365,9 +1365,9 @@ input[type="number"]::-webkit-outer-spin-button {
       height: 100%;
       position: absolute;
       inset: 0;
-      padding: 1px;
+      padding: var(--lola-style-tamaño-borde-input, 1px);
       border-radius: inherit;
-      background: var(--color);
+      background: var(--lola-style-input-border-color, var(--color));
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -1375,6 +1375,11 @@ input[type="number"]::-webkit-outer-spin-button {
       z-index: 1;
       pointer-events: none;
       box-sizing: border-box;
+    }
+
+    &:focus-visible::before,
+    &:focus-within::before {
+      background: var(--lola-style-active-border-boton, var(--color));
     }
 
     .search-select-value-selected {

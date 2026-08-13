@@ -23,6 +23,8 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
     backgroundBtn,
     textColorBtn,
     dropzoneColors,
+    buttonShowIcon,
+    buttonSize
   } = theme.dataView;
 
   return (
@@ -64,9 +66,9 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
       {!isLoading && (
         <Layout.Footer>
           <Button
-            showIcon
+            showIcon={buttonShowIcon}
             type="button"
-            size="large"
+            size={buttonSize}
             background={backgroundBtn}
             color={textColorBtn}
             disabled={isLoading}

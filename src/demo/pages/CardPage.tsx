@@ -14,7 +14,7 @@ import mastercardLogo from "../assets/mastercard_icon.png";
 export const CardPage = ({ theme }: { theme: IViewConfig }) => {
   const { isKeyboardOpen } = useKeyboardVisible();
 
-  const { background, title, bodyCopy, backgroundBtn, textColorBtn } =
+  const { background, title, bodyCopy, backgroundBtn, textColorBtn, buttonShowIcon, buttonSize } =
     theme.whiteView;
 
   return (
@@ -80,9 +80,9 @@ export const CardPage = ({ theme }: { theme: IViewConfig }) => {
             </section>
           )}
           <Button
-            showIcon
+            showIcon={buttonShowIcon}
             type="submit"
-            size="large"
+            size={buttonSize}
             color={textColorBtn}
             background={backgroundBtn}
           >

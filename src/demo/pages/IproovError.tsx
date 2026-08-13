@@ -18,6 +18,8 @@ export const IproovError = ({ theme }: { theme: IViewConfig }) => {
     bodyCopy,
     backgroundBtn,
     textColorBtn,
+    buttonShowIcon,
+    buttonSize,
   } = theme.errorView;
 
   return (
@@ -42,8 +44,8 @@ export const IproovError = ({ theme }: { theme: IViewConfig }) => {
       </Layout.Content>
       <Layout.Footer>
         <Button
-          showIcon
-          size="large"
+          showIcon={buttonShowIcon}
+          size={buttonSize}
           type="submit"
           background={backgroundBtn}
           color={textColorBtn}

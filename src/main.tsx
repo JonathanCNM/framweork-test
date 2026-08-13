@@ -9,7 +9,10 @@ import { ErrorPagesDemo } from "./pages/ErrorPagesDemo";
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" Component={App} />
+      <Route Component={App}>
+        <Route index />
+        <Route path=":flow" />
+      </Route>
       <Route path="/test" Component={Test} />
       <Route path="/demo" Component={Demo} />
       <Route path="/errors" Component={ErrorPagesDemo} />

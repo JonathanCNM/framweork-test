@@ -10,6 +10,8 @@ const RotatingText = <T extends React.ElementType = "p">({
   as,
   messages = [],
   className = "",
+  textColor,
+  style,
   ...props
 }: RotatingTextProps<T>) => {
   const Component = as || "p";
@@ -28,7 +30,14 @@ const RotatingText = <T extends React.ElementType = "p">({
     .join(" ");
 
   return (
-    <Component {...props} className={classes}>
+    <Component
+      {...props}
+      className={classes}
+      style={{
+        ...style,
+        ...(textColor ? { color: textColor } : {}),
+      }}
+    >
       {messages[index]}
     </Component>
   );

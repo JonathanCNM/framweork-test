@@ -1,5 +1,6 @@
 import { HomePage } from "../pages/HomePage";
 import { IproovCamera } from "../pages/IproovCamera";
+import { LivenessPage } from "../pages/LivenessPage";
 import { DropzoneMobile } from "../pages/DropzoneMobile";
 import { SuccessId } from "../pages/SuccessId";
 import { IproovError } from "../pages/IproovError";
@@ -28,6 +29,9 @@ export const RemesasFlow = ({ theme }: DemoFlowProps) => (
     </section>
     <section className="demo-slide">
       <IproovCamera theme={theme} />
+    </section>
+    <section className="demo-slide">
+      <LivenessPage theme={theme} />
     </section>
     <section className="demo-slide">
       <IproovError theme={theme} />

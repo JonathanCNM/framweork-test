@@ -6,6 +6,7 @@ import { HomePage } from "../demo/pages/HomePage";
 import { DropzoneMobile } from "../demo/pages/DropzoneMobile";
 import { IproovSuccessSlot } from "../demo/pages/IproovSuccessSlot";
 import { IproovCamera } from "../demo/pages/IproovCamera";
+import { LivenessPage } from "../demo/pages/LivenessPage";
 import { IproovError } from "../demo/pages/IproovError";
 import { AddressPage } from "../demo/pages/AddressPage";
 import { CardPage } from "../demo/pages/CardPage";
@@ -80,6 +81,9 @@ export const Demo = () => {
           </section>
           <section className="demo-slide">
             <IproovCamera theme={newTheme} />
+          </section>
+          <section className="demo-slide">
+            <LivenessPage theme={newTheme} />
           </section>
           <section className="demo-slide">
             <IproovError theme={newTheme} />

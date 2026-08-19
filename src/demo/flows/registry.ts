@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { M2MFlow } from "./M2MFlow";
 import { PlaceholderFlow } from "./PlaceholderFlow";
 import { RemesasFlow } from "./RemesasFlow";
 import type { DemoFlowProps, DemoFlowSlug } from "./types";
@@ -9,7 +10,7 @@ type DemoFlowComponent = ComponentType<DemoFlowProps>;
 export const DEMO_FLOW_REGISTRY: Record<DemoFlowSlug, DemoFlowComponent> = {
   remesas: RemesasFlow,
   send: PlaceholderFlow,
-  m2m: PlaceholderFlow,
+  m2m: M2MFlow,
   cashi: PlaceholderFlow,
 };
 

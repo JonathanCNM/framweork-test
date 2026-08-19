@@ -1,4 +1,5 @@
 export { RemesasFlow } from "./RemesasFlow";
+export { M2MFlow } from "./M2MFlow";
 export { PlaceholderFlow } from "./PlaceholderFlow";
 export {
   DEMO_FLOW_REGISTRY,

@@ -71,6 +71,9 @@ export interface IColorForm {
   screenIconFill?: string;
   screenIconFillSurface?: string;
   screenIconFillError?: string;
+  screenIconPadding?: string;
+  screenIconPaddingSurface?: string;
+  screenIconPaddingError?: string;
   inputIconPrimary?: string;
   inputIconSecondary?: string;
 }

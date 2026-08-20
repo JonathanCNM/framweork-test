@@ -16,6 +16,12 @@
       "description": "Background color of the circle",
       "examples": ["#fff", "#eeeef1", "theme.errorView.backgroundIcon"]
     },
+    "iconPadding": {
+      "type": "number | string",
+      "required": false,
+      "description": "Inner padding between the glyph and the fill disc. Numbers are pixels. Unset keeps the authored SVG size (legacy). Does not change the outer circle diameter.",
+      "examples": [8, 16, "12px"]
+    },
     "size": {
       "type": "number | string",
       "required": false,

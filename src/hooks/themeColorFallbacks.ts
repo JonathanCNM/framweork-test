@@ -12,9 +12,26 @@ type PaletteLike = {
   screenIconFill?: string;
   screenIconFillSurface?: string;
   screenIconFillError?: string;
+  screenIconPadding?: string | number;
+  screenIconPaddingSurface?: string | number;
+  screenIconPaddingError?: string | number;
   inputIconPrimary?: string;
   inputIconSecondary?: string;
   titleColor?: string;
+};
+
+/** Empty / invalid = unset (legacy icon size). `"0"` / `0` = fill the disc. */
+export const toCssLength = (value: unknown): string | undefined => {
+  if (typeof value === "number" && Number.isFinite(value) && value >= 0) {
+    return `${value}px`;
+  }
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  if (trimmed === "") return undefined;
+  if (trimmed === "0") return "0px";
+  if (/^\d+(\.\d+)?$/.test(trimmed)) return `${trimmed}px`;
+  if (/^\d+(\.\d+)?(px|rem|em|%)$/.test(trimmed)) return trimmed;
+  return undefined;
 };
 
 export const resolveScreenIconColors = (
@@ -68,6 +85,19 @@ export const resolveScreenIconFill = (
   return typeof palette.screenIconFill === "string"
     ? palette.screenIconFill
     : undefined;
+};
+
+export const resolveScreenIconPadding = (
+  palette: PaletteLike,
+  viewType: string
+): string | undefined => {
+  if (viewType === "errorView") {
+    return toCssLength(palette.screenIconPaddingError);
+  }
+  if (viewType === "whiteView" || viewType === "dataView") {
+    return toCssLength(palette.screenIconPaddingSurface);
+  }
+  return toCssLength(palette.screenIconPadding);
 };
 
 export const resolveInputIconColors = (

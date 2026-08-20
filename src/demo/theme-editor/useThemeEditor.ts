@@ -7,7 +7,7 @@ import {
 import { generateGradient } from "../../utils/utils";
 import { registeredFonts } from "../../utils/constants";
 import { applyImportedTheme, getAppliedSections } from "./applyImportedTheme";
-import { defaultThemeEditorState } from "./constants";
+import { COLOR_PADDING_KEYS, defaultThemeEditorState } from "./constants";
 import {
   copyPrimaryToSpecialView,
   isPrimaryGradientField,
@@ -67,6 +67,12 @@ const buildExportedTheme = (state: ThemeEditorState): ExportedTheme => {
   if (state.inputIconLinked) {
     delete colors.inputIconPrimary;
     delete colors.inputIconSecondary;
+  }
+  for (const key of COLOR_PADDING_KEYS) {
+    const value = colors[key];
+    if (typeof value !== "string" || value.trim() === "") {
+      delete colors[key];
+    }
   }
 
   return {
@@ -243,6 +249,9 @@ export const useThemeEditor = () => {
       screenIconSecondarySurface: state.formColors.screenIconSecondarySurface,
       screenIconPrimaryError: state.formColors.screenIconPrimaryError,
       screenIconSecondaryError: state.formColors.screenIconSecondaryError,
+      screenIconPadding: state.formColors.screenIconPadding,
+      screenIconPaddingSurface: state.formColors.screenIconPaddingSurface,
+      screenIconPaddingError: state.formColors.screenIconPaddingError,
     },
     {
     ...state.formStyles,

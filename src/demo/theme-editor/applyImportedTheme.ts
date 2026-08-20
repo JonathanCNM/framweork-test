@@ -1,4 +1,4 @@
-import { FONT_STYLE_KEYS } from "./constants";
+import { COLOR_PADDING_KEYS, FONT_STYLE_KEYS } from "./constants";
 import { parseLinearGradient } from "./parseGradient";
 import {
   copyPrimaryToSpecialView,
@@ -115,6 +115,14 @@ const applyColors = (
   for (const [key, value] of Object.entries(restColors)) {
     if (typeof value === "string") {
       colorUpdates[key as keyof IColorForm] = value;
+      continue;
+    }
+    if (
+      (COLOR_PADDING_KEYS as readonly string[]).includes(key) &&
+      typeof value === "number" &&
+      Number.isFinite(value)
+    ) {
+      colorUpdates[key as keyof IColorForm] = `${value}px`;
     }
   }
 

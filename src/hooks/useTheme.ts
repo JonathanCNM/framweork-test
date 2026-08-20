@@ -22,6 +22,7 @@ import {
   resolveScreenIconBackground,
   resolveScreenIconColors,
   resolveScreenIconFill,
+  resolveScreenIconPadding,
   resolveTitleColor,
 } from "./themeColorFallbacks";
 
@@ -77,6 +78,8 @@ export interface IViewColorConfig {
   inputIconColors?: [string, string];
   /** Circular fill behind the icon glyph in ElevatedCircle. Unset = legacy (no inner disc). */
   iconFill?: string;
+  /** Inner padding between the glyph and the fill disc. Unset = authored SVG size (legacy). */
+  iconPadding?: string;
   /**
    * AuraLayout ::before / ::after stops. Always primaryMesh
    * (`primaryGradient` + `secondaryGradient`), never icon colors.
@@ -428,6 +431,7 @@ export const useTheme = (theme: IUseTheme) => {
             theme?.secondaryGradient ?? view.dropzoneColors[1],
           ],
           iconFill: resolveScreenIconFill(theme, viewKey),
+          iconPadding: resolveScreenIconPadding(theme, viewKey),
           backgroundIcon: resolveScreenIconBackground(theme, view.backgroundIcon),
           inputIconColors: resolveInputIconColors(theme, iconColors),
           ...(applyTitleColor

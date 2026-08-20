@@ -1,4 +1,5 @@
 import {
+  COLOR_PADDING_KEYS,
   COLOR_STRING_KEYS,
   FONT_INPUT_KEYS,
   FONT_STYLE_KEYS,
@@ -72,6 +73,13 @@ const validateColors = (colors: unknown): string | null => {
     if (colors[key] === undefined) continue;
     if (typeof colors[key] !== "string") {
       return `colors.${key} debe ser un string`;
+    }
+  }
+
+  for (const key of COLOR_PADDING_KEYS) {
+    if (colors[key] === undefined) continue;
+    if (typeof colors[key] !== "string" && typeof colors[key] !== "number") {
+      return `colors.${key} debe ser un string o un número`;
     }
   }
 

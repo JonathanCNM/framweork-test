@@ -15,6 +15,7 @@ import {
   resolveScreenIconBackground,
   resolveScreenIconColors,
   resolveScreenIconFill,
+  resolveScreenIconPadding,
   resolveTitleColor,
 } from './themeColorFallbacks';
 
@@ -379,6 +380,7 @@ export function generateViewConfigs(
         colorPalette.secondaryGradient,
       ],
       iconFill: resolveScreenIconFill(colorPalette, viewType),
+      iconPadding: resolveScreenIconPadding(colorPalette, viewType),
       backgroundIcon: resolveScreenIconBackground(
         colorPalette,
         view.backgroundIcon

@@ -172,9 +172,11 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
         <summary>Iconos</summary>
         <p className="theme-sidebar__hint theme-sidebar__section-hint">
           Screen aplica a primaryMesh y special. White/data y Error tienen
-          colores y fondo de icono propios. Siguen el gradiente / secondaryColor
-          / whiteColor hasta que los edites. Input: iconos de campos, siguen
-          secondaryColor hasta que los edites.
+          colores, fondo y padding de icono propios. El padding es la
+          separación del glifo respecto a su fondo: vacío deja el tamaño
+          original; 0 llena el disco; más padding encoge el icono. Siguen el
+          gradiente / secondaryColor / whiteColor hasta que los edites. Input:
+          iconos de campos, siguen secondaryColor hasta que los edites.
         </p>
         <div className="theme-sidebar__font-groups">
           <fieldset className="theme-sidebar__font-group">

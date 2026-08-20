@@ -61,6 +61,12 @@ export const COLOR_STRING_KEYS = [
   "inputIconSecondary",
 ] as const;
 
+export const COLOR_PADDING_KEYS = [
+  "screenIconPadding",
+  "screenIconPaddingSurface",
+  "screenIconPaddingError",
+] as const;
+
 export const STYLE_STRING_KEYS = [
   "cardBorderRadius",
   "buttonBorderRadius",
@@ -190,6 +196,12 @@ export const screenIconColorList: ThemeFieldConfig[] = [
     type: "color",
     label: "fondo icono",
   },
+  {
+    key: "screenIconPadding",
+    value: "",
+    type: "text",
+    label: "padding icono",
+  },
 ];
 
 export const surfaceIconFillList: ThemeFieldConfig[] = [
@@ -211,6 +223,12 @@ export const surfaceIconFillList: ThemeFieldConfig[] = [
     type: "color",
     label: "fondo icono",
   },
+  {
+    key: "screenIconPaddingSurface",
+    value: "",
+    type: "text",
+    label: "padding icono",
+  },
 ];
 
 export const errorIconFillList: ThemeFieldConfig[] = [
@@ -231,6 +249,12 @@ export const errorIconFillList: ThemeFieldConfig[] = [
     value: "#FFFFFF",
     type: "color",
     label: "fondo icono",
+  },
+  {
+    key: "screenIconPaddingError",
+    value: "",
+    type: "text",
+    label: "padding icono",
   },
 ];
 
@@ -281,6 +305,9 @@ export const formColorInitialState: IColorForm = {
   screenIconFill: "#FFFFFF",
   screenIconFillSurface: "#FFFFFF",
   screenIconFillError: "#FFFFFF",
+  screenIconPadding: "",
+  screenIconPaddingSurface: "",
+  screenIconPaddingError: "",
   inputIconPrimary: "#252525",
   inputIconSecondary: "#252525",
 };

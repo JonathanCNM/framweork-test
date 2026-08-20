@@ -19,6 +19,7 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
       viewConfig,
       auraColors: meshAuraColors,
       iconFill,
+      iconPadding,
     } = colorConfig;
     const isDark = themeType === "dark";
     const auraColors = meshAuraColors ?? dropzoneColors;
@@ -53,7 +54,12 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
       return () => media.removeEventListener("change", syncHtmlScheme);
     }, [useSystemTheme, isDark]);
 
-    const classes = [systemThemeClassName, className, isDark ? "dark" : "light"]
+    const classes = [
+      systemThemeClassName,
+      className,
+      isDark ? "dark" : "light",
+      iconPadding !== undefined ? "has-screen-icon-padding" : "",
+    ]
       .filter(Boolean)
       .join(" ");
 
@@ -66,6 +72,9 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
           style={
             {
               "--lola-screen-icon-fill": iconFill ?? "transparent",
+              ...(iconPadding !== undefined
+                ? { "--lola-screen-icon-padding": iconPadding }
+                : {}),
             } as CSSProperties
           }
         >

@@ -24,6 +24,11 @@ const meta: Meta<ElevatedCircleProps> = {
     background: {
       control: "color",
     },
+    iconPadding: {
+      control: "text",
+      description:
+        "Inner padding between the glyph and the fill disc. Unset keeps the authored SVG size.",
+    },
   },
   args: {
     background: "#fff",
@@ -91,6 +96,20 @@ export const NoShadow: Story = {
   args: {
     size: 128,
     shadowVariant: "none",
+    children: (
+      <span style={{ fontSize: 32, fontWeight: 600 }} aria-hidden>
+        ✓
+      </span>
+    ),
+  },
+};
+
+export const IconPadding: Story = {
+  args: {
+    size: 128,
+    shadowVariant: "normal",
+    iconBackground: "#ffffff",
+    iconPadding: 16,
     children: (
       <span style={{ fontSize: 32, fontWeight: 600 }} aria-hidden>
         ✓

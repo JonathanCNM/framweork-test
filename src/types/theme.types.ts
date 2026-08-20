@@ -104,6 +104,20 @@ export interface ColorPalette {
    * Unset = no inner disc (legacy ElevatedCircle).
    */
   screenIconFillError?: string;
+  /**
+   * Inner padding between the glyph and its fill disc in
+   * `primaryMeshGradientView` / `specialView`. Unset = authored SVG size (legacy).
+   */
+  screenIconPadding?: string | number;
+  /**
+   * Inner icon padding for `whiteView` and `dataView`.
+   * Unset = authored SVG size (legacy).
+   */
+  screenIconPaddingSurface?: string | number;
+  /**
+   * Inner icon padding for `errorView`. Unset = authored SVG size (legacy).
+   */
+  screenIconPaddingError?: string | number;
   /** First stop of input icons. Unset = view `iconColors` (legacy). */
   inputIconPrimary?: string;
   /** Second stop of input icons. Unset = view `iconColors` (legacy). */
@@ -151,6 +165,10 @@ export interface ViewColorConfig {
   inputIconColors?: [string, string];
   /** Circular fill behind the icon glyph in ElevatedCircle. Unset = legacy (no inner disc). */
   iconFill?: string;
+  /**
+   * Inner padding between the glyph and the fill disc. Unset = authored SVG size (legacy).
+   */
+  iconPadding?: string;
   /**
    * AuraLayout pseudo-element colors. Always the primaryMesh stops, independent
    * of screen icon colors.
@@ -263,6 +281,7 @@ export const CSS_VARIABLES = {
   FOREGROUND_LIGHT: '--lola-foreground-light',
   FOREGROUND_DARK: '--lola-foreground-dark',
   SCREEN_ICON_FILL: '--lola-screen-icon-fill',
+  SCREEN_ICON_PADDING: '--lola-screen-icon-padding',
   
   // Font
   FONT_FAMILY: '--lola-font-family',

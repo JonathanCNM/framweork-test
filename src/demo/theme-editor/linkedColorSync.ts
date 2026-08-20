@@ -5,8 +5,14 @@ export const TITLE_COLOR_FIELD_KEYS = ["titleColor"] as const;
 export const SCREEN_ICON_FIELD_KEYS = [
   "screenIconPrimary",
   "screenIconSecondary",
+  "screenIconPrimarySurface",
+  "screenIconSecondarySurface",
+  "screenIconPrimaryError",
+  "screenIconSecondaryError",
   "screenIconBackground",
   "screenIconFill",
+  "screenIconFillSurface",
+  "screenIconFillError",
 ] as const;
 
 export const INPUT_ICON_FIELD_KEYS = [
@@ -32,7 +38,13 @@ export const copyPrimaryToScreenIcons = (colors: IColorForm): IColorForm => ({
   ...colors,
   screenIconPrimary: colors.primaryGradient,
   screenIconSecondary: colors.secondaryGradient,
+  screenIconPrimarySurface: colors.primaryGradient,
+  screenIconSecondarySurface: colors.secondaryGradient,
+  screenIconPrimaryError: colors.secondaryColor,
+  screenIconSecondaryError: colors.secondaryColor,
   screenIconFill: colors.whiteColor,
+  screenIconFillSurface: colors.whiteColor,
+  screenIconFillError: colors.whiteColor,
 });
 
 export const copySecondaryToInputIcons = (colors: IColorForm): IColorForm => ({
@@ -49,8 +61,12 @@ export const importedThemeHasScreenIcons = (
   colors: Record<string, unknown>
 ): boolean =>
   typeof colors.screenIconPrimary === "string" ||
+  typeof colors.screenIconPrimarySurface === "string" ||
+  typeof colors.screenIconPrimaryError === "string" ||
   typeof colors.screenIconBackground === "string" ||
-  typeof colors.screenIconFill === "string";
+  typeof colors.screenIconFill === "string" ||
+  typeof colors.screenIconFillSurface === "string" ||
+  typeof colors.screenIconFillError === "string";
 
 export const importedThemeHasInputIcons = (
   colors: Record<string, unknown>

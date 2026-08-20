@@ -78,13 +78,32 @@ export interface ColorPalette {
   screenIconPrimary?: string;
   /** Second stop of ElevatedCircle / screen icons. Unset = per-view mapping (legacy). */
   screenIconSecondary?: string;
+  /** Screen icon color 1 for `whiteView` and `dataView`. */
+  screenIconPrimarySurface?: string;
+  /** Screen icon color 2 for `whiteView` and `dataView`. */
+  screenIconSecondarySurface?: string;
+  /** Screen icon color 1 for `errorView`. */
+  screenIconPrimaryError?: string;
+  /** Screen icon color 2 for `errorView`. */
+  screenIconSecondaryError?: string;
   /** ElevatedCircle fill. Unset = per-view `backgroundIcon` (legacy). */
   screenIconBackground?: string;
   /**
    * Circular fill behind the screen icon glyph (inside ElevatedCircle).
-   * Unset = `whiteColor` / `#ffffff`.
+   * Applies to `primaryMeshGradientView` and `specialView`.
+   * Unset = no inner disc (legacy ElevatedCircle).
    */
   screenIconFill?: string;
+  /**
+   * Icon glyph fill for `whiteView` and `dataView`.
+   * Unset = no inner disc (legacy ElevatedCircle).
+   */
+  screenIconFillSurface?: string;
+  /**
+   * Icon glyph fill for `errorView`.
+   * Unset = no inner disc (legacy ElevatedCircle).
+   */
+  screenIconFillError?: string;
   /** First stop of input icons. Unset = view `iconColors` (legacy). */
   inputIconPrimary?: string;
   /** Second stop of input icons. Unset = view `iconColors` (legacy). */
@@ -130,6 +149,8 @@ export interface ViewColorConfig {
    * does not set `inputIconPrimary` (legacy).
    */
   inputIconColors?: [string, string];
+  /** Circular fill behind the icon glyph in ElevatedCircle. Unset = legacy (no inner disc). */
+  iconFill?: string;
   /**
    * AuraLayout pseudo-element colors. Always the primaryMesh stops, independent
    * of screen icon colors.

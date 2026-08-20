@@ -9,6 +9,8 @@ import {
   formStylesList,
   inputIconColorList,
   screenIconColorList,
+  surfaceIconFillList,
+  errorIconFillList,
   specialViewGradientList,
   titleColorList,
 } from "./constants";
@@ -169,15 +171,32 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
       <details className="theme-sidebar__section" open>
         <summary>Iconos</summary>
         <p className="theme-sidebar__hint theme-sidebar__section-hint">
-          Screen: ElevatedCircle y fondo del icono. Siguen el gradiente
-          principal y whiteColor hasta que los edites. Input: iconos de campos.
-          Siguen secondaryColor hasta que los edites.
+          Screen aplica a primaryMesh y special. White/data y Error tienen
+          colores y fondo de icono propios. Siguen el gradiente / secondaryColor
+          / whiteColor hasta que los edites. Input: iconos de campos, siguen
+          secondaryColor hasta que los edites.
         </p>
         <div className="theme-sidebar__font-groups">
           <fieldset className="theme-sidebar__font-group">
-            <legend>Screen</legend>
+            <legend>Screen (primaryMesh / special)</legend>
             <ColorFields
               fields={screenIconColorList}
+              values={state.formColors}
+              onChange={editor.onChangeColorField}
+            />
+          </fieldset>
+          <fieldset className="theme-sidebar__font-group">
+            <legend>White / data</legend>
+            <ColorFields
+              fields={surfaceIconFillList}
+              values={state.formColors}
+              onChange={editor.onChangeColorField}
+            />
+          </fieldset>
+          <fieldset className="theme-sidebar__font-group">
+            <legend>Error</legend>
+            <ColorFields
+              fields={errorIconFillList}
               values={state.formColors}
               onChange={editor.onChangeColorField}
             />

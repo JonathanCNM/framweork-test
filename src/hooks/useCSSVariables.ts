@@ -84,10 +84,11 @@ export function injectColorVariables(colors: ColorPalette): void {
     root.style.setProperty(CSS_VARIABLES.FOREGROUND_DARK, colors.foregroundDark);
   }
 
-  root.style.setProperty(
-    CSS_VARIABLES.SCREEN_ICON_FILL,
-    colors.screenIconFill || colors.whiteColor || "#ffffff"
-  );
+  if (typeof colors.screenIconFill === "string") {
+    root.style.setProperty(CSS_VARIABLES.SCREEN_ICON_FILL, colors.screenIconFill);
+  } else {
+    root.style.removeProperty(CSS_VARIABLES.SCREEN_ICON_FILL);
+  }
 }
 
 /**

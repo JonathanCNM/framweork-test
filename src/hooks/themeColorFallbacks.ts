@@ -4,8 +4,14 @@ export const DEFAULT_FOREGROUND_DARK = "#fafafa";
 type PaletteLike = {
   screenIconPrimary?: string;
   screenIconSecondary?: string;
+  screenIconPrimarySurface?: string;
+  screenIconSecondarySurface?: string;
+  screenIconPrimaryError?: string;
+  screenIconSecondaryError?: string;
   screenIconBackground?: string;
   screenIconFill?: string;
+  screenIconFillSurface?: string;
+  screenIconFillError?: string;
   inputIconPrimary?: string;
   inputIconSecondary?: string;
   titleColor?: string;
@@ -13,8 +19,23 @@ type PaletteLike = {
 
 export const resolveScreenIconColors = (
   palette: PaletteLike,
+  viewType: string,
   fallback: [string, string]
 ): [string, string] => {
+  if (viewType === "errorView") {
+    if (typeof palette.screenIconPrimaryError !== "string") return fallback;
+    return [
+      palette.screenIconPrimaryError,
+      palette.screenIconSecondaryError ?? palette.screenIconPrimaryError,
+    ];
+  }
+  if (viewType === "whiteView" || viewType === "dataView") {
+    if (typeof palette.screenIconPrimarySurface !== "string") return fallback;
+    return [
+      palette.screenIconPrimarySurface,
+      palette.screenIconSecondarySurface ?? palette.screenIconPrimarySurface,
+    ];
+  }
   if (typeof palette.screenIconPrimary !== "string") return fallback;
   return [
     palette.screenIconPrimary,
@@ -32,11 +53,22 @@ export const resolveScreenIconBackground = (
 
 export const resolveScreenIconFill = (
   palette: PaletteLike,
-  fallback: string
-): string =>
-  typeof palette.screenIconFill === "string"
+  viewType: string
+): string | undefined => {
+  if (viewType === "errorView") {
+    return typeof palette.screenIconFillError === "string"
+      ? palette.screenIconFillError
+      : undefined;
+  }
+  if (viewType === "whiteView" || viewType === "dataView") {
+    return typeof palette.screenIconFillSurface === "string"
+      ? palette.screenIconFillSurface
+      : undefined;
+  }
+  return typeof palette.screenIconFill === "string"
     ? palette.screenIconFill
-    : fallback;
+    : undefined;
+};
 
 export const resolveInputIconColors = (
   palette: PaletteLike,

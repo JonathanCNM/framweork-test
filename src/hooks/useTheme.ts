@@ -21,6 +21,7 @@ import {
   resolveInputIconColors,
   resolveScreenIconBackground,
   resolveScreenIconColors,
+  resolveScreenIconFill,
   resolveTitleColor,
 } from "./themeColorFallbacks";
 
@@ -74,6 +75,8 @@ export interface IViewColorConfig {
    * Colors for icons inside inputs. Falls back to `iconColors` when unset.
    */
   inputIconColors?: [string, string];
+  /** Circular fill behind the icon glyph in ElevatedCircle. Unset = legacy (no inner disc). */
+  iconFill?: string;
   /**
    * AuraLayout ::before / ::after stops. Always primaryMesh
    * (`primaryGradient` + `secondaryGradient`), never icon colors.
@@ -409,7 +412,11 @@ export const useTheme = (theme: IUseTheme) => {
     if (newTheme) {
       (Object.keys(newTheme) as (keyof IViewConfig)[]).forEach((viewKey) => {
         const view = newTheme![viewKey];
-        const iconColors = resolveScreenIconColors(theme, view.iconColors);
+        const iconColors = resolveScreenIconColors(
+          theme,
+          viewKey,
+          view.iconColors
+        );
         const applyTitleColor =
           (viewKey === "whiteView" || viewKey === "dataView") &&
           theme?.lightness === "dark";
@@ -420,6 +427,7 @@ export const useTheme = (theme: IUseTheme) => {
             theme?.primaryGradient ?? view.dropzoneColors[0],
             theme?.secondaryGradient ?? view.dropzoneColors[1],
           ],
+          iconFill: resolveScreenIconFill(theme, viewKey),
           backgroundIcon: resolveScreenIconBackground(theme, view.backgroundIcon),
           inputIconColors: resolveInputIconColors(theme, iconColors),
           ...(applyTitleColor

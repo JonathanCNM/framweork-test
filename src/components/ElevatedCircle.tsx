@@ -5,7 +5,8 @@ export type ElevatedCircleShadowVariant = "normal" | "inset" | "none";
 export interface ElevatedCircleProps {
   background?: string;
   /**
-   * Circular fill behind the icon glyph. Defaults to theme `--lola-screen-icon-fill`.
+   * Circular fill behind the icon glyph. Uses theme `--lola-screen-icon-fill`
+   * when set; otherwise the inner disc is transparent (legacy look).
    */
   iconBackground?: string;
   children: ReactNode;

@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect, type CSSProperties } from "react";
 import type { IViewColorConfig } from "../hooks";
 import { MotionWrapper } from "./MotionWrapper";
 import { Layout } from "./Layout";
@@ -18,6 +18,7 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
       useSystemTheme,
       viewConfig,
       auraColors: meshAuraColors,
+      iconFill,
     } = colorConfig;
     const isDark = themeType === "dark";
     const auraColors = meshAuraColors ?? dropzoneColors;
@@ -62,6 +63,11 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
           background={background}
           auraColors={auraColors}
           className={classes}
+          style={
+            {
+              "--lola-screen-icon-fill": iconFill ?? "transparent",
+            } as CSSProperties
+          }
         >
           {children}
         </Layout>

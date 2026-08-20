@@ -55,8 +55,14 @@ const buildExportedTheme = (state: ThemeEditorState): ExportedTheme => {
   if (state.screenIconLinked) {
     delete colors.screenIconPrimary;
     delete colors.screenIconSecondary;
+    delete colors.screenIconPrimarySurface;
+    delete colors.screenIconSecondarySurface;
+    delete colors.screenIconPrimaryError;
+    delete colors.screenIconSecondaryError;
     delete colors.screenIconBackground;
     delete colors.screenIconFill;
+    delete colors.screenIconFillSurface;
+    delete colors.screenIconFillError;
   }
   if (state.inputIconLinked) {
     delete colors.inputIconPrimary;
@@ -125,7 +131,18 @@ export const useThemeEditor = () => {
         prev.formColors.titleColor === formColors.titleColor &&
         prev.formColors.screenIconPrimary === formColors.screenIconPrimary &&
         prev.formColors.screenIconSecondary === formColors.screenIconSecondary &&
-        prev.formColors.screenIconFill === formColors.screenIconFill;
+        prev.formColors.screenIconPrimarySurface ===
+          formColors.screenIconPrimarySurface &&
+        prev.formColors.screenIconSecondarySurface ===
+          formColors.screenIconSecondarySurface &&
+        prev.formColors.screenIconPrimaryError ===
+          formColors.screenIconPrimaryError &&
+        prev.formColors.screenIconSecondaryError ===
+          formColors.screenIconSecondaryError &&
+        prev.formColors.screenIconFill === formColors.screenIconFill &&
+        prev.formColors.screenIconFillSurface ===
+          formColors.screenIconFillSurface &&
+        prev.formColors.screenIconFillError === formColors.screenIconFillError;
       return unchanged ? prev : { ...prev, formColors };
     });
     // primaryMesh is omitted on purpose so a manual edit is not overwritten
@@ -195,13 +212,24 @@ export const useThemeEditor = () => {
   }, [state.formStyles]);
 
   useEffect(() => {
-    injectColorVariables({
+    const colors = {
       ...state.formColors,
       inactived: state.formColors.inactiveColor,
       lightness: state.lightness,
       useSystemTheme: state.useSystemTheme,
-    });
-  }, [state.formColors, state.lightness, state.useSystemTheme]);
+    };
+    if (state.screenIconLinked) {
+      delete colors.screenIconFill;
+      delete colors.screenIconFillSurface;
+      delete colors.screenIconFillError;
+    }
+    injectColorVariables(colors);
+  }, [
+    state.formColors,
+    state.lightness,
+    state.useSystemTheme,
+    state.screenIconLinked,
+  ]);
 
   const exportedTheme = useMemo(() => buildExportedTheme(state), [state]);
 
@@ -209,7 +237,12 @@ export const useThemeEditor = () => {
     {
       ...exportedTheme.colors,
       titleColor: state.formColors.titleColor,
-      screenIconFill: state.formColors.screenIconFill,
+      screenIconPrimary: state.formColors.screenIconPrimary,
+      screenIconSecondary: state.formColors.screenIconSecondary,
+      screenIconPrimarySurface: state.formColors.screenIconPrimarySurface,
+      screenIconSecondarySurface: state.formColors.screenIconSecondarySurface,
+      screenIconPrimaryError: state.formColors.screenIconPrimaryError,
+      screenIconSecondaryError: state.formColors.screenIconSecondaryError,
     },
     {
     ...state.formStyles,
@@ -333,7 +366,7 @@ export const useThemeEditor = () => {
         if (prev.titleLinked && isPrimaryGradientField(name)) {
           formColors = copyPrimaryToTitleColor(formColors);
         }
-        if (prev.screenIconLinked && isPrimaryGradientField(name)) {
+        if (prev.screenIconLinked && (isPrimaryGradientField(name) || name === "secondaryColor" || name === "whiteColor")) {
           formColors = copyPrimaryToScreenIcons(formColors);
         }
         if (prev.inputIconLinked && name === "secondaryColor") {

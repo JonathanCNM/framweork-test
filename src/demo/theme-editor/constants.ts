@@ -49,8 +49,14 @@ export const COLOR_STRING_KEYS = [
   "titleColor",
   "screenIconPrimary",
   "screenIconSecondary",
+  "screenIconPrimarySurface",
+  "screenIconSecondarySurface",
+  "screenIconPrimaryError",
+  "screenIconSecondaryError",
   "screenIconBackground",
   "screenIconFill",
+  "screenIconFillSurface",
+  "screenIconFillError",
   "inputIconPrimary",
   "inputIconSecondary",
 ] as const;
@@ -186,6 +192,48 @@ export const screenIconColorList: ThemeFieldConfig[] = [
   },
 ];
 
+export const surfaceIconFillList: ThemeFieldConfig[] = [
+  {
+    key: "screenIconPrimarySurface",
+    value: "#4BA84B",
+    type: "color",
+    label: "color 1",
+  },
+  {
+    key: "screenIconSecondarySurface",
+    value: "#008433",
+    type: "color",
+    label: "color 2",
+  },
+  {
+    key: "screenIconFillSurface",
+    value: "#FFFFFF",
+    type: "color",
+    label: "fondo icono",
+  },
+];
+
+export const errorIconFillList: ThemeFieldConfig[] = [
+  {
+    key: "screenIconPrimaryError",
+    value: "#252525",
+    type: "color",
+    label: "color 1",
+  },
+  {
+    key: "screenIconSecondaryError",
+    value: "#252525",
+    type: "color",
+    label: "color 2",
+  },
+  {
+    key: "screenIconFillError",
+    value: "#FFFFFF",
+    type: "color",
+    label: "fondo icono",
+  },
+];
+
 export const inputIconColorList: ThemeFieldConfig[] = [
   { key: "inputIconPrimary", value: "#252525", type: "color", label: "color 1" },
   { key: "inputIconSecondary", value: "#252525", type: "color", label: "color 2" },
@@ -225,8 +273,14 @@ export const formColorInitialState: IColorForm = {
     "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
   screenIconPrimary: "#4BA84B",
   screenIconSecondary: "#008433",
+  screenIconPrimarySurface: "#4BA84B",
+  screenIconSecondarySurface: "#008433",
+  screenIconPrimaryError: "#252525",
+  screenIconSecondaryError: "#252525",
   screenIconBackground: "#FFFFFF",
   screenIconFill: "#FFFFFF",
+  screenIconFillSurface: "#FFFFFF",
+  screenIconFillError: "#FFFFFF",
   inputIconPrimary: "#252525",
   inputIconSecondary: "#252525",
 };

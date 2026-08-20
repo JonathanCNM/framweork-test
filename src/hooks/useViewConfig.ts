@@ -14,6 +14,7 @@ import {
   resolveInputIconColors,
   resolveScreenIconBackground,
   resolveScreenIconColors,
+  resolveScreenIconFill,
   resolveTitleColor,
 } from './themeColorFallbacks';
 
@@ -361,7 +362,11 @@ export function generateViewConfigs(
     }
 
     const view = views[viewType];
-    const iconColors = resolveScreenIconColors(colorPalette, view.iconColors);
+    const iconColors = resolveScreenIconColors(
+      colorPalette,
+      viewType,
+      view.iconColors
+    );
     const applyTitleColor =
       (viewType === "whiteView" || viewType === "dataView") &&
       lightness === "dark" &&
@@ -373,6 +378,7 @@ export function generateViewConfigs(
         colorPalette.primaryGradient,
         colorPalette.secondaryGradient,
       ],
+      iconFill: resolveScreenIconFill(colorPalette, viewType),
       backgroundIcon: resolveScreenIconBackground(
         colorPalette,
         view.backgroundIcon

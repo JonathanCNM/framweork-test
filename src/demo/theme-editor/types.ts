@@ -63,8 +63,14 @@ export interface IColorForm {
   titleColor?: string;
   screenIconPrimary?: string;
   screenIconSecondary?: string;
+  screenIconPrimarySurface?: string;
+  screenIconSecondarySurface?: string;
+  screenIconPrimaryError?: string;
+  screenIconSecondaryError?: string;
   screenIconBackground?: string;
   screenIconFill?: string;
+  screenIconFillSurface?: string;
+  screenIconFillError?: string;
   inputIconPrimary?: string;
   inputIconSecondary?: string;
 }

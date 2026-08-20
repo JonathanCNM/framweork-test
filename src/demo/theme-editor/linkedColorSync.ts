@@ -6,6 +6,7 @@ export const SCREEN_ICON_FIELD_KEYS = [
   "screenIconPrimary",
   "screenIconSecondary",
   "screenIconBackground",
+  "screenIconFill",
 ] as const;
 
 export const INPUT_ICON_FIELD_KEYS = [
@@ -31,6 +32,7 @@ export const copyPrimaryToScreenIcons = (colors: IColorForm): IColorForm => ({
   ...colors,
   screenIconPrimary: colors.primaryGradient,
   screenIconSecondary: colors.secondaryGradient,
+  screenIconFill: colors.whiteColor,
 });
 
 export const copySecondaryToInputIcons = (colors: IColorForm): IColorForm => ({
@@ -47,7 +49,8 @@ export const importedThemeHasScreenIcons = (
   colors: Record<string, unknown>
 ): boolean =>
   typeof colors.screenIconPrimary === "string" ||
-  typeof colors.screenIconBackground === "string";
+  typeof colors.screenIconBackground === "string" ||
+  typeof colors.screenIconFill === "string";
 
 export const importedThemeHasInputIcons = (
   colors: Record<string, unknown>

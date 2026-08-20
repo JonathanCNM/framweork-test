@@ -369,6 +369,10 @@ export function generateViewConfigs(
     views[viewType] = {
       ...view,
       iconColors,
+      auraColors: [
+        colorPalette.primaryGradient,
+        colorPalette.secondaryGradient,
+      ],
       backgroundIcon: resolveScreenIconBackground(
         colorPalette,
         view.backgroundIcon

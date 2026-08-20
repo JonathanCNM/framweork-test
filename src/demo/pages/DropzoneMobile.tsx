@@ -23,7 +23,9 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
     textColorBtn,
     dropzoneColors,
     buttonShowIcon,
-    buttonSize
+    buttonSize,
+    themeType,
+    useSystemTheme,
   } = theme.dataView;
 
   return (
@@ -59,6 +61,8 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
           backgroundIcon={backgroundIcon}
           title={title}
           footerTextColor={footerColor}
+          themeType={themeType}
+          useSystemTheme={useSystemTheme}
         />
       )}
       {!isLoading && (

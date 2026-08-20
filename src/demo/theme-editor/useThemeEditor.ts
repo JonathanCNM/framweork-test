@@ -56,6 +56,7 @@ const buildExportedTheme = (state: ThemeEditorState): ExportedTheme => {
     delete colors.screenIconPrimary;
     delete colors.screenIconSecondary;
     delete colors.screenIconBackground;
+    delete colors.screenIconFill;
   }
   if (state.inputIconLinked) {
     delete colors.inputIconPrimary;
@@ -123,7 +124,8 @@ export const useThemeEditor = () => {
           formColors.specialViewSecundaryGradientPoint &&
         prev.formColors.titleColor === formColors.titleColor &&
         prev.formColors.screenIconPrimary === formColors.screenIconPrimary &&
-        prev.formColors.screenIconSecondary === formColors.screenIconSecondary;
+        prev.formColors.screenIconSecondary === formColors.screenIconSecondary &&
+        prev.formColors.screenIconFill === formColors.screenIconFill;
       return unchanged ? prev : { ...prev, formColors };
     });
     // primaryMesh is omitted on purpose so a manual edit is not overwritten
@@ -207,6 +209,7 @@ export const useThemeEditor = () => {
     {
       ...exportedTheme.colors,
       titleColor: state.formColors.titleColor,
+      screenIconFill: state.formColors.screenIconFill,
     },
     {
     ...state.formStyles,

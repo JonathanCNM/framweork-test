@@ -21,12 +21,18 @@ export const UploadLoading: React.FC<{
   title: string;
   footerTextColor: string;
   backgroundIcon: string;
+  bodyCopy?: string;
+  themeType?: string;
+  useSystemTheme?: boolean;
 }> = ({
   colors,
   title,
   footerTextColor,
   backgroundIcon,
   progressColors,
+  bodyCopy,
+  themeType,
+  useSystemTheme,
 }) => {
   return (
     <Layout.Content className="">
@@ -47,7 +53,13 @@ export const UploadLoading: React.FC<{
           secudnary="good!"
           secudnaryColor={title}
         />
-        <RotatingText messages={loadingMessages} textColor={footerTextColor} />
+        <RotatingText
+          messages={loadingMessages}
+          textColor={footerTextColor}
+          bodyCopy={bodyCopy}
+          themeType={themeType}
+          useSystemTheme={useSystemTheme}
+        />
       </div>
     </Layout.Content>
   );

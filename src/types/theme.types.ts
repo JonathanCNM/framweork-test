@@ -80,6 +80,11 @@ export interface ColorPalette {
   screenIconSecondary?: string;
   /** ElevatedCircle fill. Unset = per-view `backgroundIcon` (legacy). */
   screenIconBackground?: string;
+  /**
+   * Circular fill behind the screen icon glyph (inside ElevatedCircle).
+   * Unset = `whiteColor` / `#ffffff`.
+   */
+  screenIconFill?: string;
   /** First stop of input icons. Unset = view `iconColors` (legacy). */
   inputIconPrimary?: string;
   /** Second stop of input icons. Unset = view `iconColors` (legacy). */
@@ -125,6 +130,11 @@ export interface ViewColorConfig {
    * does not set `inputIconPrimary` (legacy).
    */
   inputIconColors?: [string, string];
+  /**
+   * AuraLayout pseudo-element colors. Always the primaryMesh stops, independent
+   * of screen icon colors.
+   */
+  auraColors?: [string, string];
   themeType?: ThemeLightness;
   useSystemTheme?: boolean;
   viewConfig: ViewType;
@@ -231,6 +241,7 @@ export const CSS_VARIABLES = {
   CARD_BACKGROUND_SECUNDARY: '--lola-color-card-background-secundary',
   FOREGROUND_LIGHT: '--lola-foreground-light',
   FOREGROUND_DARK: '--lola-foreground-dark',
+  SCREEN_ICON_FILL: '--lola-screen-icon-fill',
   
   // Font
   FONT_FAMILY: '--lola-font-family',

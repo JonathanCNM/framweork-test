@@ -44,8 +44,15 @@ const loadingMessages = [
 ];
 
 export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
-  const { iconColors, backgroundIcon, title, subtitile, footerColor } =
-    theme.specialView;
+  const {
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    footerColor,
+    themeType,
+    useSystemTheme,
+  } = theme.specialView;
 
   return (
     <AuraLayout colorConfig={theme.specialView}>
@@ -70,8 +77,10 @@ export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
           />
 
           <RotatingText
-            style={{ color: subtitile }}
             messages={loadingMessages}
+            textColor={subtitile}
+            themeType={themeType}
+            useSystemTheme={useSystemTheme}
           />
         </div>
       </Layout.Content>

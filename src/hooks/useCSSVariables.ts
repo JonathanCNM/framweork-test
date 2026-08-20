@@ -83,6 +83,11 @@ export function injectColorVariables(colors: ColorPalette): void {
   if (colors.foregroundDark) {
     root.style.setProperty(CSS_VARIABLES.FOREGROUND_DARK, colors.foregroundDark);
   }
+
+  root.style.setProperty(
+    CSS_VARIABLES.SCREEN_ICON_FILL,
+    colors.screenIconFill || colors.whiteColor || "#ffffff"
+  );
 }
 
 /**

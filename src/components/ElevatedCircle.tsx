@@ -4,6 +4,10 @@ export type ElevatedCircleShadowVariant = "normal" | "inset" | "none";
 
 export interface ElevatedCircleProps {
   background?: string;
+  /**
+   * Circular fill behind the icon glyph. Defaults to theme `--lola-screen-icon-fill`.
+   */
+  iconBackground?: string;
   children: ReactNode;
   /**
    * Circle diameter. Numbers are treated as pixels.
@@ -25,6 +29,7 @@ const resolveSize = (size: number | string): string =>
 
 export const ElevatedCircle: React.FC<ElevatedCircleProps> = ({
   background = "#fff",
+  iconBackground,
   children,
   size = 128,
   shadowVariant = "normal",
@@ -36,6 +41,10 @@ export const ElevatedCircle: React.FC<ElevatedCircleProps> = ({
     minWidth: resolveSize(size),
   } as CSSProperties;
 
+  const iconStyle = iconBackground
+    ? ({ background: iconBackground } as CSSProperties)
+    : undefined;
+
   const className = [
     "elevated-circle",
     `elevated-circle--shadow-${shadowVariant}`,
@@ -43,7 +52,9 @@ export const ElevatedCircle: React.FC<ElevatedCircleProps> = ({
 
   return (
     <div className={className} style={style}>
-      <div className="elevated-circle-section">{children}</div>
+      <div className="elevated-circle-section" style={iconStyle}>
+        {children}
+      </div>
     </div>
   );
 };

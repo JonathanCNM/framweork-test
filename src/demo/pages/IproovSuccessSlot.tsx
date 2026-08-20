@@ -33,8 +33,15 @@ const loadingMessages = [
 ];
 
 export const IproovSuccessSlot = ({ theme }: { theme: IViewConfig }) => {
-  const { iconColors, backgroundIcon, title, subtitile, footerColor } =
-    theme.specialView;
+  const {
+    iconColors,
+    backgroundIcon,
+    title,
+    subtitile,
+    footerColor,
+    themeType,
+    useSystemTheme,
+  } = theme.specialView;
 
   return (
     <AuraLayout colorConfig={theme.specialView}>
@@ -59,7 +66,9 @@ export const IproovSuccessSlot = ({ theme }: { theme: IViewConfig }) => {
           />
           <RotatingText
             messages={loadingMessages}
-            style={{ color: subtitile }}
+            textColor={subtitile}
+            themeType={themeType}
+            useSystemTheme={useSystemTheme}
           />
         </div>
       </Layout.Content>

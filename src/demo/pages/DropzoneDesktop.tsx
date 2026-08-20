@@ -22,11 +22,13 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
   const {
     iconColors,
     backgroundIcon,
-    footerColor,
     title,
     backgroundBtn,
     textColorBtn,
     dropzoneColors,
+    bodyCopy,
+    themeType,
+    useSystemTheme,
   } = theme.dataView;
 
   return (
@@ -77,7 +79,9 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
               progressColors={dropzoneColors}
               backgroundIcon={backgroundIcon}
               title={title}
-              footerTextColor={footerColor}
+              footerTextColor={bodyCopy}
+              themeType={themeType}
+              useSystemTheme={useSystemTheme}
             />
           )}
         </section>

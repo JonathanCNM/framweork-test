@@ -74,6 +74,11 @@ export interface IViewColorConfig {
    * Colors for icons inside inputs. Falls back to `iconColors` when unset.
    */
   inputIconColors?: [string, string];
+  /**
+   * AuraLayout ::before / ::after stops. Always primaryMesh
+   * (`primaryGradient` + `secondaryGradient`), never icon colors.
+   */
+  auraColors?: [string, string];
   themeType?: string;
   useSystemTheme?: boolean;
   viewConfig:
@@ -411,6 +416,10 @@ export const useTheme = (theme: IUseTheme) => {
         newTheme![viewKey] = {
           ...view,
           iconColors,
+          auraColors: [
+            theme?.primaryGradient ?? view.dropzoneColors[0],
+            theme?.secondaryGradient ?? view.dropzoneColors[1],
+          ],
           backgroundIcon: resolveScreenIconBackground(theme, view.backgroundIcon),
           inputIconColors: resolveInputIconColors(theme, iconColors),
           ...(applyTitleColor

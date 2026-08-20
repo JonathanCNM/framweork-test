@@ -38,7 +38,10 @@ const ColorFields = ({
         <label
           key={key}
           className={
-            key.endsWith("Background") || key === "primaryMesh" || key === "titleColor"
+            key.endsWith("Background") ||
+            key.endsWith("Fill") ||
+            key === "primaryMesh" ||
+            key === "titleColor"
               ? "theme-sidebar__field theme-sidebar__field--wide"
               : "theme-sidebar__field"
           }
@@ -166,9 +169,9 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
       <details className="theme-sidebar__section" open>
         <summary>Iconos</summary>
         <p className="theme-sidebar__hint theme-sidebar__section-hint">
-          Screen: ElevatedCircle. Siguen el gradiente principal hasta que los
-          edites. Input: iconos de campos. Siguen secondaryColor hasta que los
-          edites.
+          Screen: ElevatedCircle y fondo del icono. Siguen el gradiente
+          principal y whiteColor hasta que los edites. Input: iconos de campos.
+          Siguen secondaryColor hasta que los edites.
         </p>
         <div className="theme-sidebar__font-groups">
           <fieldset className="theme-sidebar__font-group">

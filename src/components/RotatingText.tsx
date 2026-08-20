@@ -4,6 +4,10 @@ export type RotatingTextProps<T extends React.ElementType> = {
   as?: T;
   messages: string[];
   textColor?: string;
+  /** Used when `lightness` is dark and system theme is on. */
+  bodyCopy?: string;
+  themeType?: string;
+  useSystemTheme?: boolean;
 } & React.ComponentPropsWithoutRef<T>;
 
 const RotatingText = <T extends React.ElementType = "p">({
@@ -11,6 +15,9 @@ const RotatingText = <T extends React.ElementType = "p">({
   messages = [],
   className = "",
   textColor,
+  bodyCopy,
+  themeType,
+  useSystemTheme = false,
   style,
   ...props
 }: RotatingTextProps<T>) => {
@@ -29,13 +36,18 @@ const RotatingText = <T extends React.ElementType = "p">({
     .filter(Boolean)
     .join(" ");
 
+  const resolvedColor =
+    useSystemTheme && themeType === "dark"
+      ? bodyCopy ?? "var(--foreground)"
+      : textColor;
+
   return (
     <Component
       {...props}
       className={classes}
       style={{
         ...style,
-        ...(textColor ? { color: textColor } : {}),
+        ...(resolvedColor ? { color: resolvedColor } : {}),
       }}
     >
       {messages[index]}

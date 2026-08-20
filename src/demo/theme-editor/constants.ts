@@ -50,6 +50,7 @@ export const COLOR_STRING_KEYS = [
   "screenIconPrimary",
   "screenIconSecondary",
   "screenIconBackground",
+  "screenIconFill",
   "inputIconPrimary",
   "inputIconSecondary",
 ] as const;
@@ -177,6 +178,12 @@ export const screenIconColorList: ThemeFieldConfig[] = [
     type: "color",
     label: "fondo (ElevatedCircle)",
   },
+  {
+    key: "screenIconFill",
+    value: "#FFFFFF",
+    type: "color",
+    label: "fondo icono",
+  },
 ];
 
 export const inputIconColorList: ThemeFieldConfig[] = [
@@ -219,6 +226,7 @@ export const formColorInitialState: IColorForm = {
   screenIconPrimary: "#4BA84B",
   screenIconSecondary: "#008433",
   screenIconBackground: "#FFFFFF",
+  screenIconFill: "#FFFFFF",
   inputIconPrimary: "#252525",
   inputIconSecondary: "#252525",
 };

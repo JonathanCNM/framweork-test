@@ -5,6 +5,7 @@ type PaletteLike = {
   screenIconPrimary?: string;
   screenIconSecondary?: string;
   screenIconBackground?: string;
+  screenIconFill?: string;
   inputIconPrimary?: string;
   inputIconSecondary?: string;
   titleColor?: string;
@@ -27,6 +28,14 @@ export const resolveScreenIconBackground = (
 ): string =>
   typeof palette.screenIconBackground === "string"
     ? palette.screenIconBackground
+    : fallback;
+
+export const resolveScreenIconFill = (
+  palette: PaletteLike,
+  fallback: string
+): string =>
+  typeof palette.screenIconFill === "string"
+    ? palette.screenIconFill
     : fallback;
 
 export const resolveInputIconColors = (

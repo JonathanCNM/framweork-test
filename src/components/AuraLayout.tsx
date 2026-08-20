@@ -14,13 +14,13 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
     const {
       themeType,
       dropzoneColors,
-      iconColors,
       background,
       useSystemTheme,
       viewConfig,
+      auraColors: meshAuraColors,
     } = colorConfig;
     const isDark = themeType === "dark";
-    const auraColors = isDark ? dropzoneColors : iconColors;
+    const auraColors = meshAuraColors ?? dropzoneColors;
     const isSystemSurface = ["whiteView", "dataView"].includes(viewConfig);
 
     const systemThemeClassName =

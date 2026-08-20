@@ -19,7 +19,6 @@ export const UploadLoading: React.FC<{
   colors: [string, string];
   progressColors: [string, string];
   title: string;
-  subtitle: string;
   footerTextColor: string;
   backgroundIcon: string;
 }> = ({
@@ -27,7 +26,6 @@ export const UploadLoading: React.FC<{
   title,
   footerTextColor,
   backgroundIcon,
-  subtitle,
   progressColors,
 }) => {
   return (
@@ -47,7 +45,7 @@ export const UploadLoading: React.FC<{
           highlight="Looking"
           highlightColor={title}
           secudnary="good!"
-          secudnaryColor={subtitle}
+          secudnaryColor={title}
         />
         <RotatingText messages={loadingMessages} textColor={footerTextColor} />
       </div>

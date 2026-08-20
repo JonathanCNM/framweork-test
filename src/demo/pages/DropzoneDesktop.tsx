@@ -24,7 +24,6 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
     backgroundIcon,
     footerColor,
     title,
-    subtitile,
     backgroundBtn,
     textColorBtn,
     dropzoneColors,
@@ -78,7 +77,6 @@ export const DropzoneDesktop: React.FC<DropzoneProps> = ({
               progressColors={dropzoneColors}
               backgroundIcon={backgroundIcon}
               title={title}
-              subtitle={subtitile}
               footerTextColor={footerColor}
             />
           )}

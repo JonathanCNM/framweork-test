@@ -14,7 +14,6 @@ export const IproovError = ({ theme }: { theme: IViewConfig }) => {
     iconColors,
     backgroundIcon,
     title,
-    subtitile,
     bodyCopy,
     backgroundBtn,
     textColorBtn,
@@ -34,7 +33,7 @@ export const IproovError = ({ theme }: { theme: IViewConfig }) => {
             highlight="Verification"
             highlightColor={title}
             secudnary="Failed"
-            secudnaryColor={subtitile}
+            secudnaryColor={title}
           />
 
           <GradientText as="p" className="lola-body-copy bodycopy mt-4" textColor={bodyCopy}>

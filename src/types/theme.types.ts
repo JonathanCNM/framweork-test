@@ -60,6 +60,30 @@ export interface ColorPalette {
   cardPanelBackground?: string;
   cardBackground?: string;
   cardBackgroundSecundary?: string;
+  /**
+   * Text color for light system theme (`--foreground` light).
+   * Defaults to CSS `#17171c` when unset (legacy).
+   */
+  foregroundLight?: string;
+  /**
+   * Text color for dark system theme (`--foreground` dark).
+   * Defaults to CSS `#fafafa` when unset (legacy).
+   */
+  foregroundDark?: string;
+  /**
+   * White-view title color. Follows `primaryMesh` until set explicitly.
+   */
+  titleColor?: string;
+  /** First stop of ElevatedCircle / screen icons. Unset = per-view mapping (legacy). */
+  screenIconPrimary?: string;
+  /** Second stop of ElevatedCircle / screen icons. Unset = per-view mapping (legacy). */
+  screenIconSecondary?: string;
+  /** ElevatedCircle fill. Unset = per-view `backgroundIcon` (legacy). */
+  screenIconBackground?: string;
+  /** First stop of input icons. Unset = view `iconColors` (legacy). */
+  inputIconPrimary?: string;
+  /** Second stop of input icons. Unset = view `iconColors` (legacy). */
+  inputIconSecondary?: string;
 }
 
 export interface ViewColorConfig {
@@ -96,6 +120,11 @@ export interface ViewColorConfig {
    * Pass manually e.g. to ElevatedCircle: `background={theme.specialView.iconContainerBackground}`.
    */
   iconContainerBackground?: string;
+  /**
+   * Colors for icons inside inputs. Falls back to `iconColors` when the theme
+   * does not set `inputIconPrimary` (legacy).
+   */
+  inputIconColors?: [string, string];
   themeType?: ThemeLightness;
   useSystemTheme?: boolean;
   viewConfig: ViewType;
@@ -200,6 +229,8 @@ export const CSS_VARIABLES = {
   CARD_PANEL_BACKGROUND: '--lola-color-card-panel-background',
   CARD_BACKGROUND: '--lola-color-card-background',
   CARD_BACKGROUND_SECUNDARY: '--lola-color-card-background-secundary',
+  FOREGROUND_LIGHT: '--lola-foreground-light',
+  FOREGROUND_DARK: '--lola-foreground-dark',
   
   // Font
   FONT_FAMILY: '--lola-font-family',

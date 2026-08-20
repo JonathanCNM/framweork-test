@@ -14,6 +14,14 @@ import {
   isSpecialViewField,
   omitEditorOnlyColorFields,
 } from "./specialViewSync";
+import {
+  copyPrimaryToScreenIcons,
+  copyPrimaryToTitleColor,
+  copySecondaryToInputIcons,
+  isInputIconField,
+  isScreenIconField,
+  isTitleColorField,
+} from "./linkedColorSync";
 import type {
   ButtonSizeOption,
   ExportedTheme,
@@ -37,21 +45,39 @@ const downloadJson = (data: unknown, filename: string) => {
   URL.revokeObjectURL(link.href);
 };
 
-const buildExportedTheme = (state: ThemeEditorState): ExportedTheme => ({
-  font: {
-    ...state.formFont,
-    fontfamily: state.inputFont.name,
-    fontcdn: state.inputFont.cdn,
-  },
-  colors: {
-    ...omitEditorOnlyColorFields(state.formColors),
-    inactived: state.formColors.inactiveColor,
-    gradient: state.formColors.primaryMesh,
-    lightness: state.lightness,
-    useSystemTheme: state.useSystemTheme,
-  },
-  styles: state.formStyles,
-});
+const buildExportedTheme = (state: ThemeEditorState): ExportedTheme => {
+  const colors = omitEditorOnlyColorFields(state.formColors) as Record<
+    string,
+    unknown
+  >;
+
+  if (state.titleLinked) delete colors.titleColor;
+  if (state.screenIconLinked) {
+    delete colors.screenIconPrimary;
+    delete colors.screenIconSecondary;
+    delete colors.screenIconBackground;
+  }
+  if (state.inputIconLinked) {
+    delete colors.inputIconPrimary;
+    delete colors.inputIconSecondary;
+  }
+
+  return {
+    font: {
+      ...state.formFont,
+      fontfamily: state.inputFont.name,
+      fontcdn: state.inputFont.cdn,
+    },
+    colors: {
+      ...colors,
+      inactived: state.formColors.inactiveColor,
+      gradient: state.formColors.primaryMesh,
+      lightness: state.lightness,
+      useSystemTheme: state.useSystemTheme,
+    } as ExportedTheme["colors"],
+    styles: state.formStyles,
+  };
+};
 
 export const useThemeEditor = () => {
   const [state, setState] = useState<ThemeEditorState>(defaultThemeEditorState);
@@ -73,9 +99,15 @@ export const useThemeEditor = () => {
     );
     setState((prev) => {
       const withMesh = { ...prev.formColors, primaryMesh: nextMesh };
-      const formColors = prev.specialViewLinked
+      let formColors = prev.specialViewLinked
         ? copyPrimaryToSpecialView(withMesh)
         : withMesh;
+      if (prev.titleLinked) {
+        formColors = copyPrimaryToTitleColor(formColors);
+      }
+      if (prev.screenIconLinked) {
+        formColors = copyPrimaryToScreenIcons(formColors);
+      }
       const unchanged =
         prev.formColors.primaryMesh === formColors.primaryMesh &&
         prev.formColors.specialViewBackground === formColors.specialViewBackground &&
@@ -88,7 +120,10 @@ export const useThemeEditor = () => {
         prev.formColors.specialViewPrimaryGradientPoint ===
           formColors.specialViewPrimaryGradientPoint &&
         prev.formColors.specialViewSecundaryGradientPoint ===
-          formColors.specialViewSecundaryGradientPoint;
+          formColors.specialViewSecundaryGradientPoint &&
+        prev.formColors.titleColor === formColors.titleColor &&
+        prev.formColors.screenIconPrimary === formColors.screenIconPrimary &&
+        prev.formColors.screenIconSecondary === formColors.screenIconSecondary;
       return unchanged ? prev : { ...prev, formColors };
     });
     // primaryMesh is omitted on purpose so a manual edit is not overwritten
@@ -168,7 +203,12 @@ export const useThemeEditor = () => {
 
   const exportedTheme = useMemo(() => buildExportedTheme(state), [state]);
 
-  const generatedViews = generateColorsByView(exportedTheme.colors, {
+  const generatedViews = generateColorsByView(
+    {
+      ...exportedTheme.colors,
+      titleColor: state.formColors.titleColor,
+    },
+    {
     ...state.formStyles,
     buttonShowIcon: state.formStyles.buttonShowIcon,
     buttonSize: state.formStyles.buttonSize,
@@ -261,15 +301,42 @@ export const useThemeEditor = () => {
             formColors: { ...prev.formColors, [name]: value },
           };
         }
+        if (isTitleColorField(name)) {
+          return {
+            ...prev,
+            titleLinked: false,
+            formColors: { ...prev.formColors, [name]: value },
+          };
+        }
+        if (isScreenIconField(name)) {
+          return {
+            ...prev,
+            screenIconLinked: false,
+            formColors: { ...prev.formColors, [name]: value },
+          };
+        }
+        if (isInputIconField(name)) {
+          return {
+            ...prev,
+            inputIconLinked: false,
+            formColors: { ...prev.formColors, [name]: value },
+          };
+        }
 
-        const formColors = { ...prev.formColors, [name]: value };
-        return {
-          ...prev,
-          formColors:
-            prev.specialViewLinked && isPrimaryGradientField(name)
-              ? copyPrimaryToSpecialView(formColors)
-              : formColors,
-        };
+        let formColors = { ...prev.formColors, [name]: value };
+        if (prev.specialViewLinked && isPrimaryGradientField(name)) {
+          formColors = copyPrimaryToSpecialView(formColors);
+        }
+        if (prev.titleLinked && isPrimaryGradientField(name)) {
+          formColors = copyPrimaryToTitleColor(formColors);
+        }
+        if (prev.screenIconLinked && isPrimaryGradientField(name)) {
+          formColors = copyPrimaryToScreenIcons(formColors);
+        }
+        if (prev.inputIconLinked && name === "secondaryColor") {
+          formColors = copySecondaryToInputIcons(formColors);
+        }
+        return { ...prev, formColors };
       });
     },
     []

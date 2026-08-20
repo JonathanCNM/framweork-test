@@ -58,6 +58,14 @@ export interface IColorForm {
   cardPanelBackground?: string;
   cardBackground?: string;
   cardBackgroundSecundary?: string;
+  foregroundLight?: string;
+  foregroundDark?: string;
+  titleColor?: string;
+  screenIconPrimary?: string;
+  screenIconSecondary?: string;
+  screenIconBackground?: string;
+  inputIconPrimary?: string;
+  inputIconSecondary?: string;
 }
 
 export type ButtonSizeOption = "small" | "medium" | "large";
@@ -100,6 +108,12 @@ export interface ThemeEditorState {
   useSystemTheme: boolean;
   /** Special view follows primaryMesh until the user edits special view fields. */
   specialViewLinked: boolean;
+  /** White-view titles follow primaryMesh until the user edits titleColor. */
+  titleLinked: boolean;
+  /** Screen icons follow primary/secondary gradient until edited. */
+  screenIconLinked: boolean;
+  /** Input icons follow secondaryColor until edited. */
+  inputIconLinked: boolean;
 }
 
 export interface ImportedTheme {

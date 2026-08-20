@@ -34,7 +34,7 @@ export const CardPage = ({ theme }: { theme: IViewConfig }) => {
             type="card_holder_name"
             placeholder="Name on card"
             activeColor={background}
-            color={bodyCopy}
+            color="var(--foreground)"
             errorColor={bodyCopy}
           />
           <VgsInput
@@ -42,7 +42,7 @@ export const CardPage = ({ theme }: { theme: IViewConfig }) => {
             placeholder="Card number"
             cardNumberFormPlaceholder={"XXXX XXXX XXXX XXXX"}
             activeColor={background}
-            color={bodyCopy}
+            color="var(--foreground)"
             errorColor={bodyCopy}
           />
           <article
@@ -53,14 +53,14 @@ export const CardPage = ({ theme }: { theme: IViewConfig }) => {
               type="card_exp_date"
               placeholder="MM / YY"
               activeColor={background}
-              color={bodyCopy}
+              color="var(--foreground)"
               errorColor={bodyCopy}
             />
             <VgsInput
               type="card_cvc"
               placeholder="CVV"
               activeColor={background}
-              color={bodyCopy}
+              color="var(--foreground)"
               errorColor={bodyCopy}
             />
           </article>

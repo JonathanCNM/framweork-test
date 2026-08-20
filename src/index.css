@@ -439,18 +439,20 @@ button:focus-visible {
 .theme-sidebar__font-group {
   margin: 0;
   padding: 0;
-  border: 0;
+  min-inline-size: 0;
+  border: 1px solid #ececec;
+  border-radius: 8px;
 }
 
 .theme-sidebar__font-group legend {
-  padding: 0 0 6px;
+  padding: 8px 12px 0;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.theme-sidebar__font-group .theme-sidebar__fields {
-  padding: 0;
+.theme-editor-form--wide .theme-sidebar__font-group .theme-sidebar__fields {
+  grid-template-columns: 1fr 1fr;
 }
 
 .theme-sidebar__footer {

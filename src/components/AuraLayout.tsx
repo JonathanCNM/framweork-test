@@ -21,16 +21,36 @@ export const AuraLayout: React.FC<AuraLayoutProps> = memo(
     } = colorConfig;
     const isDark = themeType === "dark";
     const auraColors = isDark ? dropzoneColors : iconColors;
+    const isSystemSurface = ["whiteView", "dataView"].includes(viewConfig);
 
-    const systemThemeClassName = useSystemTheme && isDark
-      ? ["whiteView", "dataView"].includes(viewConfig)
+    const systemThemeClassName =
+      useSystemTheme && isDark && isSystemSurface
         ? "white-view-background"
-        : ""
-      : "";
+        : "";
 
     useEffect(() => {
-      if (!useSystemTheme) document.documentElement.classList.add("light");
-    }, [useSystemTheme]);
+      const root = document.documentElement;
+      const followSystem = Boolean(useSystemTheme && isDark);
+
+      if (!followSystem) {
+        root.classList.remove("dark");
+        root.classList.add("light");
+        return;
+      }
+
+      const syncHtmlScheme = () => {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        root.classList.toggle("dark", prefersDark);
+        root.classList.toggle("light", !prefersDark);
+      };
+
+      syncHtmlScheme();
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      media.addEventListener("change", syncHtmlScheme);
+      return () => media.removeEventListener("change", syncHtmlScheme);
+    }, [useSystemTheme, isDark]);
 
     const classes = [systemThemeClassName, className, isDark ? "dark" : "light"]
       .filter(Boolean)

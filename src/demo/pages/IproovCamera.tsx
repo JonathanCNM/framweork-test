@@ -14,7 +14,6 @@ export const IproovCamera = ({ theme }: { theme: IViewConfig }) => {
     iconColors,
     backgroundIcon,
     title,
-    subtitile,
     bodyCopy,
     backgroundBtn,
     textColorBtn,
@@ -34,7 +33,7 @@ export const IproovCamera = ({ theme }: { theme: IViewConfig }) => {
             highlight="Camera access"
             highlightColor={title}
             secudnary="needed"
-            secudnaryColor={subtitile}
+            secudnaryColor={title}
           />
 
           <GradientText as="p" className="lola-body-copy bodycopy" textColor={bodyCopy}>

@@ -5,6 +5,14 @@ import {
   importedThemeHasSpecialView,
   isSpecialViewInSyncWithPrimary,
 } from "./specialViewSync";
+import {
+  copyPrimaryToScreenIcons,
+  copyPrimaryToTitleColor,
+  copySecondaryToInputIcons,
+  importedThemeHasInputIcons,
+  importedThemeHasScreenIcons,
+  importedThemeHasTitleColor,
+} from "./linkedColorSync";
 import type {
   ButtonSizeOption,
   FontInput,
@@ -208,6 +216,27 @@ export const applyImportedTheme = (
     } else {
       next.formColors = copyPrimaryToSpecialView(next.formColors);
       next.specialViewLinked = true;
+    }
+
+    if (importedThemeHasTitleColor(imported.colors)) {
+      next.titleLinked = next.formColors.titleColor === next.formColors.primaryMesh;
+    } else {
+      next.formColors = copyPrimaryToTitleColor(next.formColors);
+      next.titleLinked = true;
+    }
+
+    if (importedThemeHasScreenIcons(imported.colors)) {
+      next.screenIconLinked = false;
+    } else {
+      next.formColors = copyPrimaryToScreenIcons(next.formColors);
+      next.screenIconLinked = true;
+    }
+
+    if (importedThemeHasInputIcons(imported.colors)) {
+      next.inputIconLinked = false;
+    } else {
+      next.formColors = copySecondaryToInputIcons(next.formColors);
+      next.inputIconLinked = true;
     }
   }
 

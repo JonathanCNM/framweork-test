@@ -66,7 +66,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   const styles = {
     ...(borderRadius !== "10" && { borderRadius: `${borderRadius}px` }), // Solo aplica si se especifica un valor diferente al default
     "--bg": getInputThemeBorder(focused, isValid, errorColor),
-    "--input-color": activeColor,
+    "--input-color": "var(--foreground)",
     "--input-placeholder-color": inactiveColor,
   };
 

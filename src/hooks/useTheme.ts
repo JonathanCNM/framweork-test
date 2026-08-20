@@ -17,6 +17,12 @@
 import { useEffect } from "react";
 import { injectStyleVariables } from "./useCSSVariables";
 import type { StylesConfig } from "../types/theme.types";
+import {
+  resolveInputIconColors,
+  resolveScreenIconBackground,
+  resolveScreenIconColors,
+  resolveTitleColor,
+} from "./themeColorFallbacks";
 
 /**
  * @deprecated Use FontStyleConfig from '../types/theme.types' instead
@@ -64,6 +70,10 @@ export interface IViewColorConfig {
    * Pass manually e.g. `background={view.iconContainerBackground}`.
    */
   iconContainerBackground?: string;
+  /**
+   * Colors for icons inside inputs. Falls back to `iconColors` when unset.
+   */
+  inputIconColors?: [string, string];
   themeType?: string;
   useSystemTheme?: boolean;
   viewConfig:
@@ -393,8 +403,23 @@ export const useTheme = (theme: IUseTheme) => {
     // Additive: expose button flags/size on every view; optional global iconContainerBackground override
     if (newTheme) {
       (Object.keys(newTheme) as (keyof IViewConfig)[]).forEach((viewKey) => {
+        const view = newTheme![viewKey];
+        const iconColors = resolveScreenIconColors(theme, view.iconColors);
+        const applyTitleColor =
+          (viewKey === "whiteView" || viewKey === "dataView") &&
+          theme?.lightness === "dark";
         newTheme![viewKey] = {
-          ...newTheme![viewKey],
+          ...view,
+          iconColors,
+          backgroundIcon: resolveScreenIconBackground(theme, view.backgroundIcon),
+          inputIconColors: resolveInputIconColors(theme, iconColors),
+          ...(applyTitleColor
+            ? {
+                title: resolveTitleColor(theme, view.title),
+                subtitile: resolveTitleColor(theme, view.subtitile),
+                highlight: resolveTitleColor(theme, view.highlight ?? view.title),
+              }
+            : {}),
           buttonShowIcon,
           buttonSize,
           ...(iconContainerBackgroundOverride !== undefined

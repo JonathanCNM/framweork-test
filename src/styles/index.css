@@ -2,10 +2,12 @@
 
 html.light {
   color-scheme: light;
+  --foreground: var(--lola-foreground-light, #17171c);
 }
 
 html.dark {
   color-scheme: dark;
+  --foreground: var(--lola-foreground-dark, #fafafa);
 }
 
 /* CSS Variables */
@@ -36,7 +38,7 @@ html.dark {
   /* Light */
   --background: #fff;
   /* --background: #f3f4f6; */
-  --foreground: #17171c;
+  --foreground: var(--lola-foreground-light, #17171c);
   --card: #e5e7eb;
   --card-foreground: #17171c;
   --primary: #3ee0cf;
@@ -63,7 +65,7 @@ html.dark {
   :root {
     /* --background: #252525; */
     --background: #09090b;
-    --foreground: #fafafa;
+    --foreground: var(--lola-foreground-dark, #fafafa);
     --card: #121216;
     --card-foreground: #fafafa;
     --primary: #3ee0cf;
@@ -903,7 +905,7 @@ button.lola-button,
   padding-inline: 24px;
   text-align: center;
   padding-bottom: 0.2em;
-  color: #252525;
+  color: var(--foreground, #252525);
 }
 
 .lola-title-highlight {

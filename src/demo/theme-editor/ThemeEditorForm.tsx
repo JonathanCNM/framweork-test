@@ -3,10 +3,14 @@ import {
   FONT_INPUT_KEYS,
   FONT_STYLE_KEYS,
   errorViewGradientList,
+  foregroundColorList,
   formColorList,
   formFontInitialState,
   formStylesList,
+  inputIconColorList,
+  screenIconColorList,
   specialViewGradientList,
+  titleColorList,
 } from "./constants";
 import type {
   ButtonSizeOption,
@@ -28,18 +32,18 @@ const ColorFields = ({
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => (
   <div className="theme-sidebar__fields">
-    {fields.map(({ key, type }) => {
+    {fields.map(({ key, type, label }) => {
       const value = String(values[key as keyof IColorForm] ?? "");
       return (
         <label
           key={key}
           className={
-            key.endsWith("Background") || key === "primaryMesh"
+            key.endsWith("Background") || key === "primaryMesh" || key === "titleColor"
               ? "theme-sidebar__field theme-sidebar__field--wide"
               : "theme-sidebar__field"
           }
         >
-          <span>{key}</span>
+          <span>{label ?? key}</span>
           <span className="theme-sidebar__control">
             {type === "color" && isHexColor(value) ? (
               <input
@@ -144,6 +148,63 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
             <span>Usar tema del sistema</span>
           </label>
         </div>
+      </details>
+
+      <details className="theme-sidebar__section" open>
+        <summary>Foreground</summary>
+        <p className="theme-sidebar__hint theme-sidebar__section-hint">
+          Antes secondaryColor. Light y dark usan los defaults de --foreground
+          si no los cambias.
+        </p>
+        <ColorFields
+          fields={foregroundColorList}
+          values={state.formColors}
+          onChange={editor.onChangeColorField}
+        />
+      </details>
+
+      <details className="theme-sidebar__section" open>
+        <summary>Iconos</summary>
+        <p className="theme-sidebar__hint theme-sidebar__section-hint">
+          Screen: ElevatedCircle. Siguen el gradiente principal hasta que los
+          edites. Input: iconos de campos. Siguen secondaryColor hasta que los
+          edites.
+        </p>
+        <div className="theme-sidebar__font-groups">
+          <fieldset className="theme-sidebar__font-group">
+            <legend>Screen</legend>
+            <ColorFields
+              fields={screenIconColorList}
+              values={state.formColors}
+              onChange={editor.onChangeColorField}
+            />
+          </fieldset>
+          <fieldset className="theme-sidebar__font-group">
+            <legend>Input</legend>
+            <ColorFields
+              fields={inputIconColorList}
+              values={state.formColors}
+              onChange={editor.onChangeColorField}
+            />
+          </fieldset>
+        </div>
+      </details>
+
+      <details className="theme-sidebar__section" open>
+        <summary>Títulos</summary>
+        <p className="theme-sidebar__hint theme-sidebar__section-hint">
+          Igual que special view: toma primaryMesh hasta que lo edites
+          directamente.
+        </p>
+        <div
+          className="theme-sidebar__gradient-preview"
+          style={{ background: state.formColors.titleColor }}
+        />
+        <ColorFields
+          fields={titleColorList}
+          values={state.formColors}
+          onChange={editor.onChangeColorField}
+        />
       </details>
 
       <details className="theme-sidebar__section" open>

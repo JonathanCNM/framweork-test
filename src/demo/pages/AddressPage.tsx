@@ -16,7 +16,7 @@ export const AddressPage = ({
   theme: IViewConfig;
   isHomeAddress?: boolean;
 }) => {
-  const { title, bodyCopy, iconColors, backgroundBtn, textColorBtn, buttonShowIcon, buttonSize } =
+  const { title, iconColors, inputIconColors, backgroundBtn, textColorBtn, buttonShowIcon, buttonSize } =
     theme.whiteView;
 
   const addressTitle = isHomeAddress ? "Home address" : "Billing address";
@@ -31,10 +31,10 @@ export const AddressPage = ({
             <InputField
               label={addressTitle}
               inputStyle={{ paddingLeft: "44px" }}
-              activeColor={title}
-              color={bodyCopy}
+              activeColor="var(--foreground)"
+              color="var(--foreground)"
               value="Tamarac, Florida 33321, EE. UU."
-              icon={<HomeAddressIcon colors={iconColors} size={18} />}
+              icon={<HomeAddressIcon colors={inputIconColors ?? iconColors} size={18} />}
             />
           </section>
 
@@ -42,8 +42,8 @@ export const AddressPage = ({
             <InputField
               label="City"
               value="Tamarac"
-              activeColor={title}
-              color={bodyCopy}
+              activeColor="var(--foreground)"
+              color="var(--foreground)"
             />
 
             <InputField
@@ -51,8 +51,8 @@ export const AddressPage = ({
               maxLength={10}
               label="Zipcode"
               value="33321"
-              activeColor={title}
-              color={bodyCopy}
+              activeColor="var(--foreground)"
+              color="var(--foreground)"
             />
           </div>
 

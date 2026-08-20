@@ -19,7 +19,6 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
     backgroundIcon,
     footerColor,
     title,
-    subtitile,
     backgroundBtn,
     textColorBtn,
     dropzoneColors,
@@ -43,7 +42,7 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
               highlight="Got your ID"
               highlightColor={title}
               secudnary="at hand?"
-              secudnaryColor={subtitile}
+              secudnaryColor={title}
             />
 
             <BodyCopy>
@@ -59,7 +58,6 @@ export const DropzoneMobile: React.FC<DropzoneProps> = ({
           progressColors={dropzoneColors}
           backgroundIcon={backgroundIcon}
           title={title}
-          subtitle={subtitile}
           footerTextColor={footerColor}
         />
       )}

@@ -75,6 +75,14 @@ export function injectColorVariables(colors: ColorPalette): void {
   if (colors.cardBackgroundSecundary) {
     root.style.setProperty(CSS_VARIABLES.CARD_BACKGROUND_SECUNDARY, colors.cardBackgroundSecundary);
   }
+
+  if (colors.foregroundLight) {
+    root.style.setProperty(CSS_VARIABLES.FOREGROUND_LIGHT, colors.foregroundLight);
+  }
+
+  if (colors.foregroundDark) {
+    root.style.setProperty(CSS_VARIABLES.FOREGROUND_DARK, colors.foregroundDark);
+  }
 }
 
 /**

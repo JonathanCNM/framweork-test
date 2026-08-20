@@ -10,6 +10,12 @@ import type {
   ViewsConfig,
   ViewType,
 } from '../types/theme.types';
+import {
+  resolveInputIconColors,
+  resolveScreenIconBackground,
+  resolveScreenIconColors,
+  resolveTitleColor,
+} from './themeColorFallbacks';
 
 /**
  * Color mapping definition for a single view
@@ -165,8 +171,8 @@ const VIEW_COLOR_MAPPINGS: Record<ViewType, { light: ColorMapping; dark: ColorMa
       iconColors: ['secondaryColor', 'secondaryColor'],
       backgroundIcon: 'whiteColor',
       iconContainerBackground: 'transparent',
-      title: 'primaryMesh',
-      subtitile: 'primaryMesh',
+      title: 'titleColor',
+      subtitile: 'titleColor',
       bodyCopy: 'secondaryColor',
       footerColor: 'secondaryColor',
       backgroundBtn: 'primaryMesh',
@@ -232,6 +238,11 @@ function resolveColor(key: keyof ColorPalette | string, palette: ColorPalette): 
   if (key === 'specialViewBackground' && !palette.specialViewBackground) {
     return palette.primaryMesh;
   }
+
+  // White-view titles follow primaryMesh until titleColor is set
+  if (key === 'titleColor' && !palette.titleColor) {
+    return palette.primaryMesh;
+  }
   
   if (key in palette) {
     const value = palette[key as keyof ColorPalette];
@@ -282,7 +293,10 @@ export function generateViewConfigs(
     );
     
     // Special handling for whiteView and dataView when useSystemTheme is active
-    const shouldUseSystemColors = useSystemTheme && (viewType === 'whiteView' || viewType === 'dataView');
+    const shouldUseSystemColors =
+      useSystemTheme &&
+      lightness === "dark" &&
+      (viewType === "whiteView" || viewType === "dataView");
     
     if (shouldUseSystemColors) {
       // Use CSS variables for system theme support
@@ -345,6 +359,32 @@ export function generateViewConfigs(
         viewConfig: viewType,
       };
     }
+
+    const view = views[viewType];
+    const iconColors = resolveScreenIconColors(colorPalette, view.iconColors);
+    const applyTitleColor =
+      (viewType === "whiteView" || viewType === "dataView") &&
+      lightness === "dark" &&
+      !shouldUseSystemColors;
+    views[viewType] = {
+      ...view,
+      iconColors,
+      backgroundIcon: resolveScreenIconBackground(
+        colorPalette,
+        view.backgroundIcon
+      ),
+      inputIconColors: resolveInputIconColors(colorPalette, iconColors),
+      ...(applyTitleColor
+        ? {
+            title: resolveTitleColor(colorPalette, view.title),
+            subtitile: resolveTitleColor(colorPalette, view.subtitile),
+            highlight: resolveTitleColor(
+              colorPalette,
+              view.highlight ?? view.title
+            ),
+          }
+        : {}),
+    };
   });
 
   return views;

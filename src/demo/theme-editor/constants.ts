@@ -44,6 +44,14 @@ export const COLOR_STRING_KEYS = [
   "cardPanelBackground",
   "cardBackground",
   "cardBackgroundSecundary",
+  "foregroundLight",
+  "foregroundDark",
+  "titleColor",
+  "screenIconPrimary",
+  "screenIconSecondary",
+  "screenIconBackground",
+  "inputIconPrimary",
+  "inputIconSecondary",
 ] as const;
 
 export const STYLE_STRING_KEYS = [
@@ -117,7 +125,6 @@ export const formColorList: ThemeFieldConfig[] = [
   { key: "primaryGradientPoint", value: "23.26%", type: "text" },
   { key: "secondaryGradient", value: "#008433", type: "color" },
   { key: "secundaryGradientPoint", value: "111.43%", type: "text" },
-  { key: "secondaryColor", value: "#252525", type: "color" },
   { key: "whiteColor", value: "#FFFFFF", type: "color" },
   { key: "inactiveColor", value: "#979797", type: "color" },
   { key: "errorColor", value: "#E81C1C", type: "color" },
@@ -131,6 +138,50 @@ export const formColorList: ThemeFieldConfig[] = [
     value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
     type: "text",
   },
+];
+
+export const foregroundColorList: ThemeFieldConfig[] = [
+  {
+    key: "foregroundLight",
+    value: "#17171c",
+    type: "color",
+    label: "light",
+    description: "Default CSS --foreground en light (#17171c).",
+  },
+  {
+    key: "foregroundDark",
+    value: "#fafafa",
+    type: "color",
+    label: "dark",
+    description: "Default CSS --foreground en dark (#fafafa).",
+  },
+];
+
+export const titleColorList: ThemeFieldConfig[] = [
+  {
+    key: "titleColor",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+    label: "titleColor",
+    description:
+      "Sigue al primaryMesh hasta que lo edites. Después queda independiente.",
+  },
+];
+
+export const screenIconColorList: ThemeFieldConfig[] = [
+  { key: "screenIconPrimary", value: "#4BA84B", type: "color", label: "color 1" },
+  { key: "screenIconSecondary", value: "#008433", type: "color", label: "color 2" },
+  {
+    key: "screenIconBackground",
+    value: "#FFFFFF",
+    type: "color",
+    label: "fondo (ElevatedCircle)",
+  },
+];
+
+export const inputIconColorList: ThemeFieldConfig[] = [
+  { key: "inputIconPrimary", value: "#252525", type: "color", label: "color 1" },
+  { key: "inputIconSecondary", value: "#252525", type: "color", label: "color 2" },
 ];
 
 export const formColorInitialState: IColorForm = {
@@ -161,6 +212,15 @@ export const formColorInitialState: IColorForm = {
   cardPanelBackground: "transparent",
   cardBackground: "#eeeef1",
   cardBackgroundSecundary: "#17171c",
+  foregroundLight: "#17171c",
+  foregroundDark: "#fafafa",
+  titleColor:
+    "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  screenIconPrimary: "#4BA84B",
+  screenIconSecondary: "#008433",
+  screenIconBackground: "#FFFFFF",
+  inputIconPrimary: "#252525",
+  inputIconSecondary: "#252525",
 };
 
 export const specialViewGradientList: ThemeFieldConfig[] = [
@@ -249,6 +309,9 @@ export const defaultThemeEditorState: ThemeEditorState = {
   lightness: "dark",
   useSystemTheme: false,
   specialViewLinked: true,
+  titleLinked: true,
+  screenIconLinked: true,
+  inputIconLinked: true,
 };
 
 export const STORYBOOK_ORIGINS = [

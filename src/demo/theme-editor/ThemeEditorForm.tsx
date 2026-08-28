@@ -13,6 +13,7 @@ import {
   errorIconFillList,
   specialViewGradientList,
   titleColorList,
+  linkColorList,
 } from "./constants";
 import type {
   ButtonSizeOption,
@@ -43,7 +44,8 @@ const ColorFields = ({
             key.endsWith("Background") ||
             key.endsWith("Fill") ||
             key === "primaryMesh" ||
-            key === "titleColor"
+            key === "titleColor" ||
+            key === "linkColor"
               ? "theme-sidebar__field theme-sidebar__field--wide"
               : "theme-sidebar__field"
           }
@@ -166,6 +168,43 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
           values={state.formColors}
           onChange={editor.onChangeColorField}
         />
+      </details>
+
+      <details className="theme-sidebar__section" open>
+        <summary>Links</summary>
+        <p className="theme-sidebar__hint theme-sidebar__section-hint">
+          Color del texto (sólido o gradiente), negrita y subrayado. Defaults:
+          #252525, bold, sin subrayar.
+        </p>
+        <div
+          className="theme-sidebar__gradient-preview"
+          style={{ background: state.formColors.linkColor }}
+        />
+        <ColorFields
+          fields={linkColorList}
+          values={state.formColors}
+          onChange={editor.onChangeColorField}
+        />
+        <div className="theme-sidebar__fields">
+          <label className="theme-sidebar__checkbox">
+            <input
+              type="checkbox"
+              name="linkBold"
+              checked={state.formStyles.linkBold}
+              onChange={() => editor.onToggleStyleBoolean("linkBold")}
+            />
+            <span>Negrita</span>
+          </label>
+          <label className="theme-sidebar__checkbox">
+            <input
+              type="checkbox"
+              name="linkUnderline"
+              checked={state.formStyles.linkUnderline}
+              onChange={() => editor.onToggleStyleBoolean("linkUnderline")}
+            />
+            <span>Subrayado</span>
+          </label>
+        </div>
       </details>
 
       <details className="theme-sidebar__section" open>
@@ -296,7 +335,9 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
                   <input
                     type="checkbox"
                     checked={Boolean(state.formStyles[key as keyof IStylesForm])}
-                    onChange={editor.onToggleButtonShowIcon}
+                    onChange={() =>
+                      editor.onToggleStyleBoolean(key as "buttonShowIcon")
+                    }
                   />
                   <span>
                     {label ?? key}

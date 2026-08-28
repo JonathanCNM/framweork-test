@@ -23,6 +23,7 @@ export * from "./components/PayoutInfo";
 export * from "./components/Page";
 export * from "./components/PageTitle";
 export * from "./components/Select";
+export * from "./components/TextLink";
 export * from "./components/Title";
 export * from "./components/VgsFormWrapper";
 export * from "./components/VgsInput";
@@ -54,6 +55,7 @@ export type { PayoutInfoProps } from "./components/PayoutInfo";
 export type { PageProps } from "./components/Page";
 export type { PageTitleProps } from "./components/PageTitle";
 export type { SelectProps, ISelectItem } from "./components/Select";
+export type { TextLinkProps } from "./components/TextLink";
 export type { TitleProps } from "./components/Title";
 export type { VgsInputProps } from "./components/VgsInput";
 
@@ -90,6 +92,7 @@ export type {
 export type {
   LolaThemeConfig,
   ColorPalette,
+  StylesConfig,
   FontStyleConfig,
   ViewsConfig,
   ViewColorConfig,

@@ -60,6 +60,9 @@ export type { PageTitleProps } from "./PageTitle";
 export { Select } from "./Select";
 export type { SelectProps, ISelectItem } from "./Select";
 
+export { TextLink } from "./TextLink";
+export type { TextLinkProps } from "./TextLink";
+
 export { Title } from "./Title";
 export type { TitleProps } from "./Title";
 

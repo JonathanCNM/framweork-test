@@ -1,5 +1,22 @@
 export const DEFAULT_FOREGROUND_LIGHT = "#17171c";
 export const DEFAULT_FOREGROUND_DARK = "#fafafa";
+export const DEFAULT_LINK_COLOR = "#252525";
+
+export const isGradientColor = (value: string): boolean =>
+  value.includes("gradient");
+
+export const firstCssColorStop = (value: string): string =>
+  value.match(/#(?:[0-9a-fA-F]{3,8})\b/)?.[0] ?? DEFAULT_LINK_COLOR;
+
+export const toLinkFill = (color: string): string =>
+  isGradientColor(color)
+    ? `${color} text, transparent`
+    : `linear-gradient(90deg, ${color} 0%, ${color} 100%) text, transparent`;
+
+export const resolveLinkColor = (palette: { linkColor?: string }): string =>
+  typeof palette.linkColor === "string" && palette.linkColor.trim() !== ""
+    ? palette.linkColor
+    : DEFAULT_LINK_COLOR;
 
 type PaletteLike = {
   screenIconPrimary?: string;

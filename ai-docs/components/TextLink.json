@@ -1,0 +1,84 @@
+{
+  "name": "TextLink",
+  "description": "Themed in-copy link / anchor. Color can be a solid or a CSS gradient. Bold and underline come from the theme (defaults: #252525, bold, no underline) and can be overridden per instance.",
+  "category": "display",
+  "version": "1.0.0",
+  "props": {
+    "children": {
+      "type": "React.ReactNode",
+      "required": true,
+      "description": "Link label"
+    },
+    "as": {
+      "type": "React.ElementType",
+      "required": false,
+      "default": "a",
+      "description": "Rendered element. Use `span` for in-copy legal links without navigation.",
+      "examples": ["a", "span", "button"]
+    },
+    "textColor": {
+      "type": "string",
+      "required": false,
+      "description": "Override theme colors.linkColor. Solid hex or CSS gradient. Omit to use --lola-link-color.",
+      "examples": ["#252525", "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)"]
+    },
+    "bold": {
+      "type": "boolean",
+      "required": false,
+      "description": "Override theme styles.linkBold. Unset follows the theme (default true)."
+    },
+    "underline": {
+      "type": "boolean",
+      "required": false,
+      "description": "Override theme styles.linkUnderline. Unset follows the theme (default false)."
+    }
+  },
+  "usage": {
+    "import": "import { TextLink } from 'lola-framework-ui-test';",
+    "basic": "<TextLink href=\"/terms\">Terms & Conditions</TextLink>",
+    "advanced": [
+      {
+        "title": "In-copy legal text",
+        "code": "<TextLink as=\"span\">Privacy Policy</TextLink>",
+        "description": "Keeps theme color/weight/underline without a real href."
+      },
+      {
+        "title": "Gradient + underline override",
+        "code": "<TextLink\\n  href=\"/terms\"\\n  textColor=\"linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)\"\\n  underline\\n>\\n  Terms\\n</TextLink>",
+        "description": "Instance overrides win over the theme CSS variables."
+      }
+    ]
+  },
+  "dependencies": [],
+  "styling": {
+    "cssVariables": [
+      {
+        "name": "--lola-link-color",
+        "description": "Solid or gradient source color",
+        "default": "#252525"
+      },
+      {
+        "name": "--lola-link-font-weight",
+        "description": "700 when styles.linkBold is true, else 400",
+        "default": "700"
+      },
+      {
+        "name": "--lola-link-text-decoration",
+        "description": "underline when styles.linkUnderline is true, else none",
+        "default": "none"
+      }
+    ],
+    "className": "lola-link text-link"
+  },
+  "accessibility": {
+    "aria": [],
+    "keyboard": ["Enter / Space when rendered as a or button"],
+    "notes": "When as=\"span\", the host should keep the surrounding sentence readable; add role=\"link\" and keyboard handlers if the span is interactive."
+  },
+  "notes": [
+    "Theme keys: colors.linkColor, styles.linkBold, styles.linkUnderline.",
+    "Missing keys use #252525, bold, no underline.",
+    "Existing .text-link class names pick up the same CSS variables."
+  ],
+  "related": ["BodyCopy", "GradientText"]
+}

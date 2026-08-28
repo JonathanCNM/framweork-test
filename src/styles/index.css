@@ -33,6 +33,12 @@ html.dark {
   --lola-style-input-padding: 0.75rem;
   --lola-style-card-padding: 1.5rem;
   --lola-color-card-panel-background: transparent;
+  --lola-link-color: #252525;
+  --lola-link-fill: linear-gradient(90deg, #252525 0%, #252525 100%) text,
+    transparent;
+  --lola-link-decoration-color: #252525;
+  --lola-link-font-weight: 700;
+  --lola-link-text-decoration: none;
 
   color-scheme: light dark;
   /* Light */
@@ -564,6 +570,26 @@ button.lola-button,
   background-clip: text;
   /* width: fit-content; */
   cursor: default;
+}
+
+.lola-link,
+.text-link {
+  color: var(--lola-link-color, #252525);
+  font-weight: var(--lola-link-font-weight, 700);
+  text-decoration: var(--lola-link-text-decoration, none);
+  text-decoration-color: var(--lola-link-decoration-color, currentColor);
+  text-underline-offset: 0.12em;
+  cursor: pointer;
+}
+
+html.lola-link-gradient .lola-link:not(.lola-link--solid),
+html.lola-link-gradient .text-link:not(.lola-link--solid),
+.lola-link--gradient {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: var(--lola-link-fill, var(--lola-link-color));
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
 .vgs-collect-iframe-wr iframe {

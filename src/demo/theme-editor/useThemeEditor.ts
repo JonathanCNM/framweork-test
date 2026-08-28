@@ -411,15 +411,22 @@ export const useThemeEditor = () => {
     }));
   }, []);
 
+  const onToggleStyleBoolean = useCallback(
+    (key: "buttonShowIcon" | "linkBold" | "linkUnderline") => {
+      setState((prev) => ({
+        ...prev,
+        formStyles: {
+          ...prev.formStyles,
+          [key]: !prev.formStyles[key],
+        },
+      }));
+    },
+    []
+  );
+
   const onToggleButtonShowIcon = useCallback(() => {
-    setState((prev) => ({
-      ...prev,
-      formStyles: {
-        ...prev.formStyles,
-        buttonShowIcon: !prev.formStyles.buttonShowIcon,
-      },
-    }));
-  }, []);
+    onToggleStyleBoolean("buttonShowIcon");
+  }, [onToggleStyleBoolean]);
 
   const onChangeLightness = useCallback((value: "light" | "dark") => {
     setState((prev) => ({ ...prev, lightness: value }));
@@ -478,6 +485,7 @@ export const useThemeEditor = () => {
     onChangeStyleField,
     onChangeButtonSize,
     onToggleButtonShowIcon,
+    onToggleStyleBoolean,
     onChangeLightness,
     onToggleSystemTheme,
     onCopyTheme,

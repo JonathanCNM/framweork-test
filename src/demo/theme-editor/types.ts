@@ -76,6 +76,7 @@ export interface IColorForm {
   screenIconPaddingError?: string;
   inputIconPrimary?: string;
   inputIconSecondary?: string;
+  linkColor?: string;
 }
 
 export type ButtonSizeOption = "small" | "medium" | "large";
@@ -96,6 +97,8 @@ export interface IStylesForm {
   buttonShowIcon: boolean;
   /** Background for icon containers (not icons). Default transparent (legacy). */
   iconContainerBackground: string;
+  linkBold: boolean;
+  linkUnderline: boolean;
 }
 
 export type ThemeFieldType = "color" | "text" | "select" | "checkbox";

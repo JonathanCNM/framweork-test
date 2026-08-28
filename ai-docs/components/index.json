@@ -36,7 +36,7 @@
     },
     "display": {
       "description": "Display and presentation components",
-      "components": ["Title", "PageTitle", "GradientText", "RotatingText", "BodyCopy"]
+      "components": ["Title", "PageTitle", "GradientText", "RotatingText", "BodyCopy", "TextLink"]
     },
     "feedback": {
       "description": "Loading states and progress indicators",
@@ -187,6 +187,14 @@
       "complexity": "simple",
       "status": "stable",
       "docFile": null
+    },
+    {
+      "name": "TextLink",
+      "category": "display",
+      "description": "Themed in-copy link. Solid or gradient color, optional bold and underline. Defaults: #252525, bold, no underline.",
+      "complexity": "simple",
+      "status": "stable",
+      "docFile": "TextLink.json"
     },
     {
       "name": "Loader",

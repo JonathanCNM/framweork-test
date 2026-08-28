@@ -165,8 +165,13 @@ const applyStyles = (
   const next: IStylesForm = { ...current };
 
   for (const [key, value] of Object.entries(imported)) {
-    if (key === "buttonShowIcon" && typeof value === "boolean") {
-      next.buttonShowIcon = value;
+    if (
+      (key === "buttonShowIcon" ||
+        key === "linkBold" ||
+        key === "linkUnderline") &&
+      typeof value === "boolean"
+    ) {
+      next[key] = value;
       continue;
     }
     if (

@@ -4,6 +4,7 @@ import {
   Button,
   Layout,
   PageTitle,
+  TextLink,
 } from "../../components";
 import { FaceIcon } from "../../icons";
 import { CustomStepper } from "../../components/CustomStepper";
@@ -81,9 +82,9 @@ export const StepPage = ({
             <BodyCopy className="terms-text footer-text">
               <span>By continuing, you agree to our</span>
               <br />
-              <span className="text-link">Terms & Conditions</span>
+              <TextLink as="span">Terms & Conditions</TextLink>
               <span> and </span>
-              <span className="text-link">Privacy Policy</span>
+              <TextLink as="span">Privacy Policy</TextLink>
             </BodyCopy>
           </section>
           <p className="footer-text terms-text"></p>

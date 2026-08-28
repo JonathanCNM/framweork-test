@@ -566,20 +566,7 @@ button:focus-visible {
     margin: auto;
     margin-bottom: 12px;
 
-    .text-link {
-      font-weight: 600;
-      text-decoration: underline;
-    }
   }
-}
-
-/* Theme-aware link styles */
-html.light .terms-text .text-link {
-  color: #000;
-}
-
-html.dark .terms-text .text-link {
-  color: #2587ff;
 }
 
 .elevated-circle-container {

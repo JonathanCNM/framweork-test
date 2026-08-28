@@ -122,6 +122,11 @@ export interface ColorPalette {
   inputIconPrimary?: string;
   /** Second stop of input icons. Unset = view `iconColors` (legacy). */
   inputIconSecondary?: string;
+  /**
+   * Color for `TextLink` / `.lola-link` / `.text-link`. Solid or gradient.
+   * Unset = `#252525`.
+   */
+  linkColor?: string;
 }
 
 export interface ViewColorConfig {
@@ -232,6 +237,15 @@ export interface StylesConfig {
    * Pass manually: `background={view.iconContainerBackground}`. Does not auto-apply.
    */
   iconContainerBackground?: string;
+
+  /**
+   * Anchor / in-copy link weight. Unset = `true` (700).
+   */
+  linkBold?: boolean;
+  /**
+   * Anchor / in-copy link underline. Unset = `false`.
+   */
+  linkUnderline?: boolean;
   
   // Component padding
   buttonPadding?: string;
@@ -282,6 +296,11 @@ export const CSS_VARIABLES = {
   FOREGROUND_DARK: '--lola-foreground-dark',
   SCREEN_ICON_FILL: '--lola-screen-icon-fill',
   SCREEN_ICON_PADDING: '--lola-screen-icon-padding',
+  LINK_COLOR: '--lola-link-color',
+  LINK_FILL: '--lola-link-fill',
+  LINK_DECORATION_COLOR: '--lola-link-decoration-color',
+  LINK_FONT_WEIGHT: '--lola-link-font-weight',
+  LINK_TEXT_DECORATION: '--lola-link-text-decoration',
   
   // Font
   FONT_FAMILY: '--lola-font-family',

@@ -105,6 +105,17 @@ const validateStyles = (styles: unknown): string | null => {
     return "styles.buttonShowIcon debe ser un boolean";
   }
 
+  if (styles.linkBold !== undefined && typeof styles.linkBold !== "boolean") {
+    return "styles.linkBold debe ser un boolean";
+  }
+
+  if (
+    styles.linkUnderline !== undefined &&
+    typeof styles.linkUnderline !== "boolean"
+  ) {
+    return "styles.linkUnderline debe ser un boolean";
+  }
+
   for (const key of STYLE_STRING_KEYS) {
     if (styles[key] === undefined) continue;
     if (typeof styles[key] !== "string") {

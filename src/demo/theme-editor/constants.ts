@@ -59,6 +59,7 @@ export const COLOR_STRING_KEYS = [
   "screenIconFillError",
   "inputIconPrimary",
   "inputIconSecondary",
+  "linkColor",
 ] as const;
 
 export const COLOR_PADDING_KEYS = [
@@ -167,6 +168,16 @@ export const foregroundColorList: ThemeFieldConfig[] = [
     type: "color",
     label: "dark",
     description: "Default CSS --foreground en dark (#fafafa).",
+  },
+];
+
+export const linkColorList: ThemeFieldConfig[] = [
+  {
+    key: "linkColor",
+    value: "#252525",
+    type: "text",
+    label: "linkColor",
+    description: "Sólido o gradiente. Default #252525.",
   },
 ];
 
@@ -310,6 +321,7 @@ export const formColorInitialState: IColorForm = {
   screenIconPaddingError: "",
   inputIconPrimary: "#252525",
   inputIconSecondary: "#252525",
+  linkColor: "#252525",
 };
 
 export const specialViewGradientList: ThemeFieldConfig[] = [
@@ -388,6 +400,8 @@ export const formStylesInitialState: IStylesForm = {
   buttonSize: "large",
   buttonShowIcon: true,
   iconContainerBackground: "transparent",
+  linkBold: true,
+  linkUnderline: false,
 };
 
 export const defaultThemeEditorState: ThemeEditorState = {

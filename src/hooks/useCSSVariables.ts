@@ -6,6 +6,12 @@
 import { useEffect } from 'react';
 import type { ColorPalette, ViewColorConfig, StylesConfig } from '../types/theme.types';
 import { CSS_VARIABLES } from '../types/theme.types';
+import {
+  firstCssColorStop,
+  isGradientColor,
+  resolveLinkColor,
+  toLinkFill,
+} from './themeColorFallbacks';
 
 /**
  * Default styles configuration
@@ -22,6 +28,8 @@ const DEFAULT_STYLES: Required<StylesConfig> = {
   buttonSize: 'medium',
   buttonShowIcon: true,
   iconContainerBackground: 'transparent',
+  linkBold: true,
+  linkUnderline: false,
   /** Legacy default when theme styles omit padding/size */
   buttonPadding: '20px',
   inputPadding: '0.75rem',
@@ -89,6 +97,15 @@ export function injectColorVariables(colors: ColorPalette): void {
   } else {
     root.style.removeProperty(CSS_VARIABLES.SCREEN_ICON_FILL);
   }
+
+  const linkColor = resolveLinkColor(colors);
+  root.style.setProperty(CSS_VARIABLES.LINK_COLOR, linkColor);
+  root.style.setProperty(CSS_VARIABLES.LINK_FILL, toLinkFill(linkColor));
+  root.style.setProperty(
+    CSS_VARIABLES.LINK_DECORATION_COLOR,
+    firstCssColorStop(linkColor)
+  );
+  root.classList.toggle("lola-link-gradient", isGradientColor(linkColor));
 }
 
 /**
@@ -149,6 +166,15 @@ export function injectStyleVariables(styles?: StylesConfig): void {
   root.style.setProperty(
     CSS_VARIABLES.ICON_CONTAINER_BACKGROUND,
     appliedStyles.iconContainerBackground
+  );
+
+  root.style.setProperty(
+    CSS_VARIABLES.LINK_FONT_WEIGHT,
+    appliedStyles.linkBold ? "700" : "400"
+  );
+  root.style.setProperty(
+    CSS_VARIABLES.LINK_TEXT_DECORATION,
+    appliedStyles.linkUnderline ? "underline" : "none"
   );
 }
 

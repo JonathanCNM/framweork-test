@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { registeredFonts } from "../../utils/constants";
 import {
   FONT_INPUT_KEYS,
@@ -75,9 +76,33 @@ interface ThemeEditorFormProps {
 
 export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
   const { state } = editor;
+  const [themeJsonDraft, setThemeJsonDraft] = useState("");
+
+  const onValidateTheme = () => {
+    editor.importThemeFromJson(themeJsonDraft);
+  };
 
   return (
     <div className="theme-editor-form">
+      <details className="theme-sidebar__section" open>
+        <summary>JSON del tema</summary>
+        <p className="theme-sidebar__hint theme-sidebar__section-hint">
+          Pega un JSON de tema y valídalo. Si es válido se aplica al editor.
+        </p>
+        <div className="theme-sidebar__json">
+          <textarea
+            value={themeJsonDraft}
+            onChange={(event) => setThemeJsonDraft(event.currentTarget.value)}
+            placeholder='{ "font": {}, "colors": {}, "styles": {} }'
+            spellCheck={false}
+            aria-label="JSON del tema"
+          />
+          <button type="button" onClick={onValidateTheme}>
+            Validar tema
+          </button>
+        </div>
+      </details>
+
       <details className="theme-sidebar__section" open>
         <summary>Fuente</summary>
         <div className="theme-sidebar__fields">

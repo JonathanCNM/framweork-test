@@ -167,9 +167,12 @@ export const validateImportedTheme = (value: unknown): ThemeValidationResult => 
 };
 
 export const parseThemeJson = (raw: string): ThemeValidationResult => {
+  if (!raw.trim()) {
+    return { ok: false, error: "Pega un JSON de tema para validar" };
+  }
   try {
     return validateImportedTheme(JSON.parse(raw));
   } catch {
-    return { ok: false, error: "JSON inválido. Verifica el formato del archivo." };
+    return { ok: false, error: "JSON inválido. Verifica el formato." };
   }
 };

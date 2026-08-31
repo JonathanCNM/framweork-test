@@ -60,7 +60,7 @@ export const ValidatingPage = ({ theme }: { theme: IViewConfig }) => {
         <div className="upload-loading-container">
           <CircularProgress
             colors={[title, title]}
-            size={128}
+            size={140}
             strokeWidth={6}
             className="upload-circular-progress"
           >

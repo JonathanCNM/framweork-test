@@ -39,11 +39,11 @@ export const UploadLoading: React.FC<{
       <div className="upload-loading-container">
         <CircularProgress
           colors={progressColors}
-          size={128}
+          size={140}
           strokeWidth={6}
           className="upload-circular-progress"
         >
-          <ElevatedCircle background={backgroundIcon}>
+          <ElevatedCircle size={128} background={backgroundIcon}>
             <UploadCloud colors={colors} />
           </ElevatedCircle>
         </CircularProgress>

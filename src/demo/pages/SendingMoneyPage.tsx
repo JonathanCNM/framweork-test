@@ -50,7 +50,7 @@ export const SendingMoneyPage: React.FC<SendingMoneyPageProps> = ({
           <CircularProgress
             variant={variant}
             colors={[title, title]}
-            size={128}
+            size={140}
             strokeWidth={6}
             className="upload-circular-progress"
           >

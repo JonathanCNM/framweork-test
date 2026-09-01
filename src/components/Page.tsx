@@ -19,9 +19,11 @@ export const Page: React.FC<PageProps> = ({ children, font = defaultFont }) => {
     <main
       className="page"
       style={
-        { "--font": fontStyle.name } as React.CSSProperties & {
-          [key: string]: string;
-        }
+        {
+          "--font": fontStyle.name,
+          "--lola-font-family": fontStyle.name,
+          "--lola-font-cdn": fontStyle.cdn,
+        } as React.CSSProperties & { [key: string]: string }
       }
     >
       {children}

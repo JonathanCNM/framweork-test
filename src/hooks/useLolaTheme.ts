@@ -152,7 +152,7 @@ export function useLolaTheme(config: LolaThemeConfig): UseLolaThemeReturn {
   );
   
   // Inject CSS variables (colors, fonts, and styles)
-  useCSSVariables(config.colors, fontFamily, undefined, config.styles);
+  useCSSVariables(config.colors, fontFamily, undefined, config.styles, fontCdn);
   
   // Inject text styles
   useEffect(() => {

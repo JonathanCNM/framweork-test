@@ -126,9 +126,12 @@ export function injectViewVariables(viewConfig: ViewColorConfig): void {
 /**
  * Injects font family CSS variable
  */
-export function injectFontVariable(fontFamily: string): void {
+export function injectFontVariable(fontFamily: string, fontCdn?: string): void {
   const root = document.documentElement;
   root.style.setProperty(CSS_VARIABLES.FONT_FAMILY, fontFamily);
+  if (fontCdn) {
+    root.style.setProperty(CSS_VARIABLES.FONT_CDN, fontCdn);
+  }
 }
 
 /**
@@ -205,10 +208,10 @@ export function useViewVariables(viewConfig: ViewColorConfig | null) {
 /**
  * Hook to manage font family CSS variable
  */
-export function useFontVariable(fontFamily: string) {
+export function useFontVariable(fontFamily: string, fontCdn?: string) {
   useEffect(() => {
-    injectFontVariable(fontFamily);
-  }, [fontFamily]);
+    injectFontVariable(fontFamily, fontCdn);
+  }, [fontFamily, fontCdn]);
 
   return { injectFontVariable };
 }
@@ -231,10 +234,11 @@ export function useCSSVariables(
   colors: ColorPalette,
   fontFamily: string,
   viewConfig?: ViewColorConfig | null,
-  styles?: StylesConfig
+  styles?: StylesConfig,
+  fontCdn?: string
 ) {
   useColorVariables(colors);
-  useFontVariable(fontFamily);
+  useFontVariable(fontFamily, fontCdn);
   useStyleVariables(styles);
   
   useEffect(() => {

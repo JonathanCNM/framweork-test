@@ -80,6 +80,7 @@ export type { TransferPanelProps } from "./components/TransferPanel";
 export type { TransferPanelSectionProps } from "./components/TransferPanelSection";
 
 export type { UseVgsCollectLoaderProps } from "./hooks/useVgsCollectLoader";
+export type { UseVgsFieldCssProps } from "./hooks/useVgsFieldCss";
 export type { UseFontsProps } from "./hooks/useFonts";
 export type {
   ThemeText,
@@ -107,6 +108,7 @@ export * from "./hooks/useTheme";
 export * from "./hooks/useKeyboardVisible";
 export * from "./hooks/usePreventReload";
 export * from "./hooks/useVgsCollectLoader";
+export * from "./hooks/useVgsFieldCss";
 export * from "./hooks/useFonts";
 export * from "./hooks/useLocalStorage";
 

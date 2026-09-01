@@ -304,6 +304,7 @@ export const CSS_VARIABLES = {
   
   // Font
   FONT_FAMILY: '--lola-font-family',
+  FONT_CDN: '--lola-font-cdn',
   
   // Styles
   CARD_BORDER_RADIUS: '--lola-style-card-border-radius',

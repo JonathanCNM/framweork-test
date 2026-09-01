@@ -56,6 +56,8 @@ export { usePreventReload } from './usePreventReload';
 // VGS Collect integration
 export { useVgsCollectLoader } from './useVgsCollectLoader';
 export type { UseVgsCollectLoaderProps } from './useVgsCollectLoader';
+export { useVgsFieldCss } from './useVgsFieldCss';
+export type { UseVgsFieldCssProps } from './useVgsFieldCss';
 
 // ============================================
 // TYPE EXPORTS

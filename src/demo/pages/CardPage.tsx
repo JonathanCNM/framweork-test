@@ -4,6 +4,7 @@ import {
   Button,
   Layout,
   Navbar,
+  VgsFormWrapper,
   VgsInput,
 } from "../../components";
 import { useKeyboardVisible } from "../../hooks";
@@ -23,6 +24,14 @@ export const CardPage = ({ theme }: { theme: IViewConfig }) => {
         <Navbar color={title} title="Add card" align="center" />
       </Layout.Header>
       <Layout.Content>
+      <VgsFormWrapper
+          vaultId={"tntegvj3mmf"}
+          environment={"sandbox"}
+          routeId={"8232b546-af5d-47ba-9b39-01dbbfc24bc3"}
+          action="/post"
+          submitParameters={{}}
+          
+        >
         <section
           style={{
             display: "flex",
@@ -65,6 +74,7 @@ export const CardPage = ({ theme }: { theme: IViewConfig }) => {
             />
           </article>
         </section>
+        </VgsFormWrapper>
       </Layout.Content>
       <Layout.Footer>
         <section className="homepage-footer">

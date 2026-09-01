@@ -35,6 +35,27 @@ type PaletteLike = {
   inputIconPrimary?: string;
   inputIconSecondary?: string;
   titleColor?: string;
+  primaryMesh?: string;
+  primaryGradient?: string;
+  secondaryGradient?: string;
+  colors?: PaletteLike;
+};
+
+/**
+ * Accepts a flat `colors` object or a full theme `{ colors, font, styles }`.
+ */
+export const flattenThemePalette = (
+  theme: Record<string, unknown> | PaletteLike | null | undefined
+): PaletteLike => {
+  if (!theme) return {};
+  const nested = theme.colors;
+  const fromNested =
+    nested && typeof nested === "object" && !Array.isArray(nested)
+      ? (nested as PaletteLike)
+      : {};
+  const rest = { ...theme };
+  delete rest.colors;
+  return { ...fromNested, ...rest };
 };
 
 /** Empty / invalid = unset (legacy icon size). `"0"` / `0` = fill the disc. */

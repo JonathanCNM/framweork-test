@@ -85,6 +85,19 @@ export interface IViewColorConfig {
    * (`primaryGradient` + `secondaryGradient`), never icon colors.
    */
   auraColors?: [string, string];
+  /**
+   * Banner highlight background. Falls back to `primaryMesh` when unset (legacy).
+   */
+  bannerHighlightBackground?: string;
+  /**
+   * Banner highlight text. Solid or gradient. Unset = `#FFFFFF`.
+   * Use `GradientText`, not `style.color`.
+   */
+  bannerHighlightColor?: string;
+  /**
+   * Banner highlight icon colors. Falls back to primaryMesh stops when unset.
+   */
+  bannerHighlightIconColors?: [string, string];
   themeType?: string;
   useSystemTheme?: boolean;
   viewConfig:
@@ -185,6 +198,14 @@ export const useTheme = (theme: IUseTheme) => {
   ): IViewConfig | null => {
     if (!theme) return null;
 
+    const bannerHighlightBackground =
+      theme.bannerHighlightBackground ?? theme.primaryMesh;
+    const bannerHighlightColor = theme.bannerHighlightColor ?? "#FFFFFF";
+    const bannerHighlightIconColors: [string, string] = [
+      theme.bannerHighlightIconPrimary ?? theme.primaryGradient,
+      theme.bannerHighlightIconSecondary ?? theme.secondaryGradient,
+    ];
+
     // Apply theme.styles CSS variables for legacy consumers (useLolaTheme does this automatically)
     if (styles) {
       injectStyleVariables(styles);
@@ -222,6 +243,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "primaryMeshGradientView",
         },
@@ -242,6 +266,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "specialView",
         },
@@ -262,6 +289,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "dataView",
         },
@@ -282,6 +312,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "whiteView",
         },
@@ -302,6 +335,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "errorView",
         },
@@ -325,6 +361,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "primaryMeshGradientView",
         },
@@ -345,6 +384,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "specialView",
         },
@@ -365,6 +407,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "dataView",
         },
@@ -385,6 +430,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "whiteView",
         },
@@ -405,6 +453,9 @@ export const useTheme = (theme: IUseTheme) => {
           themeType: theme?.lightness,
           errorColor: theme?.errorColor,
           highlight: theme?.partnerHighlights,
+          bannerHighlightBackground,
+          bannerHighlightColor,
+          bannerHighlightIconColors,
           useSystemTheme: theme?.useSystemTheme,
           viewConfig: "errorView",
         },

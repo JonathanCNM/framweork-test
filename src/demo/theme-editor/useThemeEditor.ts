@@ -15,9 +15,11 @@ import {
   omitEditorOnlyColorFields,
 } from "./specialViewSync";
 import {
+  copyPrimaryToBannerHighlight,
   copyPrimaryToScreenIcons,
   copyPrimaryToTitleColor,
   copySecondaryToInputIcons,
+  isBannerHighlightField,
   isInputIconField,
   isScreenIconField,
   isTitleColorField,
@@ -121,6 +123,9 @@ export const useThemeEditor = () => {
       if (prev.screenIconLinked) {
         formColors = copyPrimaryToScreenIcons(formColors);
       }
+      if (prev.bannerHighlightLinked) {
+        formColors = copyPrimaryToBannerHighlight(formColors);
+      }
       const unchanged =
         prev.formColors.primaryMesh === formColors.primaryMesh &&
         prev.formColors.specialViewBackground === formColors.specialViewBackground &&
@@ -148,7 +153,15 @@ export const useThemeEditor = () => {
         prev.formColors.screenIconFill === formColors.screenIconFill &&
         prev.formColors.screenIconFillSurface ===
           formColors.screenIconFillSurface &&
-        prev.formColors.screenIconFillError === formColors.screenIconFillError;
+        prev.formColors.screenIconFillError === formColors.screenIconFillError &&
+        prev.formColors.bannerHighlightBackground ===
+          formColors.bannerHighlightBackground &&
+        prev.formColors.bannerHighlightColor ===
+          formColors.bannerHighlightColor &&
+        prev.formColors.bannerHighlightIconPrimary ===
+          formColors.bannerHighlightIconPrimary &&
+        prev.formColors.bannerHighlightIconSecondary ===
+          formColors.bannerHighlightIconSecondary;
       return unchanged ? prev : { ...prev, formColors };
     });
     // primaryMesh is omitted on purpose so a manual edit is not overwritten
@@ -252,6 +265,10 @@ export const useThemeEditor = () => {
       screenIconPadding: state.formColors.screenIconPadding,
       screenIconPaddingSurface: state.formColors.screenIconPaddingSurface,
       screenIconPaddingError: state.formColors.screenIconPaddingError,
+      bannerHighlightBackground: state.formColors.bannerHighlightBackground,
+      bannerHighlightColor: state.formColors.bannerHighlightColor,
+      bannerHighlightIconPrimary: state.formColors.bannerHighlightIconPrimary,
+      bannerHighlightIconSecondary: state.formColors.bannerHighlightIconSecondary,
     },
     {
     ...state.formStyles,
@@ -367,6 +384,13 @@ export const useThemeEditor = () => {
             formColors: { ...prev.formColors, [name]: value },
           };
         }
+        if (isBannerHighlightField(name)) {
+          return {
+            ...prev,
+            bannerHighlightLinked: false,
+            formColors: { ...prev.formColors, [name]: value },
+          };
+        }
 
         let formColors = { ...prev.formColors, [name]: value };
         if (prev.specialViewLinked && isPrimaryGradientField(name)) {
@@ -380,6 +404,9 @@ export const useThemeEditor = () => {
         }
         if (prev.inputIconLinked && name === "secondaryColor") {
           formColors = copySecondaryToInputIcons(formColors);
+        }
+        if (prev.bannerHighlightLinked && isPrimaryGradientField(name)) {
+          formColors = copyPrimaryToBannerHighlight(formColors);
         }
         return { ...prev, formColors };
       });

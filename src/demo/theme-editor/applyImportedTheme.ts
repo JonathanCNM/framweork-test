@@ -6,9 +6,11 @@ import {
   isSpecialViewInSyncWithPrimary,
 } from "./specialViewSync";
 import {
+  copyPrimaryToBannerHighlight,
   copyPrimaryToScreenIcons,
   copyPrimaryToTitleColor,
   copySecondaryToInputIcons,
+  importedThemeHasBannerHighlight,
   importedThemeHasInputIcons,
   importedThemeHasScreenIcons,
   importedThemeHasTitleColor,
@@ -124,6 +126,13 @@ const applyColors = (
     ) {
       colorUpdates[key as keyof IColorForm] = `${value}px`;
     }
+  }
+
+  const iconColors = restColors.bannerHighlightIconColors;
+  if (Array.isArray(iconColors) && typeof iconColors[0] === "string") {
+    colorUpdates.bannerHighlightIconPrimary = iconColors[0];
+    colorUpdates.bannerHighlightIconSecondary =
+      typeof iconColors[1] === "string" ? iconColors[1] : iconColors[0];
   }
 
   const inactiveColor =
@@ -250,6 +259,13 @@ export const applyImportedTheme = (
     } else {
       next.formColors = copySecondaryToInputIcons(next.formColors);
       next.inputIconLinked = true;
+    }
+
+    if (importedThemeHasBannerHighlight(imported.colors)) {
+      next.bannerHighlightLinked = false;
+    } else {
+      next.formColors = copyPrimaryToBannerHighlight(next.formColors);
+      next.bannerHighlightLinked = true;
     }
   }
 

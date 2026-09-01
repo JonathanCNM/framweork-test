@@ -60,6 +60,10 @@ export const COLOR_STRING_KEYS = [
   "inputIconPrimary",
   "inputIconSecondary",
   "linkColor",
+  "bannerHighlightBackground",
+  "bannerHighlightColor",
+  "bannerHighlightIconPrimary",
+  "bannerHighlightIconSecondary",
 ] as const;
 
 export const COLOR_PADDING_KEYS = [
@@ -178,6 +182,37 @@ export const linkColorList: ThemeFieldConfig[] = [
     type: "text",
     label: "linkColor",
     description: "Sólido o gradiente. Default #252525.",
+  },
+];
+
+export const bannerHighlightColorList: ThemeFieldConfig[] = [
+  {
+    key: "bannerHighlightBackground",
+    value: "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+    type: "text",
+    label: "bannerHighlightBackground",
+    description:
+      "Fondo del banner. Sigue al primaryMesh hasta que lo edites.",
+  },
+  {
+    key: "bannerHighlightColor",
+    value: "#FFFFFF",
+    type: "color",
+    label: "bannerHighlightColor",
+    description:
+      "Color del texto del banner. Default `#FFFFFF`. Acepta sólido o gradiente.",
+  },
+  {
+    key: "bannerHighlightIconPrimary",
+    value: "#4BA84B",
+    type: "color",
+    label: "icon color 1",
+  },
+  {
+    key: "bannerHighlightIconSecondary",
+    value: "#008433",
+    type: "color",
+    label: "icon color 2",
   },
 ];
 
@@ -322,6 +357,11 @@ export const formColorInitialState: IColorForm = {
   inputIconPrimary: "#252525",
   inputIconSecondary: "#252525",
   linkColor: "#252525",
+  bannerHighlightBackground:
+    "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  bannerHighlightColor: "#FFFFFF",
+  bannerHighlightIconPrimary: "#4BA84B",
+  bannerHighlightIconSecondary: "#008433",
 };
 
 export const specialViewGradientList: ThemeFieldConfig[] = [
@@ -415,6 +455,7 @@ export const defaultThemeEditorState: ThemeEditorState = {
   titleLinked: true,
   screenIconLinked: true,
   inputIconLinked: true,
+  bannerHighlightLinked: true,
 };
 
 export const STORYBOOK_ORIGINS = [

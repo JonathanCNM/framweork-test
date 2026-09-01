@@ -77,6 +77,10 @@ export interface IColorForm {
   inputIconPrimary?: string;
   inputIconSecondary?: string;
   linkColor?: string;
+  bannerHighlightBackground?: string;
+  bannerHighlightColor?: string;
+  bannerHighlightIconPrimary?: string;
+  bannerHighlightIconSecondary?: string;
 }
 
 export type ButtonSizeOption = "small" | "medium" | "large";
@@ -127,6 +131,8 @@ export interface ThemeEditorState {
   screenIconLinked: boolean;
   /** Input icons follow secondaryColor until edited. */
   inputIconLinked: boolean;
+  /** Banner highlight follows primaryMesh until edited. */
+  bannerHighlightLinked: boolean;
 }
 
 export interface ImportedTheme {

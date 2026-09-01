@@ -15,6 +15,7 @@ import {
   specialViewGradientList,
   titleColorList,
   linkColorList,
+  bannerHighlightColorList,
 } from "./constants";
 import type {
   ButtonSizeOption,
@@ -46,7 +47,9 @@ const ColorFields = ({
             key.endsWith("Fill") ||
             key === "primaryMesh" ||
             key === "titleColor" ||
-            key === "linkColor"
+            key === "linkColor" ||
+            key === "bannerHighlightBackground" ||
+            key === "bannerHighlightColor"
               ? "theme-sidebar__field theme-sidebar__field--wide"
               : "theme-sidebar__field"
           }
@@ -276,6 +279,23 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
             />
           </fieldset>
         </div>
+      </details>
+
+      <details className="theme-sidebar__section" open>
+        <summary>Banner highlight</summary>
+        <p className="theme-sidebar__hint theme-sidebar__section-hint">
+          Fondo e iconos siguen al primaryMesh hasta que los edites. El texto
+          arranca en #FFFFFF. Temas viejos sin color de texto usan blanco.
+        </p>
+        <div
+          className="theme-sidebar__gradient-preview"
+          style={{ background: state.formColors.bannerHighlightBackground }}
+        />
+        <ColorFields
+          fields={bannerHighlightColorList}
+          values={state.formColors}
+          onChange={editor.onChangeColorField}
+        />
       </details>
 
       <details className="theme-sidebar__section" open>

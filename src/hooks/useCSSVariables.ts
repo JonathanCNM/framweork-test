@@ -106,6 +106,25 @@ export function injectColorVariables(colors: ColorPalette): void {
     firstCssColorStop(linkColor)
   );
   root.classList.toggle("lola-link-gradient", isGradientColor(linkColor));
+
+  const bannerColor = colors.bannerHighlightColor ?? "#FFFFFF";
+  root.style.setProperty(
+    CSS_VARIABLES.BANNER_HIGHLIGHT_BACKGROUND,
+    colors.bannerHighlightBackground ?? colors.primaryMesh
+  );
+  root.style.setProperty(CSS_VARIABLES.BANNER_HIGHLIGHT_COLOR, bannerColor);
+  root.style.setProperty(
+    CSS_VARIABLES.BANNER_HIGHLIGHT_FILL,
+    toLinkFill(bannerColor)
+  );
+  root.style.setProperty(
+    CSS_VARIABLES.BANNER_HIGHLIGHT_ICON_PRIMARY,
+    colors.bannerHighlightIconPrimary ?? colors.primaryGradient
+  );
+  root.style.setProperty(
+    CSS_VARIABLES.BANNER_HIGHLIGHT_ICON_SECONDARY,
+    colors.bannerHighlightIconSecondary ?? colors.secondaryGradient
+  );
 }
 
 /**
@@ -121,6 +140,32 @@ export function injectViewVariables(viewConfig: ViewColorConfig): void {
   root.style.setProperty(CSS_VARIABLES.VIEW_FOOTER, viewConfig.footerColor);
   root.style.setProperty(CSS_VARIABLES.VIEW_BTN_BG, viewConfig.backgroundBtn);
   root.style.setProperty(CSS_VARIABLES.VIEW_BTN_TEXT, viewConfig.textColorBtn);
+  if (viewConfig.bannerHighlightBackground) {
+    root.style.setProperty(
+      CSS_VARIABLES.BANNER_HIGHLIGHT_BACKGROUND,
+      viewConfig.bannerHighlightBackground
+    );
+  }
+  if (viewConfig.bannerHighlightColor) {
+    root.style.setProperty(
+      CSS_VARIABLES.BANNER_HIGHLIGHT_COLOR,
+      viewConfig.bannerHighlightColor
+    );
+    root.style.setProperty(
+      CSS_VARIABLES.BANNER_HIGHLIGHT_FILL,
+      toLinkFill(viewConfig.bannerHighlightColor)
+    );
+  }
+  if (viewConfig.bannerHighlightIconColors) {
+    root.style.setProperty(
+      CSS_VARIABLES.BANNER_HIGHLIGHT_ICON_PRIMARY,
+      viewConfig.bannerHighlightIconColors[0]
+    );
+    root.style.setProperty(
+      CSS_VARIABLES.BANNER_HIGHLIGHT_ICON_SECONDARY,
+      viewConfig.bannerHighlightIconColors[1]
+    );
+  }
 }
 
 /**

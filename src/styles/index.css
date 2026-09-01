@@ -39,6 +39,9 @@ html.dark {
   --lola-link-decoration-color: #252525;
   --lola-link-font-weight: 700;
   --lola-link-text-decoration: none;
+  --lola-banner-highlight-color: #ffffff;
+  --lola-banner-highlight-fill: linear-gradient(90deg, #ffffff 0%, #ffffff 100%)
+    text, transparent;
 
   color-scheme: light dark;
   /* Light */
@@ -588,6 +591,14 @@ html.lola-link-gradient .text-link:not(.lola-link--solid),
   color: transparent;
   -webkit-text-fill-color: transparent;
   background: var(--lola-link-fill, var(--lola-link-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.lola-banner-highlight-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: var(--lola-banner-highlight-fill, var(--lola-banner-highlight-color));
   -webkit-background-clip: text;
   background-clip: text;
 }

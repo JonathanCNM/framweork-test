@@ -127,6 +127,23 @@ export interface ColorPalette {
    * Unset = `#252525`.
    */
   linkColor?: string;
+  /**
+   * Banner highlight background. Unset = `primaryMesh` (legacy).
+   */
+  bannerHighlightBackground?: string;
+  /**
+   * Banner highlight text color. Solid or gradient. Unset = `#FFFFFF`.
+   * Paint with `GradientText` (`textColor={bannerHighlightColor}`), not `style.color`.
+   */
+  bannerHighlightColor?: string;
+  /**
+   * First stop of banner highlight icons. Unset = `primaryGradient` (legacy).
+   */
+  bannerHighlightIconPrimary?: string;
+  /**
+   * Second stop of banner highlight icons. Unset = `secondaryGradient` (legacy).
+   */
+  bannerHighlightIconSecondary?: string;
 }
 
 export interface ViewColorConfig {
@@ -179,6 +196,20 @@ export interface ViewColorConfig {
    * of screen icon colors.
    */
   auraColors?: [string, string];
+  /**
+   * Banner highlight background. Falls back to `primaryMesh` when unset (legacy).
+   */
+  bannerHighlightBackground?: string;
+  /**
+   * Banner highlight text. Solid or gradient. Unset = `#FFFFFF`.
+   * Use `GradientText` (`textColor={bannerHighlightColor}`), not `style.color`.
+   */
+  bannerHighlightColor?: string;
+  /**
+   * Banner highlight icon colors. Falls back to primaryMesh stops
+   * (`primaryGradient`, `secondaryGradient`) when unset (legacy).
+   */
+  bannerHighlightIconColors?: [string, string];
   themeType?: ThemeLightness;
   useSystemTheme?: boolean;
   viewConfig: ViewType;
@@ -301,6 +332,11 @@ export const CSS_VARIABLES = {
   LINK_DECORATION_COLOR: '--lola-link-decoration-color',
   LINK_FONT_WEIGHT: '--lola-link-font-weight',
   LINK_TEXT_DECORATION: '--lola-link-text-decoration',
+  BANNER_HIGHLIGHT_BACKGROUND: '--lola-banner-highlight-background',
+  BANNER_HIGHLIGHT_COLOR: '--lola-banner-highlight-color',
+  BANNER_HIGHLIGHT_FILL: '--lola-banner-highlight-fill',
+  BANNER_HIGHLIGHT_ICON_PRIMARY: '--lola-banner-highlight-icon-primary',
+  BANNER_HIGHLIGHT_ICON_SECONDARY: '--lola-banner-highlight-icon-secondary',
   
   // Font
   FONT_FAMILY: '--lola-font-family',

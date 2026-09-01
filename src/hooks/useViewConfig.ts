@@ -11,6 +11,7 @@ import type {
   ViewType,
 } from '../types/theme.types';
 import {
+  flattenThemePalette,
   resolveInputIconColors,
   resolveScreenIconBackground,
   resolveScreenIconColors,
@@ -278,6 +279,17 @@ export function generateViewConfigs(
   colorPalette: ColorPalette,
   styles?: StylesConfig
 ): ViewsConfig {
+  colorPalette = flattenThemePalette(
+    colorPalette as unknown as Record<string, unknown>
+  ) as ColorPalette;
+  const bannerHighlightBackground =
+    colorPalette.bannerHighlightBackground ?? colorPalette.primaryMesh;
+  const bannerHighlightColor =
+    colorPalette.bannerHighlightColor ?? "#FFFFFF";
+  const bannerHighlightIconColors: [string, string] = [
+    colorPalette.bannerHighlightIconPrimary ?? colorPalette.primaryGradient,
+    colorPalette.bannerHighlightIconSecondary ?? colorPalette.secondaryGradient,
+  ];
   const lightness = colorPalette.lightness || 'light';
   const useSystemTheme = colorPalette.useSystemTheme || false;
   // Legacy defaults for props exposed on each view (opt-in for consumers)
@@ -327,6 +339,9 @@ export function generateViewConfigs(
         themeType: lightness,
         errorColor: colorPalette.errorColor,
         highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
+        bannerHighlightBackground,
+        bannerHighlightColor,
+        bannerHighlightIconColors,
         useSystemTheme: true,
         viewConfig: viewType,
       };
@@ -357,6 +372,9 @@ export function generateViewConfigs(
         themeType: lightness,
         errorColor: colorPalette.errorColor,
         highlight: mapping.highlight ? resolveColor(mapping.highlight, colorPalette) : undefined,
+        bannerHighlightBackground,
+        bannerHighlightColor,
+        bannerHighlightIconColors,
         useSystemTheme: colorPalette.useSystemTheme,
         viewConfig: viewType,
       };
@@ -411,10 +429,15 @@ export function useViewConfig(
   styles?: StylesConfig
 ) {
   const generatedViews = generateViewConfigs(colorPalette, styles);
-  
-  // Merge custom view overrides if provided
+
+  // Per-view merge so a 0.3.1 `views` object does not drop new optional keys
   const views: ViewsConfig = customViews
-    ? { ...generatedViews, ...customViews }
+    ? (Object.keys(generatedViews) as ViewType[]).reduce((next, viewType) => {
+        next[viewType] = customViews[viewType]
+          ? { ...generatedViews[viewType], ...customViews[viewType] }
+          : generatedViews[viewType];
+        return next;
+      }, {} as ViewsConfig)
     : generatedViews;
 
   return { views, generateViewConfigs };

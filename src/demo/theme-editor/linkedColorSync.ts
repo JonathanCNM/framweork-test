@@ -20,6 +20,13 @@ export const INPUT_ICON_FIELD_KEYS = [
   "inputIconSecondary",
 ] as const;
 
+export const BANNER_HIGHLIGHT_FIELD_KEYS = [
+  "bannerHighlightBackground",
+  "bannerHighlightColor",
+  "bannerHighlightIconPrimary",
+  "bannerHighlightIconSecondary",
+] as const;
+
 export const isTitleColorField = (key: string): boolean =>
   (TITLE_COLOR_FIELD_KEYS as readonly string[]).includes(key);
 
@@ -28,6 +35,9 @@ export const isScreenIconField = (key: string): boolean =>
 
 export const isInputIconField = (key: string): boolean =>
   (INPUT_ICON_FIELD_KEYS as readonly string[]).includes(key);
+
+export const isBannerHighlightField = (key: string): boolean =>
+  (BANNER_HIGHLIGHT_FIELD_KEYS as readonly string[]).includes(key);
 
 export const copyPrimaryToTitleColor = (colors: IColorForm): IColorForm => ({
   ...colors,
@@ -53,6 +63,14 @@ export const copySecondaryToInputIcons = (colors: IColorForm): IColorForm => ({
   inputIconSecondary: colors.secondaryColor,
 });
 
+export const copyPrimaryToBannerHighlight = (colors: IColorForm): IColorForm => ({
+  ...colors,
+  bannerHighlightBackground: colors.primaryMesh,
+  bannerHighlightColor: "#FFFFFF",
+  bannerHighlightIconPrimary: colors.primaryGradient,
+  bannerHighlightIconSecondary: colors.secondaryGradient,
+});
+
 export const importedThemeHasTitleColor = (
   colors: Record<string, unknown>
 ): boolean => typeof colors.titleColor === "string";
@@ -71,3 +89,12 @@ export const importedThemeHasScreenIcons = (
 export const importedThemeHasInputIcons = (
   colors: Record<string, unknown>
 ): boolean => typeof colors.inputIconPrimary === "string";
+
+export const importedThemeHasBannerHighlight = (
+  colors: Record<string, unknown>
+): boolean =>
+  typeof colors.bannerHighlightBackground === "string" ||
+  typeof colors.bannerHighlightColor === "string" ||
+  typeof colors.bannerHighlightIconPrimary === "string" ||
+  typeof colors.bannerHighlightIconSecondary === "string" ||
+  Array.isArray(colors.bannerHighlightIconColors);

@@ -61,6 +61,7 @@ export interface IColorForm {
   foregroundLight?: string;
   foregroundDark?: string;
   titleColor?: string;
+  whiteViewHighlight?: string;
   screenIconPrimary?: string;
   screenIconSecondary?: string;
   screenIconPrimarySurface?: string;
@@ -133,6 +134,8 @@ export interface ThemeEditorState {
   inputIconLinked: boolean;
   /** Banner highlight follows primaryMesh until edited. */
   bannerHighlightLinked: boolean;
+  /** whiteView.highlight follows partnerHighlights until edited. */
+  whiteViewHighlightLinked: boolean;
 }
 
 export interface ImportedTheme {

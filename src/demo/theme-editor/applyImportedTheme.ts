@@ -10,10 +10,12 @@ import {
   copyPrimaryToScreenIcons,
   copyPrimaryToTitleColor,
   copySecondaryToInputIcons,
+  copyPartnerHighlightsToWhiteViewHighlight,
   importedThemeHasBannerHighlight,
   importedThemeHasInputIcons,
   importedThemeHasScreenIcons,
   importedThemeHasTitleColor,
+  importedThemeHasWhiteViewHighlight,
 } from "./linkedColorSync";
 import type {
   ButtonSizeOption,
@@ -266,6 +268,13 @@ export const applyImportedTheme = (
     } else {
       next.formColors = copyPrimaryToBannerHighlight(next.formColors);
       next.bannerHighlightLinked = true;
+    }
+
+    if (importedThemeHasWhiteViewHighlight(imported.colors)) {
+      next.whiteViewHighlightLinked = false;
+    } else {
+      next.formColors = copyPartnerHighlightsToWhiteViewHighlight(next.formColors);
+      next.whiteViewHighlightLinked = true;
     }
   }
 

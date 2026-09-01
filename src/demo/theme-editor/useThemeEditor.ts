@@ -15,6 +15,7 @@ import {
   omitEditorOnlyColorFields,
 } from "./specialViewSync";
 import {
+  copyPartnerHighlightsToWhiteViewHighlight,
   copyPrimaryToBannerHighlight,
   copyPrimaryToScreenIcons,
   copyPrimaryToTitleColor,
@@ -23,6 +24,7 @@ import {
   isInputIconField,
   isScreenIconField,
   isTitleColorField,
+  isWhiteViewHighlightField,
 } from "./linkedColorSync";
 import type {
   ButtonSizeOption,
@@ -70,6 +72,7 @@ const buildExportedTheme = (state: ThemeEditorState): ExportedTheme => {
     delete colors.inputIconPrimary;
     delete colors.inputIconSecondary;
   }
+  if (state.whiteViewHighlightLinked) delete colors.whiteViewHighlight;
   for (const key of COLOR_PADDING_KEYS) {
     const value = colors[key];
     if (typeof value !== "string" || value.trim() === "") {
@@ -126,6 +129,9 @@ export const useThemeEditor = () => {
       if (prev.bannerHighlightLinked) {
         formColors = copyPrimaryToBannerHighlight(formColors);
       }
+      if (prev.whiteViewHighlightLinked) {
+        formColors = copyPartnerHighlightsToWhiteViewHighlight(formColors);
+      }
       const unchanged =
         prev.formColors.primaryMesh === formColors.primaryMesh &&
         prev.formColors.specialViewBackground === formColors.specialViewBackground &&
@@ -161,7 +167,8 @@ export const useThemeEditor = () => {
         prev.formColors.bannerHighlightIconPrimary ===
           formColors.bannerHighlightIconPrimary &&
         prev.formColors.bannerHighlightIconSecondary ===
-          formColors.bannerHighlightIconSecondary;
+          formColors.bannerHighlightIconSecondary &&
+        prev.formColors.whiteViewHighlight === formColors.whiteViewHighlight;
       return unchanged ? prev : { ...prev, formColors };
     });
     // primaryMesh is omitted on purpose so a manual edit is not overwritten
@@ -269,6 +276,7 @@ export const useThemeEditor = () => {
       bannerHighlightColor: state.formColors.bannerHighlightColor,
       bannerHighlightIconPrimary: state.formColors.bannerHighlightIconPrimary,
       bannerHighlightIconSecondary: state.formColors.bannerHighlightIconSecondary,
+      whiteViewHighlight: state.formColors.whiteViewHighlight,
     },
     {
     ...state.formStyles,
@@ -391,6 +399,13 @@ export const useThemeEditor = () => {
             formColors: { ...prev.formColors, [name]: value },
           };
         }
+        if (isWhiteViewHighlightField(name)) {
+          return {
+            ...prev,
+            whiteViewHighlightLinked: false,
+            formColors: { ...prev.formColors, [name]: value },
+          };
+        }
 
         let formColors = { ...prev.formColors, [name]: value };
         if (prev.specialViewLinked && isPrimaryGradientField(name)) {
@@ -407,6 +422,9 @@ export const useThemeEditor = () => {
         }
         if (prev.bannerHighlightLinked && isPrimaryGradientField(name)) {
           formColors = copyPrimaryToBannerHighlight(formColors);
+        }
+        if (prev.whiteViewHighlightLinked && name === "partnerHighlights") {
+          formColors = copyPartnerHighlightsToWhiteViewHighlight(formColors);
         }
         return { ...prev, formColors };
       });

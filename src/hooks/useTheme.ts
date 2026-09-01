@@ -492,6 +492,9 @@ export const useTheme = (theme: IUseTheme) => {
                 highlight: resolveTitleColor(theme, view.highlight ?? view.title),
               }
             : {}),
+          ...(viewKey === "whiteView" && theme.whiteViewHighlight
+            ? { highlight: theme.whiteViewHighlight }
+            : {}),
           buttonShowIcon,
           buttonSize,
           ...(iconContainerBackgroundOverride !== undefined

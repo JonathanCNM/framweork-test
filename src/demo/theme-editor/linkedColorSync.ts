@@ -27,6 +27,8 @@ export const BANNER_HIGHLIGHT_FIELD_KEYS = [
   "bannerHighlightIconSecondary",
 ] as const;
 
+export const WHITE_VIEW_HIGHLIGHT_FIELD_KEYS = ["whiteViewHighlight"] as const;
+
 export const isTitleColorField = (key: string): boolean =>
   (TITLE_COLOR_FIELD_KEYS as readonly string[]).includes(key);
 
@@ -38,6 +40,9 @@ export const isInputIconField = (key: string): boolean =>
 
 export const isBannerHighlightField = (key: string): boolean =>
   (BANNER_HIGHLIGHT_FIELD_KEYS as readonly string[]).includes(key);
+
+export const isWhiteViewHighlightField = (key: string): boolean =>
+  (WHITE_VIEW_HIGHLIGHT_FIELD_KEYS as readonly string[]).includes(key);
 
 export const copyPrimaryToTitleColor = (colors: IColorForm): IColorForm => ({
   ...colors,
@@ -71,6 +76,13 @@ export const copyPrimaryToBannerHighlight = (colors: IColorForm): IColorForm => 
   bannerHighlightIconSecondary: colors.secondaryGradient,
 });
 
+export const copyPartnerHighlightsToWhiteViewHighlight = (
+  colors: IColorForm
+): IColorForm => ({
+  ...colors,
+  whiteViewHighlight: colors.partnerHighlights,
+});
+
 export const importedThemeHasTitleColor = (
   colors: Record<string, unknown>
 ): boolean => typeof colors.titleColor === "string";
@@ -98,3 +110,7 @@ export const importedThemeHasBannerHighlight = (
   typeof colors.bannerHighlightIconPrimary === "string" ||
   typeof colors.bannerHighlightIconSecondary === "string" ||
   Array.isArray(colors.bannerHighlightIconColors);
+
+export const importedThemeHasWhiteViewHighlight = (
+  colors: Record<string, unknown>
+): boolean => typeof colors.whiteViewHighlight === "string";

@@ -74,6 +74,11 @@ export interface ColorPalette {
    * White-view title color. Follows `primaryMesh` until set explicitly.
    */
   titleColor?: string;
+  /**
+   * Highlight color for `whiteView` only. Unset = existing `highlight`
+   * (`partnerHighlights` / titleColor overlay). Other views are unchanged.
+   */
+  whiteViewHighlight?: string;
   /** First stop of ElevatedCircle / screen icons. Unset = per-view mapping (legacy). */
   screenIconPrimary?: string;
   /** Second stop of ElevatedCircle / screen icons. Unset = per-view mapping (legacy). */

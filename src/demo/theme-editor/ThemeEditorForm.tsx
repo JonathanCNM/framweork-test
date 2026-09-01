@@ -16,6 +16,7 @@ import {
   titleColorList,
   linkColorList,
   bannerHighlightColorList,
+  whiteViewHighlightList,
 } from "./constants";
 import type {
   ButtonSizeOption,
@@ -49,7 +50,8 @@ const ColorFields = ({
             key === "titleColor" ||
             key === "linkColor" ||
             key === "bannerHighlightBackground" ||
-            key === "bannerHighlightColor"
+            key === "bannerHighlightColor" ||
+            key === "whiteViewHighlight"
               ? "theme-sidebar__field theme-sidebar__field--wide"
               : "theme-sidebar__field"
           }
@@ -293,6 +295,23 @@ export const ThemeEditorForm = ({ editor }: ThemeEditorFormProps) => {
         />
         <ColorFields
           fields={bannerHighlightColorList}
+          values={state.formColors}
+          onChange={editor.onChangeColorField}
+        />
+      </details>
+
+      <details className="theme-sidebar__section" open>
+        <summary>White view</summary>
+        <p className="theme-sidebar__hint theme-sidebar__section-hint">
+          Highlight solo de whiteView. Sigue a partnerHighlights hasta que lo
+          edites. El highlight del resto de views no cambia.
+        </p>
+        <div
+          className="theme-sidebar__gradient-preview"
+          style={{ background: state.formColors.whiteViewHighlight }}
+        />
+        <ColorFields
+          fields={whiteViewHighlightList}
           values={state.formColors}
           onChange={editor.onChangeColorField}
         />

@@ -414,6 +414,9 @@ export function generateViewConfigs(
             ),
           }
         : {}),
+      ...(viewType === "whiteView" && colorPalette.whiteViewHighlight
+        ? { highlight: colorPalette.whiteViewHighlight }
+        : {}),
     };
   });
 

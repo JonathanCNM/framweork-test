@@ -47,6 +47,7 @@ export const COLOR_STRING_KEYS = [
   "foregroundLight",
   "foregroundDark",
   "titleColor",
+  "whiteViewHighlight",
   "screenIconPrimary",
   "screenIconSecondary",
   "screenIconPrimarySurface",
@@ -227,6 +228,17 @@ export const titleColorList: ThemeFieldConfig[] = [
   },
 ];
 
+export const whiteViewHighlightList: ThemeFieldConfig[] = [
+  {
+    key: "whiteViewHighlight",
+    value: "#AAFF74",
+    type: "text",
+    label: "whiteViewHighlight",
+    description:
+      "Solo whiteView.highlight. Sigue a partnerHighlights hasta que lo edites.",
+  },
+];
+
 export const screenIconColorList: ThemeFieldConfig[] = [
   { key: "screenIconPrimary", value: "#4BA84B", type: "color", label: "color 1" },
   { key: "screenIconSecondary", value: "#008433", type: "color", label: "color 2" },
@@ -341,6 +353,7 @@ export const formColorInitialState: IColorForm = {
   foregroundDark: "#fafafa",
   titleColor:
     "linear-gradient(116.74deg, #4BA84B 23.26%, #008433 111.43%)",
+  whiteViewHighlight: "#AAFF74",
   screenIconPrimary: "#4BA84B",
   screenIconSecondary: "#008433",
   screenIconPrimarySurface: "#4BA84B",
@@ -456,6 +469,7 @@ export const defaultThemeEditorState: ThemeEditorState = {
   screenIconLinked: true,
   inputIconLinked: true,
   bannerHighlightLinked: true,
+  whiteViewHighlightLinked: true,
 };
 
 export const STORYBOOK_ORIGINS = [
